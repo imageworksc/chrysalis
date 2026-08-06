@@ -533,14 +533,22 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    REVEAL — one entrance, applied to blocks as they arrive
    ========================================================================== */
-.has-js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
-.has-js [data-reveal].is-in { opacity: 1; transform: none; }
+/* The entrance hides a block, so it must be impossible for it to stay hidden.
+   The observer normally adds .is-in; if it never runs, this animation expires
+   on its own and leaves the block visible. Content never depends on JS. */
+@keyframes reveal-failsafe { to { opacity: 1; transform: none; } }
+.has-js [data-reveal] {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+  animation: reveal-failsafe .4s var(--ease) 1.6s forwards;
+}
+.has-js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
   .marquee { -webkit-mask-image: none; mask-image: none; overflow-x: auto; }
   .marquee__track { width: auto; }
-  .has-js [data-reveal] { opacity: 1; transform: none; }
+  .has-js [data-reveal] { opacity: 1; transform: none; animation: none; }
 }
 @media (max-width: 920px) {
   .marquee__bar { justify-content: flex-start; margin-top: var(--sp-4); }
@@ -967,7 +975,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
     <!-- ===== HERO ===== -->
     <section class="sec g hero" aria-labelledby="hero-t">
-      <div class="c-7 hero__copy" data-reveal>
+      <div class="c-7 hero__copy">
         <h1 class="h1" id="hero-t" style="margin-top:var(--sp-5)">Mental Health Therapy and Services for Children</h1>
         <p class="lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
         <div class="actions">
@@ -981,7 +989,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         </ul>
       </div>
 
-      <div class="c-5 hero__photo" data-reveal>
+      <div class="c-5 hero__photo">
         <picture>
           <source media="(min-width: 921px)" sizes="40vw" width="1000" height="1250"
                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
@@ -1628,7 +1636,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
 <script>
 /* FAQ */
-(function () {
+try { (function () {
   var faq = document.getElementById('faq');
   if (!faq) return;
   faq.addEventListener('click', function (e) {
@@ -1639,10 +1647,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     item.classList.toggle('is-open', !open);
     btn.setAttribute('aria-expanded', String(!open));
   });
-})();
+})(); } catch (e) { console.error(e); }
 
 /* Header state, menus, sticky CTA */
-(function () {
+try { (function () {
   var hdr = document.getElementById('hdr');
   var burger = document.getElementById('burger');
   var mob = document.getElementById('mobmenu');
@@ -1709,12 +1717,12 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     if (o) { closeAll(); var t = o.querySelector('.nav-item'); if (t) t.focus(); return; }
     if (burger.getAttribute('aria-expanded') === 'true') { close(); burger.focus(); }
   });
-})();
+})(); } catch (e) { console.error(e); }
 
 
 
 /* Entrance for section blocks */
-(function () {
+try { (function () {
   var blocks = document.querySelectorAll('[data-reveal]');
   if (!blocks.length) return;
   if (!('IntersectionObserver' in window)) {
@@ -1727,10 +1735,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   blocks.forEach(function (b) { io.observe(b); });
-})();
+})(); } catch (e) { console.error(e); }
 
 /* Marquee pause controls — required because the motion is automatic */
-(function () {
+try { (function () {
   document.querySelectorAll('[data-marquee]').forEach(function (btn) {
     var strip = document.getElementById(btn.getAttribute('data-marquee'));
     if (!strip) return;
@@ -1750,11 +1758,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     }, { threshold: 0 });
     document.querySelectorAll('.marquee').forEach(function (m) { vis.observe(m); });
   }
-})();
+})(); } catch (e) { console.error(e); }
 
 
 /* Process rail — the fill tracks scroll, each node latches once passed */
-(function () {
+try { (function () {
   var list = document.getElementById('steps-list');
   var fill = document.getElementById('steps-fill');
   if (!list) return;
@@ -1786,10 +1794,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     window.addEventListener('resize', draw);
     draw();
   }
-})();
+})(); } catch (e) { console.error(e); }
 
 /* Signs — reveal on entry, emphasise the row at the reading line, track progress */
-(function () {
+try { (function () {
   var list = document.getElementById('signs-list');
   var fill = document.getElementById('signs-fill');
   if (!list) return;
@@ -1828,10 +1836,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     window.addEventListener('resize', track);
     track();
   }
-})();
+})(); } catch (e) { console.error(e); }
 
 /* Request form — set data-endpoint on the <form> to wire it up */
-(function () {
+try { (function () {
   var form = document.getElementById('request');
   var status = document.getElementById('form-status');
   if (!form || !status) return;
@@ -1845,7 +1853,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       .then(function (r) { if (!r.ok) throw new Error(r.status); form.reset(); show('Thank you. Your request has been received — a specialist generally responds within 48 hours.'); })
       .catch(function () { show('We could not submit your request. Please call (888) 587-0335 and a specialist will help you.'); });
   });
-})();
+})(); } catch (e) { console.error(e); }
 </script>
 </body>
 </html>
