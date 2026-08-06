@@ -97,8 +97,9 @@ img { max-width: 100%; display: block; }
   --w-text:  62ch;
   --gutter:  clamp(16px, 2.6vw, 40px);
 
-  --r:      clamp(16px, 1.6vw, 24px);
-  --r-sm:   12px;
+  --r:      clamp(10px, 0.9vw, 14px);
+  --r-sm:   8px;
+  --r-btn:  10px;
   --r-pill: 999px;
 
   --e-1: 0 1px 3px rgba(var(--rgb-ink),0.04);
@@ -132,8 +133,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .ico--sm { width: 18px; height: 18px; stroke-width: 1.9; }
 .ico--lg { width: 30px; height: 30px; stroke-width: 1.5; }
 
-.badge { display: grid; place-items: center; flex-shrink: 0; width: 56px; height: 56px; border-radius: 18px; }
-.badge--sm { width: 44px; height: 44px; border-radius: 14px; }
+.badge { display: grid; place-items: center; flex-shrink: 0; width: 56px; height: 56px; border-radius: 12px; }
+.badge--sm { width: 44px; height: 44px; border-radius: 10px; }
 .badge--green { background: var(--green-lt); color: var(--green-cta); }
 .badge--blue  { background: var(--blue-lt);  color: var(--blue-deep); }
 
@@ -167,7 +168,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
   min-height: 52px; padding: var(--sp-3) var(--sp-6);
-  border: 1px solid transparent; border-radius: var(--r-pill);
+  border: 1px solid transparent; border-radius: var(--r-btn);
   font-family: var(--font); font-weight: var(--fw-bold); font-size: var(--fs-sm);
   text-decoration: none; cursor: pointer;
   transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .12s var(--ease);
@@ -633,7 +634,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    h3 step cannot hold it on one line. Sized to fit rather than to the scale,
    with margin for Montserrat's real advance width being wider than estimated.
    It gives out around 1150, below which the label takes two lines again. */
-.signs__col .listhead { font-size: clamp(13px, 0.98vw, 14px); letter-spacing: -0.005em; }
+.signs__col .listhead { font-size: 16px; text-wrap: balance; }
 
 /* reading-progress through the list */
 .signs__meter { margin-top: var(--sp-7); height: 4px; border-radius: var(--r-pill); background: var(--rule); overflow: hidden; }
@@ -659,7 +660,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   transition: color .35s var(--ease);
 }
 .signs__mark {
-  width: 40px; height: 40px; border-radius: 12px;
+  width: 40px; height: 40px; border-radius: 8px;
   transition: background .35s var(--ease), color .35s var(--ease);
 }
 /* the card sitting on the reading line */
@@ -777,7 +778,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   transform: translateY(140%); transition: transform .3s var(--ease);
 }
 .sticky-cta.is-shown { transform: none; }
-.sticky-cta a { flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); padding: var(--sp-2); border-radius: var(--r-pill); font-weight: var(--fw-bold); font-size: var(--fs-xs); text-decoration: none; text-align: center; line-height: 1.2; }
+.sticky-cta a { flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); padding: var(--sp-2); border-radius: var(--r-btn); font-weight: var(--fw-bold); font-size: var(--fs-xs); text-decoration: none; text-align: center; line-height: 1.2; }
 .sticky-cta__call { background: var(--green-lt); color: var(--ink); }
 .sticky-cta__go { background: var(--ink); color: var(--white); }
 .sticky-cta .ico { width: 18px; height: 18px; }
