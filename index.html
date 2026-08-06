@@ -23,11 +23,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image"
-      href="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1785958838/shutterstock_2568554847_m9vemt.jpg"
-      imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w, https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785958838/shutterstock_2568554847_m9vemt.jpg 1000w, https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1400/v1785958838/shutterstock_2568554847_m9vemt.jpg 1400w"
-      imagesizes="(max-width: 960px) 100vw, 46vw"
-      fetchpriority="high">
+<link rel="preload" as="image" media="(min-width: 961px)" fetchpriority="high"
+      imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w" imagesizes="46vw">
+<link rel="preload" as="image" media="(max-width: 960px)" fetchpriority="high"
+      imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_750/v1785958838/shutterstock_2568554847_m9vemt.jpg 750w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w" imagesizes="100vw">
 
 <style>
 /* ==========================================================================
@@ -80,6 +83,11 @@ img { max-width: 100%; }
   --fs-base:    17px;
   --fs-sm:      16px;
   --fs-xs:      13px;
+  /* chrome scale — navigation and utility furniture, not content */
+  --fs-nav:     15px;
+  --fs-cta:     14px;
+  --fs-phone:   21px;
+  --fs-tag:     10px;
   --fw-reg: 400;
   --fw-med: 600;
   --fw-bold: 700;
@@ -89,7 +97,7 @@ img { max-width: 100%; }
   --lh-snug: 1.5;
 
   /* ---------- spacing / rhythm / containers ---------- */
-  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-05: 2px; --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
   --sp-5: 24px;  --sp-6: 32px;  --sp-7: 40px;  --sp-8: 56px;
   --sp-9: 72px;  --sp-10: 96px; --sp-11: 128px;
 
@@ -167,7 +175,7 @@ img { max-width: 100%; }
   position: fixed; left: -9999px; top: 0; z-index: var(--z-skip);
   padding: var(--sp-4) var(--sp-5);
   background: var(--ch-ink); color: #fff;
-  font-family: var(--ch-font); font-weight: var(--fw-bold); font-size: 15px;
+  font-family: var(--ch-font); font-weight: var(--fw-bold); font-size: var(--fs-nav);
   text-decoration: none; border-radius: 0 0 var(--r-sm) 0;
 }
 .ch-skip:focus { left: 0; outline: 3px solid var(--ch-green); outline-offset: -3px; }
@@ -213,7 +221,7 @@ img { max-width: 100%; }
 
 .ch-hd__phone {
   display: inline-flex; align-items: center; gap: var(--sp-2);
-  font-size: 21px; font-weight: var(--fw-bold); color: var(--ch-blue-deep);
+  font-size: var(--fs-phone); font-weight: var(--fw-bold); color: var(--ch-blue-deep);
   text-decoration: none; white-space: nowrap;
 }
 .ch-hd__phone .ch-ico { width: 18px; height: 18px; }
@@ -224,7 +232,7 @@ img { max-width: 100%; }
   display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
   min-height: 44px; padding: var(--sp-3) var(--sp-5);
   background: var(--ch-green-cta); color: #fff;
-  font-weight: var(--fw-bold); font-size: 14px; letter-spacing: 0.03em;
+  font-weight: var(--fw-bold); font-size: var(--fs-cta); letter-spacing: 0.03em;
   text-transform: uppercase; text-decoration: none; border-radius: var(--r-sm);
   transition: background .18s var(--ch-ease), transform .12s var(--ch-ease);
 }
@@ -238,17 +246,18 @@ img { max-width: 100%; }
 
 .ch-nav__item {
   position: relative; display: inline-flex; align-items: center; gap: var(--sp-1);
-  min-height: 44px; font-family: var(--ch-font); font-size: 15px; font-weight: var(--fw-bold);
+  min-height: 44px; font-family: var(--ch-font); font-size: var(--fs-nav); font-weight: var(--fw-bold);
   letter-spacing: 0.03em; text-transform: uppercase; color: #55636f;
   text-decoration: none; background: none; border: none; padding: 0; cursor: pointer;
 }
 .ch-nav__item::after {
-  content: ""; position: absolute; left: 50%; right: 50%; bottom: 6px; height: 3px;
+  content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 3px;
   border-radius: var(--r-pill); background: var(--ch-green);
-  transition: left .18s var(--ch-ease), right .18s var(--ch-ease);
+  transform: scaleX(0); transform-origin: 50% 50%;
+  transition: transform .18s var(--ch-ease);
 }
 .ch-nav__item:hover, .ch-nav__item:focus-visible { color: var(--ch-navy); }
-.ch-nav__item:hover::after, .ch-dd.is-open > .ch-nav__item::after { left: 0; right: 0; }
+.ch-nav__item:hover::after, .ch-dd.is-open > .ch-nav__item::after { transform: scaleX(1); }
 .ch-nav__caret { width: 12px; height: 12px; transition: transform .18s var(--ch-ease); }
 .ch-dd.is-open .ch-nav__caret, .ch-dd:hover .ch-nav__caret { transform: rotate(180deg); }
 
@@ -266,7 +275,7 @@ img { max-width: 100%; }
 .ch-dd__panel a {
   display: flex; align-items: center; gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-4); min-height: 44px;
-  font-size: 15px; font-weight: var(--fw-med); line-height: 1.4;
+  font-size: var(--fs-nav); font-weight: var(--fw-med); line-height: 1.4;
   color: #45525e; text-decoration: none; border-radius: var(--r-sm);
   transition: background .15s var(--ch-ease), color .15s var(--ch-ease);
 }
@@ -275,23 +284,28 @@ img { max-width: 100%; }
 .ch-dd__soon {
   display: flex; align-items: center; gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-4); min-height: 44px;
-  font-size: 15px; font-weight: var(--fw-med); line-height: 1.4;
+  font-size: var(--fs-nav); font-weight: var(--fw-med); line-height: 1.4;
   color: #9aa6b0; border-radius: var(--r-sm); cursor: default;
 }
 .ch-dd__soon .ch-ico { color: #9aa6b0; }
 .ch-dd__tag {
-  margin-left: auto; font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 0.06em;
+  margin-left: auto; font-size: var(--fs-tag); font-weight: var(--fw-bold); letter-spacing: 0.06em;
   text-transform: uppercase; color: #7a8792; background: var(--ch-paper-2);
-  border-radius: var(--r-sm); padding: 3px 6px; flex-shrink: 0;
+  border-radius: var(--r-sm); padding: var(--sp-05) var(--sp-2); flex-shrink: 0;
 }
 .ch-dd__feature { margin-top: var(--sp-2); background: var(--ch-green-lt) !important; color: #33501c !important; font-weight: var(--fw-bold) !important; }
 .ch-dd__feature .ch-ico { color: #4a6530 !important; }
 .ch-dd__feature::after { content: "Care from anywhere"; margin-left: auto; font-size: var(--fs-xs); font-weight: var(--fw-reg); color: #4a6530; }
 .ch-dd__feature:hover { background: #dff0c8 !important; color: #2e4519 !important; }
 
-.ch-hd__progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 0; background: var(--ch-green); transition: width .1s linear; }
+.ch-hd__progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+  background: var(--ch-green);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .1s linear;
+}
 
-.ch-hd__burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; margin-left: auto; background: none; border: none; cursor: pointer; flex-shrink: 0; }
+.ch-hd__burger { display: none; flex-direction: column; justify-content: center; gap: var(--sp-1); width: 44px; height: 44px; margin-left: auto; background: none; border: none; cursor: pointer; flex-shrink: 0; }
 .ch-hd__burger span { display: block; width: 25px; height: 2.5px; background: var(--ch-navy); border-radius: 2px; transition: transform .25s var(--ch-ease), opacity .2s var(--ch-ease); }
 .ch-hd__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .ch-hd__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -304,7 +318,7 @@ img { max-width: 100%; }
 .ch-mob__nav { display: flex; flex-direction: column; padding: var(--sp-2) var(--gutter) var(--sp-6); }
 .ch-mob__link, .ch-mob__trigger {
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
-  width: 100%; min-height: 52px; padding: var(--sp-3) 2px;
+  width: 100%; min-height: 52px; padding: var(--sp-3) var(--sp-05);
   background: none; border: none; border-bottom: 1px solid var(--ch-rule);
   font-family: var(--ch-font); font-size: var(--fs-sm); font-weight: var(--fw-bold);
   letter-spacing: 0.02em; text-transform: uppercase; color: #2e3a4a;
@@ -316,7 +330,7 @@ img { max-width: 100%; }
 .ch-mob__group.is-open .ch-mob__sub { display: flex; }
 .ch-mob__sub a, .ch-mob__sub .ch-dd__soon {
   display: flex; align-items: center; gap: var(--sp-3); min-height: 44px; padding: var(--sp-2) var(--sp-1);
-  font-size: 15px; font-weight: var(--fw-med); text-transform: none; letter-spacing: normal;
+  font-size: var(--fs-nav); font-weight: var(--fw-med); text-transform: none; letter-spacing: normal;
   color: #55636f; text-decoration: none; white-space: normal;
 }
 .ch-mob__sub a .ch-ico { color: var(--ch-blue-dk); }
@@ -489,6 +503,7 @@ img { max-width: 100%; }
   position: relative; align-self: stretch; min-height: 100%;
   margin-right: calc(-1 * var(--bleed)); background: var(--ch-paper-2); overflow: hidden;
 }
+.ch-hero__media picture, .ch-figure picture { display: contents; }
 .ch-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* soft feather on the inner edge so the photo meets the page instead of butting it */
 .ch-hero__media::before {
@@ -554,19 +569,17 @@ img { max-width: 100%; }
 .ch-grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 265px), 1fr)); }
 .ch-grid--gap-lg { gap: var(--sp-5); }
 
-/* Topic card — icon badge, permanent top accent, lift on hover */
+/* Topic card — icon badge over a coloured top accent.
+   Static: it is not a link, so it gets no hover affordance. */
 .ch-topic {
   position: relative; display: flex; flex-direction: column;
   padding: var(--sp-6); background: var(--ch-surface);
   border: 1px solid var(--ch-rule); border-radius: var(--r-lg);
   box-shadow: var(--e-0); overflow: hidden;
-  transition: box-shadow .22s var(--ch-ease), transform .22s var(--ch-ease), border-color .22s var(--ch-ease);
 }
 .ch-topic::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
 .ch-topic--green::before { background: var(--ch-green); }
 .ch-topic--blue::before  { background: var(--ch-blue); }
-.ch-topic:hover { box-shadow: var(--e-2); transform: translateY(-3px); border-color: var(--ch-rule-dk); }
-.ch-topic:hover .ch-badge { transform: scale(1.06); }
 .ch-topic .ch-badge { margin-bottom: var(--sp-4); }
 .ch-topic h3 { margin: 0 0 var(--sp-3); }
 .ch-topic p { margin: 0; font-size: var(--fs-sm); line-height: var(--lh-snug); color: var(--ch-card-txt); }
@@ -580,11 +593,8 @@ img { max-width: 100%; }
   padding: var(--sp-3) var(--sp-4); background: var(--ch-surface);
   border: 1px solid var(--ch-rule); border-radius: var(--r-md);
   font-size: var(--fs-sm); line-height: var(--lh-snug); color: var(--ch-card-txt);
-  transition: border-color .18s var(--ch-ease), box-shadow .18s var(--ch-ease);
 }
-.ch-tiles li:hover { border-color: var(--ch-rule-dk); box-shadow: var(--e-1); }
 .ch-band--ink .ch-tiles li { background: rgba(255,255,255,0.045); border-color: rgba(var(--rgb-blue),0.30); color: rgba(255,255,255,0.90); }
-.ch-band--ink .ch-tiles li:hover { border-color: rgba(var(--rgb-blue),0.55); box-shadow: none; }
 .ch-band--tint .ch-tiles li { background: var(--ch-surface); }
 
 /* Icon list inside cards */
@@ -635,7 +645,7 @@ img { max-width: 100%; }
   position: relative; z-index: 1; display: grid; place-items: center;
   width: 44px; height: 44px; border-radius: 50%;
   background: var(--ch-blue-lt); border: 3px solid var(--ch-surface);
-  font-family: var(--ch-head); font-weight: var(--fw-bold); font-size: 15px;
+  font-family: var(--ch-head); font-weight: var(--fw-bold); font-size: var(--fs-nav);
   letter-spacing: -0.01em; color: var(--ch-blue-deep);
 }
 .ch-flow__body { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: var(--sp-3) var(--sp-7); align-items: start; padding-top: var(--sp-2); }
@@ -762,7 +772,7 @@ img { max-width: 100%; }
 .ch-ft a:hover { color: #fff; }
 .ch-ft li a:hover { border-bottom-color: transparent; }
 .ch-ft a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.ch-ft__phone { display: inline-flex; align-items: center; gap: var(--sp-2); font-family: var(--ch-head); font-weight: var(--fw-bold); font-size: 22px; color: #fff !important; margin-bottom: var(--sp-3); }
+.ch-ft__phone { display: inline-flex; align-items: center; gap: var(--sp-2); font-family: var(--ch-head); font-weight: var(--fw-bold); font-size: var(--fs-phone); color: #fff !important; margin-bottom: var(--sp-3); }
 .ch-ft__crisis { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4) var(--sp-5); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.18); border-left: 4px solid var(--ch-green); border-radius: var(--r-md); line-height: var(--lh-snug); }
 .ch-ft__crisis .ch-ico { color: var(--ch-green); margin-top: 3px; }
 .ch-ft__crisis strong { color: #fff; font-weight: var(--fw-bold); }
@@ -782,7 +792,7 @@ img { max-width: 100%; }
 .ch-sticky a {
   flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
   gap: var(--sp-2); border-radius: var(--r-sm); font-family: var(--ch-font);
-  font-weight: var(--fw-bold); font-size: 14px; letter-spacing: 0.02em;
+  font-weight: var(--fw-bold); font-size: var(--fs-cta); letter-spacing: 0.02em;
   text-decoration: none; padding: var(--sp-2) var(--sp-3); text-align: center; line-height: 1.2;
 }
 .ch-sticky__call { background: var(--ch-blue-lt); color: var(--ch-blue-deep); }
@@ -806,7 +816,7 @@ img { max-width: 100%; }
    ========================================================================== */
 @media (max-width: 1100px) {
   .ch-hd__nav { gap: var(--sp-2) var(--sp-5); }
-  .ch-nav__item { font-size: 14px; }
+  .ch-nav__item { font-size: var(--fs-cta); }
 }
 
 @media (max-width: 960px) {
@@ -861,7 +871,6 @@ img { max-width: 100%; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .ch-topic:hover { transform: none; }
 }
 </style>
 
@@ -1129,12 +1138,18 @@ img { max-width: 100%; }
         </div>
 
         <div class="ch-hero__media">
-          <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1785958838/shutterstock_2568554847_m9vemt.jpg"
-               srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w,
-                       https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785958838/shutterstock_2568554847_m9vemt.jpg 1000w,
-                       https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1400/v1785958838/shutterstock_2568554847_m9vemt.jpg 1400w"
-               sizes="(max-width: 960px) 100vw, 46vw"
-               alt="A child sitting with a caregiver during a supportive conversation" fetchpriority="high" decoding="async">
+          <picture>
+            <source media="(min-width: 961px)" sizes="46vw" width="1100" height="1467"
+                    srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w">
+            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg"
+                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_750/v1785958838/shutterstock_2568554847_m9vemt.jpg 750w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w"
+                 sizes="100vw" width="900" height="563"
+                 alt="A child sitting with a caregiver during a supportive conversation" fetchpriority="high" decoding="async">
+          </picture>
         </div>
       </div>
     </div>
@@ -1156,12 +1171,17 @@ img { max-width: 100%; }
         </div>
         <div class="ch-split__media">
           <div class="ch-figure">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785958839/shutterstock_2670271251_l1khpo.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_600/v1785958839/shutterstock_2670271251_l1khpo.jpg 600w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785958839/shutterstock_2670271251_l1khpo.jpg 1000w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1400/v1785958839/shutterstock_2670271251_l1khpo.jpg 1400w"
-                 sizes="(max-width: 960px) 100vw, 46vw"
-                 alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
+            <picture>
+              <source media="(min-width: 961px)" sizes="46vw" width="1000" height="750"
+                      srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_600/v1785958839/shutterstock_2670271251_l1khpo.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_800/v1785958839/shutterstock_2670271251_l1khpo.jpg 800w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785958839/shutterstock_2670271251_l1khpo.jpg 1000w">
+              <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785958839/shutterstock_2670271251_l1khpo.jpg"
+                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_600/v1785958839/shutterstock_2670271251_l1khpo.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785958839/shutterstock_2670271251_l1khpo.jpg 800w"
+                   sizes="100vw" width="800" height="450"
+                   alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -1287,12 +1307,17 @@ img { max-width: 100%; }
         </div>
         <div class="ch-split__media">
           <div class="ch-figure">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_900/v1785959812/shutterstock_2676507369_ruqq4u.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_900/v1785959812/shutterstock_2676507369_ruqq4u.jpg 900w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1785959812/shutterstock_2676507369_ruqq4u.jpg 1200w"
-                 sizes="(max-width: 960px) 100vw, 46vw"
-                 alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
+            <picture>
+              <source media="(min-width: 961px)" sizes="46vw" width="1000" height="750"
+                      srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg 800w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785959812/shutterstock_2676507369_ruqq4u.jpg 1000w">
+              <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg"
+                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg 800w"
+                   sizes="100vw" width="800" height="450"
+                   alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -1329,12 +1354,17 @@ img { max-width: 100%; }
         </div>
         <div class="ch-split__media">
           <div class="ch-figure">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_900/v1785960384/shutterstock_2291920525_p8wbkp.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_600/v1785960384/shutterstock_2291920525_p8wbkp.jpg 600w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_900/v1785960384/shutterstock_2291920525_p8wbkp.jpg 900w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1200/v1785960384/shutterstock_2291920525_p8wbkp.jpg 1200w"
-                 sizes="(max-width: 960px) 100vw, 46vw"
-                 alt="A young child using drawing and toys during a play therapy session" loading="lazy" decoding="async">
+            <picture>
+              <source media="(min-width: 961px)" sizes="46vw" width="1000" height="750"
+                      srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_600/v1785960384/shutterstock_2291920525_p8wbkp.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_800/v1785960384/shutterstock_2291920525_p8wbkp.jpg 800w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785960384/shutterstock_2291920525_p8wbkp.jpg 1000w">
+              <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785960384/shutterstock_2291920525_p8wbkp.jpg"
+                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_600/v1785960384/shutterstock_2291920525_p8wbkp.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785960384/shutterstock_2291920525_p8wbkp.jpg 800w"
+                   sizes="100vw" width="800" height="450"
+                   alt="A young child using drawing and toys during a play therapy session" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -1390,12 +1420,17 @@ img { max-width: 100%; }
         </div>
         <div class="ch-split__media">
           <div class="ch-figure">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785961035/shutterstock_2480003713_vj4i3f.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_600/v1785961035/shutterstock_2480003713_vj4i3f.jpg 600w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1000/v1785961035/shutterstock_2480003713_vj4i3f.jpg 1000w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,w_1400/v1785961035/shutterstock_2480003713_vj4i3f.jpg 1400w"
-                 sizes="(max-width: 960px) 100vw, 46vw"
-                 alt="A child attending a video therapy session on a laptop at home" loading="lazy" decoding="async">
+            <picture>
+              <source media="(min-width: 961px)" sizes="46vw" width="1000" height="750"
+                      srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_600/v1785961035/shutterstock_2480003713_vj4i3f.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_800/v1785961035/shutterstock_2480003713_vj4i3f.jpg 800w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785961035/shutterstock_2480003713_vj4i3f.jpg 1000w">
+              <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785961035/shutterstock_2480003713_vj4i3f.jpg"
+                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_600/v1785961035/shutterstock_2480003713_vj4i3f.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_800/v1785961035/shutterstock_2480003713_vj4i3f.jpg 800w"
+                   sizes="100vw" width="800" height="450"
+                   alt="A child attending a video therapy session on a laptop at home" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
@@ -1804,7 +1839,7 @@ img { max-width: 100%; }
     var y = window.scrollY || document.documentElement.scrollTop;
     var docH = document.documentElement.scrollHeight - window.innerHeight;
     if (header) header.classList.toggle('is-stuck', y > 80);
-    if (progress) progress.style.width = (docH > 0 ? Math.min(100, (y / docH) * 100) : 0) + '%';
+    if (progress) progress.style.transform = 'scaleX(' + (docH > 0 ? Math.min(1, y / docH) : 0) + ')';
     if (sticky) sticky.classList.toggle('is-shown', y > 600);
     if (toTop) toTop.classList.toggle('is-shown', y > 900);
     ticking = false;
