@@ -641,8 +641,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .signs__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
 .signs__item {
   position: relative; overflow: hidden;
-  display: grid; grid-template-columns: 48px minmax(0,1fr); gap: var(--sp-4);
-  align-items: center; padding: var(--sp-4) var(--sp-5);
+  display: grid; grid-template-columns: 40px minmax(0,1fr); gap: var(--sp-4);
+  align-items: center; padding: var(--sp-3) var(--sp-5);
   background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-sm);
   transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
 }
@@ -653,7 +653,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   transition: color .35s var(--ease);
 }
 .signs__mark {
-  width: 48px; height: 48px; border-radius: 14px;
+  width: 40px; height: 40px; border-radius: 12px;
   transition: background .35s var(--ease), color .35s var(--ease);
 }
 /* the card sitting on the reading line */
@@ -1121,7 +1121,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         </div>
 
         <div class="c-7 signs__col">
-          <p class="listhead" id="signs-l"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg><span>Signs that a child may benefit from a mental health assessment include:</span></p>
+          <p class="listhead" id="signs-l"><span>Signs that a child may benefit from a mental health assessment include:</span></p>
           <ul class="signs__list" id="signs-list" aria-labelledby="signs-l">
           <li class="signs__item" style="--i:0">
             <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span>
