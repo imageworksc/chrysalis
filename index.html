@@ -340,8 +340,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .hero .h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; color: var(--ink); }
 /* The lead runs the full width of its column. That lands at 67 characters per
    line, inside the 45-75 band, so no cap is needed — the column is the cap. */
-.hero .lead { margin-top: var(--sp-6); font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; }
-.hero .actions { margin-top: var(--sp-8); }
+.hero .lead { margin-top: var(--sp-6); max-width: 80%; font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; }
+.hero .actions { margin-top: calc(var(--sp-8) * 0.8); }
 .hero .btn { white-space: nowrap; }
 /* Both buttons share a line only where the column is actually wide enough.
    Below this the pair measures ~600px against a column that is not, and
@@ -366,8 +366,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 /* Trust line — quiet grey, no rule above it, no icons. It supports the
    claim above rather than competing with it. --muted clears AA at 4.89:1. */
-.trust { list-style: none; display: grid; gap: var(--sp-3) var(--sp-4); margin: var(--sp-6) 0 0; padding: 0; }
-.trust li { font-size: var(--fs-sm); line-height: 1.5; color: var(--muted); font-weight: var(--fw-reg); }
+/* One row, items divided by a hairline. At 15px the three run 727px against a
+   702px column, so the size steps down to 14px to hold a single line. */
+.trust { list-style: none; display: flex; align-items: center; gap: var(--sp-3); margin: var(--sp-6) 0 0; padding: 0; }
+.trust li { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-cta); line-height: 1.5; color: var(--muted); font-weight: var(--fw-reg); white-space: nowrap; }
+.trust li + li::before { content: ""; width: 1px; height: 1.05em; background: var(--rule-dk); flex-shrink: 0; }
 
 /* ==========================================================================
    CONTENT PATTERNS
@@ -762,6 +765,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .hero__photo { aspect-ratio: 16/11; }
   .hero .h1 { font-size: clamp(31px, 7.2vw, 42px); }
   .hero .actions, .hero .trust { margin-top: var(--sp-6); }
+  /* the one-line rule only holds where the column is wide enough */
+  .trust { flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); }
+  .trust li { white-space: normal; }
   .figure--tall, .figure--sq { aspect-ratio: 16/10; }
 
   .sticky-cta { display: flex; }
@@ -1011,7 +1017,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <a href="#request-form" class="btn btn--primary">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
         </div>
-        <ul class="trust g" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
+        <ul class="trust">
           <li>Serving children and families since 1995</li>
           <li>Telehealth available</li>
           <li>Insurance options accepted</li>
