@@ -407,34 +407,49 @@ a:hover > .chip { background: var(--green-cta); }
 
 
 /* ==========================================================================
-   TELEHEALTH — image bleeds to the viewport edge, the dense body copy is
-   broken into three scannable points instead of four stacked paragraphs.
+   TELEHEALTH — full-bleed banner. The photograph sits under a brand-blue
+   veil never drops below 0.92 alpha, measured so white body copy still
+   clears 4.5:1 over a pure-white pixel in the photograph (5.1:1 worst case).
    ========================================================================== */
-.tele__top { align-items: center; }
+.tele {
+  position: relative; isolation: isolate;
+  margin-inline: calc(50% - 50vw);
+  padding-block: clamp(64px, 7vw, 116px);
+  background: var(--blue-deep);
+  overflow: hidden;
+}
+.sec + .tele { border-top: none; }
+.tele__bg { position: absolute; inset: 0; }
+.tele__bg img { width: 100%; height: 100%; object-fit: cover; }
+.tele__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(100deg,
+    rgba(var(--rgb-ink), 0.95) 0%,
+    rgba(35, 97, 127, 0.93) 48%,
+    rgba(35, 97, 127, 0.92) 100%);
+}
+/* the photograph settles as the banner arrives */
+.has-js .tele__bg img { transform: scale(1.08); transition: transform 1.2s var(--ease); }
+.has-js .tele.is-in .tele__bg img { transform: none; }
+
+.tele__in { position: relative; z-index: 1; max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
 .tele__intro .badge { margin-bottom: var(--sp-5); }
 .tele__intro .h2 { margin-bottom: var(--sp-5); }
-.tele__media { margin-right: calc(50% - 50vw); }
-.tele__media .figure {
-  aspect-ratio: 16/11; align-self: stretch;
-  border-radius: var(--r) 0 0 var(--r);
-}
-/* the photograph settles rather than snapping in */
-.has-js .tele__media .figure img { transform: scale(1.07); transition: transform 1.1s var(--ease); }
-.has-js .tele__media.is-in .figure img { transform: none; }
 
-.tele__points { margin-top: var(--band); }
-.tele__point { padding-top: var(--sp-5); border-top: 1px solid var(--rule); }
+.tele .h2, .tele .h3 { color: var(--white); }
+.tele p { color: rgba(255,255,255,0.92); }
+.tele .lead { color: rgba(255,255,255,0.94); }
+.tele .badge { background: rgba(255,255,255,0.16); color: var(--white); }
+.tele .btn--dark { background: var(--white); border-color: var(--white); color: var(--ink); }
+.tele .btn--dark:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
+.tele :focus-visible { outline-color: var(--white); }
+
+.tele__points { margin-top: clamp(40px, 4.5vw, 72px); }
+.tele__point { padding-top: var(--sp-5); border-top: 1px solid rgba(255,255,255,0.24); }
 .tele__point .badge { margin-bottom: var(--sp-4); }
-.tele__point p { margin: 0; font-size: var(--fs-sm); line-height: 1.7; color: var(--card-txt); }
+.tele__point p { margin: 0; font-size: var(--fs-sm); line-height: 1.7; }
 
-@media (max-width: 920px) {
-  .tele__media { margin-inline: calc(50% - 50vw); }
-  .tele__media .figure { border-radius: 0; aspect-ratio: 16/10; }
-  .tele__points { margin-top: var(--sp-8); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .has-js .tele__media .figure img { transform: none; }
-}
+@media (prefers-reduced-motion: reduce) { .has-js .tele__bg img { transform: none; } }
 
 /* ==========================================================================
    MARQUEE — horizontal cards that travel on their own.
@@ -1263,38 +1278,38 @@ a:hover > .chip { background: var(--green-cta); }
       </div>
     </section>
 
-    <!-- ===== TELEHEALTH ===== -->
-    <section class="sec tele" id="telehealth" aria-labelledby="tele-t">
-      <div class="g tele__top">
-        <div class="c-5 tele__intro" data-reveal>
-          <span class="badge badge--ink" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-video"/></svg></span>
-          <h2 class="h2" id="tele-t">Telehealth Therapy for Kids and Teens</h2>
-          <p class="lead">Chrysalis Health provides access to mental health services through secure video sessions using a smartphone, tablet, or computer.</p>
-          <div class="actions"><a href="#request-form" class="btn btn--dark">Ask About Telehealth Therapy for Your Child <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-        </div>
-        <div class="c-7 tele__media" data-reveal>
-          <div class="figure">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:11,c_fill,g_auto,w_1200/v1785961035/shutterstock_2480003713_vj4i3f.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:11,c_fill,g_auto,w_800/v1785961035/shutterstock_2480003713_vj4i3f.jpg 800w,
-                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:11,c_fill,g_auto,w_1200/v1785961035/shutterstock_2480003713_vj4i3f.jpg 1200w"
-                 sizes="(max-width: 920px) 100vw, 58vw" width="1200" height="825"
-                 alt="A child attending a video therapy session on a laptop at home" loading="lazy" decoding="async">
-          </div>
-        </div>
+    <!-- ===== TELEHEALTH — full-bleed banner ===== -->
+    <section class="sec tele" id="telehealth" aria-labelledby="tele-t" data-reveal>
+      <div class="tele__bg" aria-hidden="true">
+        <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_1600/v1785961035/shutterstock_2480003713_vj4i3f.jpg"
+             srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_900/v1785961035/shutterstock_2480003713_vj4i3f.jpg 900w,
+                     https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:9,c_fill,g_auto,w_1600/v1785961035/shutterstock_2480003713_vj4i3f.jpg 1600w"
+             sizes="100vw" width="1600" height="900" alt="" loading="lazy" decoding="async">
       </div>
 
-      <div class="g tele__points">
-        <div class="c-4 tele__point" data-reveal>
-          <span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-repeat"/></svg></span>
-          <p>Telehealth can make therapy easier to access by reducing travel, scheduling conflicts, and time away from school or work. Some children also feel more comfortable participating from a familiar environment.</p>
+      <div class="tele__in">
+        <div class="g">
+          <div class="c-7 tele__intro">
+            <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-video"/></svg></span>
+            <h2 class="h2" id="tele-t">Telehealth Therapy for Kids and Teens</h2>
+            <p class="lead">Chrysalis Health provides access to mental health services through secure video sessions using a smartphone, tablet, or computer.</p>
+            <div class="actions"><a href="#request-form" class="btn btn--dark">Ask About Telehealth Therapy for Your Child <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+          </div>
         </div>
-        <div class="c-4 tele__point" data-reveal>
-          <span class="badge badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-dice"/></svg></span>
-          <p>Virtual sessions may use many of the same age-appropriate approaches as in-person therapy, including conversation, therapeutic games, creative activities, coping exercises, and caregiver participation.</p>
-        </div>
-        <div class="c-4 tele__point" data-reveal>
-          <span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-question"/></svg></span>
-          <p>Telehealth can be especially helpful for families facing transportation challenges, mobility limitations, demanding schedules, or limited access to nearby mental health providers. It is not the best fit for every child or clinical situation. Appropriateness depends on the child&rsquo;s needs, safety, ability to participate, technology access, home environment, insurance coverage, and treatment recommendations.</p>
+
+        <div class="g tele__points">
+          <div class="c-4 tele__point">
+            <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-repeat"/></svg></span>
+            <p>Telehealth can make therapy easier to access by reducing travel, scheduling conflicts, and time away from school or work. Some children also feel more comfortable participating from a familiar environment.</p>
+          </div>
+          <div class="c-4 tele__point">
+            <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-dice"/></svg></span>
+            <p>Virtual sessions may use many of the same age-appropriate approaches as in-person therapy, including conversation, therapeutic games, creative activities, coping exercises, and caregiver participation.</p>
+          </div>
+          <div class="c-4 tele__point">
+            <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-question"/></svg></span>
+            <p>Telehealth can be especially helpful for families facing transportation challenges, mobility limitations, demanding schedules, or limited access to nearby mental health providers. It is not the best fit for every child or clinical situation. Appropriateness depends on the child&rsquo;s needs, safety, ability to participate, technology access, home environment, insurance coverage, and treatment recommendations.</p>
+          </div>
         </div>
       </div>
     </section>
