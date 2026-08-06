@@ -24,9 +24,9 @@
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" media="(min-width: 961px)" fetchpriority="high"
-      imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w" imagesizes="46vw">
+      imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1400/v1785958838/shutterstock_2568554847_m9vemt.jpg 1400w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1800/v1785958838/shutterstock_2568554847_m9vemt.jpg 1800w" imagesizes="100vw">
 <link rel="preload" as="image" media="(max-width: 960px)" fetchpriority="high"
       imagesrcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
                         https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_750/v1785958838/shutterstock_2568554847_m9vemt.jpg 750w,
@@ -103,7 +103,6 @@ img { max-width: 100%; }
 
   --band-lg: clamp(80px, 8.5vw, 128px);
   --band-md: clamp(64px, 6.5vw, 96px);
-  --band-sm: clamp(48px, 5vw, 72px);
 
   --w-bleed:   1440px;
   --w-content: 1200px;
@@ -153,14 +152,11 @@ img { max-width: 100%; }
   border-radius: var(--r-md);
   transition: background .2s var(--ch-ease), color .2s var(--ch-ease), transform .2s var(--ch-ease);
 }
-.ch-badge--28 { width: 28px; height: 28px; border-radius: 8px; }
 .ch-badge--34 { width: 34px; height: 34px; border-radius: 9px; }
 .ch-badge--44 { width: 44px; height: 44px; }
 .ch-badge--52 { width: 52px; height: 52px; border-radius: 14px; }
-.ch-badge--round { border-radius: 50%; }
 .ch-badge--green { background: var(--ch-green-lt); color: var(--ch-green-cta); }
 .ch-badge--blue  { background: var(--ch-blue-lt);  color: var(--ch-blue-deep); }
-.ch-badge--solid { background: var(--ch-blue-deep); color: #fff; }
 .ch-band--ink .ch-badge--green, .ch-cta .ch-badge--green {
   background: rgba(var(--rgb-green),0.16); color: var(--ch-green);
 }
@@ -353,7 +349,6 @@ img { max-width: 100%; }
 
 .ch-band { position: relative; padding: var(--band-lg) 0; }
 .ch-band--md { padding: var(--band-md) 0; }
-.ch-band--sm { padding: var(--band-sm) 0; }
 .ch-band--white { background: var(--ch-surface); }
 .ch-band--tint  { background: var(--ch-tint-blue); }
 .ch-band--ink   { background: var(--ch-ink); overflow: hidden; }
@@ -454,8 +449,6 @@ img { max-width: 100%; }
 .ch-btn:hover .ch-ico { transform: translateX(3px); }
 .ch-btn--primary { background: var(--ch-green-cta); border-color: var(--ch-green-cta); color: #fff; box-shadow: var(--e-1); }
 .ch-btn--primary:hover { background: var(--ch-ink); border-color: var(--ch-ink); box-shadow: var(--e-2); }
-.ch-btn--light { background: #fff; border-color: #fff; color: var(--ch-ink); }
-.ch-btn--light:hover { background: var(--ch-green); border-color: var(--ch-green); color: var(--ch-ink); }
 .ch-btn--ghost { background: transparent; border-color: rgba(255,255,255,0.55); color: #fff; }
 .ch-btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,0.10); }
 
@@ -474,69 +467,68 @@ img { max-width: 100%; }
 .ch-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); margin-top: var(--sp-7); }
 
 /* ==========================================================================
-   HERO — tinted stage behind the copy, full-height photo bleeding right
+   HERO — full-bleed photograph with the message on a floating card.
+   The card is opaque, so text contrast never depends on the photograph
+   behind it; the scrim exists to seat the card, not to make type legible.
    ========================================================================== */
-.ch-hero { position: relative; background: var(--ch-surface); overflow: hidden; isolation: isolate; }
-/* colour wash: gives the copy column a stage instead of flat white */
-.ch-hero::before {
-  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(58% 55% at 6% 10%, rgba(var(--rgb-green),0.14), transparent 70%),
-    radial-gradient(52% 52% at -4% 96%, rgba(var(--rgb-blue),0.14), transparent 72%);
+.ch-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(600px, 80vh, 820px);
+  background: var(--ch-ink);   /* holds the space before the photo paints */
+  overflow: hidden;
+  isolation: isolate;
 }
-/* texture, faded toward the photo so it never crosses into the image */
-.ch-hero::after {
-  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background-image: radial-gradient(circle at 1px 1px, rgba(var(--rgb-ink),0.06) 1px, transparent 0);
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(66% 72% at 8% 24%, var(--ch-ink), transparent 76%);
-  mask-image: radial-gradient(66% 72% at 8% 24%, var(--ch-ink), transparent 76%);
-}
-.ch-hero__grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
-  gap: clamp(32px, 5vw, 72px); align-items: center;
-  min-height: clamp(560px, 72vh, 780px);
-}
-.ch-hero__copy { padding: var(--band-md) 0; max-width: 600px; }
-.ch-hero__media {
-  position: relative; align-self: stretch; min-height: 100%;
-  margin-right: calc(-1 * var(--bleed)); background: var(--ch-paper-2); overflow: hidden;
-}
+.ch-hero__media { position: absolute; inset: 0; z-index: 0; }
 .ch-hero__media picture, .ch-figure picture { display: contents; }
-.ch-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* soft feather on the inner edge so the photo meets the page instead of butting it */
-.ch-hero__media::before {
-  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(255,255,255,0.50), rgba(255,255,255,0) 20%);
-}
-/* accent edge tying the photo back to the brand */
+.ch-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* directional scrim: deepest under the card, clear over the subject */
 .ch-hero__media::after {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; z-index: 2;
-  background: linear-gradient(180deg, var(--ch-green), var(--ch-blue));
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(var(--rgb-ink),0.66) 0%, rgba(var(--rgb-ink),0.34) 44%, rgba(var(--rgb-ink),0) 74%),
+    linear-gradient(180deg, rgba(var(--rgb-ink),0.22), transparent 34%);
 }
+.ch-hero > .ch-wrap {
+  position: relative; z-index: 1; width: 100%;
+  padding-top: var(--band-md); padding-bottom: var(--band-md);
+}
+.ch-hero__card {
+  max-width: 620px;
+  padding: clamp(28px, 3.4vw, 52px);
+  background: var(--ch-surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--e-3);
+}
+/* brand rule at the head of the card, the one flourish this block gets */
+.ch-hero__card::before {
+  content: ""; display: block;
+  width: 56px; height: 4px; border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--ch-green), var(--ch-blue));
+  margin-bottom: var(--sp-5);
+}
+.ch-hero__card .ch-h1 { margin-bottom: var(--sp-4); }
 
 /* Reassurance line — icon + bold statement, no filled block, so the CTA stays dominant */
 .ch-hero__reassure {
   display: flex; gap: var(--sp-3); align-items: flex-start;
-  margin: var(--sp-6) 0 0 !important;
+  margin: var(--sp-5) 0 0 !important;
   font-size: var(--fs-base); font-weight: var(--fw-bold);
   line-height: var(--lh-snug); color: var(--ch-navy);
 }
 
-/* Trust signals — three stacked mini-cards, readable at a glance */
-.ch-hero__trust {
-  list-style: none; display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr));
-  gap: var(--sp-3); margin: var(--sp-7) 0 0; padding: 0;
+/* Trust strip — its own band under the hero, so the card stays uncluttered */
+.ch-trustbar { background: var(--ch-surface); border-bottom: 1px solid var(--ch-rule); }
+.ch-trustbar ul {
+  list-style: none; margin: 0;
+  padding: var(--sp-5) 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: var(--sp-4) var(--sp-6);
 }
-.ch-hero__trust li {
-  display: flex; flex-direction: column; gap: var(--sp-3);
-  padding: var(--sp-4); background: var(--ch-surface);
-  border: 1px solid var(--ch-rule); border-radius: var(--r-md);
-  box-shadow: var(--e-1);
-  font-size: var(--fs-xs); line-height: var(--lh-snug);
-  letter-spacing: 0.012em; color: var(--ch-card-txt);
+.ch-trustbar li {
+  display: flex; align-items: center; gap: var(--sp-3);
+  font-size: var(--fs-sm); line-height: var(--lh-snug); color: var(--ch-card-txt);
 }
 
 /* ==========================================================================
@@ -827,12 +819,14 @@ img { max-width: 100%; }
   .ch-hd.is-stuck .ch-hd__logo img { height: 44px; }
   .ch-hd.is-stuck .ch-hd__top { padding: var(--sp-2) 0; }
 
-  .ch-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; min-height: 0; }
-  .ch-hero__copy { max-width: 100%; padding: var(--sp-8) 0 var(--sp-7); }
-  .ch-hero__media { margin-inline: calc(-1 * var(--bleed)); height: min(440px, 68vw); min-height: 0; }
-  .ch-hero__media::before { background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0) 18%); }
-  .ch-hero__media::after { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 5px; background: linear-gradient(90deg, var(--ch-green), var(--ch-blue)); }
-  .ch-hero::after { -webkit-mask-image: linear-gradient(to bottom, var(--ch-ink), transparent 70%); mask-image: linear-gradient(to bottom, var(--ch-ink), transparent 70%); }
+  /* Photo becomes a band; the card climbs over its lower edge. */
+  .ch-hero { display: block; min-height: 0; background: var(--ch-paper); }
+  .ch-hero__media { position: relative; height: min(320px, 54vw); }
+  .ch-hero__media::after {
+    background: linear-gradient(180deg, rgba(var(--rgb-ink),0.10), rgba(var(--rgb-ink),0.34));
+  }
+  .ch-hero > .ch-wrap { padding-top: 0; padding-bottom: var(--sp-7); }
+  .ch-hero__card { max-width: 100%; margin-top: -44px; }
 
   .ch-split, .ch-duo, .ch-cta__grid { grid-template-columns: minmax(0, 1fr); }
   .ch-split--flip .ch-split__media { order: 0; }
@@ -848,7 +842,8 @@ img { max-width: 100%; }
 }
 
 @media (max-width: 600px) {
-  .ch-hero__copy { padding: var(--sp-7) 0 var(--sp-6); }
+  .ch-hero__media { height: min(260px, 56vw); }
+  .ch-hero__card { margin-top: -32px; }
   .ch-actions { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
   .ch-btn { width: 100%; }
   .ch-tlink { align-self: flex-start; }
@@ -1115,45 +1110,47 @@ img { max-width: 100%; }
 
   <!-- ===== HERO ===== -->
   <section class="ch-hero" aria-labelledby="ch-hero-title">
+    <div class="ch-hero__media">
+      <picture>
+        <source media="(min-width: 961px)" sizes="100vw" width="1800" height="900"
+                srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1400/v1785958838/shutterstock_2568554847_m9vemt.jpg 1400w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_2:1,c_fill,g_auto,w_1800/v1785958838/shutterstock_2568554847_m9vemt.jpg 1800w">
+        <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg"
+             srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:10,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:10,c_fill,g_auto,w_750/v1785958838/shutterstock_2568554847_m9vemt.jpg 750w,
+                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w"
+             sizes="100vw" width="900" height="563"
+             alt="A child sitting with a caregiver during a supportive conversation" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+
     <div class="ch-wrap">
-      <div class="ch-hero__grid">
-        <div class="ch-hero__copy">
-          <h1 class="ch-h1" id="ch-hero-title">Mental Health Therapy and Services for Children</h1>
-          <p class="ch-lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
-          <p class="ch-hero__reassure">
-            <span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-hand-heart"/></svg></span>
-            <span>You do not need to know exactly what is wrong&mdash;or which type of therapy your child needs&mdash;before requesting help.</span>
-          </p>
-
-          <div class="ch-actions">
-            <a href="#request-form" class="ch-btn ch-btn--primary">Request a Child Mental Health Assessment <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-            <a href="tel:18885870335" class="ch-tlink">Call (888) 587-0335 <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-          </div>
-
-          <ul class="ch-hero__trust">
-            <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-award"/></svg></span><span>Serving children and families since 1995</span></li>
-            <li><span class="ch-badge ch-badge--34 ch-badge--blue" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-video"/></svg></span><span>Telehealth available</span></li>
-            <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-shield-check"/></svg></span><span>Insurance options accepted</span></li>
-          </ul>
-        </div>
-
-        <div class="ch-hero__media">
-          <picture>
-            <source media="(min-width: 961px)" sizes="46vw" width="1100" height="1467"
-                    srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_700/v1785958838/shutterstock_2568554847_m9vemt.jpg 700w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_3:4,c_fill,g_auto,w_1100/v1785958838/shutterstock_2568554847_m9vemt.jpg 1100w">
-            <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg"
-                 srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_750/v1785958838/shutterstock_2568554847_m9vemt.jpg 750w,
-                        https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto,ar_16:10,c_fill,g_auto,w_900/v1785958838/shutterstock_2568554847_m9vemt.jpg 900w"
-                 sizes="100vw" width="900" height="563"
-                 alt="A child sitting with a caregiver during a supportive conversation" fetchpriority="high" decoding="async">
-          </picture>
+      <div class="ch-hero__card">
+        <h1 class="ch-h1" id="ch-hero-title">Mental Health Therapy and Services for Children</h1>
+        <p class="ch-lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
+        <p class="ch-hero__reassure">
+          <span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-hand-heart"/></svg></span>
+          <span>You do not need to know exactly what is wrong&mdash;or which type of therapy your child needs&mdash;before requesting help.</span>
+        </p>
+        <div class="ch-actions">
+          <a href="#request-form" class="ch-btn ch-btn--primary">Request a Child Mental Health Assessment <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a href="tel:18885870335" class="ch-tlink">Call (888) 587-0335 <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <div class="ch-trustbar">
+    <div class="ch-wrap">
+      <ul>
+        <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-award"/></svg></span><span>Serving children and families since 1995</span></li>
+        <li><span class="ch-badge ch-badge--34 ch-badge--blue" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-video"/></svg></span><span>Telehealth available</span></li>
+        <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-shield-check"/></svg></span><span>Insurance options accepted</span></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- ===== SERVICES ===== -->
   <section class="ch-band ch-band--white" id="locations" aria-labelledby="ch-services-title">

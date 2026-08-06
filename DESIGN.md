@@ -151,13 +151,12 @@ mobile nav's optical inset). It is the only sub-4px spacing value in the system.
 | `--sp-5` | 24px | `--sp-11` | 128px |
 | `--sp-6` | 32px | | |
 
-### Band rhythm — three tiers, so sections are not all equally loud
+### Band rhythm — two tiers, so sections are not all equally loud
 
 | Token | Value | Usage |
 |---|---|---|
 | `--band-lg` | `clamp(80px, 8.5vw, 128px)` | Primary sections |
 | `--band-md` | `clamp(64px, 6.5vw, 96px)` | Supporting sections, hero copy padding |
-| `--band-sm` | `clamp(48px, 5vw, 72px)` | Tight sections |
 
 ### Containers
 
@@ -196,14 +195,14 @@ Breakpoints: **1100px** (nav tightens) · **960px** (mobile nav, single column, 
 ### Icon + badge (`.ch-ico`, `.ch-badge`)
 - **Structure**: `<span class="ch-badge ch-badge--{size} ch-badge--{tint}"><svg class="ch-ico"><use href="#i-*"/></svg></span>`
 - **Source**: one inline SVG sprite of 61 `<symbol>`s, 24×24, stroke-based, `currentColor`.
-- **Sizes**: 28 / 34 / 44 / 52px; icon sizes `--sm 15px` `--md 20px` `--lg 24px`.
-- **Variants**: `--green`, `--blue`, `--solid`, `--round`. Dark-band variants swap the tint
+- **Sizes**: 34 / 44 / 52px; icon sizes `--sm 15px` `--md 20px` `--lg 24px`.
+- **Variants**: `--green`, `--blue`. Dark-band variants swap the tint
   for `rgba(var(--rgb-*), .16–.20)` and the glyph for the base brand colour.
 - **States**: decorative only — always `aria-hidden`, no interactive states.
 - **Accessibility**: never the sole carrier of meaning; always paired with visible text.
 
 ### Button (`.ch-btn`)
-- **Variants**: `--primary` (green CTA fill), `--light` (white on colour), `--ghost` (outlined on colour).
+- **Variants**: `--primary` (green CTA fill), `--ghost` (outlined on colour).
 - **Spacing**: `--sp-4 / --sp-6`, min-height 54px.
 - **States**: default · hover (fill → ink, shadow to `--e-2`, arrow icon shifts 3px) ·
   active (`translateY(1px)`) · focus-visible (3px `--ch-blue-deep` ring, white on dark).
@@ -216,6 +215,21 @@ arrow. Min-height 44px.
 ### Section head (`.ch-shead`)
 Badge (52px) + H2 + optional lead. `--tight` reduces the bottom gap, `--center` centres it.
 This is the page's repeating structural signal.
+
+### Hero (`.ch-hero`)
+- **Structure**: a full-bleed `<picture>` layer, then an opaque `.ch-hero__card` holding
+  H1, lead, reassurance line and the action pair. A 56px brand rule caps the card.
+- **Contrast**: the card is opaque `--ch-surface`, so type contrast never depends on the
+  photograph behind it. The directional scrim seats the card in the image; it is **not** a
+  legibility device, and the design does not rely on it being present.
+- **Responsive**: at ≥961px the photo fills the section (2:1 crop) and the card floats left,
+  max-width 620px. Below, the photo becomes a 320px band (16:10 crop) and the card climbs
+  44px over its lower edge; under 600px, a 260px band and a 32px climb.
+- **States**: none — the card is not interactive. Its buttons carry their own states.
+
+### Trust strip (`.ch-trustbar`)
+Three icon + label pairs on white, immediately under the hero. Deliberately outside the hero
+card so the card carries one message; auto-fit grid so it stacks without a breakpoint.
 
 ### Topic card (`.ch-topic`)
 Coloured 3px top rule (`--green` / `--blue` alternating), 52px badge, H3, body.
