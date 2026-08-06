@@ -92,7 +92,7 @@ img { max-width: 100%; display: block; }
   --sp-9: 72px; --sp-10: 96px; --sp-11: 128px;
 
   --gap:     clamp(16px, 1.7vw, 24px);   /* the grid gutter, everywhere */
-  --band:    clamp(48px, 5vw, 80px);
+  --band:    clamp(56px, 6vw, 100px);
   --w-page:  1300px;
   --w-text:  62ch;
   --gutter:  clamp(16px, 2.6vw, 40px);
@@ -109,7 +109,7 @@ img { max-width: 100%; display: block; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--white);
   font-family: var(--font);
   font-size: var(--fs-base);
   line-height: 1.65;
@@ -134,7 +134,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .badge--green { background: var(--green-lt); color: var(--green-cta); }
 .badge--blue  { background: var(--blue-lt);  color: var(--blue-deep); }
 .badge--ink   { background: var(--ink); color: var(--white); }
-.on-tint .badge--green, .on-tint .badge--blue { background: var(--white); }
+
 
 /* ---------- skip link ---------- */
 .skip {
@@ -147,7 +147,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid var(--blue-deep); outline-offset: 3px; border-radius: var(--sp-1);
 }
-.on-ink :focus-visible { outline-color: var(--white); }
+
 
 /* ==========================================================================
    TYPE
@@ -158,9 +158,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .h3 { font-size: var(--fs-h3);      font-weight: var(--fw-med); line-height: 1.3;  letter-spacing: -0.012em; }
 .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--body); }
 .prose { max-width: var(--w-text); }
-.on-ink, .on-ink p { color: rgba(255,255,255,0.78); }
-.on-ink .h1, .on-ink .h2, .on-ink .h3, .on-ink strong { color: var(--white); }
-.on-ink .lead { color: rgba(255,255,255,0.9); }
+
 
 /* ==========================================================================
    BUTTONS
@@ -302,34 +300,27 @@ a:hover > .chip { background: var(--green-cta); }
 /* ==========================================================================
    THE GRID — one 12-column system, one gutter, used by every section
    ========================================================================== */
-.page { max-width: var(--w-page); margin: 0 auto; padding: var(--gap) var(--gutter) 0; }
+.page { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
 .g { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: var(--gap); }
 .c-3 { grid-column: span 3; } .c-4 { grid-column: span 4; }
 .c-5 { grid-column: span 5; } .c-6 { grid-column: span 6; }
 .c-7 { grid-column: span 7; } .c-8 { grid-column: span 8; }
 .c-9 { grid-column: span 9; } .c-12 { grid-column: span 12; }
-.sec { margin-bottom: var(--gap); }
-.sec--gap { margin-top: var(--band); }
+/* sections are separated by a rule, never boxed */
+.sec { padding-block: var(--band); }
+.sec + .sec { border-top: 1px solid var(--rule); }
+.sec:first-child { padding-top: clamp(36px, 4vw, 64px); }
 [id] { scroll-margin-top: 120px; }
 
 /* ==========================================================================
    CARD — the single surface primitive
    ========================================================================== */
-.card {
-  background: var(--white); border-radius: var(--r);
-  padding: clamp(24px, 2.5vw, 44px);
-  display: flex; flex-direction: column;
-}
-.card--flush { padding: 0; overflow: hidden; }
-.card--green { background: var(--green-lt); }
-.card--blue  { background: var(--blue-lt); }
-.card--ink   { background: var(--ink); }
-.card--soft  { background: linear-gradient(130deg, var(--green-lt) 0%, var(--blue-lt) 55%, var(--tint) 100%); }
-.card--mid   { justify-content: center; }
-.card--pad-lg { padding: clamp(28px, 3.2vw, 60px); }
+.stack { display: flex; flex-direction: column; justify-content: center; }
+.subsec { margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); }
 
 /* section header — dark icon pill, then the heading */
 .shead { display: flex; flex-direction: column; }
+.shead--sticky { position: sticky; top: 132px; align-self: start; }
 .shead .badge { margin-bottom: var(--sp-5); }
 .shead .lead { margin-top: var(--sp-4); max-width: 56ch; }
 .shead--center { align-items: center; text-align: center; }
@@ -363,11 +354,9 @@ a:hover > .chip { background: var(--green-cta); }
 .tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: var(--sp-3); }
 .tiles li {
   display: flex; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-4); border-radius: var(--r-sm); background: var(--paper);
+  padding: var(--sp-4) 0; border-top: 1px solid var(--rule);
   font-size: var(--fs-sm); line-height: 1.45; color: var(--card-txt);
 }
-.card--green .tiles li, .card--blue .tiles li { background: rgba(255,255,255,0.7); }
-.on-ink .tiles li { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.86); }
 
 .ilist { list-style: none; margin: 0; padding: 0; }
 .ilist li {
@@ -377,12 +366,10 @@ a:hover > .chip { background: var(--green-cta); }
 }
 .ilist li:last-child { border-bottom: none; padding-bottom: 0; }
 .ilist .ico { color: var(--green-cta); }
-.card--green .ilist li, .card--blue .ilist li { border-color: rgba(var(--rgb-ink),0.09); }
-.on-ink .ilist li { border-color: rgba(255,255,255,0.14); color: rgba(255,255,255,0.88); }
-.on-ink .ilist .ico { color: var(--green); }
+
 
 .listhead { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-5); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3); line-height: 1.3; color: var(--ink); }
-.on-ink .listhead { color: var(--white); }
+
 
 .figure { border-radius: var(--r); overflow: hidden; background: var(--paper-2); height: 100%; }
 .figure img { width: 100%; height: 100%; object-fit: cover; }
@@ -406,7 +393,7 @@ a:hover > .chip { background: var(--green-cta); }
 .callout .ico { color: var(--green-cta); margin-top: 3px; }
 .note { display: flex; gap: var(--sp-3); align-items: flex-start; margin-top: var(--sp-5); font-size: var(--fs-xs); line-height: 1.5; color: var(--muted); }
 .note .ico { margin-top: 3px; }
-.on-ink .note { color: rgba(255,255,255,0.62); }
+
 
 .qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
 .qa__item p { font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
@@ -441,6 +428,7 @@ a:hover > .chip { background: var(--green-cta); }
 /* ==========================================================================
    FORM
    ========================================================================== */
+.form { border: 1px solid var(--rule); border-radius: var(--r); padding: clamp(22px, 2.4vw, 36px); }
 .form__head { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
 .form__hint { display: flex; gap: var(--sp-2); align-items: flex-start; margin-bottom: var(--sp-5); font-size: var(--fs-xs); line-height: 1.45; color: var(--muted); }
 .field { margin-bottom: var(--sp-4); }
@@ -468,7 +456,8 @@ a:hover > .chip { background: var(--green-cta); }
 /* ==========================================================================
    FOOTER
    ========================================================================== */
-.ft { background: var(--ink-2); color: rgba(255,255,255,0.72); border-radius: var(--r); padding: clamp(32px,3.4vw,60px) clamp(24px,2.6vw,44px) var(--sp-6); margin-bottom: var(--gap); }
+.ft { background: var(--ink-2); color: rgba(255,255,255,0.72); margin-top: var(--band); padding: clamp(40px,4vw,72px) 0 var(--sp-6); }
+.ft__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
 .ft__logo { display: inline-flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3); color: var(--white); text-decoration: none; }
 .ft__logo .ico { color: var(--green); }
 .ft__title { font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: var(--sp-4); }
@@ -519,7 +508,7 @@ a:hover > .chip { background: var(--green-cta); }
   .figure--tall, .figure--sq { aspect-ratio: 16/10; }
 
   .sticky-cta { display: flex; }
-  .ft { margin-bottom: calc(var(--gap) + 72px); }
+  .ft { padding-bottom: calc(var(--sp-6) + 72px); }
 }
 @media (max-width: 600px) {
   .c-3 { grid-column: span 12; }
@@ -755,7 +744,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== HERO ===== -->
     <section class="sec g" aria-labelledby="hero-t">
-      <div class="c-7 card card--pad-lg hero__copy">
+      <div class="c-7 hero__copy">
         <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-hand-heart"/></svg></span>
         <h1 class="h1" id="hero-t" style="margin-top:var(--sp-5)">Mental Health Therapy and Services for Children</h1>
         <p class="lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
@@ -791,7 +780,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== SERVICES ===== -->
     <section class="sec g" id="locations" aria-labelledby="svc-t">
-      <div class="c-7 card card--pad-lg card--mid">
+      <div class="c-7 stack">
         <div class="shead">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-clinic"/></svg></span>
           <h2 class="h2" id="svc-t">Children&rsquo;s Mental Health Services at Chrysalis Health</h2>
@@ -807,7 +796,7 @@ a:hover > .chip { background: var(--green-cta); }
              alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
       </div>
 
-      <div class="c-12 card">
+      <div class="c-12">
         <div class="g">
           <div class="c-4">
             <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-chat-heart"/></svg></span>
@@ -822,7 +811,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== WHEN SHOULD A CHILD SEE A THERAPIST ===== -->
     <section class="sec g" aria-labelledby="when-t">
-      <div class="c-12 card card--pad-lg">
+      <div class="c-12">
         <div class="shead shead--center" style="margin-bottom:var(--sp-7)">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-alert-question"/></svg></span>
           <h2 class="h2" id="when-t">When Should a Child See a Mental Health Therapist?</h2>
@@ -863,37 +852,37 @@ a:hover > .chip { background: var(--green-cta); }
         <h2 class="h2" id="conc-t">Mental Health Concerns Therapy Can Address</h2>
       </div>
 
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span>
         <h3 class="h3">Therapy for Childhood Anxiety and Excessive Worry</h3>
         <p>Anxiety can cause children to avoid school, social situations, sleeping alone, separating from a caregiver, or participating in everyday activities. Therapy helps children recognize anxious thoughts, understand physical reactions, and develop healthier ways to manage fear and worry.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-cloud-rain"/></svg></span>
         <h3 class="h3">Therapy for Childhood Depression and Withdrawal</h3>
         <p>Depression in children can appear as sadness, irritability, low energy, isolation, difficulty concentrating, or loss of interest. Therapy helps children communicate what they are feeling, rebuild healthy routines, and reconnect with family, friends, and activities.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-bolt"/></svg></span>
         <h3 class="h3">Therapy for Anger and Behavioral Concerns</h3>
         <p>Frequent outbursts, aggression, defiance, or impulsive behavior may be connected to emotional distress, communication difficulties, environmental stress, or an underlying behavioral health condition. Therapy helps children identify triggers, manage strong reactions, and develop healthier responses.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-shield-heart"/></svg></span>
         <h3 class="h3">Therapy for Childhood Trauma</h3>
         <p>Trauma-informed therapy helps children process frightening or overwhelming experiences, understand their reactions, rebuild a sense of safety, and develop coping strategies&mdash;without forcing them to discuss experiences before they are ready.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
         <h3 class="h3">Therapy for Grief and Significant Loss</h3>
         <p>Children often struggle to understand or express grief following a death, separation, relocation, illness, or another major loss. Therapy provides an age-appropriate setting to explore feelings, ask questions, and adjust to change.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-school"/></svg></span>
         <h3 class="h3">Therapy for School and Social Difficulties</h3>
         <p>Mental health concerns can affect attendance, concentration, academic performance, classroom behavior, friendships, and confidence. Therapy helps children strengthen communication, emotional regulation, coping, and problem-solving skills.</p>
       </article>
-      <article class="c-4 card topic">
+      <article class="c-4 topic">
         <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-home-heart"/></svg></span>
         <h3 class="h3">Therapy for Family Changes and Conflict</h3>
         <p>Divorce, separation, remarriage, relocation, illness, or conflict at home can affect a child&rsquo;s emotional security. Individual and family therapy can help children and caregivers communicate more effectively and adjust to changes within the family.</p>
@@ -909,7 +898,7 @@ a:hover > .chip { background: var(--green-cta); }
              sizes="(max-width: 920px) 100vw, 40vw" width="800" height="1000"
              alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
       </div>
-      <div class="c-7 card card--pad-lg card--mid">
+      <div class="c-7 stack">
         <div class="shead">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-users"/></svg></span>
           <h2 class="h2" id="treat-t">Mental Health Therapy for Children and Teens</h2>
@@ -918,7 +907,7 @@ a:hover > .chip { background: var(--green-cta); }
         <p>It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
       </div>
 
-      <div class="c-12 card">
+      <div class="c-12 subsec">
         <p class="listhead" id="treat-l"><svg class="ico" aria-hidden="true"><use href="#i-checklist"/></svg><span>Depending on the assessment and treatment plan, therapy may include:</span></p>
         <ul class="tiles" aria-labelledby="treat-l">
           <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-person-chat"/></svg></span>Individual mental health therapy</li>
@@ -936,7 +925,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== PLAY THERAPY ===== -->
     <section class="sec g" aria-labelledby="play-t">
-      <div class="c-7 card card--pad-lg card--mid">
+      <div class="c-7 stack">
         <div class="shead">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-blocks"/></svg></span>
           <h2 class="h2" id="play-t">Play Therapy for Children</h2>
@@ -953,7 +942,7 @@ a:hover > .chip { background: var(--green-cta); }
              alt="A young child using drawing and toys during a play therapy session" loading="lazy" decoding="async">
       </div>
 
-      <div class="c-5 card">
+      <div class="c-5 subsec">
         <p class="listhead" id="play-l"><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Play therapy and play-based techniques may include:</span></p>
         <ul class="ilist" aria-labelledby="play-l">
           <li><svg class="ico" aria-hidden="true"><use href="#i-pencil"/></svg><span>Drawing and creative activities</span></li>
@@ -965,18 +954,18 @@ a:hover > .chip { background: var(--green-cta); }
           <li><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Structured problem-solving</span></li>
         </ul>
       </div>
-      <div class="c-7 g" style="align-content:start">
-        <div class="c-12 card qa__item">
+      <div class="c-7 g subsec" style="align-content:start">
+        <div class="c-12 qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
           <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
           <p>Rather than directing every activity, the therapist observes how the child communicates, responds to emotions, approaches problems, and interacts with the materials. Those observations and the therapeutic relationship can help the child build confidence, emotional awareness, regulation, and healthier responses.</p>
         </div>
-        <div class="c-6 card qa__item">
+        <div class="c-6 qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-target"/></svg></span>Play Therapy Is More Than Playtime</h3>
           <p>Play therapy is not simply allowing a child to play with toys. Activities are used or observed within a therapeutic relationship and connected to specific treatment goals.</p>
           <p>Play therapy may be used by itself or combined with child counseling, cognitive behavioral therapy, family therapy, trauma-informed care, or other approaches.</p>
         </div>
-        <div class="c-6 card qa__item">
+        <div class="c-6 qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-branch"/></svg></span>Does Every Child Receive Play Therapy?</h3>
           <p>No. Play therapy is used when it is developmentally and clinically appropriate. Some children and teens respond better to conversation-based therapy, structured skill-building, cognitive behavioral therapy, family counseling, or a combination of approaches.</p>
         </div>
@@ -992,7 +981,7 @@ a:hover > .chip { background: var(--green-cta); }
              sizes="(max-width: 920px) 100vw, 40vw" width="800" height="1000"
              alt="A child attending a video therapy session on a laptop at home" loading="lazy" decoding="async">
       </div>
-      <div class="c-7 card card--pad-lg card--mid">
+      <div class="c-7 stack">
         <div class="shead">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-video"/></svg></span>
           <h2 class="h2" id="tele-t">Telehealth Therapy for Kids and Teens</h2>
@@ -1007,7 +996,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== PARENTS ===== -->
     <section class="sec g" aria-labelledby="par-t">
-      <div class="c-7 card card--pad-lg card--mid">
+      <div class="c-7 stack">
         <div class="shead">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-family"/></svg></span>
           <h2 class="h2" id="par-t">Parents and Caregivers Are Part of Treatment</h2>
@@ -1016,7 +1005,7 @@ a:hover > .chip { background: var(--green-cta); }
         <p>Family involvement can be especially important for younger children and may help strengthen communication, relationships, and overall functioning.</p>
         <p class="callout" style="margin-top:var(--sp-5);padding-top:var(--sp-5);border-top:1px solid var(--rule)"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
       </div>
-      <div class="c-5 card">
+      <div class="c-5">
         <p class="listhead" id="par-l"><svg class="ico" aria-hidden="true"><use href="#i-checklist"/></svg><span>Parent involvement may include:</span></p>
         <ul class="ilist" aria-labelledby="par-l">
           <li><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Sharing developmental, medical, and behavioral history</span></li>
@@ -1032,12 +1021,12 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== WHAT TO EXPECT ===== -->
     <section class="sec g" aria-labelledby="steps-t">
-      <div class="c-4 card card--green card--mid card--pad-lg on-tint">
+      <div class="c-4 stack">
         <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-route"/></svg></span>
         <h2 class="h2" id="steps-t" style="margin-top:var(--sp-5)">What to Expect When Starting Therapy</h2>
         <p class="callout" style="margin-top:var(--sp-6)"><svg class="ico" aria-hidden="true"><use href="#i-headset"/></svg><span>A specialist generally responds within 48 hours after an online request is submitted. Call directly if you need a faster response.</span></p>
       </div>
-      <div class="c-8 card card--pad-lg">
+      <div class="c-8">
         <ol class="path">
           <li>
             <span class="path__n" aria-hidden="true">1</span>
@@ -1075,13 +1064,13 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== WHY FAMILIES CHOOSE ===== -->
     <section class="sec g" id="insurance" aria-labelledby="why-t">
-      <div class="c-5 card card--ink card--mid card--pad-lg on-ink">
+      <div class="c-5 stack">
         <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-shield-check"/></svg></span>
         <h2 class="h2" id="why-t" style="margin-top:var(--sp-5)">Why Families Choose Chrysalis Health</h2>
         <p class="lead" style="margin-top:var(--sp-5)">Chrysalis Health was founded in 1995 and has grown into a comprehensive behavioral healthcare organization serving children, adolescents, adults, and families. Its team includes therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other behavioral health professionals.</p>
-        <div class="actions"><a href="#request-form" class="btn btn--light">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+        <div class="actions"><a href="#request-form" class="btn btn--dark">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
       </div>
-      <div class="c-7 card card--pad-lg">
+      <div class="c-7">
         <p class="listhead" id="why-l"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>Families may have access to:</span></p>
         <ul class="ilist" aria-labelledby="why-l">
           <li><svg class="ico" aria-hidden="true"><use href="#i-clipboard-check"/></svg><span>Individualized assessments and treatment plans</span></li>
@@ -1100,7 +1089,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== FAQ ===== -->
     <section class="sec g" aria-labelledby="faq-t">
-      <div class="c-12 card card--pad-lg">
+      <div class="c-12">
         <div class="shead shead--center" style="margin-bottom:var(--sp-7)">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-help"/></svg></span>
           <h2 class="h2" id="faq-t">Frequently Asked Questions About Children&rsquo;s Mental Health Services</h2>
@@ -1169,7 +1158,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== CTA + FORM ===== -->
     <section class="sec g" id="request-form" aria-labelledby="final-t">
-      <div class="c-12 card card--soft card--pad-lg on-tint">
+      <div class="c-12">
         <div class="g" style="align-items:center">
           <div class="c-6">
             <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-hand-heart"/></svg></span>
@@ -1180,7 +1169,7 @@ a:hover > .chip { background: var(--green-cta); }
             <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-triangle"/></svg><span>If your child is in immediate danger, call 911. For urgent mental health support in the United States, call or text 988.</span></p>
           </div>
 
-          <div class="c-6 card form">
+          <div class="c-6 form">
             <div class="form__head">
               <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-clipboard-check"/></svg></span>
               <h3 class="h3">Request a Child Mental Health Assessment</h3>
@@ -1226,37 +1215,41 @@ a:hover > .chip { background: var(--green-cta); }
       </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="ft">
-      <div class="g">
-        <div class="c-4">
-          <a href="#" class="ft__logo"><svg class="ico" aria-hidden="true"><use href="#i-clinic"/></svg>Chrysalis Health</a>
-          <a href="tel:18885870335" class="ft__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-          <p>Behavioral healthcare for children, teens, adults, and families since 1995. Programs available in Florida, Ohio, and Texas.</p>
-        </div>
-        <div class="c-3">
-          <p class="ft__title">Quick links</p>
-          <ul>
-            <li><a href="#request-form">Request an assessment</a></li>
-            <li><a href="#telehealth">Telehealth</a></li>
-            <li><a href="#insurance">Insurance &amp; payment</a></li>
-            <li><a href="#locations">Services in your area</a></li>
-            <li><a href="https://ch-option2.netlify.app/">Pay a bill</a></li>
-            <li><a href="https://ch-option2.netlify.app/">Required notices</a></li>
-          </ul>
-        </div>
-        <div class="c-5">
-          <p class="ft__title">In a crisis</p>
-          <p class="ft__crisis"><svg class="ico" aria-hidden="true"><use href="#i-shield-heart"/></svg><span>If your child is in immediate danger, call <strong>911</strong> or go to the nearest emergency department. For urgent mental health support in the United States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), available 24/7.</span></p>
-        </div>
-      </div>
-      <div class="ft__bar">
-        <span>&copy; 1995&ndash;2026 Chrysalis Health. All rights reserved.</span>
-        <span>This page is informational and is not a substitute for professional medical advice, diagnosis, or treatment.</span>
-      </div>
-    </footer>
+
 
   </main>
+
+<!-- ===== FOOTER ===== -->
+  <footer class="ft">
+  <div class="ft__in">
+    <div class="g">
+      <div class="c-4">
+        <a href="#" class="ft__logo"><svg class="ico" aria-hidden="true"><use href="#i-clinic"/></svg>Chrysalis Health</a>
+        <a href="tel:18885870335" class="ft__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
+        <p>Behavioral healthcare for children, teens, adults, and families since 1995. Programs available in Florida, Ohio, and Texas.</p>
+      </div>
+      <div class="c-3">
+        <p class="ft__title">Quick links</p>
+        <ul>
+          <li><a href="#request-form">Request an assessment</a></li>
+          <li><a href="#telehealth">Telehealth</a></li>
+          <li><a href="#insurance">Insurance &amp; payment</a></li>
+          <li><a href="#locations">Services in your area</a></li>
+          <li><a href="https://ch-option2.netlify.app/">Pay a bill</a></li>
+          <li><a href="https://ch-option2.netlify.app/">Required notices</a></li>
+        </ul>
+      </div>
+      <div class="c-5">
+        <p class="ft__title">In a crisis</p>
+        <p class="ft__crisis"><svg class="ico" aria-hidden="true"><use href="#i-shield-heart"/></svg><span>If your child is in immediate danger, call <strong>911</strong> or go to the nearest emergency department. For urgent mental health support in the United States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), available 24/7.</span></p>
+      </div>
+    </div>
+    <div class="ft__bar">
+      <span>&copy; 1995&ndash;2026 Chrysalis Health. All rights reserved.</span>
+      <span>This page is informational and is not a substitute for professional medical advice, diagnosis, or treatment.</span>
+    </div>
+  </div>
+  </footer>
 
 
 
