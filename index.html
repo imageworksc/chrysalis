@@ -679,7 +679,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .has-js .signs__item { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .has-js .signs__item.is-in { opacity: 1; transform: none; }
 
-.signs__end { clear: both; margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
+/* The closing block belongs to this section, so it must not carry the full
+   width rule and band-sized gap the page uses to mean "new section". It stays
+   a sibling of .signs__main rather than a cell inside it: the heading column
+   is sticky, and a sticky item cannot leave its own containing block. */
+.signs__end { clear: both; margin-top: var(--sp-9); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
 .signs__close { max-width: 26ch; margin: 0; }
 .signs__end .actions { margin: 0; }
 
