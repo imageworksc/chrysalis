@@ -35,8 +35,9 @@
 
 <style>
 /* ==========================================================================
-   CHRYSALIS HEALTH — rebuilt on a bento / tinted-block layout language.
-   Palette, copy and typefaces are the client's. Everything structural is new.
+   CHRYSALIS HEALTH
+   Content sits on white. Structure comes from grid, rules and whitespace,
+   not from coloured containers. Palette, copy and typefaces are the client's.
    ========================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -71,36 +72,35 @@ img { max-width: 100%; display: block; }
   --rgb-blue:  82,165,207;
   --rgb-ink:   22,50,63;
 
-  /* type — the two brand families, on a much more confident scale */
+  /* type */
   --font:  'Lato', Arial, sans-serif;
   --head:  'Montserrat', 'Lato', Arial, sans-serif;
-  --fs-display: clamp(38px, 5.4vw, 68px);
-  --fs-h2:      clamp(30px, 3.6vw, 46px);
-  --fs-h3:      clamp(19px, 1.5vw, 22px);
-  --fs-lead:    clamp(16px, 1.15vw, 18px);
+  --fs-display: clamp(36px, 4.6vw, 58px);
+  --fs-h2:      clamp(28px, 3.1vw, 40px);
+  --fs-h3:      clamp(18px, 1.35vw, 21px);
+  --fs-lead:    clamp(16px, 1.1vw, 18px);
   --fs-base:    16px;
   --fs-sm:      15px;
   --fs-xs:      13px;
+  --fs-nav:     15px;
+  --fs-cta:     14px;
+  --fs-phone:   21px;
+  --fs-tag:     10px;
   --fw-reg: 400; --fw-med: 600; --fw-bold: 700;
 
-  /* spacing — 4px base */
+  /* spacing */
   --sp-05: 2px; --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
   --sp-5: 24px; --sp-6: 32px; --sp-7: 40px; --sp-8: 56px;
   --sp-9: 72px; --sp-10: 96px; --sp-11: 128px;
 
-  --band:    clamp(64px, 7vw, 112px);
-  --band-sm: clamp(48px, 5vw, 72px);
+  --band:    clamp(64px, 7vw, 108px);
+  --w-page:  1280px;
+  --w-text:  64ch;
+  --gutter:  clamp(20px, 4vw, 56px);
 
-  --w-page:    1360px;
-  --w-text:    64ch;
-  --frame:     clamp(8px, 1.4vw, 20px);
-  --gutter:    clamp(20px, 3.4vw, 56px);
-
-  /* radius — generous, the reference's signature */
-  --r-shell: clamp(20px, 2.4vw, 36px);
-  --r-card:  clamp(16px, 1.6vw, 24px);
-  --r-sm:    12px;
-  --r-pill:  999px;
+  --r-card: clamp(14px, 1.4vw, 20px);
+  --r-sm:   10px;
+  --r-pill: 999px;
 
   --e-1: 0 2px 8px rgba(var(--rgb-ink),0.05);
   --e-2: 0 10px 30px rgba(var(--rgb-ink),0.09);
@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
 
 body {
   margin: 0;
-  background: var(--green-lt);
+  background: var(--white);
   font-family: var(--font);
   font-size: var(--fs-base);
   line-height: 1.65;
@@ -130,14 +130,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .ico--sm { width: 15px; height: 15px; stroke-width: 1.9; }
 .ico--lg { width: 24px; height: 24px; stroke-width: 1.5; }
 
-.badge { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 14px; }
-.badge--sm { width: 34px; height: 34px; border-radius: 11px; }
-.badge--lg { width: 56px; height: 56px; border-radius: 18px; }
+.badge { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 13px; }
+.badge--sm { width: 34px; height: 34px; border-radius: 10px; }
+.badge--lg { width: 52px; height: 52px; border-radius: 16px; }
 .badge--green { background: var(--green-lt); color: var(--green-cta); }
 .badge--blue  { background: var(--blue-lt);  color: var(--blue-deep); }
-.on-ink .badge--green { background: rgba(var(--rgb-green),0.18); color: var(--green); }
-.on-ink .badge--blue  { background: rgba(var(--rgb-blue),0.22);  color: var(--blue); }
-.on-tint .badge--green, .on-tint .badge--blue { background: var(--white); }
 
 /* ---------- skip link ---------- */
 .skip {
@@ -150,21 +147,17 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 :where(a, button, input, select, textarea):focus-visible {
   outline: 3px solid var(--blue-deep); outline-offset: 3px; border-radius: var(--sp-1);
 }
-.on-ink :focus-visible { outline-color: var(--white); }
+.cta-band :focus-visible { outline-color: var(--ink); }
 
 /* ==========================================================================
    TYPE
    ========================================================================== */
 .h1, .h2, .h3 { font-family: var(--head); font-weight: var(--fw-bold); color: var(--navy); margin: 0; }
-.h1 { font-size: var(--fs-display); line-height: 1.04; letter-spacing: -0.032em; text-wrap: balance; }
-.h2 { font-size: var(--fs-h2);      line-height: 1.08; letter-spacing: -0.028em; text-wrap: balance; }
-.h3 { font-size: var(--fs-h3);      line-height: 1.25; letter-spacing: -0.015em; }
+.h1 { font-size: var(--fs-display); line-height: 1.06; letter-spacing: -0.03em; text-wrap: balance; }
+.h2 { font-size: var(--fs-h2);      line-height: 1.1;  letter-spacing: -0.026em; text-wrap: balance; }
+.h3 { font-size: var(--fs-h3);      line-height: 1.28; letter-spacing: -0.014em; }
 .lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--body); }
 .prose { max-width: var(--w-text); }
-.on-ink, .on-ink p { color: rgba(255,255,255,0.80); }
-.on-ink .h1, .on-ink .h2, .on-ink .h3, .on-ink strong { color: var(--white); }
-.on-ink .lead { color: rgba(255,255,255,0.90); }
-
 .mark { display: block; width: 48px; height: 5px; border-radius: var(--r-pill); background: var(--green); margin-bottom: var(--sp-5); }
 
 /* ==========================================================================
@@ -193,59 +186,77 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px;
 }
 .link:hover { color: var(--green-cta); }
-.on-ink .link { color: var(--white); }
-.on-ink .link:hover { color: var(--green); }
 
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-5); margin-top: var(--sp-6); }
 
 /* ==========================================================================
-   SHELL
+   ANNOUNCE — full-width strip, as before
    ========================================================================== */
-.page { max-width: var(--w-page); margin: 0 auto; padding: var(--frame); }
-.shell { background: var(--white); border-radius: var(--r-shell); overflow: hidden; }
-.wrap { width: 100%; padding-inline: var(--gutter); }
-.sec { padding-block: var(--band); }
-.sec--flush-top { padding-top: 0; }
-[id] { scroll-margin-top: 110px; }
-
-/* ==========================================================================
-   ANNOUNCE
-   ========================================================================== */
-.announce { background: var(--announce); border-radius: var(--r-pill); margin-bottom: var(--frame); transition: background .2s var(--ease); }
+.announce { background: var(--announce); transition: background .2s var(--ease); }
 .announce:hover { background: var(--announce-dk); }
 .announce a {
   display: flex; align-items: center; justify-content: center; gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-5); color: var(--white); text-decoration: none;
-  font-weight: var(--fw-bold); font-size: var(--fs-sm); line-height: 1.4; text-align: center;
+  max-width: var(--w-page); margin: 0 auto; padding: var(--sp-3) var(--gutter);
+  color: var(--white); text-decoration: none;
+  font-weight: var(--fw-bold); font-size: var(--fs-sm); line-height: 1.4;
 }
-.announce .ico { width: 19px; height: 19px; }
+.announce .ico { width: 20px; height: 20px; }
 .announce .ico--arw { transition: transform .18s var(--ease); }
 .announce a:hover .ico--arw { transform: translateX(3px); }
 
 /* ==========================================================================
-   HEADER — floating pill
+   HEADER — two tiers, sticky, compacting on scroll
    ========================================================================== */
 .hdr {
-  position: sticky; top: var(--frame); z-index: 100; margin-bottom: var(--frame);
-  background: var(--white); border-radius: var(--r-pill); box-shadow: var(--e-1);
-  transition: box-shadow .25s var(--ease);
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white); border-bottom: 1px solid var(--rule);
+  transition: box-shadow .2s var(--ease);
 }
-.hdr.is-stuck { box-shadow: var(--e-2); }
-.hdr__in { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-5); }
-.hdr__logo img { height: 46px; width: auto; }
-.hdr__nav { display: flex; align-items: center; gap: var(--sp-1); margin-left: auto; }
+.hdr.is-stuck { box-shadow: var(--e-1); }
+.hdr__wrap { width: 100%; max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
+
+.hdr__top { display: flex; align-items: center; gap: var(--sp-7); padding: var(--sp-4) 0; transition: padding .2s var(--ease); }
+.hdr.is-stuck .hdr__top { padding: var(--sp-2) 0; }
+.hdr__logo { display: block; flex-shrink: 0; line-height: 0; }
+.hdr__logo img { height: 82px; width: auto; transition: height .2s var(--ease); }
+.hdr.is-stuck .hdr__logo img { height: 46px; }
+
+.hdr__right { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
+.hdr__actions { display: flex; align-items: center; gap: var(--sp-5); flex-wrap: wrap; justify-content: flex-end; }
+.hdr__link { font-size: var(--fs-sm); font-weight: var(--fw-med); color: #2e3a4a; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.hdr__link:hover { color: var(--blue-deep); }
+.hdr__phone {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-phone); font-weight: var(--fw-bold); color: var(--blue-deep);
+  text-decoration: none; white-space: nowrap;
+}
+.hdr__phone .ico { width: 18px; height: 18px; }
+.hdr__phone:hover { color: var(--ink); }
+.hdr__cta { min-height: 46px; padding: var(--sp-3) var(--sp-5); font-size: var(--fs-cta); }
+
+.hdr__navrow { overflow: hidden; max-height: 140px; opacity: 1; transition: max-height .22s var(--ease), opacity .18s var(--ease); }
+.hdr.is-stuck .hdr__navrow { max-height: 0; opacity: 0; }
+.hdr__nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--sp-2) var(--sp-6); }
+
 .nav-item {
   position: relative; display: inline-flex; align-items: center; gap: var(--sp-1);
-  min-height: 44px; padding: 0 var(--sp-3); border: none; background: none; cursor: pointer;
-  font-family: var(--font); font-size: var(--fs-sm); font-weight: var(--fw-bold);
-  color: var(--ink); text-decoration: none; border-radius: var(--r-pill);
-  transition: background .18s var(--ease), color .18s var(--ease);
+  min-height: 44px; padding: 0; border: none; background: none; cursor: pointer;
+  font-family: var(--font); font-size: var(--fs-nav); font-weight: var(--fw-bold);
+  letter-spacing: 0.03em; text-transform: uppercase; color: #55636f; text-decoration: none;
+  transition: color .18s var(--ease);
 }
-.nav-item:hover { background: var(--green-lt); color: var(--green-cta); }
+.nav-item::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 3px;
+  border-radius: var(--r-pill); background: var(--green);
+  transform: scaleX(0); transform-origin: 50% 50%;
+  transition: transform .18s var(--ease);
+}
+.nav-item:hover, .nav-item:focus-visible { color: var(--navy); }
+.nav-item:hover::after, .dd.is-open > .nav-item::after { transform: scaleX(1); }
 .nav-caret { width: 13px; height: 13px; transition: transform .2s var(--ease); }
+
 .dd { position: relative; }
 .dd.is-open .nav-caret, .dd:hover .nav-caret { transform: rotate(180deg); }
-.dd.is-open .nav-item, .dd:hover .nav-item { background: var(--green-lt); color: var(--green-cta); }
 .dd__panel { display: none; position: absolute; top: 100%; left: 0; padding-top: var(--sp-3); z-index: 120; }
 .dd--right .dd__panel { left: auto; right: 0; }
 .dd.is-open .dd__panel, .dd:hover .dd__panel, .dd:focus-within .dd__panel { display: block; }
@@ -259,17 +270,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .dd__panel a, .dd__soon {
   display: flex; align-items: center; gap: var(--sp-3);
   min-height: 44px; padding: var(--sp-3) var(--sp-4);
-  font-size: var(--fs-sm); font-weight: var(--fw-med); line-height: 1.4;
-  color: var(--card-txt); text-decoration: none; border-radius: var(--r-sm);
+  font-size: var(--fs-nav); font-weight: var(--fw-med); line-height: 1.4;
+  color: #45525e; text-decoration: none; border-radius: var(--r-sm);
+  text-transform: none; letter-spacing: normal;
   transition: background .16s var(--ease), color .16s var(--ease);
 }
 .dd__panel a .ico { color: var(--blue-dk); }
-.dd__panel a:hover { background: var(--blue-lt); color: var(--ink); }
+.dd__panel a:hover { background: var(--blue-lt); color: var(--navy); }
 .dd__soon { color: #9aa6b0; cursor: default; }
 .dd__soon .ico { color: #9aa6b0; }
 .dd__tag {
   margin-left: auto; padding: var(--sp-05) var(--sp-2); flex-shrink: 0;
-  font-size: 10px; font-weight: var(--fw-bold); letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: var(--fs-tag); font-weight: var(--fw-bold); letter-spacing: 0.06em; text-transform: uppercase;
   color: #7a8792; background: var(--paper-2); border-radius: var(--sp-1);
 }
 .dd__feature { margin-top: var(--sp-2); background: var(--green-lt); color: #33501c; font-weight: var(--fw-bold); }
@@ -277,54 +289,61 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .dd__feature::after { content: "Care from anywhere"; margin-left: auto; font-size: var(--fs-xs); font-weight: var(--fw-reg); color: #4a6530; }
 .dd__feature:hover { background: #dff0c8; color: #2e4519; }
 
-.hdr__phone {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  font-weight: var(--fw-bold); font-size: var(--fs-sm); color: var(--blue-deep);
-  text-decoration: none; white-space: nowrap; padding-inline: var(--sp-2);
+.hdr__progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+  background: var(--green); transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .1s linear;
 }
-.hdr__phone:hover { color: var(--ink); }
-.hdr__cta { min-height: 48px; padding: var(--sp-3) var(--sp-5); font-size: var(--fs-xs); }
 
 .burger {
-  display: none; flex-direction: column; justify-content: center; gap: var(--sp-1);
-  width: 48px; height: 48px; margin-left: auto; border: none; cursor: pointer;
-  background: var(--green-lt); border-radius: 50%;
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; margin-left: auto; background: none; border: none; cursor: pointer; flex-shrink: 0;
 }
-.burger span { display: block; width: 20px; height: 2.5px; margin-inline: auto; background: var(--ink); border-radius: 2px; transition: transform .25s var(--ease), opacity .2s var(--ease); }
-.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger span { display: block; width: 25px; height: 2.5px; background: var(--navy); border-radius: 2px; transition: transform .25s var(--ease), opacity .2s var(--ease); }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-.mob { display: none; max-height: 0; overflow: hidden auto; overscroll-behavior: contain; transition: max-height .3s var(--ease); }
+.mob { display: none; max-height: 0; overflow: hidden auto; overscroll-behavior: contain; background: var(--white); border-top: 1px solid var(--rule); transition: max-height .3s var(--ease); }
 .mob.is-open { display: block; }
-.mob__in { padding: var(--sp-4) var(--sp-5) var(--sp-6); border-top: 1px solid var(--rule); margin-top: var(--sp-3); }
-.mob__actions { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-4); justify-items: center; }
+.mob__actions { display: grid; gap: var(--sp-3); padding: var(--sp-5) var(--gutter); border-bottom: 1px solid var(--rule); justify-items: center; }
 .mob__actions .btn { width: 100%; }
+.mob__nav { display: flex; flex-direction: column; padding: var(--sp-2) var(--gutter) var(--sp-6); }
 .mob__link, .mob__trigger {
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
-  width: 100%; min-height: 52px; padding: var(--sp-3) 0;
+  width: 100%; min-height: 52px; padding: var(--sp-3) var(--sp-05);
   background: none; border: none; border-bottom: 1px solid var(--rule);
-  font-family: var(--head); font-size: var(--fs-base); font-weight: var(--fw-bold);
-  color: var(--ink); text-decoration: none; text-align: left; cursor: pointer;
+  font-family: var(--font); font-size: var(--fs-base); font-weight: var(--fw-bold);
+  letter-spacing: 0.02em; text-transform: uppercase; color: #2e3a4a;
+  text-decoration: none; text-align: left; cursor: pointer;
 }
-.mob__chev { width: 18px; height: 18px; color: var(--green-cta); transition: transform .25s var(--ease); }
+.mob__chev { width: 18px; height: 18px; color: var(--blue-deep); transition: transform .25s var(--ease); }
 .mob__group.is-open .mob__chev { transform: rotate(180deg); }
-.mob__sub { display: none; flex-direction: column; padding: var(--sp-1) 0 var(--sp-3) var(--sp-3); }
+.mob__sub { display: none; flex-direction: column; padding: var(--sp-1) 0 var(--sp-3) var(--sp-4); }
 .mob__group.is-open .mob__sub { display: flex; }
-.mob__sub a, .mob__sub .dd__soon { min-height: 44px; padding: var(--sp-2) 0; font-size: var(--fs-sm); }
-.mob__sub a { display: flex; align-items: center; gap: var(--sp-3); color: var(--card-txt); text-decoration: none; }
+.mob__sub a, .mob__sub .dd__soon { min-height: 44px; padding: var(--sp-2) var(--sp-1); font-size: var(--fs-nav); }
+.mob__sub a { display: flex; align-items: center; gap: var(--sp-3); color: #55636f; text-decoration: none; }
+.mob__sub a:hover { color: var(--blue-deep); }
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+.page { max-width: var(--w-page); margin: 0 auto; }
+.wrap { width: 100%; padding-inline: var(--gutter); }
+.sec { padding-block: var(--band); }
+.sec--flush-top { padding-top: 0; }
+[id] { scroll-margin-top: 120px; }
 
 /* ==========================================================================
    HERO
    ========================================================================== */
-.hero { padding-block: clamp(40px, 4.5vw, 76px) var(--band); }
+.hero { padding-block: clamp(36px, 4vw, 68px) var(--band); }
 .hero__grid { display: grid; grid-template-columns: minmax(0,1.06fr) minmax(0,0.94fr); gap: clamp(28px,3.4vw,56px); align-items: center; }
 .hero__copy { max-width: 640px; }
 .hero .lead { margin-top: var(--sp-5); max-width: 52ch; }
 .hero__media { position: relative; }
 .hero__photo { border-radius: var(--r-card); overflow: hidden; background: var(--paper-2); aspect-ratio: 4/5; }
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
-/* reassurance card floating over the lower band of the photo */
 .hero__note {
   position: absolute; left: var(--sp-5); right: var(--sp-5); bottom: var(--sp-5);
   display: flex; gap: var(--sp-3); align-items: flex-start;
@@ -334,13 +353,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   line-height: 1.4; color: var(--navy);
 }
 
-.trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,180px),1fr)); gap: var(--sp-3); margin: var(--sp-7) 0 0; padding: 0; }
-.trust li {
-  display: flex; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-4); border-radius: var(--r-sm); background: var(--green-lt);
-  font-size: var(--fs-xs); line-height: 1.4; color: var(--ink); font-weight: var(--fw-bold);
-}
-.trust li:nth-child(2) { background: var(--blue-lt); }
+.trust { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,180px),1fr)); gap: var(--sp-4) var(--sp-5); margin: var(--sp-7) 0 0; padding: var(--sp-5) 0 0; border-top: 1px solid var(--rule); }
+.trust li { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-xs); line-height: 1.4; color: var(--ink); font-weight: var(--fw-bold); }
+.trust .ico { color: var(--green-cta); }
 
 /* ==========================================================================
    SECTION HEADER
@@ -353,35 +368,28 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .shead--solo { grid-template-columns: minmax(0,1fr); }
 
 /* ==========================================================================
-   BLOCKS
+   CONTENT COLUMNS — no container, just a stack
    ========================================================================== */
-.block { border-radius: var(--r-card); padding: clamp(24px,2.6vw,40px); }
-.block--green { background: var(--green-lt); }
-.block--blue  { background: var(--blue-lt); }
-.block--paper { background: var(--paper); }
-.block--ink   { background: var(--ink); }
-.block--white { background: var(--white); border: 1px solid var(--rule); }
-.block--pad-lg { padding: clamp(28px,3.2vw,56px); }
-.block--mid { display: flex; flex-direction: column; justify-content: center; }
+.stack { display: flex; flex-direction: column; justify-content: center; }
+.stack > .badge { margin-bottom: var(--sp-4); }
 
-.grid { display: grid; gap: var(--sp-3); }
+.grid { display: grid; gap: var(--sp-5); }
 .grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%,290px),1fr)); }
 .grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%,235px),1fr)); }
-.grid--gap { gap: var(--sp-4); }
 
-.topic { display: flex; flex-direction: column; }
+/* topic — hairline-separated, no card */
+.topic { display: flex; flex-direction: column; padding-top: var(--sp-5); border-top: 2px solid var(--ink); }
 .topic .badge { margin-bottom: var(--sp-4); }
 .topic h3 { margin-bottom: var(--sp-3); }
-.topic p { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: var(--card-txt); }
+.topic p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
 
+/* tiles — hairline rows */
 .tiles { list-style: none; margin: 0; padding: 0; }
 .tiles li {
   display: flex; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-4); border-radius: var(--r-sm);
-  background: var(--white); border: 1px solid var(--rule);
+  padding: var(--sp-4) 0; border-top: 1px solid var(--rule);
   font-size: var(--fs-sm); line-height: 1.45; color: var(--card-txt);
 }
-.on-ink .tiles li { background: rgba(255,255,255,0.05); border-color: rgba(var(--rgb-blue),0.3); color: rgba(255,255,255,0.88); }
 
 .ilist { list-style: none; margin: 0; padding: 0; }
 .ilist li {
@@ -389,14 +397,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   align-items: center; padding: var(--sp-3) 0; border-bottom: 1px solid var(--rule);
   font-size: var(--fs-sm); line-height: 1.45; color: var(--ink);
 }
-.ilist li:last-child { border-bottom: none; padding-bottom: 0; }
+.ilist li:last-child { border-bottom: none; }
 .ilist .ico { color: var(--green-cta); }
-.on-ink .ilist li { border-color: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); }
-.on-ink .ilist .ico { color: var(--green); }
-.block--green .ilist li, .block--blue .ilist li { border-color: rgba(var(--rgb-ink),0.10); }
 
-.listhead { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-5); font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-h3); line-height: 1.3; color: var(--ink); }
-.on-ink .listhead { color: var(--white); }
+.listhead { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-h3); line-height: 1.3; color: var(--ink); }
 
 .figure { border-radius: var(--r-card); overflow: hidden; background: var(--paper-2); }
 .figure img { width: 100%; height: 100%; object-fit: cover; }
@@ -407,7 +411,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    BENTO
    ========================================================================== */
-.bento { display: grid; gap: var(--sp-3); grid-template-columns: repeat(12, minmax(0,1fr)); }
+.bento { display: grid; gap: clamp(24px,3vw,56px); grid-template-columns: repeat(12, minmax(0,1fr)); align-items: center; }
 .b-4 { grid-column: span 4; } .b-5 { grid-column: span 5; }
 .b-6 { grid-column: span 6; } .b-7 { grid-column: span 7; }
 .b-8 { grid-column: span 8; } .b-12 { grid-column: span 12; }
@@ -415,46 +419,54 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    STEPS
    ========================================================================== */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,270px),1fr)); gap: var(--sp-3); }
-.step { padding: clamp(22px,2.2vw,32px); border-radius: var(--r-card); background: var(--paper); border: 1px solid var(--rule); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,270px),1fr)); gap: var(--sp-6) var(--sp-5); }
+.step { padding-top: var(--sp-5); border-top: 2px solid var(--ink); }
 .step__n {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 46px; height: 34px; padding-inline: var(--sp-3); margin-bottom: var(--sp-4);
+  min-width: 44px; height: 32px; padding-inline: var(--sp-3); margin-bottom: var(--sp-4);
   border-radius: var(--r-pill); background: var(--ink); color: var(--white);
   font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-xs); letter-spacing: 0.04em;
 }
 .step h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
 .step h3 .ico { color: var(--green-cta); }
-.step p { margin: 0; font-size: var(--fs-sm); line-height: 1.55; color: var(--card-txt); }
-.step:nth-child(2), .step:nth-child(6) { background: var(--green-lt); border-color: transparent; }
-.step:nth-child(4) { background: var(--blue-lt); border-color: transparent; }
+.step p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
 
-.callout { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-5); border-radius: var(--r-card); background: var(--blue-lt); font-size: var(--fs-lead); line-height: 1.55; color: var(--ink); }
-.callout .ico { color: var(--blue-deep); margin-top: 3px; }
+.callout { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4) 0 0; border-top: 1px solid var(--rule); font-size: var(--fs-lead); line-height: 1.55; color: var(--ink); }
+.callout .ico { color: var(--green-cta); margin-top: 4px; }
 
 .note { display: flex; gap: var(--sp-3); align-items: flex-start; margin-top: var(--sp-5); font-size: var(--fs-sm); line-height: 1.5; color: var(--muted); }
 .note .ico { margin-top: 3px; }
 
+/* row that closes a section with a statement + actions */
+.cta-row {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--sp-5); margin-top: var(--sp-7); padding-top: var(--sp-6);
+  border-top: 2px solid var(--ink);
+}
+
 /* ==========================================================================
    QA
    ========================================================================== */
-.qa { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,280px),1fr)); gap: var(--sp-3); }
+.qa { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,280px),1fr)); gap: var(--sp-6) var(--sp-5); margin-top: var(--sp-7); }
+.qa__item { padding-top: var(--sp-5); border-top: 1px solid var(--rule); }
 .qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
-.qa__item p { font-size: var(--fs-sm); line-height: 1.55; color: var(--card-txt); }
+.qa__item p { font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
 
 /* ==========================================================================
-   FAQ
+   FAQ — hairline rows on white
    ========================================================================== */
-.faq { max-width: 900px; margin-inline: auto; display: grid; gap: var(--sp-2); }
-.faq__item { background: var(--paper); border-radius: var(--r-sm); overflow: hidden; transition: background .2s var(--ease); }
-.faq__item.is-open { background: var(--green-lt); }
+.faq { max-width: 900px; margin-inline: auto; border-top: 1px solid var(--rule); }
+.faq__item { border-bottom: 1px solid var(--rule); }
 .faq__q {
   display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-5);
-  width: 100%; padding: var(--sp-5); background: none; border: none; text-align: left; cursor: pointer;
+  width: 100%; padding: var(--sp-5) 0; background: none; border: none; text-align: left; cursor: pointer;
   font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-h3);
   line-height: 1.3; letter-spacing: -0.012em; color: var(--ink);
+  transition: color .18s var(--ease);
 }
-.faq__icon { position: relative; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--white); margin-top: 1px; transition: background .2s var(--ease); }
+.faq__q:hover { color: var(--green-cta); }
+.faq__item.is-open .faq__q { color: var(--green-cta); }
+.faq__icon { position: relative; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--paper); margin-top: 1px; transition: background .2s var(--ease); }
 .faq__item.is-open .faq__icon { background: var(--ink); }
 .faq__icon::before, .faq__icon::after {
   content: ""; position: absolute; left: 50%; top: 50%; background: var(--ink);
@@ -468,13 +480,13 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .faq__item.is-open .faq__panel { grid-template-rows: 1fr; }
 .faq__inner { overflow: hidden; visibility: hidden; transition: visibility 0s .26s; }
 .faq__item.is-open .faq__inner { visibility: visible; transition-delay: 0s; }
-.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) var(--sp-5); font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 68ch; }
+.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 68ch; }
 
 /* ==========================================================================
-   CTA BAND + FORM
+   CTA BAND + FORM — the one deliberately tinted block on the page
    ========================================================================== */
 .cta-band {
-  border-radius: var(--r-card); overflow: hidden;
+  border-radius: var(--r-card);
   background: linear-gradient(115deg, var(--green-lt) 0%, var(--blue-lt) 62%, var(--tint) 100%);
   padding: clamp(28px,3.4vw,64px);
 }
@@ -509,7 +521,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    FOOTER
    ========================================================================== */
-.ft { background: var(--ink-2); border-radius: var(--r-shell); margin-top: var(--frame); padding: clamp(36px,4vw,72px) 0 var(--sp-6); color: rgba(255,255,255,0.72); }
+.ft { background: var(--ink-2); color: rgba(255,255,255,0.72); padding: clamp(48px,5vw,80px) 0 var(--sp-6); margin-top: var(--band); }
+.ft__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
 .ft__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,250px),1fr)); gap: var(--sp-7) clamp(28px,3vw,64px); }
 .ft__logo { display: inline-flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-h3); color: var(--white); text-decoration: none; }
 .ft__logo .ico { color: var(--green); }
@@ -518,7 +531,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .ft li { margin-bottom: var(--sp-2); }
 .ft a { color: rgba(255,255,255,0.78); text-decoration: none; }
 .ft a:hover { color: var(--white); }
-.ft__phone { display: inline-flex; align-items: center; gap: var(--sp-2); font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-h3); color: var(--white); margin-bottom: var(--sp-3); }
+.ft__phone { display: inline-flex; align-items: center; gap: var(--sp-2); font-family: var(--head); font-weight: var(--fw-bold); font-size: var(--fs-phone); color: var(--white); margin-bottom: var(--sp-3); }
 .ft__crisis { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4) var(--sp-5); background: rgba(255,255,255,0.05); border-left: 4px solid var(--green); border-radius: var(--r-sm); font-size: var(--fs-sm); line-height: 1.5; }
 .ft__crisis .ico { color: var(--green); margin-top: 3px; }
 .ft__crisis strong { color: var(--white); }
@@ -528,10 +541,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    STICKY MOBILE BAR
    ========================================================================== */
 .sticky-cta {
-  display: none; position: fixed; left: var(--frame); right: var(--frame); bottom: var(--frame); z-index: 90;
-  gap: var(--sp-2); padding: var(--sp-2);
-  background: var(--white); border-radius: var(--r-pill); box-shadow: var(--e-3);
-  transform: translateY(160%); transition: transform .3s var(--ease);
+  display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  gap: var(--sp-2); padding: var(--sp-2) var(--sp-3) max(var(--sp-2), env(safe-area-inset-bottom));
+  background: rgba(255,255,255,0.97); border-top: 1px solid var(--rule);
+  box-shadow: 0 -6px 20px rgba(var(--rgb-ink),0.10);
+  transform: translateY(140%); transition: transform .3s var(--ease);
 }
 .sticky-cta.is-shown { transform: none; }
 .sticky-cta a { flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); padding: var(--sp-2); border-radius: var(--r-pill); font-weight: var(--fw-bold); font-size: var(--fs-xs); letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; text-align: center; line-height: 1.2; }
@@ -542,16 +556,16 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-@media (max-width: 1180px) {
-  .nav-item { padding-inline: var(--sp-2); font-size: var(--fs-xs); }
-  .hdr__phone { display: none; }
+@media (max-width: 1100px) {
+  .hdr__nav { gap: var(--sp-2) var(--sp-5); }
+  .nav-item { font-size: var(--fs-cta); }
 }
 @media (max-width: 920px) {
   .burger { display: flex; }
-  .hdr__nav, .hdr__phone, .hdr__in > .hdr__cta { display: none; }
-  .hdr { border-radius: var(--r-card); }
-  .hdr__in { padding: var(--sp-3) var(--sp-3) var(--sp-3) var(--sp-4); }
-  .hdr__logo img { height: 42px; }
+  .hdr__right { display: none; }
+  .hdr__top { justify-content: space-between; padding: var(--sp-3) 0; }
+  .hdr__logo img { height: 56px; }
+  .hdr.is-stuck .hdr__logo img { height: 44px; }
 
   .hero__grid, .shead, .cta-band__grid { grid-template-columns: minmax(0,1fr); }
   .shead { align-items: start; gap: var(--sp-4); }
@@ -560,6 +574,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .hero .lead { max-width: 100%; }
 
   .b-4, .b-5, .b-6, .b-7, .b-8 { grid-column: span 12; }
+  .bento { gap: var(--sp-6); }
 
   .sticky-cta { display: flex; }
   .ft { padding-bottom: calc(var(--sp-6) + 72px); }
@@ -569,14 +584,16 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .btn { width: 100%; }
   .link { justify-content: center; }
   .hero__note { position: static; margin-top: var(--sp-3); box-shadow: var(--e-1); }
-  .faq__q { padding: var(--sp-4); font-size: var(--fs-base); }
-  .faq__inner p { padding: 0 var(--sp-4) var(--sp-4); }
+  .faq__q { font-size: var(--fs-base); }
+  .faq__inner p { padding-right: 0; }
   .ft__bar { flex-direction: column; }
+  .cta-row { flex-direction: column; align-items: stretch; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
 </style>
 
 <noscript><style>
@@ -684,11 +701,22 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   </div>
 
   <header class="hdr" id="hdr">
-    <div class="hdr__in">
+    <div class="hdr__wrap hdr__top">
       <a href="#" class="hdr__logo" aria-label="Chrysalis Health">
         <img src="data:image/jpeg;base64,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" alt="Chrysalis Health" width="184" height="96" decoding="async">
       </a>
 
+      <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobmenu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="hdr__right">
+        <div class="hdr__actions">
+          <a href="#" class="hdr__link">Psychiatry Follow-Up</a>
+          <a href="tel:18885870335" class="hdr__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
+          <a href="#request-form" class="btn btn--dark hdr__cta">Start Care Today</a>
+        </div>
+        <div class="hdr__navrow">
       <nav class="hdr__nav" aria-label="Primary">
         <div class="dd">
           <button type="button" class="nav-item" aria-expanded="false">About <svg class="ico nav-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
@@ -732,23 +760,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <a href="https://ch-option2.netlify.app/" class="nav-item">Required Notices</a>
         <a href="https://ch-option2.netlify.app/" class="nav-item">Blog</a>
       </nav>
-
-      <a href="tel:18885870335" class="hdr__phone"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-      <a href="#request-form" class="btn btn--dark hdr__cta">Start Care Today</a>
-
-      <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobmenu">
-        <span></span><span></span><span></span>
-      </button>
+        </div>
+      </div>
     </div>
+    <div class="hdr__progress" id="progress" aria-hidden="true"></div>
 
     <div class="mob" id="mobmenu">
-      <div class="mob__in">
-        <div class="mob__actions">
+      <div class="mob__actions">
           <a href="#request-form" class="btn btn--dark hdr__cta">Start Care Today</a>
           <a href="tel:18885870335" class="hdr__phone"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
           <a href="#" class="link">Psychiatry Follow-Up</a>
         </div>
-        <nav aria-label="Primary mobile">
+        <nav class="mob__nav" aria-label="Primary mobile">
           <div class="mob__group">
             <button type="button" class="mob__trigger" aria-expanded="false">About <svg class="ico mob__chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
             <div class="mob__sub">
@@ -787,11 +810,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <a href="https://ch-option2.netlify.app/" class="mob__link">Required Notices</a>
           <a href="https://ch-option2.netlify.app/" class="mob__link">Blog</a>
         </nav>
-      </div>
     </div>
   </header>
 
-  <div class="shell">
   <main id="main">
 
     <!-- ===== HERO ===== -->
@@ -855,7 +876,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
                sizes="(max-width: 920px) 100vw, 60vw" width="1000" height="625"
                alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
         </div>
-        <div class="b-4 block block--green block--mid on-tint">
+        <div class="b-4 stack">
           <span class="badge badge--lg badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-clinic"/></svg></span>
           <h3 class="h3" style="margin-top:var(--sp-4)">What Is Children&rsquo;s Mental Health Therapy?</h3>
           <p style="margin-top:var(--sp-3);font-size:var(--fs-sm);line-height:1.55;color:var(--card-txt)">Children&rsquo;s mental health therapy is professional support designed to help kids and teens understand emotions, manage anxiety, improve behavior, process trauma or grief, strengthen communication, and develop healthier coping skills. Depending on the child&rsquo;s age and needs, treatment may include child counseling, play therapy, child-centered play therapy, cognitive behavioral therapy, family involvement, and other individualized approaches.</p>
@@ -892,7 +913,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <li><span class="badge badge--sm badge--green" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-alert-triangle"/></svg></span>Statements about self-harm, suicide, or hurting someone else</li>
       </ul>
 
-      <div class="block block--blue block--pad-lg on-tint" style="margin-top:var(--sp-5);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-5)">
+      <div class="cta-row">
         <p class="h3" style="margin:0;max-width:38ch">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
         <div class="actions" style="margin:0">
           <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
@@ -910,38 +931,38 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         </div>
       </div>
 
-      <div class="grid grid--3 grid--gap">
-        <article class="block block--green topic on-tint">
+      <div class="grid grid--3">
+        <article class="topic">
           <span class="badge badge--lg badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-pulse"/></svg></span>
           <h3 class="h3">Therapy for Childhood Anxiety and Excessive Worry</h3>
           <p>Anxiety can cause children to avoid school, social situations, sleeping alone, separating from a caregiver, or participating in everyday activities. Therapy helps children recognize anxious thoughts, understand physical reactions, and develop healthier ways to manage fear and worry.</p>
         </article>
-        <article class="block block--blue topic on-tint">
+        <article class="topic">
           <span class="badge badge--lg badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span>
           <h3 class="h3">Therapy for Childhood Depression and Withdrawal</h3>
           <p>Depression in children can appear as sadness, irritability, low energy, isolation, difficulty concentrating, or loss of interest. Therapy helps children communicate what they are feeling, rebuild healthy routines, and reconnect with family, friends, and activities.</p>
         </article>
-        <article class="block block--white topic">
+        <article class="topic">
           <span class="badge badge--lg badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-bolt"/></svg></span>
           <h3 class="h3">Therapy for Anger and Behavioral Concerns</h3>
           <p>Frequent outbursts, aggression, defiance, or impulsive behavior may be connected to emotional distress, communication difficulties, environmental stress, or an underlying behavioral health condition. Therapy helps children identify triggers, manage strong reactions, and develop healthier responses.</p>
         </article>
-        <article class="block block--blue topic on-tint">
+        <article class="topic">
           <span class="badge badge--lg badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-shield-heart"/></svg></span>
           <h3 class="h3">Therapy for Childhood Trauma</h3>
           <p>Trauma-informed therapy helps children process frightening or overwhelming experiences, understand their reactions, rebuild a sense of safety, and develop coping strategies&mdash;without forcing them to discuss experiences before they are ready.</p>
         </article>
-        <article class="block block--white topic">
+        <article class="topic">
           <span class="badge badge--lg badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-leaf"/></svg></span>
           <h3 class="h3">Therapy for Grief and Significant Loss</h3>
           <p>Children often struggle to understand or express grief following a death, separation, relocation, illness, or another major loss. Therapy provides an age-appropriate setting to explore feelings, ask questions, and adjust to change.</p>
         </article>
-        <article class="block block--green topic on-tint">
+        <article class="topic">
           <span class="badge badge--lg badge--green" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-school"/></svg></span>
           <h3 class="h3">Therapy for School and Social Difficulties</h3>
           <p>Mental health concerns can affect attendance, concentration, academic performance, classroom behavior, friendships, and confidence. Therapy helps children strengthen communication, emotional regulation, coping, and problem-solving skills.</p>
         </article>
-        <article class="block block--blue topic on-tint">
+        <article class="topic">
           <span class="badge badge--lg badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-home-heart"/></svg></span>
           <h3 class="h3">Therapy for Family Changes and Conflict</h3>
           <p>Divorce, separation, remarriage, relocation, illness, or conflict at home can affect a child&rsquo;s emotional security. Individual and family therapy can help children and caregivers communicate more effectively and adjust to changes within the family.</p>
@@ -952,7 +973,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     <!-- ===== THERAPY FOR CHILDREN AND TEENS ===== -->
     <section class="sec sec--flush-top wrap" aria-labelledby="treat-t">
       <div class="bento">
-        <div class="b-7 block block--ink block--mid block--pad-lg on-ink">
+        <div class="b-7 stack">
           <span class="mark" aria-hidden="true"></span>
           <h2 class="h2" id="treat-t">Mental Health Therapy for Children and Teens</h2>
           <p style="margin-top:var(--sp-5)">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
@@ -1004,7 +1025,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
                sizes="(max-width: 920px) 100vw, 40vw" width="800" height="800"
                alt="A young child using drawing and toys during a play therapy session" loading="lazy" decoding="async">
         </div>
-        <div class="b-7 block block--green block--pad-lg on-tint">
+        <div class="b-7 stack">
           <p class="listhead" id="play-l"><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Play therapy and play-based techniques may include:</span></p>
           <ul class="ilist" aria-labelledby="play-l">
             <li><svg class="ico" aria-hidden="true"><use href="#i-pencil"/></svg><span>Drawing and creative activities</span></li>
@@ -1019,17 +1040,17 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       </div>
 
       <div class="qa" style="margin-top:var(--sp-3)">
-        <div class="qa__item block block--paper">
+        <div class="qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
           <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
           <p>Rather than directing every activity, the therapist observes how the child communicates, responds to emotions, approaches problems, and interacts with the materials. Those observations and the therapeutic relationship can help the child build confidence, emotional awareness, regulation, and healthier responses.</p>
         </div>
-        <div class="qa__item block block--paper">
+        <div class="qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-target"/></svg></span>Play Therapy Is More Than Playtime</h3>
           <p>Play therapy is not simply allowing a child to play with toys. Activities are used or observed within a therapeutic relationship and connected to specific treatment goals.</p>
           <p>Play therapy may be used by itself or combined with child counseling, cognitive behavioral therapy, family therapy, trauma-informed care, or other approaches.</p>
         </div>
-        <div class="qa__item block block--paper">
+        <div class="qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-branch"/></svg></span>Does Every Child Receive Play Therapy?</h3>
           <p>No. Play therapy is used when it is developmentally and clinically appropriate. Some children and teens respond better to conversation-based therapy, structured skill-building, cognitive behavioral therapy, family counseling, or a combination of approaches.</p>
         </div>
@@ -1057,7 +1078,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
                sizes="(max-width: 920px) 100vw, 40vw" width="800" height="500"
                alt="A child attending a video therapy session on a laptop at home" loading="lazy" decoding="async">
         </div>
-        <div class="b-7 block block--blue block--pad-lg on-tint">
+        <div class="b-7 stack">
           <p>Telehealth can make therapy easier to access by reducing travel, scheduling conflicts, and time away from school or work. Some children also feel more comfortable participating from a familiar environment.</p>
           <p>Virtual sessions may use many of the same age-appropriate approaches as in-person therapy, including conversation, therapeutic games, creative activities, coping exercises, and caregiver participation.</p>
           <p>Telehealth can be especially helpful for families facing transportation challenges, mobility limitations, demanding schedules, or limited access to nearby mental health providers. It is not the best fit for every child or clinical situation. Appropriateness depends on the child&rsquo;s needs, safety, ability to participate, technology access, home environment, insurance coverage, and treatment recommendations.</p>
@@ -1068,14 +1089,14 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     <!-- ===== PARENTS ===== -->
     <section class="sec sec--flush-top wrap" aria-labelledby="par-t">
       <div class="bento">
-        <div class="b-6 block block--paper block--mid block--pad-lg">
+        <div class="b-6 stack">
           <span class="mark" aria-hidden="true"></span>
           <h2 class="h2" id="par-t">Parents and Caregivers Are Part of Treatment</h2>
           <p class="lead" style="margin-top:var(--sp-5)">Parents and caregivers often play an important role in therapy for children and teens. You can provide information your child may not recognize or communicate, help establish treatment goals, reinforce new skills between sessions, and help the therapist understand what is happening outside therapy.</p>
           <p>Family involvement can be especially important for younger children and may help strengthen communication, relationships, and overall functioning.</p>
           <p class="callout" style="margin-top:var(--sp-5)"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
         </div>
-        <div class="b-6 block block--green block--pad-lg on-tint">
+        <div class="b-6 stack">
           <p class="listhead" id="par-l"><svg class="ico" aria-hidden="true"><use href="#i-checklist"/></svg><span>Parent involvement may include:</span></p>
           <ul class="ilist" aria-labelledby="par-l">
             <li><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Sharing developmental, medical, and behavioral history</span></li>
@@ -1138,13 +1159,13 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     <!-- ===== WHY FAMILIES CHOOSE ===== -->
     <section class="sec sec--flush-top wrap" id="insurance" aria-labelledby="why-t">
       <div class="bento">
-        <div class="b-5 block block--ink block--mid block--pad-lg on-ink">
+        <div class="b-5 stack">
           <span class="mark" aria-hidden="true"></span>
           <h2 class="h2" id="why-t">Why Families Choose Chrysalis Health</h2>
           <p class="lead" style="margin-top:var(--sp-5)">Chrysalis Health was founded in 1995 and has grown into a comprehensive behavioral healthcare organization serving children, adolescents, adults, and families. Its team includes therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other behavioral health professionals.</p>
           <div class="actions"><a href="#request-form" class="btn btn--light">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div>
         </div>
-        <div class="b-7 block block--white block--pad-lg">
+        <div class="b-7 stack">
           <p class="listhead" id="why-l"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>Families may have access to:</span></p>
           <ul class="ilist" aria-labelledby="why-l">
             <li><svg class="ico" aria-hidden="true"><use href="#i-clipboard-check"/></svg><span>Individualized assessments and treatment plans</span></li>
@@ -1291,10 +1312,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     </section>
 
   </main>
-  </div><!-- /.shell -->
+
+</div><!-- /.page -->
 
   <footer class="ft">
-    <div class="wrap">
+    <div class="ft__in">
       <div class="ft__grid">
         <div>
           <a href="#" class="ft__logo"><svg class="ico" aria-hidden="true"><use href="#i-clinic"/></svg>Chrysalis Health</a>
@@ -1323,7 +1345,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       </div>
     </div>
   </footer>
-</div><!-- /.page -->
+
 
 <div class="sticky-cta" id="stickycta">
   <a href="tel:18885870335" class="sticky-cta__call"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
@@ -1373,12 +1395,14 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   var burger = document.getElementById('burger');
   var mob = document.getElementById('mobmenu');
   var sticky = document.getElementById('stickycta');
+  var progress = document.getElementById('progress');
   var timer = null, ticking = false;
 
   function onScroll() {
     var y = window.scrollY || document.documentElement.scrollTop;
     if (hdr) hdr.classList.toggle('is-stuck', y > 40);
     if (sticky) sticky.classList.toggle('is-shown', y > 700);
+    if (progress) { var docH = document.documentElement.scrollHeight - window.innerHeight; progress.style.transform = 'scaleX(' + (docH > 0 ? Math.min(1, y / docH) : 0) + ')'; }
     ticking = false;
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
