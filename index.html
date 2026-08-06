@@ -398,6 +398,78 @@ a:hover > .chip { background: var(--green-cta); }
 .qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
 .qa__item p { font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
 
+
+/* ==========================================================================
+   SIGNS — scroll-driven. The heading column pins while the list passes it;
+   each row reveals on entry and the row at the reading line is emphasised.
+   Every state is also reachable without JS and without motion.
+   ========================================================================== */
+.signs__aside { align-self: start; }
+@media (min-width: 921px) {
+  .signs__aside { position: sticky; top: 148px; }
+}
+.signs__aside .badge { margin-bottom: var(--sp-5); }
+.signs__aside .h2 { margin-bottom: var(--sp-5); }
+.signs__aside .lead { margin-bottom: var(--sp-4); }
+
+/* reading-progress through the list */
+.signs__meter { margin-top: var(--sp-7); height: 4px; border-radius: var(--r-pill); background: var(--rule); overflow: hidden; }
+.signs__meter-fill {
+  display: block; width: 100%; height: 100%; border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--blue));
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .15s linear;
+}
+
+.signs__list { list-style: none; margin: 0; padding: 0; }
+.signs__item {
+  position: relative;
+  display: grid; grid-template-columns: 52px minmax(0,1fr); gap: var(--sp-5);
+  align-items: center; padding: clamp(18px, 1.8vw, 26px) 0;
+  border-top: 1px solid var(--rule);
+}
+.signs__item:last-child { border-bottom: 1px solid var(--rule); }
+.signs__txt {
+  font-family: var(--head); font-weight: var(--fw-mid);
+  font-size: clamp(16px, 1.45vw, 20px); line-height: 1.35; letter-spacing: -0.012em;
+  color: var(--card-txt);
+  transition: color .35s var(--ease);
+}
+.signs__mark {
+  width: 52px; height: 52px; border-radius: 16px;
+  transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
+}
+/* the row sitting on the reading line */
+.signs__item.is-active .signs__txt { color: var(--ink); }
+.signs__item.is-active .signs__mark { background: var(--ink); color: var(--white); transform: scale(1.05); }
+/* a rule that grows under the active row */
+.signs__item::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--green); transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .4s var(--ease);
+}
+.signs__item.is-active::after { transform: scaleX(1); }
+
+/* entrance — only applied when JS can undo it */
+.has-js .signs__item { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.has-js .signs__item.is-in { opacity: 1; transform: none; }
+
+.signs__end { margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
+.signs__close { max-width: 22ch; margin: 0; }
+.signs__end .actions { margin: 0; }
+
+@media (max-width: 920px) {
+  .signs__col { margin-top: var(--sp-7); }
+  .signs__meter { display: none; }
+  .signs__item { grid-template-columns: 44px minmax(0,1fr); gap: var(--sp-4); }
+  .signs__mark { width: 44px; height: 44px; border-radius: 13px; }
+  .signs__close { max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-js .signs__item { opacity: 1; transform: none; }
+  .signs__item.is-active .signs__mark { transform: none; }
+}
+
 /* ==========================================================================
    FAQ
    ========================================================================== */
@@ -537,6 +609,7 @@ a:hover > .chip { background: var(--green-cta); }
 </style></noscript>
 </head>
 <body>
+<script>document.documentElement.className+=" has-js";</script>
 
 <a class="skip" href="#main">Skip to main content</a>
 
@@ -809,35 +882,74 @@ a:hover > .chip { background: var(--green-cta); }
       </div>
     </section>
 
-    <!-- ===== WHEN SHOULD A CHILD SEE A THERAPIST ===== -->
-    <section class="sec g" aria-labelledby="when-t">
-      <div class="c-12">
-        <div class="shead shead--center" style="margin-bottom:var(--sp-7)">
+    <!-- ===== WHEN SHOULD A CHILD SEE A THERAPIST — scroll-driven ===== -->
+    <section class="sec signs" id="signs" aria-labelledby="when-t">
+      <div class="g">
+        <div class="c-5 signs__aside">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-alert-question"/></svg></span>
           <h2 class="h2" id="when-t">When Should a Child See a Mental Health Therapist?</h2>
           <p class="lead">All children experience fear, sadness, frustration, and difficult behavior at times. Professional support may be appropriate when those concerns continue, become more severe, cause significant distress, or interfere with daily life.</p>
-          <p style="margin-top:var(--sp-4)">These signs do not automatically mean your child has a mental health disorder. An assessment can help identify what may be contributing to the problem and determine which type of support may fit.</p>
+          <p>These signs do not automatically mean your child has a mental health disorder. An assessment can help identify what may be contributing to the problem and determine which type of support may fit.</p>
+          <div class="signs__meter" aria-hidden="true"><span class="signs__meter-fill" id="signs-fill"></span></div>
         </div>
 
-        <p class="listhead" id="signs-l"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg><span>Signs that a child may benefit from a mental health assessment include:</span></p>
-        <ul class="tiles" aria-labelledby="signs-l">
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-pulse"/></svg></span>Frequent anxiety, fear, panic, or excessive worry</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-cloud-rain"/></svg></span>Persistent sadness, withdrawal, hopelessness, or irritability</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-bolt"/></svg></span>Anger, aggression, defiance, or repeated emotional outbursts</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-gauge"/></svg></span>Difficulty calming down or managing strong emotions</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-moon"/></svg></span>Changes in sleep, appetite, energy, or concentration</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-school"/></svg></span>School avoidance or declining academic performance</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-isolation"/></svg></span>Bullying, friendship difficulties, or social isolation</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-heart-crack"/></svg></span>Trauma, grief, or another significant loss</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-home-move"/></svg></span>Difficulty adjusting to divorce, relocation, illness, or family changes</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-scatter"/></svg></span>Behavioral or emotional concerns related to ADHD</li>
-          <li><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-star"/></svg></span>Loss of interest in activities the child once enjoyed</li>
-          <li><span class="badge badge--sm badge--green" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-alert-triangle"/></svg></span>Statements about self-harm, suicide, or hurting someone else</li>
-        </ul>
+        <div class="c-7 signs__col">
+          <p class="listhead" id="signs-l"><svg class="ico" aria-hidden="true"><use href="#i-list"/></svg><span>Signs that a child may benefit from a mental health assessment include:</span></p>
+          <ul class="signs__list" id="signs-list" aria-labelledby="signs-l">
+          <li class="signs__item" style="--i:0">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span>
+            <span class="signs__txt">Frequent anxiety, fear, panic, or excessive worry</span>
+          </li>
+          <li class="signs__item" style="--i:1">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-cloud-rain"/></svg></span>
+            <span class="signs__txt">Persistent sadness, withdrawal, hopelessness, or irritability</span>
+          </li>
+          <li class="signs__item" style="--i:2">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-bolt"/></svg></span>
+            <span class="signs__txt">Anger, aggression, defiance, or repeated emotional outbursts</span>
+          </li>
+          <li class="signs__item" style="--i:3">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-gauge"/></svg></span>
+            <span class="signs__txt">Difficulty calming down or managing strong emotions</span>
+          </li>
+          <li class="signs__item" style="--i:4">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-moon"/></svg></span>
+            <span class="signs__txt">Changes in sleep, appetite, energy, or concentration</span>
+          </li>
+          <li class="signs__item" style="--i:5">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-school"/></svg></span>
+            <span class="signs__txt">School avoidance or declining academic performance</span>
+          </li>
+          <li class="signs__item" style="--i:6">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-isolation"/></svg></span>
+            <span class="signs__txt">Bullying, friendship difficulties, or social isolation</span>
+          </li>
+          <li class="signs__item" style="--i:7">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-heart-crack"/></svg></span>
+            <span class="signs__txt">Trauma, grief, or another significant loss</span>
+          </li>
+          <li class="signs__item" style="--i:8">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-home-move"/></svg></span>
+            <span class="signs__txt">Difficulty adjusting to divorce, relocation, illness, or family changes</span>
+          </li>
+          <li class="signs__item" style="--i:9">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-scatter"/></svg></span>
+            <span class="signs__txt">Behavioral or emotional concerns related to ADHD</span>
+          </li>
+          <li class="signs__item" style="--i:10">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-star"/></svg></span>
+            <span class="signs__txt">Loss of interest in activities the child once enjoyed</span>
+          </li>
+          <li class="signs__item" style="--i:11">
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-alert-triangle"/></svg></span>
+            <span class="signs__txt">Statements about self-harm, suicide, or hurting someone else</span>
+          </li>
+          </ul>
+        </div>
 
-        <div class="g" style="margin-top:var(--sp-7);padding-top:var(--sp-6);border-top:1px solid var(--rule);align-items:center">
-          <p class="h3 c-6" style="margin:0">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
-          <div class="c-6 actions" style="margin:0;justify-content:flex-end">
+        <div class="c-12 signs__end">
+          <p class="h2 signs__close">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
+          <div class="actions">
             <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
             <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
           </div>
@@ -1363,6 +1475,49 @@ a:hover > .chip { background: var(--green-cta); }
     if (o) { closeAll(); var t = o.querySelector('.nav-item'); if (t) t.focus(); return; }
     if (burger.getAttribute('aria-expanded') === 'true') { close(); burger.focus(); }
   });
+})();
+
+
+/* Signs — reveal on entry, emphasise the row at the reading line, track progress */
+(function () {
+  var list = document.getElementById('signs-list');
+  var fill = document.getElementById('signs-fill');
+  if (!list) return;
+  var items = Array.prototype.slice.call(list.children);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if ('IntersectionObserver' in window) {
+    var reveal = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); reveal.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+
+    // a narrow band across the middle of the viewport acts as the reading line
+    var active = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle('is-active', e.isIntersecting); });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+    items.forEach(function (li) { reveal.observe(li); active.observe(li); });
+  } else {
+    items.forEach(function (li) { li.classList.add('is-in'); });
+  }
+
+  if (fill && !reduce) {
+    var ticking = false;
+    function track() {
+      var r = list.getBoundingClientRect();
+      var span = r.height + window.innerHeight * 0.5;
+      var p = span > 0 ? (window.innerHeight * 0.75 - r.top) / span : 0;
+      fill.style.transform = 'scaleX(' + Math.max(0, Math.min(1, p)) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(track); }
+    }, { passive: true });
+    window.addEventListener('resize', track);
+    track();
+  }
 })();
 
 /* Request form — set data-endpoint on the <form> to wire it up */
