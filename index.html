@@ -175,8 +175,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .btn:active { transform: translateY(1px); }
 .btn .ico { width: 19px; height: 19px; stroke-width: 2; transition: transform .2s var(--ease); }
 .btn:hover .ico { transform: translateX(3px); }
-.btn--dark  { background: var(--ink); border-color: var(--ink); color: var(--white); }
-.btn--dark:hover { background: var(--green-cta); border-color: var(--green-cta); }
+.btn--primary { background: var(--green-cta); border-color: var(--green-cta); color: var(--white); }
+.btn--primary:hover { background: var(--ink); border-color: var(--ink); }
 .btn--ghost { background: transparent; border-color: var(--rule-dk); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--ink); background: var(--white); }
 
@@ -334,13 +334,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    column clear of the photograph. The 24px gutter alone left them touching.
    ========================================================================== */
 .hero { padding-block: clamp(36px, 4.4vw, 80px) clamp(56px, 6.5vw, 108px); }
-.hero__copy { grid-column: 1 / 7; display: flex; flex-direction: column; justify-content: center; }
-.hero__photo { grid-column: 8 / -1; }   /* column 7 is left empty as clearance */
+.hero__copy { grid-column: 1 / 8; display: flex; flex-direction: column; justify-content: center; }
+.hero__photo { grid-column: 9 / -1; }   /* column 8 is left empty as clearance */
 
-.hero .h1 { font-size: clamp(38px, 5.2vw, 64px); line-height: 1.03; letter-spacing: -0.035em; }
+.hero .h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; color: var(--ink); }
 .hero .lead { margin-top: var(--sp-6); max-width: 42ch; font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; }
 .hero .actions { margin-top: var(--sp-8); }
-.hero .btn { min-height: 58px; padding-inline: var(--sp-7); }
+.hero .btn { white-space: nowrap; }
+/* Both buttons share a line only where the column is actually wide enough.
+   Below this the pair measures ~600px against a column that is not, and
+   nowrap would push the second button out of the grid. */
+@media (min-width: 1200px) { .hero .actions { flex-wrap: nowrap; } }
+.hero .btn { min-height: 56px; padding-inline: var(--sp-5); }
 .hero .trust { margin-top: var(--sp-8); }
 
 /* align-self is load-bearing: a stretched grid item plus aspect-ratio derives a
@@ -482,8 +487,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .tele p { color: rgba(255,255,255,0.92); }
 .tele .lead { color: rgba(255,255,255,0.94); }
 .tele .badge { background: rgba(255,255,255,0.16); color: var(--white); }
-.tele .btn--dark { background: var(--white); border-color: var(--white); color: var(--ink); }
-.tele .btn--dark:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
+.tele .btn--primary { background: var(--white); border-color: var(--white); color: var(--ink); }
+.tele .btn--primary:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
 .tele :focus-visible { outline-color: var(--white); }
 
 .tele__points { margin-top: clamp(40px, 4.5vw, 72px); }
@@ -753,7 +758,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
      above does not reach it — it has to be stacked by name */
   .hero__copy, .hero__photo { grid-column: 1 / -1; }
   .hero__photo { aspect-ratio: 16/11; }
-  .hero .h1 { font-size: clamp(34px, 8vw, 46px); }
+  .hero .h1 { font-size: clamp(31px, 7.2vw, 42px); }
   .hero .lead { max-width: 100%; }
   .hero .actions, .hero .trust { margin-top: var(--sp-6); }
   .hero .lead { max-width: 100%; }
@@ -896,7 +901,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <div class="hdr__actions">
           <a href="#" class="hdr__link">Psychiatry Follow-Up</a>
           <a href="tel:18885870335" class="hdr__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-          <a href="#request-form" class="btn btn--dark hdr__cta">Start Care Today</a>
+          <a href="#request-form" class="btn btn--primary hdr__cta">Start Care Today</a>
         </div>
         <div class="hdr__navrow">
       <nav class="hdr__nav" aria-label="Primary">
@@ -949,7 +954,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
     <div class="mob" id="mobmenu">
       <div class="mob__actions">
-          <a href="#request-form" class="btn btn--dark hdr__cta">Start Care Today</a>
+          <a href="#request-form" class="btn btn--primary hdr__cta">Start Care Today</a>
           <a href="tel:18885870335" class="hdr__phone"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
           <a href="#" class="link">Psychiatry Follow-Up</a>
         </div>
@@ -1003,7 +1008,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <h1 class="h1" id="hero-t">Mental Health Therapy and Services for Children</h1>
         <p class="lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
         <div class="actions">
-          <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a href="#request-form" class="btn btn--primary">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
         </div>
         <ul class="trust g" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
@@ -1039,7 +1044,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <h2 class="h2" id="svc-t">Children&rsquo;s Mental Health Services at Chrysalis Health</h2>
           <p class="lead">Chrysalis Health provides mental health therapy for children, teens, and families through programs available in Florida, Ohio, and Texas. Treatment is individualized around each child&rsquo;s age, development, symptoms, strengths, environment, and specific needs. Services may include child counseling, family therapy, play-based approaches, psychiatric care, and other behavioral health support delivered through telehealth or, where available, in the home, at school, in the community, or at select office locations.</p>
         </div>
-        <div class="actions"><a href="#request-form" class="btn btn--dark">Find Services in Your Area <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+        <div class="actions"><a href="#request-form" class="btn btn--primary">Find Services in Your Area <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
       </div>
       <div class="c-5 figure figure--tall" data-reveal>
         <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_800/v1785958839/shutterstock_2670271251_l1khpo.jpg"
@@ -1130,7 +1135,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       <div class="signs__end" data-reveal>
         <p class="h2 signs__close">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
         <div class="actions">
-          <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a href="#request-form" class="btn btn--primary">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
         </div>
       </div>
@@ -1340,7 +1345,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <div class="c-7 tele__intro">
             <h2 class="h2" id="tele-t">Telehealth Therapy for Kids and Teens</h2>
             <p class="lead">Chrysalis Health provides access to mental health services through secure video sessions using a smartphone, tablet, or computer.</p>
-            <div class="actions"><a href="#request-form" class="btn btn--dark">Ask About Telehealth Therapy for Your Child <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+            <div class="actions"><a href="#request-form" class="btn btn--primary">Ask About Telehealth Therapy for Your Child <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
           </div>
         </div>
 
@@ -1448,7 +1453,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       <div class="c-5 stack" data-reveal>
         <h2 class="h2" id="why-t" style="margin-top:var(--sp-5)">Why Families Choose Chrysalis Health</h2>
         <p class="lead" style="margin-top:var(--sp-5)">Chrysalis Health was founded in 1995 and has grown into a comprehensive behavioral healthcare organization serving children, adolescents, adults, and families. Its team includes therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other behavioral health professionals.</p>
-        <div class="actions"><a href="#request-form" class="btn btn--dark">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+        <div class="actions"><a href="#request-form" class="btn btn--primary">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
       </div>
       <div class="c-7" data-reveal>
         <p class="listhead" id="why-l"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>Families may have access to:</span></p>
@@ -1543,7 +1548,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
             <h2 class="h2" id="final-t" style="margin-top:var(--sp-5)">Help Your Child Get the Right Support</h2>
             <p class="lead" style="margin-top:var(--sp-5)">You do not need to know exactly what is wrong or wait for emotional or behavioral concerns to become a crisis. A mental health assessment can help your family understand what your child is experiencing and determine the right next step.</p>
             <p>Chrysalis Health has served children and families since 1995. A specialist generally responds within 48 hours after an online request&mdash;or call directly if you need a faster response.</p>
-            <div class="actions"><a href="tel:18885870335" class="btn btn--dark">Call (888) 587-0335 <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+            <div class="actions"><a href="tel:18885870335" class="btn btn--primary">Call (888) 587-0335 <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
             <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-triangle"/></svg><span>If your child is in immediate danger, call 911. For urgent mental health support in the United States, call or text 988.</span></p>
           </div>
 
@@ -1585,7 +1590,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
                 <input type="checkbox" id="f-consent" name="consent" required>
                 <span>I agree to be contacted by Chrysalis Health about services for my child by phone, text, or email.</span>
               </label>
-              <button type="submit" class="btn btn--dark">Request an Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+              <button type="submit" class="btn btn--primary">Request an Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
               <p class="form__foot"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg><span>Prefer to talk to someone now? Call <a href="tel:18885870335">(888) 587-0335</a>.</span></p>
             </form>
           </div>
