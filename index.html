@@ -160,7 +160,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .h2 { font-size: var(--fs-h2);      font-weight: var(--fw-mid); line-height: 1.14; letter-spacing: -0.022em; text-wrap: balance; }
 .h3 { font-size: var(--fs-h3);      font-weight: var(--fw-med); line-height: 1.3;  letter-spacing: -0.012em; }
 .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--body); }
-.prose { max-width: var(--w-text); }
 
 
 /* ==========================================================================
@@ -181,12 +180,13 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .btn--dark:hover { background: var(--green-cta); border-color: var(--green-cta); }
 .btn--ghost { background: transparent; border-color: var(--rule-dk); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--ink); background: var(--white); }
-.btn--light { background: var(--white); border-color: var(--white); color: var(--ink); }
-.btn--light:hover { background: var(--green); border-color: var(--green); }
 
-/* circular arrow control, the reference's recurring affordance */
-.chip { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: var(--white); flex-shrink: 0; transition: background .2s var(--ease); }
-a:hover > .chip { background: var(--green-cta); }
+.link {
+  display: inline-flex; align-items: center; gap: var(--sp-2); min-height: 48px;
+  font-weight: var(--fw-bold); font-size: var(--fs-sm); color: var(--ink);
+  text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px;
+}
+.link:hover { color: var(--green-cta); }
 
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-top: var(--sp-6); }
 
@@ -308,7 +308,7 @@ a:hover > .chip { background: var(--green-cta); }
 .c-3 { grid-column: span 3; } .c-4 { grid-column: span 4; }
 .c-5 { grid-column: span 5; } .c-6 { grid-column: span 6; }
 .c-7 { grid-column: span 7; } .c-8 { grid-column: span 8; }
-.c-9 { grid-column: span 9; } .c-12 { grid-column: span 12; }
+.c-12 { grid-column: span 12; }
 /* sections are separated by a rule, never boxed */
 .sec { padding-block: var(--band); }
 .sec + .sec { border-top: 1px solid var(--rule); }
@@ -323,7 +323,6 @@ a:hover > .chip { background: var(--green-cta); }
 
 /* section header — dark icon pill, then the heading */
 .shead { display: flex; flex-direction: column; }
-.shead--sticky { position: sticky; top: 132px; align-self: start; }
 .shead .badge { margin-bottom: var(--sp-5); }
 .shead .lead { margin-top: var(--sp-4); max-width: 56ch; }
 .shead--center { align-items: center; text-align: center; }
@@ -350,17 +349,6 @@ a:hover > .chip { background: var(--green-cta); }
 /* ==========================================================================
    CONTENT PATTERNS
    ========================================================================== */
-.topic .badge { margin-bottom: var(--sp-5); }
-.topic h3 { margin-bottom: var(--sp-3); }
-.topic p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
-
-.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: var(--sp-3); }
-.tiles li {
-  display: flex; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-4) 0; border-top: 1px solid var(--rule);
-  font-size: var(--fs-sm); line-height: 1.45; color: var(--card-txt);
-}
-
 .ilist { list-style: none; margin: 0; padding: 0; }
 .ilist li {
   display: grid; grid-template-columns: 30px minmax(0,1fr); gap: var(--sp-4);
@@ -379,20 +367,8 @@ a:hover > .chip { background: var(--green-cta); }
 .figure { border-radius: var(--r); overflow: hidden; background: var(--paper-2); align-self: center; }
 .figure img { width: 100%; height: 100%; object-fit: cover; }
 .figure--tall { aspect-ratio: 4/5; }
-.figure--wide { aspect-ratio: 16/10; }
 .figure--sq   { aspect-ratio: 1/1; }
 
-/* numbered path — the reference's "Your Path to Wellness" pattern */
-.path { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-5); }
-.path li { display: grid; grid-template-columns: 52px minmax(0,1fr); gap: var(--sp-5); align-items: start; }
-.path__n {
-  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
-  background: var(--ink); color: var(--white);
-  font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-sm);
-}
-.path h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
-.path h3 .ico { color: var(--green-cta); }
-.path p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
 
 .callout { display: flex; gap: var(--sp-3); align-items: flex-start; font-size: var(--fs-sm); line-height: 1.55; color: var(--ink); }
 .callout .ico { color: var(--green-cta); margin-top: 3px; }
@@ -405,6 +381,58 @@ a:hover > .chip { background: var(--green-cta); }
 
 
 
+
+
+/* ==========================================================================
+   PROCESS — a rail is drawn down the six steps as the reader descends and
+   each node latches once passed. The line reports progress, it does not
+   decorate: it is the only thing on the page that shows how far in you are.
+   ========================================================================== */
+.steps__head .badge { margin-bottom: var(--sp-5); }
+.steps__head .h2 { margin-bottom: var(--sp-6); }
+.steps__body { position: relative; }
+
+.steps__rail {
+  position: absolute; left: 31px; top: 34px; bottom: 34px; width: 2px;
+  background: var(--rule); border-radius: var(--r-pill); overflow: hidden;
+}
+.steps__fill {
+  display: block; width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--green), var(--blue));
+  transform: scaleY(0); transform-origin: 50% 0;
+  transition: transform .18s linear;
+}
+
+.steps__list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(26px, 2.8vw, 44px); }
+.step { position: relative; display: grid; grid-template-columns: 64px minmax(0,1fr); gap: var(--sp-5); align-items: start; }
+.step__node {
+  position: relative; z-index: 1;
+  display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--rule);
+  font-family: var(--head); font-weight: var(--fw-mid); font-size: 20px; color: var(--muted);
+  transition: background .45s var(--ease), border-color .45s var(--ease), color .45s var(--ease), transform .45s var(--ease);
+}
+.step.is-done .step__node { background: var(--ink); border-color: var(--ink); color: var(--white); transform: scale(1.05); }
+.step__body { padding-top: var(--sp-2); }
+.step__body h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); color: var(--muted); transition: color .45s var(--ease); }
+.step__body h3 .ico { color: var(--rule-dk); transition: color .45s var(--ease); }
+.step.is-done .step__body h3 { color: var(--navy); }
+.step.is-done .step__body h3 .ico { color: var(--green-cta); }
+.step__body p { margin: 0; font-size: var(--fs-sm); line-height: 1.7; color: var(--card-txt); }
+
+.steps__note { display: flex; gap: var(--sp-3); align-items: flex-start; margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--ink); }
+.steps__note .ico { color: var(--green-cta); margin-top: 3px; }
+
+@media (max-width: 920px) {
+  .steps__body { margin-top: var(--sp-7); }
+  .step { grid-template-columns: 52px minmax(0,1fr); gap: var(--sp-4); }
+  .step__node { width: 52px; height: 52px; font-size: var(--fs-base); }
+  .steps__rail { left: 25px; top: 28px; bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .steps__fill { transform: scaleY(1); }
+  .step.is-done .step__node { transform: none; }
+}
 
 /* ==========================================================================
    TELEHEALTH — full-bleed banner. The photograph sits under a brand-blue
@@ -699,7 +727,7 @@ a:hover > .chip { background: var(--green-cta); }
   .hdr__logo img { height: 54px; }
   .hdr.is-stuck .hdr__logo img { height: 44px; }
 
-  .c-4, .c-5, .c-6, .c-7, .c-8, .c-9 { grid-column: span 12; }
+  .c-4, .c-5, .c-6, .c-7, .c-8 { grid-column: span 12; }
   .hero__photo { aspect-ratio: 16/11; }
   .hero .lead { max-width: 100%; }
   .figure--tall, .figure--sq { aspect-ratio: 16/10; }
@@ -943,7 +971,7 @@ a:hover > .chip { background: var(--green-cta); }
   <main id="main" class="page">
 
     <!-- ===== HERO ===== -->
-    <section class="sec g" aria-labelledby="hero-t">
+    <section class="sec g hero" aria-labelledby="hero-t">
       <div class="c-7 hero__copy" data-reveal>
         <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-hand-heart"/></svg></span>
         <h1 class="h1" id="hero-t" style="margin-top:var(--sp-5)">Mental Health Therapy and Services for Children</h1>
@@ -1339,46 +1367,62 @@ a:hover > .chip { background: var(--green-cta); }
       </div>
     </section>
 
-    <!-- ===== WHAT TO EXPECT ===== -->
-    <section class="sec g" aria-labelledby="steps-t">
-      <div class="c-4 stack" data-reveal>
-        <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-route"/></svg></span>
-        <h2 class="h2" id="steps-t" style="margin-top:var(--sp-5)">What to Expect When Starting Therapy</h2>
-        <p class="callout" style="margin-top:var(--sp-6)"><svg class="ico" aria-hidden="true"><use href="#i-headset"/></svg><span>A specialist generally responds within 48 hours after an online request is submitted. Call directly if you need a faster response.</span></p>
-      </div>
-      <div class="c-8" data-reveal>
-        <ol class="path">
-          <li>
-            <span class="path__n" aria-hidden="true">1</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-form"/></svg>Request Services</h3>
-            <p>Complete the online request form or call (888) 587-0335. You do not need a diagnosis, and you do not need to know which type of therapy is appropriate.</p></div>
-          </li>
-          <li>
-            <span class="path__n" aria-hidden="true">2</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-headset"/></svg>Speak With a Chrysalis Health Specialist</h3>
-            <p>A specialist reviews your concerns, location, insurance information, and available services.</p></div>
-          </li>
-          <li>
-            <span class="path__n" aria-hidden="true">3</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-clipboard-check"/></svg>Complete a Mental Health Assessment</h3>
-            <p>A clinician gathers information about your child&rsquo;s symptoms, behavior, development, family circumstances, school experiences, strengths, and support system.</p></div>
-          </li>
-          <li>
-            <span class="path__n" aria-hidden="true">4</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-document"/></svg>Receive an Individualized Treatment Plan</h3>
-            <p>The assessment helps determine which services, treatment approach, and level of care may fit your child.</p></div>
-          </li>
-          <li>
-            <span class="path__n" aria-hidden="true">5</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-match"/></svg>Get Matched With a Therapist</h3>
-            <p>Your child is matched with a therapist based on clinical needs, location, insurance coverage, and provider availability.</p></div>
-          </li>
-          <li>
-            <span class="path__n" aria-hidden="true">6</span>
-            <div><h3 class="h3"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>Begin Therapy</h3>
-            <p>The therapist contacts your family to schedule treatment and discuss participation, goals, and next steps.</p></div>
-          </li>
-        </ol>
+    <!-- ===== WHAT TO EXPECT — rail drawn on scroll ===== -->
+    <section class="sec steps" id="steps" aria-labelledby="steps-t">
+      <div class="g">
+        <div class="c-4 steps__head" data-reveal>
+          <span class="badge badge--ink" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-route"/></svg></span>
+          <h2 class="h2" id="steps-t">What to Expect When Starting Therapy</h2>
+          <p class="steps__note"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-headset"/></svg><span>A specialist generally responds within 48 hours after an online request is submitted. Call directly if you need a faster response.</span></p>
+        </div>
+
+        <div class="c-8 steps__body">
+          <div class="steps__rail" aria-hidden="true"><span class="steps__fill" id="steps-fill"></span></div>
+          <ol class="steps__list" id="steps-list">
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">1</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-form"/></svg>Request Services</h3>
+                <p>Complete the online request form or call (888) 587-0335. You do not need a diagnosis, and you do not need to know which type of therapy is appropriate.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">2</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-headset"/></svg>Speak With a Chrysalis Health Specialist</h3>
+                <p>A specialist reviews your concerns, location, insurance information, and available services.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">3</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-clipboard-check"/></svg>Complete a Mental Health Assessment</h3>
+                <p>A clinician gathers information about your child&rsquo;s symptoms, behavior, development, family circumstances, school experiences, strengths, and support system.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">4</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-document"/></svg>Receive an Individualized Treatment Plan</h3>
+                <p>The assessment helps determine which services, treatment approach, and level of care may fit your child.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">5</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-match"/></svg>Get Matched With a Therapist</h3>
+                <p>Your child is matched with a therapist based on clinical needs, location, insurance coverage, and provider availability.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__node" aria-hidden="true">6</span>
+              <div class="step__body">
+                <h3 class="h3"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-calendar"/></svg>Begin Therapy</h3>
+                <p>The therapist contacts your family to schedule treatment and discuss participation, goals, and next steps.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -1723,6 +1767,42 @@ a:hover > .chip { background: var(--green-cta); }
       });
     }, { threshold: 0 });
     document.querySelectorAll('.marquee').forEach(function (m) { vis.observe(m); });
+  }
+})();
+
+
+/* Process rail — the fill tracks scroll, each node latches once passed */
+(function () {
+  var list = document.getElementById('steps-list');
+  var fill = document.getElementById('steps-fill');
+  if (!list) return;
+  var steps = Array.prototype.slice.call(list.children);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-done'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+    steps.forEach(function (s) { io.observe(s); });
+  } else {
+    steps.forEach(function (s) { s.classList.add('is-done'); });
+  }
+
+  if (fill && !reduce) {
+    var ticking = false;
+    function draw() {
+      var r = list.getBoundingClientRect();
+      var p = r.height > 0 ? (window.innerHeight * 0.65 - r.top) / r.height : 0;
+      fill.style.transform = 'scaleY(' + Math.max(0, Math.min(1, p)) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(draw); }
+    }, { passive: true });
+    window.addEventListener('resize', draw);
+    draw();
   }
 })();
 
