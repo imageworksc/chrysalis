@@ -621,6 +621,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .signs__aside { align-self: start; }
 @media (min-width: 921px) {
   .signs__aside { position: sticky; top: 148px; }
+  /* the heading column drops to four; pushing the list off column six leaves a
+     whole clear column between the two instead of a single gutter. Placement
+     lives here so the stack below 920 is left exactly as it was. */
+  .signs__col { grid-column: 6 / -1; }
 }
 .signs__aside .h2 { margin-bottom: var(--sp-5); }
 .signs__aside .lead { margin-bottom: var(--sp-4); }
@@ -1109,10 +1113,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     <!-- ===== WHEN SHOULD A CHILD SEE A THERAPIST — scroll-driven ===== -->
     <section class="sec signs" id="signs" aria-labelledby="when-t">
       <div class="g signs__main">
-        <div class="c-5 signs__aside">
+        <div class="c-4 signs__aside">
           <h2 class="h2" id="when-t">When Should a Child See a Mental Health Therapist?</h2>
           <p class="lead">All children experience fear, sadness, frustration, and difficult behavior at times. Professional support may be appropriate when those concerns continue, become more severe, cause significant distress, or interfere with daily life.</p>
-          <p>These signs do not automatically mean your child has a mental health disorder. An assessment can help identify what may be contributing to the problem and determine which type of support may fit.</p>
+          <p class="lead">These signs do not automatically mean your child has a mental health disorder. An assessment can help identify what may be contributing to the problem and determine which type of support may fit.</p>
           <div class="signs__meter" aria-hidden="true"><span class="signs__meter-fill" id="signs-fill"></span></div>
         </div>
 
