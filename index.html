@@ -540,17 +540,29 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .marquee__toggle[aria-pressed="true"] .ico--pause { display: none; }
 
 /* card that rides the marquee */
+/* Two rows: the icon and the title share the first, the copy takes the second
+   across both columns. Done with grid rather than a wrapper element because
+   the marquee carries a second, aria-hidden copy of all seven cards, so any
+   markup change here has to be made fourteen times and kept in step. */
 .mcard {
-  flex: 0 0 clamp(268px, 25vw, 348px);
-  display: flex; flex-direction: column;
+  flex: 0 0 clamp(300px, 26vw, 380px);
+  display: grid; grid-template-columns: auto minmax(0,1fr);
+  align-items: center; column-gap: var(--sp-4);
   padding: var(--sp-5); background: var(--white);
   border: 1px solid var(--rule); border-radius: var(--r);
   transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
 }
 .marquee:hover .mcard { border-color: var(--rule-dk); }
-.mcard .badge { margin-bottom: var(--sp-4); }
-.mcard h3 { margin-bottom: var(--sp-3); }
-.mcard p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
+.mcard:hover { box-shadow: var(--e-2); }
+.mcard .badge { margin: 0; width: 48px; height: 48px; border-radius: 10px; }
+.mcard .badge .ico { width: 26px; height: 26px; }
+.mcard h3 { margin: 0; font-size: 17px; line-height: 1.3; }
+/* the rule under the header is the page's own way of dividing without boxing */
+.mcard p {
+  grid-column: 1 / -1; margin: var(--sp-4) 0 0;
+  padding-top: var(--sp-4); border-top: 1px solid var(--rule);
+  font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt);
+}
 
 /* short pill that rides the marquee */
 .mpill {
