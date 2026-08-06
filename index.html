@@ -583,6 +583,28 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
+   DEFINITION BAND — the one dark band in the upper half of the page.
+   Full bleed by the same means as the telehealth banner: the section runs
+   edge to edge and an inner wrapper restores the page measure and gutter.
+   ========================================================================== */
+.def {
+  margin-inline: calc(50% - 50vw);
+  padding-block: clamp(56px, 6.4vw, 104px);
+  background: var(--ink);
+}
+/* a hairline against a dark band reads as a seam, so drop it either side */
+.sec + .def, .def + .sec { border-top: none; }
+.def__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
+.def .h2 { color: var(--white); }
+.def p {
+  margin: 0; font-size: var(--fs-sm); line-height: 1.7;
+  color: rgba(255,255,255,0.92);
+}
+@media (max-width: 920px) {
+  .def .h2 { margin-bottom: var(--sp-5); }
+}
+
+/* ==========================================================================
    SIGNS — scroll-driven. The heading column pins while the list passes it;
    each row reveals on entry and the row at the reading line is emphasised.
    Every state is also reachable without JS and without motion.
@@ -1060,14 +1082,17 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
              sizes="(max-width: 920px) 100vw, 40vw" width="800" height="1000"
              alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
       </div>
+    </section>
 
-      <div class="c-12">
-        <div class="g">
+    <!-- ===== WHAT IS CHILDREN'S MENTAL HEALTH THERAPY — dark band ===== -->
+    <section class="sec def" id="what-is" aria-labelledby="def-t">
+      <div class="def__in">
+        <div class="g" data-reveal>
           <div class="c-4">
-            <h3 class="h3">What Is Children&rsquo;s Mental Health Therapy?</h3>
+            <h2 class="h2" id="def-t">What Is Children&rsquo;s Mental Health Therapy?</h2>
           </div>
-          <div class="c-8" data-reveal>
-            <p style="font-size:var(--fs-sm);line-height:1.65;color:var(--card-txt)">Children&rsquo;s mental health therapy is professional support designed to help kids and teens understand emotions, manage anxiety, improve behavior, process trauma or grief, strengthen communication, and develop healthier coping skills. Depending on the child&rsquo;s age and needs, treatment may include child counseling, play therapy, child-centered play therapy, cognitive behavioral therapy, family involvement, and other individualized approaches.</p>
+          <div class="c-8">
+            <p>Children&rsquo;s mental health therapy is professional support designed to help kids and teens understand emotions, manage anxiety, improve behavior, process trauma or grief, strengthen communication, and develop healthier coping skills. Depending on the child&rsquo;s age and needs, treatment may include child counseling, play therapy, child-centered play therapy, cognitive behavioral therapy, family involvement, and other individualized approaches.</p>
           </div>
         </div>
       </div>
