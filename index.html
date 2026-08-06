@@ -333,9 +333,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    HERO — the copy column carries its own type scale and is held a full grid
    column clear of the photograph. The 24px gutter alone left them touching.
    ========================================================================== */
-.hero { padding-block: clamp(36px, 4.4vw, 80px) clamp(56px, 6.5vw, 108px); }
-.hero__copy { grid-column: 1 / 8; display: flex; flex-direction: column; justify-content: center; }
-.hero__photo { grid-column: 9 / -1; }   /* column 8 is left empty as clearance */
+.hero { padding-block: clamp(56px, 7vw, 128px) clamp(56px, 6.5vw, 108px); }
+.hero__copy { grid-column: 1 / 8; padding-right: clamp(24px, 2.6vw, 48px); display: flex; flex-direction: column; justify-content: center; }
+.hero__photo { grid-column: 8 / -1; }   /* five columns wide, 496px against 392px */
 
 .hero .h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; color: var(--ink); }
 /* The lead runs the full width of its column. That lands at 67 characters per
@@ -368,8 +368,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    claim above rather than competing with it. --muted clears AA at 4.89:1. */
 /* One row, items divided by a hairline. At 15px the three run 727px against a
    702px column, so the size steps down to 14px to hold a single line. */
-.trust { list-style: none; display: flex; align-items: center; gap: var(--sp-3); margin: var(--sp-6) 0 0; padding: 0; }
-.trust li { display: flex; align-items: center; gap: var(--sp-3); font-size: var(--fs-cta); line-height: 1.5; color: var(--muted); font-weight: var(--fw-reg); white-space: nowrap; }
+.trust { list-style: none; display: flex; align-items: center; gap: var(--sp-2); margin: var(--sp-6) 0 0; padding: 0; }
+.trust li { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); line-height: 1.5; color: var(--muted); font-weight: var(--fw-reg); white-space: nowrap; }
 .trust li + li::before { content: ""; width: 1px; height: 1.05em; background: var(--rule-dk); flex-shrink: 0; }
 
 /* ==========================================================================
@@ -762,6 +762,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   /* the hero sets its spans explicitly, so the generic c-* stacking rule
      above does not reach it — it has to be stacked by name */
   .hero__copy, .hero__photo { grid-column: 1 / -1; }
+  .hero__copy { padding-right: 0; }
   .hero__photo { aspect-ratio: 16/11; }
   .hero .h1 { font-size: clamp(31px, 7.2vw, 42px); }
   .hero .actions, .hero .trust { margin-top: var(--sp-6); }
