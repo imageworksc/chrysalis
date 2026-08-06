@@ -1,3 +1,7 @@
 .claude/
 .DS_Store
 Thumbs.db
+
+# stray image downloads from tooling
+*.webp
+*.avif
