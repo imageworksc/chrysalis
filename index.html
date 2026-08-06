@@ -460,32 +460,69 @@ img { max-width: 100%; }
 .ch-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-4) var(--sp-6); margin-top: var(--sp-7); }
 
 /* ==========================================================================
-   HERO
+   HERO — tinted stage behind the copy, full-height photo bleeding right
    ========================================================================== */
-.ch-hero { position: relative; background: var(--ch-surface); overflow: hidden; }
-.ch-hero__grid {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
-  gap: clamp(32px, 5vw, 80px); align-items: center;
-  min-height: clamp(520px, 64vh, 700px);
+.ch-hero { position: relative; background: var(--ch-surface); overflow: hidden; isolation: isolate; }
+/* colour wash: gives the copy column a stage instead of flat white */
+.ch-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(58% 55% at 6% 10%, rgba(var(--rgb-green),0.14), transparent 70%),
+    radial-gradient(52% 52% at -4% 96%, rgba(var(--rgb-blue),0.14), transparent 72%);
 }
-.ch-hero__copy { padding: var(--band-md) 0; max-width: 620px; }
+/* texture, faded toward the photo so it never crosses into the image */
+.ch-hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, rgba(var(--rgb-ink),0.06) 1px, transparent 0);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(66% 72% at 8% 24%, var(--ch-ink), transparent 76%);
+  mask-image: radial-gradient(66% 72% at 8% 24%, var(--ch-ink), transparent 76%);
+}
+.ch-hero__grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(32px, 5vw, 72px); align-items: center;
+  min-height: clamp(560px, 72vh, 780px);
+}
+.ch-hero__copy { padding: var(--band-md) 0; max-width: 600px; }
 .ch-hero__media {
   position: relative; align-self: stretch; min-height: 100%;
-  margin-right: calc(-1 * var(--bleed)); background: var(--ch-paper-2);
-  border-radius: var(--r-lg) 0 0 var(--r-lg); overflow: hidden;
+  margin-right: calc(-1 * var(--bleed)); background: var(--ch-paper-2); overflow: hidden;
 }
 .ch-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* accent edge tying the photo back to the brand */
-.ch-hero__media::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(180deg, var(--ch-green), var(--ch-blue)); }
-
-.ch-trust { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-7) 0 0; padding: var(--sp-5) 0 0; border-top: 1px solid var(--ch-rule); }
-.ch-trust li {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: var(--sp-2) var(--sp-4) var(--sp-2) var(--sp-3);
-  background: var(--ch-paper); border: 1px solid var(--ch-rule); border-radius: var(--r-pill);
-  font-size: var(--fs-xs); line-height: var(--lh-snug); letter-spacing: 0.012em; color: var(--ch-card-txt);
+/* soft feather on the inner edge so the photo meets the page instead of butting it */
+.ch-hero__media::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0.50), rgba(255,255,255,0) 20%);
 }
-.ch-trust .ch-ico { color: var(--ch-green-cta); }
+/* accent edge tying the photo back to the brand */
+.ch-hero__media::after {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; z-index: 2;
+  background: linear-gradient(180deg, var(--ch-green), var(--ch-blue));
+}
+
+/* Reassurance line — icon + bold statement, no filled block, so the CTA stays dominant */
+.ch-hero__reassure {
+  display: flex; gap: var(--sp-3); align-items: flex-start;
+  margin: var(--sp-6) 0 0 !important;
+  font-size: var(--fs-base); font-weight: var(--fw-bold);
+  line-height: var(--lh-snug); color: var(--ch-navy);
+}
+
+/* Trust signals — three stacked mini-cards, readable at a glance */
+.ch-hero__trust {
+  list-style: none; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr));
+  gap: var(--sp-3); margin: var(--sp-7) 0 0; padding: 0;
+}
+.ch-hero__trust li {
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  padding: var(--sp-4); background: var(--ch-surface);
+  border: 1px solid var(--ch-rule); border-radius: var(--r-md);
+  box-shadow: var(--e-1);
+  font-size: var(--fs-xs); line-height: var(--lh-snug);
+  letter-spacing: 0.012em; color: var(--ch-card-txt);
+}
 
 /* ==========================================================================
    MEDIA SPLIT
@@ -782,8 +819,10 @@ img { max-width: 100%; }
 
   .ch-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; min-height: 0; }
   .ch-hero__copy { max-width: 100%; padding: var(--sp-8) 0 var(--sp-7); }
-  .ch-hero__media { margin-inline: calc(-1 * var(--bleed)); height: min(420px, 64vw); min-height: 0; border-radius: 0; }
+  .ch-hero__media { margin-inline: calc(-1 * var(--bleed)); height: min(440px, 68vw); min-height: 0; }
+  .ch-hero__media::before { background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0) 18%); }
   .ch-hero__media::after { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 5px; background: linear-gradient(90deg, var(--ch-green), var(--ch-blue)); }
+  .ch-hero::after { -webkit-mask-image: linear-gradient(to bottom, var(--ch-ink), transparent 70%); mask-image: linear-gradient(to bottom, var(--ch-ink), transparent 70%); }
 
   .ch-split, .ch-duo, .ch-cta__grid { grid-template-columns: minmax(0, 1fr); }
   .ch-split--flip .ch-split__media { order: 0; }
@@ -1072,17 +1111,20 @@ img { max-width: 100%; }
         <div class="ch-hero__copy">
           <h1 class="ch-h1" id="ch-hero-title">Mental Health Therapy and Services for Children</h1>
           <p class="ch-lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
-          <p class="ch-pull"><svg class="ch-ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>You do not need to know exactly what is wrong&mdash;or which type of therapy your child needs&mdash;before requesting help.</span></p>
+          <p class="ch-hero__reassure">
+            <span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-hand-heart"/></svg></span>
+            <span>You do not need to know exactly what is wrong&mdash;or which type of therapy your child needs&mdash;before requesting help.</span>
+          </p>
 
           <div class="ch-actions">
             <a href="#request-form" class="ch-btn ch-btn--primary">Request a Child Mental Health Assessment <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
             <a href="tel:18885870335" class="ch-tlink">Call (888) 587-0335 <svg class="ch-ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
           </div>
 
-          <ul class="ch-trust">
-            <li><svg class="ch-ico ch-ico--sm" aria-hidden="true"><use href="#i-award"/></svg>Serving children and families since 1995</li>
-            <li><svg class="ch-ico ch-ico--sm" aria-hidden="true"><use href="#i-video"/></svg>Telehealth available</li>
-            <li><svg class="ch-ico ch-ico--sm" aria-hidden="true"><use href="#i-shield-check"/></svg>Insurance options accepted</li>
+          <ul class="ch-hero__trust">
+            <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-award"/></svg></span><span>Serving children and families since 1995</span></li>
+            <li><span class="ch-badge ch-badge--34 ch-badge--blue" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-video"/></svg></span><span>Telehealth available</span></li>
+            <li><span class="ch-badge ch-badge--34 ch-badge--green" aria-hidden="true"><svg class="ch-ico ch-ico--sm"><use href="#i-shield-check"/></svg></span><span>Insurance options accepted</span></li>
           </ul>
         </div>
 
