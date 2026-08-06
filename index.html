@@ -404,6 +404,8 @@ a:hover > .chip { background: var(--green-cta); }
    each row reveals on entry and the row at the reading line is emphasised.
    Every state is also reachable without JS and without motion.
    ========================================================================== */
+/* bounds the sticky column so it can never reach the closing block below */
+.signs__main { position: relative; }
 .signs__aside { align-self: start; }
 @media (min-width: 921px) {
   .signs__aside { position: sticky; top: 148px; }
@@ -421,48 +423,48 @@ a:hover > .chip { background: var(--green-cta); }
   transition: transform .15s linear;
 }
 
-.signs__list { list-style: none; margin: 0; padding: 0; }
+.signs__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
 .signs__item {
-  position: relative;
-  display: grid; grid-template-columns: 52px minmax(0,1fr); gap: var(--sp-5);
-  align-items: center; padding: clamp(18px, 1.8vw, 26px) 0;
-  border-top: 1px solid var(--rule);
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 40px minmax(0,1fr); gap: var(--sp-4);
+  align-items: center; padding: var(--sp-4) var(--sp-5);
+  background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-sm);
+  transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
 }
-.signs__item:last-child { border-bottom: 1px solid var(--rule); }
 .signs__txt {
-  font-family: var(--head); font-weight: var(--fw-mid);
-  font-size: clamp(16px, 1.45vw, 20px); line-height: 1.35; letter-spacing: -0.012em;
+  font-family: var(--font); font-weight: var(--fw-reg);
+  font-size: var(--fs-sm); line-height: 1.5; letter-spacing: 0;
   color: var(--card-txt);
   transition: color .35s var(--ease);
 }
 .signs__mark {
-  width: 52px; height: 52px; border-radius: 16px;
-  transition: background .35s var(--ease), color .35s var(--ease), transform .35s var(--ease);
+  width: 40px; height: 40px; border-radius: 12px;
+  transition: background .35s var(--ease), color .35s var(--ease);
 }
-/* the row sitting on the reading line */
+/* the card sitting on the reading line */
+.signs__item.is-active { border-color: var(--rule-dk); box-shadow: var(--e-2); }
 .signs__item.is-active .signs__txt { color: var(--ink); }
-.signs__item.is-active .signs__mark { background: var(--ink); color: var(--white); transform: scale(1.05); }
-/* a rule that grows under the active row */
+.signs__item.is-active .signs__mark { background: var(--ink); color: var(--white); }
+/* accent edge that grows on the active card */
 .signs__item::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
-  background: var(--green); transform: scaleX(0); transform-origin: 0 50%;
-  transition: transform .4s var(--ease);
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--green); transform: scaleY(0); transform-origin: 50% 0;
+  transition: transform .35s var(--ease);
 }
-.signs__item.is-active::after { transform: scaleX(1); }
+.signs__item.is-active::after { transform: scaleY(1); }
 
 /* entrance — only applied when JS can undo it */
 .has-js .signs__item { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .has-js .signs__item.is-in { opacity: 1; transform: none; }
 
-.signs__end { margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
-.signs__close { max-width: 22ch; margin: 0; }
+.signs__end { clear: both; margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
+.signs__close { max-width: 26ch; margin: 0; }
 .signs__end .actions { margin: 0; }
 
 @media (max-width: 920px) {
   .signs__col { margin-top: var(--sp-7); }
   .signs__meter { display: none; }
-  .signs__item { grid-template-columns: 44px minmax(0,1fr); gap: var(--sp-4); }
-  .signs__mark { width: 44px; height: 44px; border-radius: 13px; }
+  .signs__item { padding: var(--sp-4); }
   .signs__close { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -884,7 +886,7 @@ a:hover > .chip { background: var(--green-cta); }
 
     <!-- ===== WHEN SHOULD A CHILD SEE A THERAPIST — scroll-driven ===== -->
     <section class="sec signs" id="signs" aria-labelledby="when-t">
-      <div class="g">
+      <div class="g signs__main">
         <div class="c-5 signs__aside">
           <span class="badge badge--ink" aria-hidden="true"><svg class="ico"><use href="#i-alert-question"/></svg></span>
           <h2 class="h2" id="when-t">When Should a Child See a Mental Health Therapist?</h2>
@@ -947,12 +949,13 @@ a:hover > .chip { background: var(--green-cta); }
           </ul>
         </div>
 
-        <div class="c-12 signs__end">
-          <p class="h2 signs__close">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
-          <div class="actions">
-            <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-            <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
-          </div>
+      </div>
+
+      <div class="signs__end">
+        <p class="h2 signs__close">If you recognize your child in this list, you do not have to figure out the next step alone.</p>
+        <div class="actions">
+          <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a href="tel:18885870335" class="btn btn--ghost">Call (888) 587-0335</a>
         </div>
       </div>
     </section>
