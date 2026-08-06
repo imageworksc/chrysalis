@@ -684,14 +684,17 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    a sibling of .signs__main rather than a cell inside it: the heading column
    is sticky, and a sticky item cannot leave its own containing block. */
 .signs__end { clear: both; margin-top: var(--sp-9); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-5); }
-.signs__close { max-width: 26ch; margin: 0; }
+/* Takes the whole row so the sentence can break at the h2 step instead of
+   being squeezed beside the buttons, which would have needed 23px to reach
+   two lines. The buttons wrap under it. Balance evens the two lines, and the
+   count holds down to about 760 because the h2 clamp scales with the row. */
+.signs__close { flex: 1 1 100%; margin: 0; text-wrap: balance; }
 .signs__end .actions { margin: 0; }
 
 @media (max-width: 920px) {
   .signs__col { margin-top: var(--sp-7); }
   .signs__meter { display: none; }
   .signs__item { padding: var(--sp-4); }
-  .signs__close { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .has-js .signs__item { opacity: 1; transform: none; }
