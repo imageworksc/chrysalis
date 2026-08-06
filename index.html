@@ -621,10 +621,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .signs__aside { align-self: start; }
 @media (min-width: 921px) {
   .signs__aside { position: sticky; top: 148px; }
-  /* the heading column drops to four; pushing the list off column six leaves a
-     whole clear column between the two instead of a single gutter. Placement
-     lives here so the stack below 920 is left exactly as it was. */
-  .signs__col { grid-column: 6 / -1; }
+  /* the heading column holds four and the list six, both flush to their own
+     edge, so the clear span between them is two columns. Placement lives here
+     so the stack below 920 is left exactly as it was. */
+  .signs__col { grid-column: 7 / -1; }
 }
 .signs__aside .h2 { margin-bottom: var(--sp-5); }
 .signs__aside .lead { margin-bottom: var(--sp-4); }
