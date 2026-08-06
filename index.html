@@ -329,9 +329,26 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    HERO
    ========================================================================== */
-.hero__copy { justify-content: center; }
-.hero .lead { margin-top: var(--sp-5); max-width: 48ch; }
-.hero__photo { position: relative; border-radius: var(--r); overflow: hidden; background: var(--paper-2); aspect-ratio: 4/5; }
+/* ==========================================================================
+   HERO — the copy column carries its own type scale and is held a full grid
+   column clear of the photograph. The 24px gutter alone left them touching.
+   ========================================================================== */
+.hero { padding-block: clamp(36px, 4.4vw, 80px) clamp(56px, 6.5vw, 108px); }
+.hero__copy { grid-column: 1 / 7; display: flex; flex-direction: column; justify-content: center; }
+.hero__photo { grid-column: 8 / -1; }   /* column 7 is left empty as clearance */
+
+.hero .h1 { font-size: clamp(38px, 5.2vw, 64px); line-height: 1.03; letter-spacing: -0.035em; }
+.hero .lead { margin-top: var(--sp-6); max-width: 42ch; font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; }
+.hero .actions { margin-top: var(--sp-8); }
+.hero .btn { min-height: 58px; padding-inline: var(--sp-7); }
+.hero .trust { margin-top: var(--sp-8); }
+
+/* align-self is load-bearing: a stretched grid item plus aspect-ratio derives a
+   width from the row height and spills out of its own column. */
+.hero__photo {
+  position: relative; align-self: center;
+  border-radius: var(--r); overflow: hidden; background: var(--paper-2); aspect-ratio: 4/5;
+}
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
 .hero__note {
   position: absolute; left: var(--sp-4); right: var(--sp-4); bottom: var(--sp-4);
@@ -732,7 +749,13 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .hdr.is-stuck .hdr__logo img { height: 44px; }
 
   .c-4, .c-5, .c-6, .c-7, .c-8 { grid-column: span 12; }
+  /* the hero sets its spans explicitly, so the generic c-* stacking rule
+     above does not reach it — it has to be stacked by name */
+  .hero__copy, .hero__photo { grid-column: 1 / -1; }
   .hero__photo { aspect-ratio: 16/11; }
+  .hero .h1 { font-size: clamp(34px, 8vw, 46px); }
+  .hero .lead { max-width: 100%; }
+  .hero .actions, .hero .trust { margin-top: var(--sp-6); }
   .hero .lead { max-width: 100%; }
   .figure--tall, .figure--sq { aspect-ratio: 16/10; }
 
@@ -976,8 +999,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
     <!-- ===== HERO ===== -->
     <section class="sec g hero" aria-labelledby="hero-t">
-      <div class="c-7 hero__copy">
-        <h1 class="h1" id="hero-t" style="margin-top:var(--sp-5)">Mental Health Therapy and Services for Children</h1>
+      <div class="hero__copy">
+        <h1 class="h1" id="hero-t">Mental Health Therapy and Services for Children</h1>
         <p class="lead">Help your child manage anxiety, behavioral concerns, trauma, grief, school difficulties, family changes, and other emotional challenges through individualized mental health therapy&mdash;available through secure telehealth sessions and other treatment settings where available.</p>
         <div class="actions">
           <a href="#request-form" class="btn btn--dark">Request a Child Mental Health Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
@@ -990,7 +1013,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         </ul>
       </div>
 
-      <div class="c-5 hero__photo">
+      <div class="hero__photo">
         <picture>
           <source media="(min-width: 921px)" sizes="40vw" width="1000" height="1250"
                   srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_600/v1785958838/shutterstock_2568554847_m9vemt.jpg 600w,
