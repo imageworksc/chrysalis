@@ -626,6 +626,24 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
+   THERAPY BAND — tinted rather than dark. The page already carries two dark
+   bands, the definition and the telehealth banner, and this section sits
+   between them with a photograph and a long run of copy; a third dark stretch
+   would have weighted the middle of the page and repeated the banner.
+   ========================================================================== */
+.treat {
+  margin-inline: calc(50% - 50vw);
+  padding-block: clamp(56px, 6.4vw, 104px);
+  background: var(--blue-lt);
+}
+.sec + .treat, .treat + .sec { border-top: none; }
+.treat__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
+/* --rule is cut for white and measures 1.10:1 against this tint, which is not
+   a line. The darker rule is the one that still reads here. */
+.treat .subsec { border-top-color: var(--rule-dk); }
+.treat .figure { background: var(--white); }
+
+/* ==========================================================================
    SIGNS — scroll-driven. The heading column pins while the list passes it;
    each row reveals on entry and the row at the reading line is emphasised.
    Every state is also reachable without JS and without motion.
@@ -1303,7 +1321,8 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     </section>
 
     <!-- ===== THERAPY FOR CHILDREN AND TEENS ===== -->
-    <section class="sec g" aria-labelledby="treat-t">
+    <section class="sec treat" aria-labelledby="treat-t">
+      <div class="treat__in g">
       <div class="c-5 figure figure--tall" data-reveal>
         <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg"
              srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
@@ -1351,6 +1370,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
             <svg class="ico ico--play" aria-hidden="true"><use href="#i-play"/></svg>
           </button>
         </div>
+      </div>
       </div>
     </section>
 
