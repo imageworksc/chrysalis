@@ -1198,126 +1198,569 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.6" y="10.4" width="14.8" height="10" rx="2"/><path d="M8 10.4V7.6a4 4 0 0 1 8 0v2.8"/><path d="M12 14.4v2.2"/></symbol>
 </svg>
 
-  <div class="announce">
-    <a href="#">
-      <svg class="ico" aria-hidden="true"><use href="#i-heart-check"/></svg>
-      <span>Work for a growing company that puts patient care first. Join our team</span>
-      <svg class="ico ico--arw" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-    </a>
-  </div>
+  <!-- ==========================================================================
+       SITE HEADER — imported component, scoped under .ch-lp-*
+       Self-contained: its own styles + script live alongside this markup.
+       ========================================================================== -->
+  <style>
+  .ch-lp-header {
+    --ch-green:    #87bf57;
+    --ch-green-dk: #6aaa35;
+    --ch-green-lt: #eef5e6;
+    --ch-blue:     #52a5cf;
+    --ch-blue-dk:  #3d8fb8;
+    --ch-blue-lt:  #e8f4fb;
+    --ch-navy:     #2e2e2e;
+    --ch-mid:      #4a5a5a;
+    --ch-muted:    #6b7f8a;
+    --ch-border:   #dde5e9;
+    --ch-bg:       #f5f8fa;
+    --ch-white:    #ffffff;
+    --ch-font:     'Lato', Arial, sans-serif;
+    --ch-ease:     cubic-bezier(.4,0,.2,1);
+    box-sizing: border-box;
+    font-family: var(--ch-font);
+    color: var(--ch-navy);
+    background: var(--ch-white);
+    line-height: 1.6;
+  }
+  .ch-lp-header, .ch-lp-header *, .ch-lp-header *::before, .ch-lp-header *::after { box-sizing: border-box; }
 
-  <header class="hdr" id="hdr">
-    <div class="hdr__wrap hdr__top">
-      <a href="#" class="hdr__logo" aria-label="Chrysalis Health">
-        <img src="data:image/jpeg;base64,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" alt="Chrysalis Health" width="184" height="96" decoding="async">
+  .ch-lp-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 60px);
+  }
+  .ch-lp-header-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+
+  /* HEADER */
+  .ch-lp-header {
+    background: var(--ch-white);
+    border-bottom: 1px solid var(--ch-border);
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  .ch-lp-header-top {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 0;
+  }
+  .ch-lp-header-logo { display: block; flex-shrink: 0; }
+  .ch-lp-header-logo img { height: 96px; width: auto; display: block; }
+
+  .ch-lp-header-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .ch-lp-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .ch-lp-header-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 24px;
+    background: var(--ch-green);
+    color: var(--ch-white);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    font-family: var(--ch-font);
+    transition: background 0.18s var(--ch-ease);
+  }
+  .ch-lp-header-cta-btn:hover { background: var(--ch-green-dk); }
+  .ch-lp-header-schedule-link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2e3a4a;
+    text-decoration: underline;
+    font-family: var(--ch-font);
+    white-space: nowrap;
+  }
+  .ch-lp-header-schedule-link:hover { color: var(--ch-blue-dk); }
+  .ch-lp-download-secondary-link.is-unavailable {
+    color: #9aa4ad;
+    font-weight: 600;
+    cursor: default;
+    pointer-events: none;
+    border-bottom-color: transparent;
+    gap: 8px;
+  }
+  .ch-lp-coming-soon {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7681;
+    background: #eef1f4;
+    border-radius: 3px;
+    padding: 2px 8px;
+    line-height: 1.5;
+  }
+  .ch-lp-header-phone {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ch-blue-dk);
+    text-decoration: none;
+    font-family: var(--ch-font);
+    white-space: nowrap;
+  }
+
+  .ch-lp-header-nav-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 28px;
+  }
+  .ch-lp-nav-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #5b6b78;
+    text-decoration: none;
+    font-family: var(--ch-font);
+    min-height: 44px;
+  }
+  .ch-lp-nav-item:hover { color: var(--ch-blue-dk); }
+  .ch-lp-nav-caret { font-size: 10px; transition: transform 0.18s var(--ch-ease); }
+
+  .ch-lp-nav-dropdown-wrap { position: relative; }
+  .ch-lp-nav-dropdown-wrap--right .ch-lp-nav-dropdown { left: auto; right: 0; }
+  .ch-lp-nav-dropdown-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .ch-lp-nav-dropdown-wrap.is-open .ch-lp-nav-dropdown-trigger,
+  .ch-lp-nav-dropdown-wrap:hover .ch-lp-nav-dropdown-trigger {
+    box-shadow: inset 0 -3px 0 var(--ch-green);
+    color: var(--ch-navy);
+  }
+  .ch-lp-nav-dropdown-wrap.is-open .ch-lp-nav-caret { transform: rotate(180deg); }
+  .ch-lp-nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 14px;
+    z-index: 60;
+  }
+  .ch-lp-nav-dropdown-wrap.is-open .ch-lp-nav-dropdown { display: block; }
+  .ch-lp-nav-dropdown-wrap:hover .ch-lp-nav-dropdown { display: block; }
+  .ch-lp-nav-dropdown-wrap:hover .ch-lp-nav-caret { transform: rotate(180deg); }
+  @keyframes ch-lp-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ch-lp-nav-dropdown-inner {
+    min-width: 280px;
+    background: var(--ch-white);
+    border: 1px solid var(--ch-border);
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(20,40,54,0.16);
+    padding: 8px;
+    animation: ch-lp-dropdown-in 0.16s var(--ch-ease);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ch-lp-nav-dropdown-inner { animation: none; }
+  }
+  .ch-lp-nav-dropdown-item-disabled {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--ch-font);
+    min-height: 44px;
+    line-height: 1.4;
+    border-radius: 5px;
+    color: #b8c2cc;
+    cursor: default;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .ch-lp-nav-dropdown-item-disabled .ch-lp-nav-cs {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #c4cdd5;
+    background: #f3f5f7;
+    border-radius: 3px;
+    padding: 2px 5px;
+    flex-shrink: 0;
+  }
+  .ch-lp-mobile-nav-sub .ch-lp-nav-dropdown-item-disabled {
+    white-space: normal;
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+  .ch-lp-nav-dropdown-inner--services {
+    width: 420px;
+    max-width: calc(100vw - 48px);
+  }
+  .ch-lp-nav-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #45525e;
+    text-decoration: none;
+    font-family: var(--ch-font);
+    min-height: 44px;
+    line-height: 1.4;
+    border-radius: 5px;
+    transition: background 0.15s var(--ch-ease), color 0.15s var(--ch-ease);
+  }
+  .ch-lp-nav-dropdown a:hover {
+    color: var(--ch-navy);
+    background: var(--ch-blue-lt);
+  }
+  .ch-lp-nav-dropdown a:focus-visible {
+    outline: 2px solid var(--ch-blue-dk);
+    outline-offset: -2px;
+  }
+  .ch-lp-nav-dropdown a.ch-lp-nav-dropdown-delivery {
+    margin-top: 8px;
+    background: var(--ch-green-lt);
+    color: #3e5c22;
+    font-weight: 700;
+  }
+  .ch-lp-nav-dropdown a.ch-lp-nav-dropdown-delivery::after {
+    content: "Care from anywhere";
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 400;
+    color: #5c7a3c;
+  }
+  .ch-lp-nav-dropdown a.ch-lp-nav-dropdown-delivery:hover {
+    background: #dff0c8;
+    color: #2e4519;
+  }
+
+  .ch-lp-header-announce {
+    background: var(--ch-blue);
+    padding: 14px clamp(16px, 4vw, 32px);
+  }
+  .ch-lp-header-announce a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 1100px;
+    margin: 0 auto;
+    color: var(--ch-white);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.4;
+    text-decoration: underline;
+    font-family: var(--ch-font);
+  }
+  .ch-lp-announce-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    display: block;
+  }
+  .ch-lp-header-announce a:hover { color: rgba(255,255,255,0.85); }
+  .ch-lp-announce-arrow {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    display: block;
+    transition: transform 0.15s var(--ch-ease);
+  }
+  .ch-lp-header-announce a:hover .ch-lp-announce-arrow { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .ch-lp-header-announce a:hover .ch-lp-announce-arrow { transform: none; }
+  }
+
+  /* MOBILE MENU (hamburger + downward dropdown) */
+  .ch-lp-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .ch-lp-mobile-toggle-bar {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--ch-navy);
+    border-radius: 2px;
+    transition: transform 0.25s var(--ch-ease), opacity 0.2s var(--ch-ease);
+  }
+  .ch-lp-mobile-toggle[aria-expanded="true"] .ch-lp-mobile-toggle-bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .ch-lp-mobile-toggle[aria-expanded="true"] .ch-lp-mobile-toggle-bar:nth-child(2) { opacity: 0; }
+  .ch-lp-mobile-toggle[aria-expanded="true"] .ch-lp-mobile-toggle-bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  .ch-lp-mobile-dropdown {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--ch-white);
+    border-bottom: 1px solid var(--ch-border);
+    transition: max-height 0.3s var(--ch-ease);
+  }
+  .ch-lp-mobile-dropdown.is-open { display: block; }
+
+  .ch-lp-mobile-dropdown-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px clamp(20px, 4vw, 48px) 24px;
+    border-bottom: 1px solid var(--ch-border);
+  }
+  .ch-lp-mobile-dropdown-actions .ch-lp-header-cta-btn,
+  .ch-lp-mobile-dropdown-actions .ch-lp-header-schedule-link {
+    font-size: 15px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .ch-lp-mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px clamp(20px, 4vw, 48px) 24px;
+  }
+  .ch-lp-mobile-nav-link,
+  .ch-lp-mobile-nav-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 2px;
+    border: none;
+    background: none;
+    border-bottom: 1px solid var(--ch-border);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #2e3a4a;
+    text-decoration: none;
+    text-align: left;
+    font-family: var(--ch-font);
+    cursor: pointer;
+  }
+  .ch-lp-mobile-nav-chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--ch-blue-dk);
+    transition: transform 0.25s var(--ch-ease);
+  }
+  .ch-lp-mobile-nav-item.is-open .ch-lp-mobile-nav-chevron { transform: rotate(180deg); }
+  .ch-lp-mobile-nav-sub {
+    display: none;
+    flex-direction: column;
+    padding: 4px 0 12px 14px;
+  }
+  .ch-lp-mobile-nav-item.is-open .ch-lp-mobile-nav-sub { display: flex; }
+  .ch-lp-mobile-nav-sub a {
+    padding: 10px 4px;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #5b6b78;
+    text-decoration: none;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .ch-lp-mobile-nav-sub a:hover { color: var(--ch-blue-dk); }
+
+  @media (max-width: 860px) {
+    .ch-lp-mobile-toggle { display: flex; }
+    .ch-lp-header-right { display: none; }
+    .ch-lp-header-top { justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+    .ch-lp-header-logo img { height: 56px; }
+  }
+  @media (max-width: 600px) {
+    .ch-lp-header-logo img { height: 64px; }
+    .ch-lp-header-schedule-link { font-size: 14px; white-space: normal; }
+    .ch-lp-header-announce a { font-size: 14px; }
+  }
+  </style>
+
+  <header class="ch-lp-header">
+    <div class="ch-lp-header-container ch-lp-header-top">
+      <a href="#" class="ch-lp-header-logo" aria-label="Chrysalis Health">
+        <img src="data:image/jpeg;base64,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" alt="Chrysalis Health">
       </a>
 
-      <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobmenu">
-        <span></span><span></span><span></span>
+      <button type="button" class="ch-lp-mobile-toggle" id="ch-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="ch-mobile-dropdown">
+        <span class="ch-lp-mobile-toggle-bar"></span>
+        <span class="ch-lp-mobile-toggle-bar"></span>
+        <span class="ch-lp-mobile-toggle-bar"></span>
       </button>
 
-      <div class="hdr__right">
-        <div class="hdr__actions">
-          <a href="#" class="hdr__link">Psychiatry Follow-Up</a>
-          <a href="tel:18885870335" class="hdr__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-          <a href="#request-form" class="btn btn--primary hdr__cta">Start Care Today</a>
-        </div>
-        <div class="hdr__navrow">
-      <nav class="hdr__nav" aria-label="Primary">
-        <div class="dd">
-          <button type="button" class="nav-item" aria-expanded="false">About <svg class="ico nav-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="dd__panel"><div class="dd__inner">
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-target"/></svg>Our Mission, Vision, &amp; Core Values</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-award"/></svg>Company History</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-users"/></svg>Community Involvement &amp; Affiliations</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-person-chat"/></svg>Meet the Executive Team</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-map-pin"/></svg>Locations</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-match"/></svg>Join Our Team</a>
-          </div></div>
+      <div class="ch-lp-header-right">
+        <div class="ch-lp-header-actions">
+          <a href="#request-form" class="ch-lp-header-cta-btn">Start Care Today</a>
+          <a href="#" class="ch-lp-header-schedule-link">Psychiatry Follow-Up</a>
+          <a href="tel:18885870335" class="ch-lp-header-phone">(888) 587-0335</a>
         </div>
 
-        <div class="dd">
-          <button type="button" class="nav-item" aria-expanded="false">Mental Health Services <svg class="ico nav-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="dd__panel"><div class="dd__inner dd__inner--wide">
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg>Counseling</a>
-            <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cloud-rain"/></svg>Anxiety &amp; Depression Therapy<span class="dd__tag">Soon</span></span>
-            <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-child"/></svg>Child &amp; Kid Therapy<span class="dd__tag">Soon</span></span>
-            <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-family"/></svg>Family Counseling &amp; Therapy<span class="dd__tag">Soon</span></span>
-            <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-shield-heart"/></svg>Trauma Therapy<span class="dd__tag">Soon</span></span>
-            <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-bolt"/></svg>Anger Management Therapy &amp; Counseling<span class="dd__tag">Soon</span></span>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-stethoscope"/></svg>Psychiatric Services</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-folder"/></svg>Case Management</a>
-            <a href="#" class="dd__feature"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-video"/></svg>Telehealth</a>
-          </div></div>
-        </div>
+        <nav class="ch-lp-header-nav-inner" aria-label="Primary">
 
-        <a href="#insurance" class="nav-item">Insurance</a>
-        <a href="https://ch-option2.netlify.app/" class="nav-item">Pay a Bill</a>
+          <div class="ch-lp-nav-dropdown-wrap">
+            <button type="button" class="ch-lp-nav-item ch-lp-nav-dropdown-trigger" aria-expanded="false">
+              About <span class="ch-lp-nav-caret">&#9662;</span>
+            </button>
+            <div class="ch-lp-nav-dropdown">
+              <div class="ch-lp-nav-dropdown-inner">
+                <a href="#">Our Mission, Vision, &amp; Core Values</a>
+                <a href="#">Company History</a>
+                <a href="#">Community Involvement &amp; Affiliations</a>
+                <a href="#">Meet the Executive Team</a>
+                <a href="#">Locations</a>
+                <a href="#">Join Our Team</a>
+              </div>
+            </div>
+          </div>
 
-        <div class="dd dd--right">
-          <button type="button" class="nav-item" aria-expanded="false">Contact <svg class="ico nav-caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="dd__panel"><div class="dd__inner">
-            <a href="#request-form"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-help"/></svg>Ask a Question</a>
-            <a href="#locations"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-map-pin"/></svg>Find a Location</a>
-            <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-calendar"/></svg>Psychiatry Follow-Up</a>
-          </div></div>
-        </div>
+          <div class="ch-lp-nav-dropdown-wrap">
+            <button type="button" class="ch-lp-nav-item ch-lp-nav-dropdown-trigger" aria-expanded="false">
+              Mental Health Services <span class="ch-lp-nav-caret">&#9662;</span>
+            </button>
+            <div class="ch-lp-nav-dropdown">
+              <div class="ch-lp-nav-dropdown-inner ch-lp-nav-dropdown-inner--services">
+                <a href="#">Counseling</a>
+                <a href="#">Child &amp; Kid Therapy</a>
+                <a href="#">Psychiatric Services</a>
+                <a href="#">Case Management</a>
+                <span class="ch-lp-nav-dropdown-item-disabled">Anxiety &amp; Depression Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+                <span class="ch-lp-nav-dropdown-item-disabled">Family Counseling &amp; Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+                <span class="ch-lp-nav-dropdown-item-disabled">Trauma Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+                <span class="ch-lp-nav-dropdown-item-disabled">Anger Management Therapy &amp; Counseling<span class="ch-lp-nav-cs">Soon</span></span>
+                <a href="#" class="ch-lp-nav-dropdown-delivery">Telehealth</a>
+              </div>
+            </div>
+          </div>
 
-        <a href="https://ch-option2.netlify.app/" class="nav-item">Required Notices</a>
-        <a href="https://ch-option2.netlify.app/" class="nav-item">Blog</a>
-      </nav>
-        </div>
+          <a href="#insurance" class="ch-lp-nav-item">Insurance</a>
+          <a href="https://ch-option2.netlify.app/" class="ch-lp-nav-item">Pay a Bill</a>
+
+          <div class="ch-lp-nav-dropdown-wrap ch-lp-nav-dropdown-wrap--right">
+            <button type="button" class="ch-lp-nav-item ch-lp-nav-dropdown-trigger" aria-expanded="false">
+              Contact <span class="ch-lp-nav-caret">&#9662;</span>
+            </button>
+            <div class="ch-lp-nav-dropdown">
+              <div class="ch-lp-nav-dropdown-inner">
+                <a href="#request-form">Ask a Question</a>
+                <a href="#locations">Find a Location</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://ch-option2.netlify.app/" class="ch-lp-nav-item">Required Notices</a>
+          <a href="https://ch-option2.netlify.app/" class="ch-lp-nav-item">Blog</a>
+        </nav>
       </div>
     </div>
-    <div class="hdr__progress" id="progress" aria-hidden="true"></div>
 
-    <div class="mob" id="mobmenu">
-      <div class="mob__actions">
-          <a href="#request-form" class="btn btn--primary hdr__cta">Start Care Today</a>
-          <a href="tel:18885870335" class="hdr__phone"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-          <a href="#" class="link">Psychiatry Follow-Up</a>
+    <div class="ch-lp-mobile-dropdown" id="ch-mobile-dropdown">
+      <div class="ch-lp-mobile-dropdown-actions">
+        <a href="#request-form" class="ch-lp-header-cta-btn">Start Care Today</a>
+        <a href="#" class="ch-lp-header-schedule-link">Psychiatry Follow-Up</a>
+      </div>
+
+      <div class="ch-lp-mobile-nav-list">
+
+        <div class="ch-lp-mobile-nav-item">
+          <button type="button" class="ch-lp-mobile-nav-trigger" aria-expanded="false">
+            About <svg class="ch-lp-mobile-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ch-lp-mobile-nav-sub">
+            <a href="#">Our Mission, Vision, &amp; Core Values</a>
+            <a href="#">Company History</a>
+            <a href="#">Community Involvement &amp; Affiliations</a>
+            <a href="#">Meet the Executive Team</a>
+            <a href="#">Locations</a>
+            <a href="#">Join Our Team</a>
+          </div>
         </div>
-        <nav class="mob__nav" aria-label="Primary mobile">
-          <div class="mob__group">
-            <button type="button" class="mob__trigger" aria-expanded="false">About <svg class="ico mob__chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-            <div class="mob__sub">
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-target"/></svg>Our Mission, Vision, &amp; Core Values</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-award"/></svg>Company History</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-users"/></svg>Community Involvement &amp; Affiliations</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-person-chat"/></svg>Meet the Executive Team</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-map-pin"/></svg>Locations</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-match"/></svg>Join Our Team</a>
-            </div>
+
+        <div class="ch-lp-mobile-nav-item">
+          <button type="button" class="ch-lp-mobile-nav-trigger" aria-expanded="false">
+            Mental Health Services <svg class="ch-lp-mobile-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ch-lp-mobile-nav-sub">
+            <a href="#">Counseling</a>
+            <a href="#">Child &amp; Kid Therapy</a>
+            <a href="#">Psychiatric Services</a>
+            <a href="#">Case Management</a>
+            <span class="ch-lp-nav-dropdown-item-disabled">Anxiety &amp; Depression Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+            <span class="ch-lp-nav-dropdown-item-disabled">Family Counseling &amp; Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+            <span class="ch-lp-nav-dropdown-item-disabled">Trauma Therapy<span class="ch-lp-nav-cs">Soon</span></span>
+            <span class="ch-lp-nav-dropdown-item-disabled">Anger Management Therapy &amp; Counseling<span class="ch-lp-nav-cs">Soon</span></span>
+            <a href="#">Telehealth</a>
           </div>
-          <div class="mob__group">
-            <button type="button" class="mob__trigger" aria-expanded="false">Mental Health Services <svg class="ico mob__chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-            <div class="mob__sub">
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg>Counseling</a>
-              <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-cloud-rain"/></svg>Anxiety &amp; Depression Therapy<span class="dd__tag">Soon</span></span>
-              <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-child"/></svg>Child &amp; Kid Therapy<span class="dd__tag">Soon</span></span>
-              <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-family"/></svg>Family Counseling &amp; Therapy<span class="dd__tag">Soon</span></span>
-              <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-shield-heart"/></svg>Trauma Therapy<span class="dd__tag">Soon</span></span>
-              <span class="dd__soon" aria-disabled="true"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-bolt"/></svg>Anger Management Therapy &amp; Counseling<span class="dd__tag">Soon</span></span>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-stethoscope"/></svg>Psychiatric Services</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-folder"/></svg>Case Management</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-video"/></svg>Telehealth</a>
-            </div>
+        </div>
+
+        <a href="#insurance" class="ch-lp-mobile-nav-link">Insurance</a>
+        <a href="https://ch-option2.netlify.app/" class="ch-lp-mobile-nav-link">Pay a Bill</a>
+
+        <div class="ch-lp-mobile-nav-item">
+          <button type="button" class="ch-lp-mobile-nav-trigger" aria-expanded="false">
+            Contact <svg class="ch-lp-mobile-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ch-lp-mobile-nav-sub">
+            <a href="#request-form">Ask a Question</a>
+            <a href="#locations">Find a Location</a>
           </div>
-          <a href="#insurance" class="mob__link">Insurance</a>
-          <a href="https://ch-option2.netlify.app/" class="mob__link">Pay a Bill</a>
-          <div class="mob__group">
-            <button type="button" class="mob__trigger" aria-expanded="false">Contact <svg class="ico mob__chev" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-            <div class="mob__sub">
-              <a href="#request-form"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-help"/></svg>Ask a Question</a>
-              <a href="#locations"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-map-pin"/></svg>Find a Location</a>
-              <a href="#"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-calendar"/></svg>Psychiatry Follow-Up</a>
-            </div>
-          </div>
-          <a href="https://ch-option2.netlify.app/" class="mob__link">Required Notices</a>
-          <a href="https://ch-option2.netlify.app/" class="mob__link">Blog</a>
-        </nav>
+        </div>
+
+        <a href="https://ch-option2.netlify.app/" class="ch-lp-mobile-nav-link">Required Notices</a>
+        <a href="https://ch-option2.netlify.app/" class="ch-lp-mobile-nav-link">Blog</a>
+      </div>
+    </div>
+
+    <div class="ch-lp-header-announce">
+      <a href="#"><svg class="ch-lp-announce-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 12.6 12 20l-7.5-7.4a5 5 0 1 1 7.5-6.6 5 5 0 1 1 7.5 6.6"/><path d="M8.5 12.5l2 2 4-4"/></svg><span>Work for a growing company that puts patient care first. Join our team</span><svg class="ch-lp-announce-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </header>
+
 
   <main id="main" class="page">
 
@@ -1972,76 +2415,81 @@ try { (function () {
   });
 })(); } catch (e) { console.error(e); }
 
-/* Header state, menus, sticky CTA */
+/* Sticky floating CTA on scroll */
 try { (function () {
-  var hdr = document.getElementById('hdr');
-  var burger = document.getElementById('burger');
-  var mob = document.getElementById('mobmenu');
   var sticky = document.getElementById('stickycta');
-  var progress = document.getElementById('progress');
-  var timer = null, ticking = false;
-
+  if (!sticky) return;
+  var ticking = false;
   function onScroll() {
     var y = window.scrollY || document.documentElement.scrollTop;
-    if (hdr) hdr.classList.toggle('is-stuck', y > 40);
-    if (sticky) sticky.classList.toggle('is-shown', y > 700);
-    if (progress) { var docH = document.documentElement.scrollHeight - window.innerHeight; progress.style.transform = 'scaleX(' + (docH > 0 ? Math.min(1, y / docH) : 0) + ')'; }
+    sticky.classList.toggle('is-shown', y > 700);
     ticking = false;
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
-
-  if (!burger || !mob) return;
-  function sync() { if (burger.getAttribute('aria-expanded') === 'true') mob.style.maxHeight = Math.min(mob.scrollHeight, window.innerHeight - 140) + 'px'; }
-  function open() {
-    if (timer) { clearTimeout(timer); timer = null; }
-    mob.classList.add('is-open');
-    burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('aria-label', 'Close menu');
-    requestAnimationFrame(sync);
-  }
-  function close() {
-    mob.style.maxHeight = '0px';
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open menu');
-    timer = setTimeout(function () { mob.classList.remove('is-open'); timer = null; }, 300);
-  }
-  burger.addEventListener('click', function () { burger.getAttribute('aria-expanded') === 'true' ? close() : open(); });
-  window.addEventListener('resize', sync);
-  mob.addEventListener('click', function (e) { if (e.target.closest('a[href^="#"]')) close(); });
-
-  document.querySelectorAll('.mob__group').forEach(function (g) {
-    var t = g.querySelector('.mob__trigger');
-    if (!t) return;
-    t.addEventListener('click', function () {
-      var o = g.classList.contains('is-open');
-      g.classList.toggle('is-open', !o);
-      t.setAttribute('aria-expanded', String(!o));
-      requestAnimationFrame(sync);
-    });
-  });
-
-  var dds = Array.prototype.slice.call(document.querySelectorAll('.dd'));
-  function closeAll() { dds.forEach(function (d) { d.classList.remove('is-open'); var t = d.querySelector('.nav-item'); if (t) t.setAttribute('aria-expanded', 'false'); }); }
-  dds.forEach(function (d) {
-    var t = d.querySelector('.nav-item');
-    if (!t || t.tagName !== 'BUTTON') return;
-    t.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var o = d.classList.contains('is-open');
-      closeAll();
-      if (!o) { d.classList.add('is-open'); t.setAttribute('aria-expanded', 'true'); }
-    });
-  });
-  document.addEventListener('click', closeAll);
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape') return;
-    var o = document.querySelector('.dd.is-open');
-    if (o) { closeAll(); var t = o.querySelector('.nav-item'); if (t) t.focus(); return; }
-    if (burger.getAttribute('aria-expanded') === 'true') { close(); burger.focus(); }
-  });
 })(); } catch (e) { console.error(e); }
 
+/* Imported site header (.ch-lp-*) — mobile toggle, submenus, desktop dropdowns */
+try { (function () {
+
+    // Mobile hamburger dropdown (expands downward below the slim logo/hamburger bar)
+    const mobileToggle = document.getElementById('ch-mobile-toggle');
+    const mobileDropdown = document.getElementById('ch-mobile-dropdown');
+    if (!mobileToggle || !mobileDropdown) return;
+
+    function openMobileDropdown() {
+      mobileDropdown.classList.add('is-open');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      mobileDropdown.style.maxHeight = mobileDropdown.scrollHeight + 'px';
+    }
+    function closeMobileDropdown() {
+      mobileDropdown.style.maxHeight = '0px';
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      setTimeout(() => mobileDropdown.classList.remove('is-open'), 300);
+    }
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMobileDropdown() : openMobileDropdown();
+    });
+    window.addEventListener('resize', () => {
+      if (mobileToggle.getAttribute('aria-expanded') === 'true') {
+        mobileDropdown.style.maxHeight = mobileDropdown.scrollHeight + 'px';
+      }
+    });
+
+    // Mobile submenu toggles (About, Services, Contact)
+    document.querySelectorAll('.ch-lp-mobile-nav-item').forEach(item => {
+      const trigger = item.querySelector('.ch-lp-mobile-nav-trigger');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        item.classList.toggle('is-open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+        if (mobileToggle.getAttribute('aria-expanded') === 'true') {
+          requestAnimationFrame(() => {
+            mobileDropdown.style.maxHeight = mobileDropdown.scrollHeight + 'px';
+          });
+        }
+      });
+    });
+
+    // Nav dropdowns (About, Services, Contact)
+    const navDropdowns = Array.from(document.querySelectorAll('.ch-lp-nav-dropdown-wrap'));
+    navDropdowns.forEach(wrap => {
+      const trigger = wrap.querySelector('.ch-lp-nav-dropdown-trigger');
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = wrap.classList.contains('is-open');
+        navDropdowns.forEach(w => { w.classList.remove('is-open'); w.querySelector('.ch-lp-nav-dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+        if (!isOpen) {
+          wrap.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    document.addEventListener('click', () => {
+      navDropdowns.forEach(w => { w.classList.remove('is-open'); w.querySelector('.ch-lp-nav-dropdown-trigger').setAttribute('aria-expanded', 'false'); });
+    });
+})(); } catch (e) { console.error(e); }
 
 
 /* Entrance for section blocks */
