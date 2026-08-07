@@ -823,32 +823,41 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
-   FORM
+   FINAL CTA — a full width split, blue panel against a photograph. The panel
+   fills the left half of the screen but its copy starts on the page measure,
+   so the text still lines up with every section above it.
    ========================================================================== */
-.form { border: 1px solid var(--rule); border-radius: var(--r); padding: clamp(22px, 2.4vw, 36px); }
-.form__head { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
-.form__hint { display: flex; gap: var(--sp-2); align-items: flex-start; margin-bottom: var(--sp-5); font-size: var(--fs-xs); line-height: 1.45; color: var(--muted); }
-.field { margin-bottom: var(--sp-4); }
-.field label { display: block; margin-bottom: var(--sp-2); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-xs); letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); }
-.field .opt { text-transform: none; letter-spacing: 0; font-weight: var(--fw-reg); color: var(--muted); }
-.field input, .field select, .field textarea {
-  width: 100%; min-height: 50px; padding: var(--sp-3) var(--sp-4);
-  font-family: var(--font); font-size: var(--fs-sm); color: var(--ink);
-  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--r-sm);
-  transition: border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease);
+.final {
+  margin-inline: calc(50% - 50vw);
+  padding-block: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  background: var(--blue-deep);
 }
-.field textarea { min-height: 96px; resize: vertical; }
-.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--rule-dk); }
-.field input:focus, .field select:focus, .field textarea:focus { background: var(--white); border-color: var(--ink); box-shadow: 0 0 0 3px var(--green-lt); }
-.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,170px),1fr)); gap: 0 var(--sp-4); }
-.consent { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: var(--sp-3); align-items: start; margin: var(--sp-1) 0 var(--sp-5); }
-.consent input { width: 20px; height: 20px; min-height: 0; margin: 2px 0 0; padding: 0; accent-color: var(--ink); }
-.consent span { font-size: var(--fs-xs); line-height: 1.45; color: var(--card-txt); }
-.form .btn { width: 100%; }
-.form__foot { display: flex; gap: var(--sp-2); align-items: center; justify-content: center; margin-top: var(--sp-4); font-size: var(--fs-xs); color: var(--muted); }
-.form__foot a { color: var(--ink); font-weight: var(--fw-bold); }
-.form__status { display: none; margin-bottom: var(--sp-5); padding: var(--sp-3) var(--sp-4); border-radius: var(--r-sm); background: var(--green-lt); border: 1px solid var(--green); font-size: var(--fs-sm); line-height: 1.45; color: #33501c; }
-.form__status.is-shown { display: block; }
+.sec + .final, .final + .sec { border-top: none; }
+.final__panel {
+  display: flex; align-items: center;
+  padding-block: clamp(56px, 6.4vw, 110px);
+  padding-left: max(var(--gutter), calc((100vw - var(--w-page)) / 2 + var(--gutter)));
+  padding-right: clamp(24px, 3vw, 56px);
+}
+.final__inner { max-width: 560px; }
+.final .h2 { color: var(--white); }
+.final p { margin: var(--sp-5) 0 0; color: rgba(255,255,255,0.92); }
+.final .note { color: rgba(255,255,255,0.82); }
+.final .actions { margin-top: var(--sp-7); }
+/* the green primary would be one dark colour on another here */
+.final .btn--primary { background: var(--white); border-color: var(--white); color: var(--ink); }
+.final .btn--primary:hover { background: var(--green); border-color: var(--green); color: var(--ink); }
+.final :focus-visible { outline-color: var(--white); }
+/* height from the grid row and a floor, never a ratio on a stretched item */
+.final__media { position: relative; min-height: clamp(300px, 32vw, 560px); }
+.final__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 920px) {
+  .final { grid-template-columns: 1fr; }
+  .final__panel { padding-inline: var(--gutter); }
+  .final__media { min-height: clamp(240px, 58vw, 380px); order: -1; }
+}
 
 /* ==========================================================================
    FOOTER
@@ -1617,6 +1626,28 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       </div>
     </section>
 
+    <!-- ===== HELP YOUR CHILD — full-bleed split ===== -->
+    <section class="sec final" id="request-form" aria-labelledby="final-t">
+      <div class="final__panel">
+        <div class="final__inner">
+          <h2 class="h2" id="final-t" data-reveal>Help Your Child Get the Right Support</h2>
+          <p data-reveal style="--d:.1s">You do not need to know exactly what is wrong or wait for emotional or behavioral concerns to become a crisis. A mental health assessment can help your family understand what your child is experiencing and determine the right next step.</p>
+          <p data-reveal style="--d:.18s">Chrysalis Health has served children and families since 1995. A specialist generally responds within 48 hours after an online request&mdash;or call directly if you need a faster response.</p>
+          <div class="actions" data-reveal style="--d:.26s">
+            <a href="tel:18885870335" class="btn btn--primary">Call (888) 587-0335 <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <p class="note" data-reveal style="--d:.32s"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-triangle"/></svg><span>If your child is in immediate danger, call 911. For urgent mental health support in the United States, call or text 988.</span></p>
+        </div>
+      </div>
+      <div class="final__media" data-reveal>
+        <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785958839/shutterstock_2670271251_l1khpo.jpg"
+             srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_700/v1785958839/shutterstock_2670271251_l1khpo.jpg 700w,
+                     https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:3,c_fill,g_auto,w_1000/v1785958839/shutterstock_2670271251_l1khpo.jpg 1000w"
+             sizes="(max-width: 920px) 100vw, 50vw" width="1000" height="750"
+             alt="A therapist working with a young child at a table" loading="lazy" decoding="async">
+      </div>
+    </section>
+
     <!-- ===== FAQ ===== -->
     <section class="sec g" aria-labelledby="faq-t">
       <div class="c-12">
@@ -1685,63 +1716,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       </div>
     </section>
 
-    <!-- ===== CTA + FORM ===== -->
-    <section class="sec g" id="request-form" aria-labelledby="final-t">
-      <div class="c-12">
-        <div class="g" style="align-items:center">
-          <div class="c-6">
-            <h2 class="h2" id="final-t" style="margin-top:var(--sp-5)">Help Your Child Get the Right Support</h2>
-            <p class="lead" style="margin-top:var(--sp-5)">You do not need to know exactly what is wrong or wait for emotional or behavioral concerns to become a crisis. A mental health assessment can help your family understand what your child is experiencing and determine the right next step.</p>
-            <p>Chrysalis Health has served children and families since 1995. A specialist generally responds within 48 hours after an online request&mdash;or call directly if you need a faster response.</p>
-            <div class="actions"><a href="tel:18885870335" class="btn btn--primary">Call (888) 587-0335 <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-            <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-triangle"/></svg><span>If your child is in immediate danger, call 911. For urgent mental health support in the United States, call or text 988.</span></p>
-          </div>
-
-          <div class="c-6 form">
-            <div class="form__head">
-              <span class="badge badge--green" aria-hidden="true"><svg class="ico"><use href="#i-clipboard-check"/></svg></span>
-              <h3 class="h3">Request a Child Mental Health Assessment</h3>
-            </div>
-            <p class="form__hint"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-lock"/></svg><span>All fields marked required. Please do not include detailed medical information in this form.</span></p>
-            <p class="form__status" id="form-status" role="status"></p>
-
-            <form id="request" novalidate>
-              <div class="field">
-                <label for="f-name">Parent or guardian name</label>
-                <input type="text" id="f-name" name="name" autocomplete="name" required>
-              </div>
-              <div class="row">
-                <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" required></div>
-                <div class="field"><label for="f-phone">Phone</label><input type="tel" id="f-phone" name="phone" autocomplete="tel" required></div>
-              </div>
-              <div class="row">
-                <div class="field"><label for="f-age">Child&rsquo;s age</label><input type="number" id="f-age" name="childAge" min="0" max="21" inputmode="numeric" required></div>
-                <div class="field">
-                  <label for="f-state">State</label>
-                  <select id="f-state" name="state" required>
-                    <option value="">Select a state</option>
-                    <option value="FL">Florida</option>
-                    <option value="OH">Ohio</option>
-                    <option value="TX">Texas</option>
-                    <option value="other">Another state</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <label for="f-msg">What is going on? <span class="opt">(optional)</span></label>
-                <textarea id="f-msg" name="message" rows="4" placeholder="A short summary is enough &mdash; a specialist will follow up."></textarea>
-              </div>
-              <label class="consent" for="f-consent">
-                <input type="checkbox" id="f-consent" name="consent" required>
-                <span>I agree to be contacted by Chrysalis Health about services for my child by phone, text, or email.</span>
-              </label>
-              <button type="submit" class="btn btn--primary">Request an Assessment <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
-              <p class="form__foot"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg><span>Prefer to talk to someone now? Call <a href="tel:18885870335">(888) 587-0335</a>.</span></p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
 
 
 
@@ -2012,22 +1986,6 @@ try { (function () {
   }
 })(); } catch (e) { console.error(e); }
 
-/* Request form — set data-endpoint on the <form> to wire it up */
-try { (function () {
-  var form = document.getElementById('request');
-  var status = document.getElementById('form-status');
-  if (!form || !status) return;
-  function show(m) { status.textContent = m; status.classList.add('is-shown'); status.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.reportValidity()) return;
-    var endpoint = form.getAttribute('data-endpoint');
-    if (!endpoint) { show('Thanks — this request form is not connected to Chrysalis Health intake yet. Please call (888) 587-0335 to reach a specialist.'); return; }
-    fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form).entries())) })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); form.reset(); show('Thank you. Your request has been received — a specialist generally responds within 48 hours.'); })
-      .catch(function () { show('We could not submit your request. Please call (888) 587-0335 and a specialist will help you.'); });
-  });
-})(); } catch (e) { console.error(e); }
 </script>
 </body>
 </html>
