@@ -511,8 +511,35 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .note .ico { margin-top: 3px; }
 
 
-.qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-3); }
-.qa__item p { font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); }
+/* Three wide cards stacked, question on the left and answer on the right.
+   Three equal cards across would have left the answers at 41 characters a
+   line, which is too narrow to read a paragraph in. */
+.play__qa { display: grid; gap: var(--sp-4); }
+.qa__item {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0,4fr) minmax(0,7fr);
+  gap: clamp(24px, 3vw, 56px); align-items: start;
+  padding: clamp(22px, 2.4vw, 34px);
+  background: var(--paper); border-radius: var(--r);
+  transition: background .25s var(--ease);
+}
+.qa__item:hover { background: var(--paper-2); }
+/* an accent down the left edge, drawn as each card arrives */
+.qa__item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--blue-deep); transform-origin: 50% 0;
+}
+.has-js .qa__item::before { transform: scaleY(0); transition: transform .7s var(--ease) .2s; }
+.has-js .qa__item.is-in::before { transform: scaleY(1); }
+.qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin: 0; font-size: var(--fs-h3); }
+.qa__item p { margin: 0; max-width: 62ch; font-size: var(--fs-sm); line-height: 1.65; color: var(--card-txt); }
+.qa__item p + p { margin-top: var(--sp-4); }
+@media (max-width: 920px) {
+  .qa__item { grid-template-columns: 1fr; gap: var(--sp-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-js .qa__item::before { transition: none; }
+}
 
 
 
@@ -1611,18 +1638,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
              alt="A child building with wooden blocks and toy figures" loading="lazy" decoding="async">
       </div>
 
-      <div class="c-12 g play__qa" data-reveal style="align-content:start">
-        <div class="c-12 qa__item">
+      <div class="c-12 play__qa">
+        <div class="qa__item" data-reveal>
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
           <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
           <p>Rather than directing every activity, the therapist observes how the child communicates, responds to emotions, approaches problems, and interacts with the materials. Those observations and the therapeutic relationship can help the child build confidence, emotional awareness, regulation, and healthier responses.</p>
         </div>
-        <div class="c-6 qa__item">
+        <div class="qa__item" data-reveal style="--d:.1s">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-target"/></svg></span>Play Therapy Is More Than Playtime</h3>
           <p>Play therapy is not simply allowing a child to play with toys. Activities are used or observed within a therapeutic relationship and connected to specific treatment goals.</p>
           <p>Play therapy may be used by itself or combined with child counseling, cognitive behavioral therapy, family therapy, trauma-informed care, or other approaches.</p>
         </div>
-        <div class="c-6 qa__item">
+        <div class="qa__item" data-reveal style="--d:.2s">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-branch"/></svg></span>Does Every Child Receive Play Therapy?</h3>
           <p>No. Play therapy is used when it is developmentally and clinically appropriate. Some children and teens respond better to conversation-based therapy, structured skill-building, cognitive behavioral therapy, family counseling, or a combination of approaches.</p>
         </div>
