@@ -582,7 +582,12 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .has-js [data-reveal] {
   opacity: 0; transform: translateY(20px);
   transition: opacity .6s var(--ease), transform .6s var(--ease);
-  animation: reveal-failsafe .4s var(--ease) 1.6s forwards;
+  /* --d staggers a group without needing a class per position. The failsafe
+     has to be pushed out by the same amount, or a late item would be flipped
+     visible by the failsafe before its own transition had begun. */
+  transition-delay: var(--d, 0s);
+  animation: reveal-failsafe .4s var(--ease) forwards;
+  animation-delay: calc(1.6s + var(--d, 0s));
 }
 .has-js [data-reveal].is-in { opacity: 1; transform: none; animation: none; }
 
@@ -626,14 +631,21 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
-   THERAPY BAND — filled in --blue-deep. White holds 6.80:1 on it and the
-   copy at 92% holds 6.05:1, both past AA. --ink was the other candidate and
-   measures far higher, but it reads as near black rather than as blue.
+   THERAPY BAND — the same --ink as the definition band, so the page has one
+   dark band colour rather than two. White holds 13.44:1 on it.
    ========================================================================== */
 .treat {
+  position: relative; isolation: isolate; overflow: hidden;
   margin-inline: calc(50% - 50vw);
   padding-block: clamp(56px, 6.4vw, 104px);
-  background: var(--blue-deep);
+  background: var(--ink);
+}
+/* a light thrown from behind the photograph, so the band is not a flat slab */
+.treat::before {
+  content: ""; position: absolute; z-index: -1; inset: 0;
+  background:
+    radial-gradient(90% 70% at 20% 0%, rgba(var(--rgb-blue),0.20), transparent 62%),
+    radial-gradient(70% 60% at 92% 100%, rgba(var(--rgb-green),0.10), transparent 60%);
 }
 .sec + .treat, .treat + .sec { border-top: none; }
 .treat__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
@@ -648,8 +660,30 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    which are the page's two signals for a section boundary; on a filled band a
    translucent line at a shorter gap reads as an internal divider instead. */
 .treat .subsec {
+  position: relative;
   margin-top: var(--sp-9); padding-top: var(--sp-7);
-  border-top: 1px solid rgba(255,255,255,0.18);
+  border-top: none;
+}
+/* the divider is a pseudo-element so it can be drawn rather than just appear.
+   It is full width by default and only starts folded when JS is present. */
+.treat .subsec::before {
+  content: ""; position: absolute; top: 0; inset-inline: 0; height: 1px;
+  background: rgba(255,255,255,0.18);
+  transform-origin: 0 50%;
+}
+.has-js .treat .subsec::before { transform: scaleX(0); transition: transform .9s var(--ease) .15s; }
+.has-js .treat .subsec.is-in::before { transform: scaleX(1); }
+
+/* the photograph settles out of a slight overscale instead of cutting in */
+.has-js .treat .figure img { transform: scale(1.08); transition: transform 1.4s var(--ease); }
+.has-js .treat .figure.is-in img { transform: scale(1); }
+
+.treat .mpill { transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.treat .mpill:hover { transform: translateY(-3px); box-shadow: var(--e-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .has-js .treat .subsec::before { transform: scaleX(1); }
+  .has-js .treat .figure img { transform: none; }
 }
 
 /* ==========================================================================
@@ -1339,18 +1373,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
              sizes="(max-width: 920px) 100vw, 40vw" width="800" height="1000"
              alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
       </div>
-      <div class="c-7 stack" data-reveal>
-        <div class="shead">
+      <div class="c-7 stack">
+        <div class="shead" data-reveal>
           <h2 class="h2" id="treat-t">Mental Health Therapy for Children and Teens</h2>
         </div>
-        <p style="margin-top:var(--sp-5)">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
-        <p>It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
+        <p data-reveal style="--d:.12s;margin-top:var(--sp-5)">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
+        <p data-reveal style="--d:.24s">It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
       </div>
 
       <div class="c-12 subsec" data-reveal>
         <p class="listhead" id="treat-l"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-checklist"/></svg><span>Depending on the assessment and treatment plan, therapy may include:</span></p>
       </div>
-      <div class="c-12">
+      <div class="c-12" data-reveal style="--d:.12s">
         <div class="marquee marquee--rev" id="types" style="--dur:56s">
           <ul class="marquee__track" aria-labelledby="treat-l">
             <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-person-chat"/></svg></span>Individual mental health therapy</li>
