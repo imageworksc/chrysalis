@@ -518,7 +518,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .qa__item {
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: minmax(0,4fr) minmax(0,7fr);
-  gap: clamp(24px, 3vw, 56px); align-items: start;
+  /* the children are h3, p, p. Left to place themselves the second paragraph
+     lands in the left column under the question, so both tracks are named. */
+  column-gap: clamp(24px, 3vw, 56px); row-gap: var(--sp-4); align-items: start;
   padding: clamp(22px, 2.4vw, 34px);
   background: var(--paper); border-radius: var(--r);
   transition: background .25s var(--ease);
@@ -531,9 +533,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 .has-js .qa__item::before { transform: scaleY(0); transition: transform .7s var(--ease) .2s; }
 .has-js .qa__item.is-in::before { transform: scaleY(1); }
-.qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin: 0; font-size: var(--fs-h3); }
-.qa__item p { margin: 0; max-width: 62ch; font-size: var(--fs-sm); line-height: 1.65; color: var(--card-txt); }
-.qa__item p + p { margin-top: var(--sp-4); }
+.qa__item h3 { grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: var(--sp-3); margin: 0; font-size: var(--fs-h3); }
+.qa__item p { grid-column: 2; margin: 0; max-width: 62ch; font-size: var(--fs-sm); line-height: 1.65; color: var(--card-txt); }
+/* the tinted badge measured 1.06:1 against this card and 1.01:1 against its
+   hover ground, so the tile simply vanished. Filled, it holds on both. */
+.qa__item .badge { background: var(--blue-deep); color: var(--white); }
 @media (max-width: 920px) {
   .qa__item { grid-template-columns: 1fr; gap: var(--sp-4); }
 }
