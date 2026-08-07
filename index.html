@@ -462,7 +462,15 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .has-js .par__quote .callout::before { transform: scaleY(0); transition: transform .7s var(--ease) .25s; }
 .has-js .par__quote.is-in .callout::before { transform: scaleY(1); }
 .par__quote .ico { margin-top: 2px; }
-.par__body { margin-top: clamp(36px, 4vw, 64px); }
+/* the involvement list sits on a card. White with a hairline rather than the
+   tint the quote takes, so the two blocks in this section stay distinct */
+.par__body {
+  margin-top: clamp(36px, 4vw, 64px);
+  padding: clamp(24px, 2.6vw, 40px);
+  background: var(--white);
+  border: 1px solid var(--rule); border-radius: var(--r);
+  box-shadow: var(--e-1);
+}
 /* two newspaper columns: the rows keep their hairline and stay one per line */
 .par__list { columns: 2; column-gap: clamp(28px, 3.4vw, 64px); }
 .par__list li { break-inside: avoid; }
