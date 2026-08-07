@@ -773,9 +773,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    FAQ
    ========================================================================== */
-.faq { border-top: 1px solid var(--rule); counter-reset: faq; max-width: 920px; margin-inline: auto; width: 100%; }
+.faq { border-top: 1px solid var(--rule); max-width: 920px; margin-inline: auto; width: 100%; }
 .faq__item {
-  position: relative; counter-increment: faq;
+  position: relative;
   padding-left: var(--sp-5); border-bottom: 1px solid var(--rule);
   transition: background .25s var(--ease);
 }
@@ -788,25 +788,16 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   transition: transform .32s var(--ease);
 }
 .faq__item.is-open::before { transform: scaleY(1); }
-/* three tracks: the number, the question, the control. The question is an
-   anonymous grid item, which is why it needs no element of its own. */
 .faq__q {
-  display: grid; grid-template-columns: 34px minmax(0,1fr) auto;
-  align-items: start; gap: var(--sp-4);
+  display: grid; grid-template-columns: minmax(0,1fr) auto;
+  align-items: start; gap: var(--sp-5);
   width: 100%; padding: var(--sp-5) var(--sp-4) var(--sp-5) 0;
   background: none; border: none; text-align: left; cursor: pointer;
   font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3);
   line-height: 1.35; letter-spacing: -0.012em; color: var(--ink);
   transition: color .18s var(--ease);
 }
-.faq__q::before {
-  content: counter(faq, decimal-leading-zero);
-  font-size: var(--fs-xs); font-weight: var(--fw-bold); line-height: 2.1;
-  letter-spacing: 0.04em; color: var(--muted);
-  transition: color .18s var(--ease);
-}
 .faq__q:hover { color: var(--green-cta); }
-.faq__q:hover::before, .faq__item.is-open .faq__q::before { color: var(--green-cta); }
 .faq__item.is-open .faq__q { color: var(--green-cta); }
 .faq__icon { position: relative; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--paper); margin-top: 1px; transition: background .2s var(--ease); }
 .faq__item.is-open .faq__icon { background: var(--ink); }
@@ -819,8 +810,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .faq__item.is-open .faq__panel { grid-template-rows: 1fr; }
 .faq__inner { overflow: hidden; visibility: hidden; transition: visibility 0s .26s; }
 .faq__item.is-open .faq__inner { visibility: visible; transition-delay: 0s; }
-/* the answer lines up under the question, clear of the number column */
-.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) calc(34px + var(--sp-4)); font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 66ch; }
+.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 66ch; }
 /* the panel opens by row height; the copy inside also rises into place, which
    is what stops a long answer from looking like it was simply switched on */
 .has-js .faq__inner p { opacity: 0; transform: translateY(10px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
