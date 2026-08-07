@@ -626,22 +626,31 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
-   THERAPY BAND — tinted rather than dark. The page already carries two dark
-   bands, the definition and the telehealth banner, and this section sits
-   between them with a photograph and a long run of copy; a third dark stretch
-   would have weighted the middle of the page and repeated the banner.
+   THERAPY BAND — filled in --blue-deep. White holds 6.80:1 on it and the
+   copy at 92% holds 6.05:1, both past AA. --ink was the other candidate and
+   measures far higher, but it reads as near black rather than as blue.
    ========================================================================== */
 .treat {
   margin-inline: calc(50% - 50vw);
   padding-block: clamp(56px, 6.4vw, 104px);
-  background: var(--blue-lt);
+  background: var(--blue-deep);
 }
 .sec + .treat, .treat + .sec { border-top: none; }
 .treat__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
-/* --rule is cut for white and measures 1.10:1 against this tint, which is not
-   a line. The darker rule is the one that still reads here. */
-.treat .subsec { border-top-color: var(--rule-dk); }
-.treat .figure { background: var(--white); }
+.treat .h2, .treat .listhead { color: var(--white); }
+.treat p { color: rgba(255,255,255,0.92); }
+/* clearance from the photograph, and a measure the copy can be read at: the
+   seven columns run to 80 characters a line, which is past comfortable */
+.treat .stack { padding-left: clamp(0px, 1.8vw, 36px); }
+.treat .stack p { max-width: 85%; }
+.treat .figure { background: rgba(255,255,255,0.12); }
+/* The list is part of this section. It carried --band and a full width rule,
+   which are the page's two signals for a section boundary; on a filled band a
+   translucent line at a shorter gap reads as an internal divider instead. */
+.treat .subsec {
+  margin-top: var(--sp-9); padding-top: var(--sp-7);
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
 
 /* ==========================================================================
    SIGNS — scroll-driven. The heading column pins while the list passes it;
