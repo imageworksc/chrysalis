@@ -842,7 +842,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 .final__inner { max-width: 560px; }
 .final .h2 { color: var(--white); }
-.final p { margin: var(--sp-5) 0 0; color: rgba(255,255,255,0.92); }
+/* the three text blocks run 20% narrower than the panel; the heading keeps
+   the full 560px, so it sits wider than the copy under it */
+.final p { margin: var(--sp-5) 0 0; max-width: 448px; color: rgba(255,255,255,0.92); }
 .final .note { color: rgba(255,255,255,0.82); }
 .final .actions { margin-top: var(--sp-7); }
 /* the green primary would be one dark colour on another here */
