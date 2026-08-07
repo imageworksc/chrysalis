@@ -337,7 +337,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .hero__copy { grid-column: 1 / 8; padding-right: clamp(24px, 2.6vw, 48px); display: flex; flex-direction: column; justify-content: center; }
 .hero__photo { grid-column: 8 / -1; }   /* five columns wide, 496px against 392px */
 
-.hero .h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; }
+.hero .h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.03em; font-weight: var(--fw-med); }
 /* The lead runs the full width of its column. That lands at 67 characters per
    line, inside the 45-75 band, so no cap is needed — the column is the cap. */
 .hero .lead { margin-top: var(--sp-6); max-width: 80%; font-size: clamp(17px, 1.2vw, 19px); line-height: 1.6; }
@@ -518,9 +518,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .qa__item {
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: minmax(0,4fr) minmax(0,7fr);
-  /* the children are h3, p, p. Left to place themselves the second paragraph
-     lands in the left column under the question, so both tracks are named. */
-  column-gap: clamp(24px, 3vw, 56px); row-gap: var(--sp-4); align-items: start;
+  /* two children now, the heading and one answer block, so the title can be
+     centred against the answer however many paragraphs it holds */
+  column-gap: clamp(24px, 3vw, 56px); align-items: center;
   padding: clamp(22px, 2.4vw, 34px);
   background: var(--paper); border-radius: var(--r);
   transition: background .25s var(--ease);
@@ -533,8 +533,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 .has-js .qa__item::before { transform: scaleY(0); transition: transform .7s var(--ease) .2s; }
 .has-js .qa__item.is-in::before { transform: scaleY(1); }
-.qa__item h3 { grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: var(--sp-3); margin: 0; font-size: var(--fs-h3); }
-.qa__item p { grid-column: 2; margin: 0; max-width: 62ch; font-size: var(--fs-sm); line-height: 1.65; color: var(--card-txt); }
+.qa__item h3 { display: flex; align-items: center; gap: var(--sp-3); margin: 0; font-size: var(--fs-h3); }
+.qa__a p { margin: 0; max-width: 62ch; font-size: var(--fs-sm); line-height: 1.65; color: var(--card-txt); }
+.qa__a p + p { margin-top: var(--sp-4); }
 /* the tinted badge measured 1.06:1 against this card and 1.01:1 against its
    hover ground, so the tile simply vanished. Filled, it holds on both. */
 .qa__item .badge { background: var(--blue-deep); color: var(--white); }
@@ -1645,17 +1646,23 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       <div class="c-12 play__qa">
         <div class="qa__item" data-reveal>
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
-          <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
-          <p>Rather than directing every activity, the therapist observes how the child communicates, responds to emotions, approaches problems, and interacts with the materials. Those observations and the therapeutic relationship can help the child build confidence, emotional awareness, regulation, and healthier responses.</p>
+          <div class="qa__a">
+            <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
+            <p>Rather than directing every activity, the therapist observes how the child communicates, responds to emotions, approaches problems, and interacts with the materials. Those observations and the therapeutic relationship can help the child build confidence, emotional awareness, regulation, and healthier responses.</p>
+          </div>
         </div>
         <div class="qa__item" data-reveal style="--d:.1s">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-target"/></svg></span>Play Therapy Is More Than Playtime</h3>
-          <p>Play therapy is not simply allowing a child to play with toys. Activities are used or observed within a therapeutic relationship and connected to specific treatment goals.</p>
-          <p>Play therapy may be used by itself or combined with child counseling, cognitive behavioral therapy, family therapy, trauma-informed care, or other approaches.</p>
+          <div class="qa__a">
+            <p>Play therapy is not simply allowing a child to play with toys. Activities are used or observed within a therapeutic relationship and connected to specific treatment goals.</p>
+            <p>Play therapy may be used by itself or combined with child counseling, cognitive behavioral therapy, family therapy, trauma-informed care, or other approaches.</p>
+          </div>
         </div>
         <div class="qa__item" data-reveal style="--d:.2s">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-branch"/></svg></span>Does Every Child Receive Play Therapy?</h3>
-          <p>No. Play therapy is used when it is developmentally and clinically appropriate. Some children and teens respond better to conversation-based therapy, structured skill-building, cognitive behavioral therapy, family counseling, or a combination of approaches.</p>
+          <div class="qa__a">
+            <p>No. Play therapy is used when it is developmentally and clinically appropriate. Some children and teens respond better to conversation-based therapy, structured skill-building, cognitive behavioral therapy, family counseling, or a combination of approaches.</p>
+          </div>
         </div>
       </div>
     </section>
