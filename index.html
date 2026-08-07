@@ -459,8 +459,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   position: relative; margin: 0; padding: var(--sp-6) var(--sp-6) var(--sp-6) var(--sp-7);
   gap: var(--sp-4); align-items: flex-start;
   background: var(--tint); border-radius: var(--r-sm);
-  font-family: var(--head); font-weight: var(--fw-mid);
-  font-size: clamp(17px, 1.35vw, 20px); line-height: 1.45;
+  font-family: var(--head); font-weight: var(--fw-reg);
+  /* one pixel down across the whole range, so the vw term moves with the
+     bounds rather than only the ends coming in */
+  font-size: clamp(16px, 1.28vw, 19px); line-height: 1.5;
 }
 /* the accent draws down the quote as it arrives; full height without JS */
 .par__quote .callout::before {
