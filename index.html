@@ -388,6 +388,43 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
 .listhead { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-5); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3); line-height: 1.3; color: var(--ink); }
 
+/* ==========================================================================
+   WHY FAMILIES CHOOSE — nine capabilities as a grid rather than a column.
+   The heading and the button share the top row; the grid runs the full width
+   beneath them, which is the one place on the page a set reads as a set.
+   ========================================================================== */
+.why__aside { display: flex; align-items: flex-end; justify-content: flex-end; }
+.why__aside .actions { margin: 0; }
+.why__body { margin-top: clamp(36px, 4vw, 64px); }
+.why__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--sp-4); }
+.why__grid li {
+  display: grid; grid-template-columns: 44px minmax(0,1fr); gap: var(--sp-4);
+  align-items: center; padding: var(--sp-5);
+  background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-sm);
+  font-size: var(--fs-sm); line-height: 1.45; color: var(--ink);
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease), transform .25s var(--ease);
+}
+.why__grid li:hover { border-color: var(--rule-dk); box-shadow: var(--e-2); transform: translateY(-3px); }
+/* the glyph carries its own tile: an inline SVG takes padding and a background
+   like any other box, so this needs no wrapper element around nine icons */
+.why__grid .ico {
+  box-sizing: border-box; width: 44px; height: 44px; padding: 10px;
+  border-radius: 10px; background: var(--green-lt); color: var(--green-cta);
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.why__grid li:nth-child(2n) .ico { background: var(--blue-lt); color: var(--blue-deep); }
+.why__grid li:hover .ico { background: var(--green-cta); color: var(--white); }
+.why__grid li:nth-child(2n):hover .ico { background: var(--blue-deep); }
+/* entrance sweeps left to right across each row */
+.why__grid li:nth-child(3n+2) { --d: .08s; }
+.why__grid li:nth-child(3n+3) { --d: .16s; }
+.why__body .note { margin-top: var(--sp-6); }
+@media (max-width: 1100px) { .why__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 920px) {
+  .why__grid { grid-template-columns: 1fr; }
+  .why__aside { justify-content: flex-start; margin-top: var(--sp-5); }
+}
+
 
 /* align-self:center is load-bearing — a stretched grid item plus aspect-ratio
    makes the width grow out of its column and overlap the next one */
@@ -1605,25 +1642,28 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
     <!-- ===== WHY FAMILIES CHOOSE ===== -->
     <section class="sec g" id="insurance" aria-labelledby="why-t">
-      <div class="c-5 stack" data-reveal>
-        <h2 class="h2" id="why-t" style="margin-top:var(--sp-5)">Why Families Choose Chrysalis Health</h2>
-        <p class="lead" style="margin-top:var(--sp-5)">Chrysalis Health was founded in 1995 and has grown into a comprehensive behavioral healthcare organization serving children, adolescents, adults, and families. Its team includes therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other behavioral health professionals.</p>
+      <div class="c-7 shead" data-reveal>
+        <h2 class="h2" id="why-t">Why Families Choose Chrysalis Health</h2>
+        <p class="lead">Chrysalis Health was founded in 1995 and has grown into a comprehensive behavioral healthcare organization serving children, adolescents, adults, and families. Its team includes therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other behavioral health professionals.</p>
+      </div>
+      <div class="c-5 why__aside" data-reveal style="--d:.12s">
         <div class="actions"><a href="#request-form" class="btn btn--primary">Ask About Insurance and Payment Options <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
       </div>
-      <div class="c-7" data-reveal>
-        <p class="listhead" id="why-l"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>Families may have access to:</span></p>
-        <ul class="ilist" aria-labelledby="why-l">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-clipboard-check"/></svg><span>Individualized assessments and treatment plans</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><span>Mental health therapy for children and teens</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>Secure telehealth services</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg><span>Individual and family counseling</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-blocks"/></svg><span>Play therapy and child-focused approaches</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-stethoscope"/></svg><span>Psychiatric evaluation and medication management when appropriate</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-map-pin"/></svg><span>Home-, school-, office-, and community-based services where available</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><span>Commercial, Medicaid, and Healthy Kids insurance options</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-coins"/></svg><span>Income-based rates for qualifying self-pay clients</span></li>
+
+      <div class="c-12 why__body">
+        <p class="listhead" id="why-l" data-reveal><span>Families may have access to:</span></p>
+        <ul class="why__grid" aria-labelledby="why-l">
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-clipboard-check"/></svg><span>Individualized assessments and treatment plans</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><span>Mental health therapy for children and teens</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>Secure telehealth services</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg><span>Individual and family counseling</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-blocks"/></svg><span>Play therapy and child-focused approaches</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-stethoscope"/></svg><span>Psychiatric evaluation and medication management when appropriate</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-map-pin"/></svg><span>Home-, school-, office-, and community-based services where available</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg><span>Commercial, Medicaid, and Healthy Kids insurance options</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-coins"/></svg><span>Income-based rates for qualifying self-pay clients</span></li>
         </ul>
-        <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>Current services, age eligibility, insurance participation, provider availability, and treatment settings vary by location and plan and should be confirmed before treatment begins.</span></p>
+        <p class="note" data-reveal><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>Current services, age eligibility, insurance participation, provider availability, and treatment settings vary by location and plan and should be confirmed before treatment begins.</span></p>
       </div>
     </section>
 
