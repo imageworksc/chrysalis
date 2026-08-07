@@ -319,7 +319,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    CARD — the single surface primitive
    ========================================================================== */
 .stack { display: flex; flex-direction: column; justify-content: center; }
-.subsec { margin-top: var(--band); padding-top: var(--sp-7); border-top: 1px solid var(--rule); }
 
 /* section header — dark icon pill, then the heading */
 .shead { display: flex; flex-direction: column; }
@@ -418,6 +417,15 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* entrance sweeps left to right across each row */
 .why__grid li:nth-child(3n+2) { --d: .08s; }
 .why__grid li:nth-child(3n+3) { --d: .16s; }
+/* the same cell at two columns, for the play therapy list. The sweep is reset
+   first, or the three-across delays would land on the wrong side of two. */
+.play__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.play__grid li:nth-child(n) { --d: 0s; }
+.play__grid li:nth-child(2n) { --d: .08s; }
+/* a plain gap above each block. The rule and band-sized space these used to
+   carry is what this page uses to mean a section has ended */
+.play__list { margin-top: clamp(36px, 4vw, 64px); }
+.play__qa { margin-top: clamp(36px, 4vw, 64px); }
 .why__body .note { margin-top: var(--sp-6); }
 @media (max-width: 1100px) { .why__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 920px) {
@@ -1565,19 +1573,19 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
              alt="A child building with wooden blocks and toy figures" loading="lazy" decoding="async">
       </div>
 
-      <div class="c-5 subsec" data-reveal>
-        <p class="listhead" id="play-l"><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Play therapy and play-based techniques may include:</span></p>
-        <ul class="ilist" aria-labelledby="play-l">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-pencil"/></svg><span>Drawing and creative activities</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-toy"/></svg><span>Toys, dolls, figures, or puppets</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><span>Storytelling and role-playing</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-dice"/></svg><span>Therapeutic games</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-emotion"/></svg><span>Emotion-identification exercises</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg><span>Calming and coping activities</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Structured problem-solving</span></li>
+      <div class="c-12 play__list">
+        <p class="listhead" id="play-l" data-reveal><span>Play therapy and play-based techniques may include:</span></p>
+        <ul class="why__grid play__grid" aria-labelledby="play-l">
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-pencil"/></svg><span>Drawing and creative activities</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-toy"/></svg><span>Toys, dolls, figures, or puppets</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><span>Storytelling and role-playing</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-dice"/></svg><span>Therapeutic games</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-emotion"/></svg><span>Emotion-identification exercises</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg><span>Calming and coping activities</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Structured problem-solving</span></li>
         </ul>
       </div>
-      <div class="c-7 g subsec" data-reveal style="align-content:start">
+      <div class="c-12 g play__qa" data-reveal style="align-content:start">
         <div class="c-12 qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
           <p>Child-centered play therapy allows the child to take a more active role in therapeutic play while the therapist provides a safe, structured, and supportive environment.</p>
