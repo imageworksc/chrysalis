@@ -653,37 +653,47 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .treat p { color: rgba(255,255,255,0.92); }
 /* clearance from the photograph, and a measure the copy can be read at: the
    seven columns run to 80 characters a line, which is past comfortable */
-.treat .stack { padding-left: clamp(0px, 1.8vw, 36px); }
-.treat .stack p { max-width: 85%; }
-.treat .figure { background: rgba(255,255,255,0.12); }
-/* The list is part of this section. It carried --band and a full width rule,
-   which are the page's two signals for a section boundary; on a filled band a
-   translucent line at a shorter gap reads as an internal divider instead. */
-.treat .subsec {
-  position: relative;
-  margin-top: var(--sp-9); padding-top: var(--sp-7);
-  border-top: none;
+/* The photograph runs off the left edge of the screen and the copy lines up
+   with the page measure on the right, so the band is an asymmetric split
+   rather than two columns centred inside a container. */
+.treat__split {
+  display: grid;
+  grid-template-columns: minmax(0, 42vw) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(28px, 3.6vw, 64px);
+  padding-right: max(var(--gutter), calc((100vw - var(--w-page)) / 2 + var(--gutter)));
 }
-/* the divider is a pseudo-element so it can be drawn rather than just appear.
-   It is full width by default and only starts folded when JS is present. */
-.treat .subsec::before {
-  content: ""; position: absolute; top: 0; inset-inline: 0; height: 1px;
-  background: rgba(255,255,255,0.18);
-  transform-origin: 0 50%;
+/* height comes from the grid row, never from a ratio: a stretched item with
+   an aspect-ratio grows its width out of the column instead */
+.treat__media {
+  position: relative; overflow: hidden;
+  min-height: clamp(320px, 36vw, 520px);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: rgba(255,255,255,0.10);
 }
-.has-js .treat .subsec::before { transform: scaleX(0); transition: transform .9s var(--ease) .15s; }
-.has-js .treat .subsec.is-in::before { transform: scaleX(1); }
+.treat__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.treat__copy { display: flex; flex-direction: column; justify-content: center; }
+.treat__copy .h2 { margin-bottom: var(--sp-5); }
+.treat__copy p { margin: 0; max-width: 60ch; }
+.treat__copy p + p { margin-top: var(--sp-4); }
+/* no rule above the list: the band already holds the section together */
+.treat__foot { margin-top: clamp(40px, 4.4vw, 76px); }
+.treat .listhead { margin-bottom: var(--sp-5); }
 
 /* the photograph settles out of a slight overscale instead of cutting in */
-.has-js .treat .figure img { transform: scale(1.08); transition: transform 1.4s var(--ease); }
-.has-js .treat .figure.is-in img { transform: scale(1); }
+.has-js .treat__media img { transform: scale(1.08); transition: transform 1.4s var(--ease); }
+.has-js .treat__media.is-in img { transform: scale(1); }
 
 .treat .mpill { transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
 .treat .mpill:hover { transform: translateY(-3px); box-shadow: var(--e-2); }
 
+@media (max-width: 920px) {
+  .treat__split { grid-template-columns: 1fr; padding-right: 0; gap: var(--sp-6); }
+  .treat__media { min-height: clamp(240px, 56vw, 380px); border-radius: 0; }
+  .treat__copy { padding-inline: var(--gutter); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .has-js .treat .subsec::before { transform: scaleX(1); }
-  .has-js .treat .figure img { transform: none; }
+  .has-js .treat__media img { transform: none; }
 }
 
 /* ==========================================================================
@@ -1365,26 +1375,24 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
     <!-- ===== THERAPY FOR CHILDREN AND TEENS ===== -->
     <section class="sec treat" aria-labelledby="treat-t">
-      <div class="treat__in g">
-      <div class="c-5 figure figure--tall" data-reveal>
-        <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg"
-             srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
-                     https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_4:5,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg 800w"
-             sizes="(max-width: 920px) 100vw, 40vw" width="800" height="1000"
-             alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
-      </div>
-      <div class="c-7 stack">
-        <div class="shead" data-reveal>
-          <h2 class="h2" id="treat-t">Mental Health Therapy for Children and Teens</h2>
+      <div class="treat__split">
+        <div class="treat__media" data-reveal>
+          <img src="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_1:1,c_fill,g_auto,w_800/v1785959812/shutterstock_2676507369_ruqq4u.jpg"
+               srcset="https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_1:1,c_fill,g_auto,w_600/v1785959812/shutterstock_2676507369_ruqq4u.jpg 600w,
+                       https://res.cloudinary.com/dsjbq35es/image/upload/f_auto,q_auto:eco,ar_1:1,c_fill,g_auto,w_900/v1785959812/shutterstock_2676507369_ruqq4u.jpg 900w"
+               sizes="(max-width: 920px) 100vw, 42vw" width="900" height="900"
+               alt="A teenager talking with a counselor in a calm setting" loading="lazy" decoding="async">
         </div>
-        <p data-reveal style="--d:.12s;margin-top:var(--sp-5)">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
-        <p data-reveal style="--d:.24s">It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
+        <div class="treat__copy">
+          <h2 class="h2" id="treat-t" data-reveal>Mental Health Therapy for Children and Teens</h2>
+          <p data-reveal style="--d:.12s">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
+          <p data-reveal style="--d:.24s">It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
+        </div>
       </div>
 
-      <div class="c-12 subsec" data-reveal>
-        <p class="listhead" id="treat-l"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-checklist"/></svg><span>Depending on the assessment and treatment plan, therapy may include:</span></p>
-      </div>
-      <div class="c-12" data-reveal style="--d:.12s">
+      <div class="treat__in treat__foot">
+        <p class="listhead" id="treat-l"><span>Depending on the assessment and treatment plan, therapy may include:</span></p>
+        <div data-reveal style="--d:.12s">
         <div class="marquee marquee--rev" id="types" style="--dur:56s">
           <ul class="marquee__track" aria-labelledby="treat-l">
             <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-person-chat"/></svg></span>Individual mental health therapy</li>
