@@ -417,10 +417,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* entrance sweeps left to right across each row */
 .why__grid li:nth-child(3n+2) { --d: .08s; }
 .why__grid li:nth-child(3n+3) { --d: .16s; }
-/* the same cell at two columns, for the play therapy list. The sweep is reset
-   first, or the three-across delays would land on the wrong side of two. */
+/* The play therapy list takes the sign card, two across. Reusing that class is
+   safe because the scroll logic behind its active state is bound to
+   #signs-list by id, so it never reaches these rows. */
 .play__grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-.play__grid li:nth-child(n) { --d: 0s; }
 .play__grid li:nth-child(2n) { --d: .08s; }
 /* a plain gap above each block. The rule and band-sized space these used to
    carry is what this page uses to mean a section has ended */
@@ -1575,14 +1575,35 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
       <div class="c-12 play__list">
         <p class="listhead" id="play-l" data-reveal><span>Play therapy and play-based techniques may include:</span></p>
-        <ul class="why__grid play__grid" aria-labelledby="play-l">
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-pencil"/></svg><span>Drawing and creative activities</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-toy"/></svg><span>Toys, dolls, figures, or puppets</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><span>Storytelling and role-playing</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-dice"/></svg><span>Therapeutic games</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-emotion"/></svg><span>Emotion-identification exercises</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg><span>Calming and coping activities</span></li>
-          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg><span>Structured problem-solving</span></li>
+        <ul class="signs__list play__grid" aria-labelledby="play-l">
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span>
+            <span class="signs__txt">Drawing and creative activities</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-toy"/></svg></span>
+            <span class="signs__txt">Toys, dolls, figures, or puppets</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span>
+            <span class="signs__txt">Storytelling and role-playing</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-dice"/></svg></span>
+            <span class="signs__txt">Therapeutic games</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-emotion"/></svg></span>
+            <span class="signs__txt">Emotion-identification exercises</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
+            <span class="signs__txt">Calming and coping activities</span>
+          </li>
+          <li class="signs__item" data-reveal>
+            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-puzzle"/></svg></span>
+            <span class="signs__txt">Structured problem-solving</span>
+          </li>
         </ul>
       </div>
       <div class="c-12 g play__qa" data-reveal style="align-content:start">
