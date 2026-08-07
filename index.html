@@ -444,6 +444,14 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    ========================================================================== */
 .par__copy { display: flex; flex-direction: column; justify-content: center; }
 .par__copy p + p { margin-top: var(--sp-4); }
+/* a whole clear column between the copy and the quote instead of one gutter.
+   Placement lives behind the breakpoint so the stack below 920 is untouched;
+   these are not column classes, so the generic stacking rule cannot reach
+   them and overriding it here would be the thing that breaks mobile. */
+@media (min-width: 921px) {
+  .par__copy { grid-column: 1 / 7; padding-right: var(--sp-4); }
+  .par__quote { grid-column: 8 / -1; }
+}
 /* the statement is the point of the section, so it is set as a quote rather
    than as a trailing paragraph under a rule */
 .par__quote { display: flex; align-items: center; }
@@ -461,7 +469,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 .has-js .par__quote .callout::before { transform: scaleY(0); transition: transform .7s var(--ease) .25s; }
 .has-js .par__quote.is-in .callout::before { transform: scaleY(1); }
-.par__quote .ico { margin-top: 2px; }
 /* the involvement list sits on a card. White with a hairline rather than the
    tint the quote takes, so the two blocks in this section stay distinct */
 .par__body {
@@ -1617,7 +1624,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <p data-reveal style="--d:.16s">Family involvement can be especially important for younger children and may help strengthen communication, relationships, and overall functioning.</p>
       </div>
       <div class="c-6 par__quote" data-reveal style="--d:.12s">
-        <p class="callout"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
+        <p class="callout"><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
       </div>
       <div class="c-12 par__body">
         <p class="listhead" id="par-l" data-reveal><span>Parent involvement may include:</span></p>
