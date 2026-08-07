@@ -773,16 +773,40 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* ==========================================================================
    FAQ
    ========================================================================== */
-.faq { border-top: 1px solid var(--rule); }
-.faq__item { border-bottom: 1px solid var(--rule); }
+.faq { border-top: 1px solid var(--rule); counter-reset: faq; max-width: 920px; margin-inline: auto; width: 100%; }
+.faq__item {
+  position: relative; counter-increment: faq;
+  padding-left: var(--sp-5); border-bottom: 1px solid var(--rule);
+  transition: background .25s var(--ease);
+}
+.faq__item.is-open { background: var(--tint); }
+/* an accent that grows down the open question rather than simply appearing */
+.faq__item::before {
+  content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 2px;
+  background: var(--green-cta);
+  transform: scaleY(0); transform-origin: 50% 0;
+  transition: transform .32s var(--ease);
+}
+.faq__item.is-open::before { transform: scaleY(1); }
+/* three tracks: the number, the question, the control. The question is an
+   anonymous grid item, which is why it needs no element of its own. */
 .faq__q {
-  display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-5);
-  width: 100%; padding: var(--sp-5) 0; background: none; border: none; text-align: left; cursor: pointer;
+  display: grid; grid-template-columns: 34px minmax(0,1fr) auto;
+  align-items: start; gap: var(--sp-4);
+  width: 100%; padding: var(--sp-5) var(--sp-4) var(--sp-5) 0;
+  background: none; border: none; text-align: left; cursor: pointer;
   font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3);
   line-height: 1.35; letter-spacing: -0.012em; color: var(--ink);
   transition: color .18s var(--ease);
 }
+.faq__q::before {
+  content: counter(faq, decimal-leading-zero);
+  font-size: var(--fs-xs); font-weight: var(--fw-bold); line-height: 2.1;
+  letter-spacing: 0.04em; color: var(--muted);
+  transition: color .18s var(--ease);
+}
 .faq__q:hover { color: var(--green-cta); }
+.faq__q:hover::before, .faq__item.is-open .faq__q::before { color: var(--green-cta); }
 .faq__item.is-open .faq__q { color: var(--green-cta); }
 .faq__icon { position: relative; flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--paper); margin-top: 1px; transition: background .2s var(--ease); }
 .faq__item.is-open .faq__icon { background: var(--ink); }
@@ -795,7 +819,18 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .faq__item.is-open .faq__panel { grid-template-rows: 1fr; }
 .faq__inner { overflow: hidden; visibility: hidden; transition: visibility 0s .26s; }
 .faq__item.is-open .faq__inner { visibility: visible; transition-delay: 0s; }
-.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 66ch; }
+/* the answer lines up under the question, clear of the number column */
+.faq__inner p { margin: 0; padding: 0 var(--sp-8) var(--sp-5) calc(34px + var(--sp-4)); font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt); max-width: 66ch; }
+/* the panel opens by row height; the copy inside also rises into place, which
+   is what stops a long answer from looking like it was simply switched on */
+.has-js .faq__inner p { opacity: 0; transform: translateY(10px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.has-js .faq__item.is-open .faq__inner p { opacity: 1; transform: none; transition-delay: .1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* the accent still marks the open question, it just does not travel */
+  .faq__item::before { transition: none; }
+  .has-js .faq__inner p { opacity: 1; transform: none; }
+}
 
 /* ==========================================================================
    FORM
@@ -1599,60 +1634,60 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <h2 class="h2" id="faq-t">Frequently Asked Questions About Children&rsquo;s Mental Health Services</h2>
         </div>
 
-        <div class="faq" id="faq" style="max-width:920px;margin-inline:auto;width:100%">
-          <div class="faq__item is-open">
+        <div class="faq" id="faq">
+          <div class="faq__item is-open" data-reveal>
             <button type="button" class="faq__q" aria-expanded="true" aria-controls="a1" id="q1">How do I know if my child needs therapy? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a1" role="region" aria-labelledby="q1"><div class="faq__inner"><p>Consider requesting a mental health assessment when emotional or behavioral concerns continue for several weeks, cause significant distress, or interfere with your child&rsquo;s life at home, at school, or with friends. Seek help sooner when symptoms are severe, rapidly worsening, or unsafe.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a2" id="q2">What does mental health therapy help children with? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a2" role="region" aria-labelledby="q2"><div class="faq__inner"><p>Mental health therapy can help children experiencing anxiety, depression, trauma, grief, anger, behavioral concerns, family changes, school difficulties, social challenges, and problems managing emotions.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a3" id="q3">What happens during a child&rsquo;s mental health assessment? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a3" role="region" aria-labelledby="q3"><div class="faq__inner"><p>A clinician gathers information about the child&rsquo;s symptoms, behavior, development, health, family circumstances, school experiences, relationships, strengths, and support system. The assessment helps determine which services and treatment approaches may fit the child.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a4" id="q4">What if my child does not want to talk to a therapist? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a4" role="region" aria-labelledby="q4"><div class="faq__inner"><p>Children are not expected to communicate like adults. A child therapist may use drawing, games, storytelling, play, structured activities, and other age-appropriate approaches to help the child participate and express thoughts or emotions.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a5" id="q5">What is play therapy? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a5" role="region" aria-labelledby="q5"><div class="faq__inner"><p>Play therapy uses play and developmentally appropriate activities to help children communicate, express emotions, process experiences, and develop healthier coping and problem-solving skills.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a6" id="q6">What is child-centered play therapy? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a6" role="region" aria-labelledby="q6"><div class="faq__inner"><p>Child-centered play therapy gives the child more freedom to lead therapeutic play while the therapist provides a safe, structured, and supportive environment. The therapist uses the child&rsquo;s play, choices, and responses to better understand concerns and support emotional development.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a7" id="q7">Is telehealth therapy effective for children? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a7" role="region" aria-labelledby="q7"><div class="faq__inner"><p>Telehealth can work well for many children when the treatment approach, technology, home environment, and level of caregiver involvement are appropriate. It may not be suitable for every child or clinical situation.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a8" id="q8">Will parents participate in their child&rsquo;s therapy? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a8" role="region" aria-labelledby="q8"><div class="faq__inner"><p>Parents and caregivers are often involved, particularly with younger children. Participation may include sharing information, helping establish goals, joining selected sessions, learning strategies to use at home, and supporting skills between appointments.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a9" id="q9">How long does child therapy usually take? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a9" role="region" aria-labelledby="q9"><div class="faq__inner"><p>There is no standard timeline. Treatment length depends on the child&rsquo;s symptoms, treatment goals, attendance, family participation, response to therapy, and whether circumstances change during care.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a10" id="q10">What is the difference between a child therapist, counselor, and psychologist? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a10" role="region" aria-labelledby="q10"><div class="faq__inner"><p>Therapists and counselors generally provide mental health counseling and psychotherapy. Psychologists may also provide therapy but often have additional training in psychological testing and diagnosis. Qualifications, licenses, and services vary by provider.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a11" id="q11">Does insurance cover children&rsquo;s mental health services? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a11" role="region" aria-labelledby="q11"><div class="faq__inner"><p>Many insurance plans cover assessments, therapy, and other behavioral health services, but coverage varies by plan, location, provider, and type of care. Chrysalis Health accepts a range of commercial, Medicaid, and Healthy Kids plans and offers income-based rates for qualifying self-pay clients.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a12" id="q12">Does Chrysalis Health provide psychiatric services for children? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a12" role="region" aria-labelledby="q12"><div class="faq__inner"><p>Psychiatric evaluations and medication management may be available when clinically appropriate. Availability depends on the child&rsquo;s age, location, insurance coverage, provider availability, and treatment recommendations.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a13" id="q13">Where does Chrysalis Health provide children&rsquo;s mental health services? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a13" role="region" aria-labelledby="q13"><div class="faq__inner"><p>Chrysalis Health offers programs in Florida, Ohio, and Texas. Telehealth and other treatment settings may be available depending on the child&rsquo;s location, age, clinical needs, program eligibility, insurance coverage, and provider availability.</p></div></div>
           </div>
-          <div class="faq__item">
+          <div class="faq__item" data-reveal>
             <button type="button" class="faq__q" aria-expanded="false" aria-controls="a14" id="q14">What should I do if my child is in immediate danger? <span class="faq__icon" aria-hidden="true"></span></button>
             <div class="faq__panel" id="a14" role="region" aria-labelledby="q14"><div class="faq__inner"><p>Call 911 or go to the nearest emergency department if there is immediate danger. In the United States, call or text 988 for immediate crisis support involving suicidal thoughts, self-harm risk, or another urgent mental health concern.</p></div></div>
           </div>
