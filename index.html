@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" media="(min-width: 921px)" fetchpriority="high"
       imagesrcset="https://images.pexels.com/photos/9506920/pexels-photo-9506920.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w,
                      https://images.pexels.com/photos/9506920/pexels-photo-9506920.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w,
@@ -84,6 +84,7 @@ img { max-width: 100%; display: block; }
   --fs-phone:   21px;
   --fs-tag:     10px;
   /* headings sit at 500, not 700 — this is what makes the reference feel airy */
+  --fw-light: 300;
   --fw-reg: 400; --fw-mid: 500; --fw-med: 600; --fw-bold: 700;
 
   --sp-05: 2px; --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
@@ -459,7 +460,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   position: relative; margin: 0; padding: var(--sp-6) var(--sp-6) var(--sp-6) var(--sp-7);
   gap: var(--sp-4); align-items: flex-start;
   background: var(--tint); border-radius: var(--r-sm);
-  font-family: var(--head); font-weight: var(--fw-reg);
+  font-family: var(--head); font-weight: var(--fw-light);
   /* one pixel down across the whole range, so the vw term moves with the
      bounds rather than only the ends coming in */
   font-size: clamp(16px, 1.28vw, 19px); line-height: 1.5;
