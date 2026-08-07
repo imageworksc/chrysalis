@@ -436,6 +436,45 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
 .callout { display: flex; gap: var(--sp-3); align-items: flex-start; font-size: var(--fs-sm); line-height: 1.55; color: var(--ink); }
 .callout .ico { color: var(--green-cta); margin-top: 3px; }
+
+/* ==========================================================================
+   PARENTS — the heading runs the full width, the copy and the statement sit
+   side by side beneath it, and the involvement list drops into two newspaper
+   columns. Neither shape repeats the grid of tiles in the section before it.
+   ========================================================================== */
+.par__copy { display: flex; flex-direction: column; justify-content: center; }
+.par__copy p + p { margin-top: var(--sp-4); }
+/* the statement is the point of the section, so it is set as a quote rather
+   than as a trailing paragraph under a rule */
+.par__quote { display: flex; align-items: center; }
+.par__quote .callout {
+  position: relative; margin: 0; padding: var(--sp-6) var(--sp-6) var(--sp-6) var(--sp-7);
+  gap: var(--sp-4); align-items: flex-start;
+  background: var(--tint); border-radius: var(--r-sm);
+  font-family: var(--head); font-weight: var(--fw-mid);
+  font-size: clamp(17px, 1.35vw, 20px); line-height: 1.45;
+}
+/* the accent draws down the quote as it arrives; full height without JS */
+.par__quote .callout::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  border-radius: 3px 0 0 3px; background: var(--green-cta); transform-origin: 50% 0;
+}
+.has-js .par__quote .callout::before { transform: scaleY(0); transition: transform .7s var(--ease) .25s; }
+.has-js .par__quote.is-in .callout::before { transform: scaleY(1); }
+.par__quote .ico { margin-top: 2px; }
+.par__body { margin-top: clamp(36px, 4vw, 64px); }
+/* two newspaper columns: the rows keep their hairline and stay one per line */
+.par__list { columns: 2; column-gap: clamp(28px, 3.4vw, 64px); }
+.par__list li { break-inside: avoid; }
+.par__list li:nth-child(4) { border-bottom: none; padding-bottom: 0; }
+@media (max-width: 920px) {
+  .par__list { columns: 1; }
+  .par__list li:nth-child(4) { border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-4); }
+  .par__quote { margin-top: var(--sp-6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-js .par__quote .callout::before { transition: none; }
+}
 .note { display: flex; gap: var(--sp-3); align-items: flex-start; margin-top: var(--sp-5); font-size: var(--fs-xs); line-height: 1.5; color: var(--muted); }
 .note .ico { margin-top: 3px; }
 
@@ -1559,25 +1598,27 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     </section>
 
     <!-- ===== PARENTS ===== -->
-    <section class="sec g" aria-labelledby="par-t">
-      <div class="c-7 stack" data-reveal>
-        <div class="shead">
-          <h2 class="h2" id="par-t">Parents and Caregivers Are Part of Treatment</h2>
-        </div>
-        <p class="lead" style="margin-top:var(--sp-5)">Parents and caregivers often play an important role in therapy for children and teens. You can provide information your child may not recognize or communicate, help establish treatment goals, reinforce new skills between sessions, and help the therapist understand what is happening outside therapy.</p>
-        <p>Family involvement can be especially important for younger children and may help strengthen communication, relationships, and overall functioning.</p>
-        <p class="callout" style="margin-top:var(--sp-5);padding-top:var(--sp-5);border-top:1px solid var(--rule)"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
+    <section class="sec g par" aria-labelledby="par-t">
+      <div class="c-12" data-reveal>
+        <h2 class="h2" id="par-t">Parents and Caregivers Are Part of Treatment</h2>
       </div>
-      <div class="c-5">
-        <p class="listhead" id="par-l"><svg class="ico" aria-hidden="true"><use href="#i-checklist"/></svg><span>Parent involvement may include:</span></p>
-        <ul class="ilist" aria-labelledby="par-l">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Sharing developmental, medical, and behavioral history</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-target"/></svg><span>Helping identify concerns and treatment goals</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><span>Participating in selected sessions</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Learning strategies to use at home</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-repeat"/></svg><span>Supporting skills practiced between appointments</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg><span>Reporting changes in mood, behavior, sleep, or school performance</span></li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-home-heart"/></svg><span>Participating in family therapy when appropriate</span></li>
+      <div class="c-6 par__copy">
+        <p class="lead" data-reveal style="--d:.08s">Parents and caregivers often play an important role in therapy for children and teens. You can provide information your child may not recognize or communicate, help establish treatment goals, reinforce new skills between sessions, and help the therapist understand what is happening outside therapy.</p>
+        <p data-reveal style="--d:.16s">Family involvement can be especially important for younger children and may help strengthen communication, relationships, and overall functioning.</p>
+      </div>
+      <div class="c-6 par__quote" data-reveal style="--d:.12s">
+        <p class="callout"><svg class="ico" aria-hidden="true"><use href="#i-hand-heart"/></svg><span>The goal is never to blame the child or caregiver. It is to understand the complete situation and build a consistent support system around your child.</span></p>
+      </div>
+      <div class="c-12 par__body">
+        <p class="listhead" id="par-l" data-reveal><span>Parent involvement may include:</span></p>
+        <ul class="ilist par__list" aria-labelledby="par-l">
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Sharing developmental, medical, and behavioral history</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-target"/></svg><span>Helping identify concerns and treatment goals</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><span>Participating in selected sessions</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Learning strategies to use at home</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-repeat"/></svg><span>Supporting skills practiced between appointments</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg><span>Reporting changes in mood, behavior, sleep, or school performance</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-home-heart"/></svg><span>Participating in family therapy when appropriate</span></li>
         </ul>
       </div>
     </section>
@@ -1587,7 +1628,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       <div class="g">
         <div class="c-4 steps__head" data-reveal>
           <h2 class="h2" id="steps-t">What to Expect When Starting Therapy</h2>
-          <p class="steps__note"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-headset"/></svg><span>A specialist generally responds within 48 hours after an online request is submitted. Call directly if you need a faster response.</span></p>
+          <p class="steps__note"><span>A specialist generally responds within 48 hours after an online request is submitted. Call directly if you need a faster response.</span></p>
         </div>
 
         <div class="c-8 steps__body">
