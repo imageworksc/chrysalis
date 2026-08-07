@@ -593,7 +593,21 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .tele :focus-visible { outline-color: var(--white); }
 
 .tele__points { margin-top: clamp(40px, 4.5vw, 72px); }
-.tele__point { padding-top: var(--sp-5); border-top: 1px solid rgba(255,255,255,0.24); }
+/* Each point sits on a card. The fill darkens rather than lightens: a white
+   panel at any useful opacity lifts the ground under the copy and drops it
+   under 4.5:1, while ink at 20% takes the worst case from 5.06:1 to 5.96:1. */
+.tele__point {
+  padding: var(--sp-5);
+  background: rgba(var(--rgb-ink), 0.20);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--r-sm);
+  transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.tele__point:hover {
+  background: rgba(var(--rgb-ink), 0.30);
+  border-color: rgba(255,255,255,0.32);
+  transform: translateY(-3px);
+}
 .tele__point .badge { margin-bottom: var(--sp-4); }
 .tele__point p { margin: 0; font-size: var(--fs-sm); line-height: 1.7; }
 
@@ -1610,7 +1624,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           </div>
           <div class="c-4 tele__point">
             <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-question"/></svg></span>
-            <p>Telehealth can be especially helpful for families facing transportation challenges, mobility limitations, demanding schedules, or limited access to nearby mental health providers. It is not the best fit for every child or clinical situation. Appropriateness depends on the child&rsquo;s needs, safety, ability to participate, technology access, home environment, insurance coverage, and treatment recommendations.</p>
+            <p>It helps most where transport, mobility, schedules, or a shortage of nearby providers get in the way. It is not right for every child or situation: suitability depends on need, safety, ability to take part, technology, home setting, insurance, and clinical advice.</p>
           </div>
         </div>
       </div>
