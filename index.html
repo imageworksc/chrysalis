@@ -674,7 +674,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   animation: marquee var(--dur, 70s) linear infinite;
   will-change: transform;
 }
-.marquee--rev .marquee__track { animation-direction: reverse; }
 .marquee:hover .marquee__track,
 .marquee:focus-within .marquee__track,
 .marquee.is-paused .marquee__track { animation-play-state: paused; }
@@ -717,13 +716,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   font-size: var(--fs-sm); line-height: 1.6; color: var(--card-txt);
 }
 
-/* short pill that rides the marquee */
-.mpill {
-  flex: 0 0 auto; display: flex; align-items: center; gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-5) var(--sp-3) var(--sp-3);
-  background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-pill);
-  font-size: var(--fs-sm); line-height: 1.4; color: var(--card-txt); white-space: nowrap;
-}
 
 /* ==========================================================================
    REVEAL — one entrance, applied to blocks as they arrive
@@ -806,32 +798,47 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .treat p { color: rgba(255,255,255,0.92); }
 /* clearance from the photograph, and a measure the copy can be read at: the
    seven columns run to 80 characters a line, which is past comfortable */
-/* No photograph here. The heading runs wide and the two paragraphs drop into
-   a pair of columns beneath it, which is the one arrangement on the page that
-   reads as a spread rather than as a heading beside a body. */
-.treat__title { max-width: 24ch; }
-.treat__cols {
-  margin-top: clamp(28px, 3vw, 48px);
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 56px);
+/* No photograph here. The heading takes the left, the copy the right with a
+   clear column between, and the nine treatment types sit beneath as a fixed
+   grid. They used to travel past in a marquee, which put the substance of the
+   section behind a control the reader had to catch. */
+.treat__head {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  column-gap: clamp(32px, 5vw, 104px); align-items: start;
 }
-/* a short marker over each column, not a rule across the band: it measures
-   40px, so it cannot be mistaken for the boundary a full width line means */
-.treat__cols p { position: relative; margin: 0; padding-top: var(--sp-5); }
-.treat__cols p::before {
-  content: ""; position: absolute; top: 0; left: 0;
-  width: 40px; height: 2px; background: rgba(255,255,255,0.35);
+.treat__title { margin: 0; }
+.treat__copy p { margin: 0; }
+.treat__copy p + p { margin-top: var(--sp-5); }
+.treat__label { margin: clamp(40px, 4.4vw, 72px) 0 var(--sp-5); color: var(--white); }
+/* a light panel: --ink is dark enough that lifting the ground 6% still leaves
+   white at 8.15:1 and the copy at 6.75:1. The same move failed on the
+   telehealth banner, where the ground starts far lighter. */
+.treat__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--sp-4);
 }
-/* no rule above the list: the band already holds the section together */
-.treat__foot { margin-top: clamp(40px, 4.4vw, 76px); }
-.treat .listhead { margin-bottom: var(--sp-5); }
-
-.treat .mpill { transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-.treat .mpill:hover { transform: translateY(-3px); box-shadow: var(--e-2); }
-
+.treat__grid li {
+  display: grid; grid-template-columns: 44px minmax(0,1fr); gap: var(--sp-4);
+  align-items: center; padding: var(--sp-5);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14); border-radius: var(--r-sm);
+  font-size: var(--fs-sm); line-height: 1.45; color: rgba(255,255,255,0.92);
+  transition: background .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.treat__grid li:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.30); transform: translateY(-3px); }
+.treat__grid .ico {
+  box-sizing: border-box; width: 44px; height: 44px; padding: 10px;
+  border-radius: 10px; background: rgba(255,255,255,0.12); color: var(--white);
+  transition: background .25s var(--ease);
+}
+.treat__grid li:hover .ico { background: rgba(255,255,255,0.24); }
+.treat__grid li:nth-child(3n+2) { --d: .06s; }
+.treat__grid li:nth-child(3n+3) { --d: .12s; }
+@media (max-width: 1100px) { .treat__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 920px) {
-  .treat__title { max-width: none; }
-  .treat__cols { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .treat__head { grid-template-columns: 1fr; }
+  .treat__copy { margin-top: var(--sp-5); }
+  .treat__grid { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================
@@ -1550,45 +1557,26 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     <!-- ===== THERAPY FOR CHILDREN AND TEENS ===== -->
     <section class="sec treat" aria-labelledby="treat-t">
       <div class="treat__in">
-        <h2 class="h2 treat__title" id="treat-t" data-reveal>Mental Health Therapy for Children and Teens</h2>
-        <div class="treat__cols">
-          <p data-reveal style="--d:.12s">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
-          <p data-reveal style="--d:.2s">It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
+        <div class="treat__head">
+          <h2 class="h2 treat__title" id="treat-t" data-reveal>Mental Health Therapy for Children and Teens</h2>
+          <div class="treat__copy">
+            <p data-reveal style="--d:.12s">Treatment begins with an assessment to understand what your child is experiencing, how long the concerns have been present, and how they affect life at home, at school, and in relationships.</p>
+            <p data-reveal style="--d:.18s">It will be based on your child&rsquo;s developmental level, communication style, symptoms, strengths, and goals&mdash;not a one-size-fits-all program. Therapy may use conversation, structured activities, games, drawing, coping exercises, caregiver participation, or a combination of approaches.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="treat__in treat__foot">
-        <p class="listhead" id="treat-l"><span>Depending on the assessment and treatment plan, therapy may include:</span></p>
-        <div data-reveal style="--d:.12s">
-        <div class="marquee marquee--rev" id="types" style="--dur:56s">
-          <ul class="marquee__track" aria-labelledby="treat-l">
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-person-chat"/></svg></span>Individual mental health therapy</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-chat"/></svg></span>Child counseling</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-blocks"/></svg></span>Play therapy and play-based techniques</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-brain"/></svg></span>Cognitive behavioral therapy</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-checklist"/></svg></span>Behavior-focused therapy</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-shield-heart"/></svg></span>Trauma-informed therapy</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-family"/></svg></span>Family therapy</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-bulb"/></svg></span>Parent and caregiver guidance</li>
-            <li class="mpill"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-stethoscope"/></svg></span>Psychiatric evaluation and medication management when appropriate</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-person-chat"/></svg></span>Individual mental health therapy</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-chat"/></svg></span>Child counseling</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-blocks"/></svg></span>Play therapy and play-based techniques</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-brain"/></svg></span>Cognitive behavioral therapy</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-checklist"/></svg></span>Behavior-focused therapy</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-shield-heart"/></svg></span>Trauma-informed therapy</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-family"/></svg></span>Family therapy</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-bulb"/></svg></span>Parent and caregiver guidance</li>
-            <li class="mpill" aria-hidden="true"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-stethoscope"/></svg></span>Psychiatric evaluation and medication management when appropriate</li>
-          </ul>
-        </div>
-        <div class="marquee__bar" style="margin-top:var(--sp-4)">
-          <button type="button" class="marquee__toggle" data-marquee="types" aria-pressed="false" aria-label="Pause the moving list">
-            <svg class="ico ico--pause" aria-hidden="true"><use href="#i-pause"/></svg>
-            <svg class="ico ico--play" aria-hidden="true"><use href="#i-play"/></svg>
-          </button>
-        </div>
-      </div>
+        <p class="listhead treat__label" id="treat-l" data-reveal>Depending on the assessment and treatment plan, therapy may include:</p>
+        <ul class="treat__grid" aria-labelledby="treat-l">
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-person-chat"/></svg><span>Individual mental health therapy</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg><span>Child counseling</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-blocks"/></svg><span>Play therapy and play-based techniques</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-brain"/></svg><span>Cognitive behavioral therapy</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-checklist"/></svg><span>Behavior-focused therapy</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-shield-heart"/></svg><span>Trauma-informed therapy</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-family"/></svg><span>Family therapy</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Parent and caregiver guidance</span></li>
+          <li data-reveal><svg class="ico" aria-hidden="true"><use href="#i-stethoscope"/></svg><span>Psychiatric evaluation and medication management when appropriate</span></li>
+        </ul>
       </div>
     </section>
 
