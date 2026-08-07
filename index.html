@@ -424,7 +424,12 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .play__grid li:nth-child(2n) { --d: .08s; }
 /* a plain gap above each block. The rule and band-sized space these used to
    carry is what this page uses to mean a section has ended */
-.play__list { margin-top: clamp(36px, 4vw, 64px); }
+.play__list { margin-top: var(--sp-6); }
+/* the list sits inside the copy column now, so each card is 345px rather than
+   604px. Trimming the inline padding buys back sixteen pixels of text, which
+   takes the rows that wrap from three of seven down to two. */
+.play__grid .signs__item { padding-inline: var(--sp-4); }
+.play__list .listhead { font-size: var(--fs-h3); }
 .play__qa { margin-top: clamp(36px, 4vw, 64px); }
 .why__body .note { margin-top: var(--sp-6); }
 @media (max-width: 1100px) { .why__grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
@@ -1564,6 +1569,39 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         <h3 class="h3" style="margin-top:var(--sp-5);margin-bottom:var(--sp-3)">What Is Play Therapy?</h3>
         <p>Play therapy uses play and developmentally appropriate activities to help children communicate, express emotions, process experiences, and develop healthier coping and problem-solving skills.</p>
         <p>Children&mdash;especially younger children&mdash;may not be able to explain difficult feelings through conversation alone. Play gives them another way to communicate what they are feeling, remembering, fearing, or struggling to understand.</p>
+        <div class="play__list">
+          <p class="listhead" id="play-l" data-reveal><span>Play therapy and play-based techniques may include:</span></p>
+          <ul class="signs__list play__grid" aria-labelledby="play-l">
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span>
+              <span class="signs__txt">Drawing and creative activities</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-toy"/></svg></span>
+              <span class="signs__txt">Toys, dolls, figures, or puppets</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span>
+              <span class="signs__txt">Storytelling and role-playing</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-dice"/></svg></span>
+              <span class="signs__txt">Therapeutic games</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-emotion"/></svg></span>
+              <span class="signs__txt">Emotion-identification exercises</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
+              <span class="signs__txt">Calming and coping activities</span>
+            </li>
+            <li class="signs__item" data-reveal>
+              <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-puzzle"/></svg></span>
+              <span class="signs__txt">Structured problem-solving</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="c-5 figure figure--sq" data-reveal>
         <img src="https://images.pexels.com/photos/3661335/pexels-photo-3661335.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1000"
@@ -1573,39 +1611,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
              alt="A child building with wooden blocks and toy figures" loading="lazy" decoding="async">
       </div>
 
-      <div class="c-12 play__list">
-        <p class="listhead" id="play-l" data-reveal><span>Play therapy and play-based techniques may include:</span></p>
-        <ul class="signs__list play__grid" aria-labelledby="play-l">
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span>
-            <span class="signs__txt">Drawing and creative activities</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-toy"/></svg></span>
-            <span class="signs__txt">Toys, dolls, figures, or puppets</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span>
-            <span class="signs__txt">Storytelling and role-playing</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-dice"/></svg></span>
-            <span class="signs__txt">Therapeutic games</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-emotion"/></svg></span>
-            <span class="signs__txt">Emotion-identification exercises</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-leaf"/></svg></span>
-            <span class="signs__txt">Calming and coping activities</span>
-          </li>
-          <li class="signs__item" data-reveal>
-            <span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-puzzle"/></svg></span>
-            <span class="signs__txt">Structured problem-solving</span>
-          </li>
-        </ul>
-      </div>
       <div class="c-12 g play__qa" data-reveal style="align-content:start">
         <div class="c-12 qa__item">
           <h3 class="h3"><span class="badge badge--sm badge--blue" aria-hidden="true"><svg class="ico ico--sm"><use href="#i-child"/></svg></span>What Is Child-Centered Play Therapy?</h3>
