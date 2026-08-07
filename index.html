@@ -471,13 +471,15 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   border: 1px solid var(--rule); border-radius: var(--r);
   box-shadow: var(--e-1);
 }
-/* two newspaper columns: the rows keep their hairline and stay one per line */
+/* two newspaper columns: the rows keep their hairline and stay one per line.
+   Every row keeps its rule, including the last. Which item ends the first
+   column depends on how the browser balances height, and one of these rows
+   runs to two lines, so singling one out by position gets it wrong. */
 .par__list { columns: 2; column-gap: clamp(28px, 3.4vw, 64px); }
 .par__list li { break-inside: avoid; }
-.par__list li:nth-child(4) { border-bottom: none; padding-bottom: 0; }
+.par__list li:last-child { border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-4); }
 @media (max-width: 920px) {
   .par__list { columns: 1; }
-  .par__list li:nth-child(4) { border-bottom: 1px solid var(--rule); padding-bottom: var(--sp-4); }
   .par__quote { margin-top: var(--sp-6); }
 }
 @media (prefers-reduced-motion: reduce) {
