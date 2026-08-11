@@ -1022,24 +1022,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 
 /* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.ft { background: var(--ink-2); color: rgba(255,255,255,0.72); margin-top: var(--band); padding: clamp(40px,4vw,72px) 0 var(--sp-6); }
-.ft__in { max-width: var(--w-page); margin: 0 auto; padding-inline: var(--gutter); }
-.ft__logo { display: inline-flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-4); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-h3); color: var(--white); text-decoration: none; }
-.ft__logo .ico { color: var(--green); }
-.ft__title { font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: var(--sp-4); }
-.ft ul { list-style: none; margin: 0; padding: 0; }
-.ft li { margin-bottom: var(--sp-2); }
-.ft a { color: rgba(255,255,255,0.78); text-decoration: none; }
-.ft a:hover { color: var(--white); }
-.ft__phone { display: inline-flex; align-items: center; gap: var(--sp-2); font-family: var(--head); font-weight: var(--fw-med); font-size: var(--fs-phone); color: var(--white); margin-bottom: var(--sp-3); }
-.ft__crisis { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-4); background: rgba(255,255,255,0.05); border-left: 3px solid var(--green); border-radius: var(--r-sm); font-size: var(--fs-sm); line-height: 1.5; }
-.ft__crisis .ico { color: var(--green); margin-top: 3px; }
-.ft__crisis strong { color: var(--white); }
-.ft__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-2) var(--sp-5); margin-top: var(--sp-7); padding-top: var(--sp-5); border-top: 1px solid rgba(255,255,255,0.14); font-size: var(--fs-xs); color: rgba(255,255,255,0.55); }
-
-/* ==========================================================================
    STICKY MOBILE BAR
    ========================================================================== */
 .sticky-cta {
@@ -1084,7 +1066,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .figure--tall, .figure--sq { aspect-ratio: 16/10; }
 
   .sticky-cta { display: flex; }
-  .ft { padding-bottom: calc(var(--sp-6) + 72px); }
 }
 @media (max-width: 600px) {
   .c-3 { grid-column: span 12; }
@@ -1092,7 +1073,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .btn { width: 100%; }
   .hero__note { position: static; margin-top: var(--sp-3); background: var(--paper); }
   .faq__inner p { padding-right: 0; }
-  .ft__bar { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -2339,37 +2319,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
   </main>
 
-<!-- ===== FOOTER ===== -->
-  <footer class="ft">
-  <div class="ft__in">
-    <div class="g">
-      <div class="c-4">
-        <a href="#" class="ft__logo"><svg class="ico" aria-hidden="true"><use href="#i-clinic"/></svg>Chrysalis Health</a>
-        <a href="tel:18885870335" class="ft__phone"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>(888) 587-0335</a>
-        <p>Behavioral healthcare for children, teens, adults, and families since 1995. Programs available in Florida, Ohio, and Texas.</p>
-      </div>
-      <div class="c-3">
-        <p class="ft__title">Quick links</p>
-        <ul>
-          <li><a href="#request-form">Request an assessment</a></li>
-          <li><a href="#telehealth">Telehealth</a></li>
-          <li><a href="#insurance">Insurance &amp; payment</a></li>
-          <li><a href="#locations">Services in your area</a></li>
-          <li><a href="https://ch-option2.netlify.app/">Pay a bill</a></li>
-          <li><a href="https://ch-option2.netlify.app/">Required notices</a></li>
-        </ul>
-      </div>
-      <div class="c-5">
-        <p class="ft__title">In a crisis</p>
-        <p class="ft__crisis"><svg class="ico" aria-hidden="true"><use href="#i-shield-heart"/></svg><span>If your child is in immediate danger, call <strong>911</strong> or go to the nearest emergency department. For urgent mental health support in the United States, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), available 24/7.</span></p>
-      </div>
-    </div>
-    <div class="ft__bar">
-      <span>&copy; 1995&ndash;2026 Chrysalis Health. All rights reserved.</span>
-      <span>This page is informational and is not a substitute for professional medical advice, diagnosis, or treatment.</span>
-    </div>
-  </div>
-  </footer>
+
 
 
 
