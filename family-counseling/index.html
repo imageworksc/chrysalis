@@ -1518,7 +1518,17 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
     .ch-lp-header-schedule-link { font-size: 14px; white-space: normal; }
     .ch-lp-header-announce a { font-size: 14px; }
   }
-  </style>
+  
+/* The anger page puts a paragraph in each cell rather than a one-line label,
+   so those cards go two-up and the glyph sits at the top of the text block.
+   The stagger is re-keyed to pairs; the base rule keys it to threes. */
+.treat__grid--wide { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.treat__grid--wide li { align-items: start; }
+.treat__grid--wide li:nth-child(3n+2), .treat__grid--wide li:nth-child(3n+3) { --d: 0s; }
+.treat__grid--wide li:nth-child(2n) { --d: .06s; }
+.treat__grid--wide strong { display: block; margin-bottom: var(--sp-2); font-family: var(--head); font-weight: var(--fw-med); color: var(--white); }
+@media (max-width: 920px) { .treat__grid--wide { grid-template-columns: 1fr; } }
+</style>
 
   <header class="ch-lp-header">
     <div class="ch-lp-header-container ch-lp-header-top">
@@ -1898,7 +1908,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <div class="g tele__points">
             <div class="c-4 tele__point">
               <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-home-heart"/></svg></span>
-              <p>Sessions may take place in the home, at school, or in the community, which can suit families who find it difficult to bring everyone to the same place at the same time.</p>
+              <p>Sessions may take place in the home, at school, in the community, at an office, or through secure telehealth sessions.</p>
             </div>
             <div class="c-4 tele__point">
               <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-video"/></svg></span>
@@ -1906,7 +1916,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
             </div>
             <div class="c-4 tele__point">
               <span class="badge" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-question"/></svg></span>
-              <p>Availability should be confirmed when services are requested, since it depends on location, program availability, eligibility, and the treatment plan.</p>
+              <p>Availability should be confirmed when services are requested.</p>
             </div>
           </div>
         </div>
