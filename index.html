@@ -1532,7 +1532,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 /* The anger page puts a paragraph in each cell rather than a one-line label,
    so those cards go two-up and the glyph sits at the top of the text block.
    The stagger is re-keyed to pairs; the base rule keys it to threes. */
-.treat__grid--wide { grid-template-columns: repeat(2, minmax(0,1fr)); }
+/* No .treat__label sits between the head and the grid on this page, and that
+   label is what carries the gap everywhere else — so the grid takes the same
+   measure directly, rather than a new number invented for one section. */
+.treat__grid--wide { grid-template-columns: repeat(2, minmax(0,1fr)); margin-top: clamp(40px, 4.4vw, 72px); }
 .treat__grid--wide li { align-items: start; }
 .treat__grid--wide li:nth-child(3n+2), .treat__grid--wide li:nth-child(3n+3) { --d: 0s; }
 .treat__grid--wide li:nth-child(2n) { --d: .06s; }
