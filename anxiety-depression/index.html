@@ -159,6 +159,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--body); }
 /* a reading measure for body copy that would otherwise run the full column */
 .measure { max-width: 56ch; }
+/* even out a short block that would otherwise end on a stub of a line.
+   Where the browser does not support it, wrapping is unchanged. */
+.balance { text-wrap: balance; }
 /* clearance between a copy column and whatever sits beside it. Dropped once
    the columns stack, where there is nothing to the right to clear. */
 .clear-right { padding-right: clamp(32px, 5vw, 88px); }
@@ -1942,7 +1945,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
           <div class="shead">
             <h2 class="h2" id="ad-t">Anxiety and Depression Therapy for Adults</h2>
           </div>
-          <p class="measure" style="margin-top:var(--sp-5)">Therapy provides a private setting to look at what is happening without judgment and develop practical ways to move forward.</p>
+          <p class="measure balance" style="margin-top:var(--sp-5)">Therapy provides a private setting to look at what is happening without judgment and develop practical ways to move forward.</p>
         </div>
         <div class="c-7 play__list" data-reveal style="--d:.12s">
           <p class="listhead" id="ad-l"><span>Adults may seek therapy when anxiety or depression begins affecting:</span></p>

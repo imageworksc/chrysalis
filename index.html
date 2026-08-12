@@ -161,6 +161,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--body); }
 /* a reading measure for body copy that would otherwise run the full column */
 .measure { max-width: 56ch; }
+/* even out a short block that would otherwise end on a stub of a line.
+   Where the browser does not support it, wrapping is unchanged. */
+.balance { text-wrap: balance; }
 /* clearance between a copy column and whatever sits beside it. Dropped once
    the columns stack, where there is nothing to the right to clear. */
 .clear-right { padding-right: clamp(32px, 5vw, 88px); }
