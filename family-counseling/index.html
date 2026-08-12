@@ -445,6 +445,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    each node latches once passed. The line reports progress, it does not
    decorate: it is the only thing on the page that shows how far in you are.
    ========================================================================== */
+/* the heading column is shorter than the rail beside it, so it centres
+   against it. Safe here because this block has no aspect-ratio: a stretched
+   grid item with one grows its width out of its column. */
+.steps__head { align-self: center; }
 .steps__head .h2 { margin-bottom: var(--sp-6); }
 /* margin, not padding: the rail is absolutely positioned against this box,
    so padding would move the rows and leave the rail behind */
