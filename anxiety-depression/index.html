@@ -375,6 +375,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .has-js .par__quote.is-in .callout::before { transform: scaleY(1); }
 /* the involvement list sits on a card. White with a hairline rather than the
    tint the quote takes, so the two blocks in this section stay distinct */
+/* a block that reads as a continuation of the section above it: no rule
+   between them, and the card does not add its own margin to the padding */
+.sec.tight { border-top: none; padding-top: clamp(40px, 4.5vw, 72px); }
+.sec.tight .par__body { margin-top: 0; }
 .par__body {
   margin-top: clamp(36px, 4vw, 64px);
   padding: clamp(24px, 2.6vw, 40px);
@@ -2058,7 +2062,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 
 
       <!-- ===== WHEN IMMEDIATE HELP IS NEEDED ===== -->
-      <section class="sec g" aria-labelledby="crisis-t">
+      <section class="sec g tight" aria-labelledby="crisis-t">
         <div class="c-12 par__body">
           <h2 class="h2" id="crisis-t" data-reveal>When Immediate Help Is Needed</h2>
           <p class="lead measure" data-reveal style="--d:.08s;margin-top:var(--sp-4)">The standard request process is not intended for an immediate crisis.</p>
