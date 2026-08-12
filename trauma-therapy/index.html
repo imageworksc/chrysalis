@@ -615,16 +615,23 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    travelling like the concern cards. The second panel is hidden only under
    .has-js, so with no script both lists are simply on the page.
    ========================================================================== */
-/* a segmented control rather than two headings side by side: the track reads
-   as a switch before it is touched, and the filled half says which side you
-   are on. the headings survive inside it for the document outline. */
-.sw__ctl { display: inline-flex; flex-wrap: wrap; gap: 5px; padding: 5px; margin-bottom: var(--sp-6); background: var(--blue-lt); border: 1px solid var(--rule-dk); border-radius: var(--r-pill); }
-.sw__ctl h2 { margin: 0; display: flex; }
-.sw__opt { flex: 1 1 auto; padding: 13px clamp(20px, 2.4vw, 32px); border: 0; border-radius: var(--r-pill); background: transparent; cursor: pointer; text-align: center; color: var(--ink); font-family: var(--head); font-weight: var(--fw-med); font-size: 17px; line-height: 1.25; transition: background-color .28s var(--ease), color .28s var(--ease), box-shadow .28s var(--ease); }
-.sw__opt:hover { background: rgba(var(--rgb-blue), 0.18); }
-.sw__opt[aria-pressed="true"], .sw__opt[aria-pressed="true"]:hover { background: var(--blue-deep); color: #fff; box-shadow: var(--e-2); }
-@media (max-width: 620px) { .sw__ctl { display: flex; flex-direction: column; align-items: stretch; border-radius: 26px; } .sw__ctl h2 { width: 100%; } }
-@media (prefers-reduced-motion: reduce) { .sw__opt { transition: none; } }
+/* Segmented control. Two long headings inside pills is what looked wrong, so
+   the headings went back to being headings inside each panel and the control
+   keeps one short word per side.
+
+   The white knob is a real element rather than a background swap, and it sits
+   after both buttons in the DOM so a plain sibling combinator can slide it —
+   no :has(), no script. Equal-width buttons are what make translateX(100%)
+   land exactly on the second one. */
+.sw__ctl { position: relative; display: inline-flex; padding: 5px; margin-bottom: var(--sp-6); background: var(--blue-lt); border-radius: var(--r-pill); }
+.sw__opt { position: relative; z-index: 1; flex: 1 1 0; min-width: 138px; padding: 12px 26px; border: 0; border-radius: var(--r-pill); background: transparent; cursor: pointer; color: var(--blue-deep); font-family: var(--head); font-weight: var(--fw-med); font-size: 15px; letter-spacing: .01em; line-height: 1.2; white-space: nowrap; transition: color .28s var(--ease); }
+.sw__opt:hover { color: var(--ink); }
+.sw__opt[aria-pressed="true"] { color: var(--ink); }
+.sw__knob { position: absolute; z-index: 0; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: var(--r-pill); background: var(--white); box-shadow: 0 2px 8px rgba(var(--rgb-ink), 0.13); transition: transform .34s var(--ease); }
+.sw__opt:nth-of-type(2)[aria-pressed="true"] ~ .sw__knob { transform: translateX(100%); }
+@media (max-width: 400px) { .sw__opt { min-width: 0; padding: 12px 14px; } }
+@media (prefers-reduced-motion: reduce) { .sw__knob, .sw__opt { transition: none; } }
+.sw__panel > .h2 { margin-top: 0; }
 .has-js .sw__panel--off { display: none; }
 .sw__panel + .sw__panel { margin-top: var(--sp-7); }
 .has-js .sw__panel + .sw__panel { margin-top: 0; }
@@ -2418,7 +2425,9 @@ try { (function () {
       tabs.forEach(function (t, n) {
         var on = n === i;
         t.setAttribute('aria-pressed', String(on));
-        t.tabIndex = on ? 0 : -1;
+        // no roving tabindex: this is a group of toggle buttons, not a tablist,
+        // so both sides stay reachable with Tab. arrows are a shortcut, not the
+        // only way in.
         var panel = document.getElementById(t.getAttribute('aria-controls'));
         if (panel) panel.classList.toggle('sw__panel--off', !on);
       });
