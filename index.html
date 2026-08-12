@@ -676,6 +676,11 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 @media (max-width: 920px) {
   .marquee__bar { justify-content: flex-start; margin-top: var(--sp-4); }
+/* The caveat rides in the control bar instead of stacking under it. The bar
+   is one 52px button on an otherwise empty row, so the note costs no extra
+   height at all until the viewport is too narrow to hold both. */
+.marquee__bar--note { flex-wrap: wrap; gap: var(--sp-5); margin-top: var(--sp-3); }
+.marquee__bar--note .note { flex: 1 1 340px; margin: 0; }
 }
 
 /* ==========================================================================
