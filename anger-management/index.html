@@ -674,11 +674,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 }
 @media (max-width: 920px) {
   .marquee__bar { justify-content: flex-start; margin-top: var(--sp-4); }
-/* The caveat rides in the control bar instead of stacking under it. The bar
-   is one 52px button on an otherwise empty row, so the note costs no extra
-   height at all until the viewport is too narrow to hold both. */
-.marquee__bar--note { flex-wrap: wrap; gap: var(--sp-5); margin-top: var(--sp-3); }
-.marquee__bar--note .note { flex: 1 1 340px; margin: 0; }
+/* The caveat keeps its own line under the control bar — beside the button it
+   was too tight — but the gap either side of that bar is halved. */
+.marquee__note { margin-top: var(--sp-3); }
+.marquee__note .note { margin-top: 0; }
 }
 
 /* ==========================================================================
@@ -1836,12 +1835,14 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
               <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span><p class="mcard__lbl">Guilt or regret after reacting</p></li>
             </ul>
           </div>
-          <div class="marquee__bar marquee__bar--note">
+          <div class="marquee__bar" style="margin-top:var(--sp-3)">
             <button type="button" class="marquee__toggle" data-marquee="daily-strip" aria-pressed="false" aria-label="Pause the moving cards">
               <svg class="ico ico--pause" aria-hidden="true"><use href="#i-pause"/></svg>
               <svg class="ico ico--play" aria-hidden="true"><use href="#i-play"/></svg>
             </button>
-            <p class="note" data-reveal><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>The goal of anger management counseling is not to eliminate anger. It is to recognize what is happening earlier, manage escalation more safely, and choose a more effective&nbsp;response.</span></p>
+          </div>
+          <div class="g marquee__note" data-reveal>
+            <div class="c-12"><p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>The goal of anger management counseling is not to eliminate anger. It is to recognize what is happening earlier, manage escalation more safely, and choose a more effective&nbsp;response.</span></p></div>
           </div>
         </div>
       </section>
