@@ -446,7 +446,9 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    decorate: it is the only thing on the page that shows how far in you are.
    ========================================================================== */
 .steps__head .h2 { margin-bottom: var(--sp-6); }
-.steps__body { position: relative; }
+/* margin, not padding: the rail is absolutely positioned against this box,
+   so padding would move the rows and leave the rail behind */
+.steps__body { position: relative; margin-left: clamp(0px, 5vw, 72px); }
 
 .steps__rail {
   position: absolute; left: 31px; top: 34px; bottom: 34px; width: 2px;
@@ -480,7 +482,7 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .steps__note .ico { color: var(--green-cta); margin-top: 3px; }
 
 @media (max-width: 920px) {
-  .steps__body { margin-top: var(--sp-7); }
+  .steps__body { margin-top: var(--sp-7); margin-left: 0; }
   .step { grid-template-columns: 52px minmax(0,1fr); gap: var(--sp-4); }
   .step__node { width: 52px; height: 52px; font-size: var(--fs-base); }
   .steps__rail { left: 25px; top: 28px; bottom: 28px; }
