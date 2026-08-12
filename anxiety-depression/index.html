@@ -610,6 +610,28 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
 .mcard .badge .ico { width: 26px; height: 26px; }
 .mcard h3 { margin: 0; font-size: 17px; line-height: 1.3; }
 /* the rule under the header is the page's own way of dividing without boxing */
+/* ==========================================================================
+   SIGN SWITCH — two lists on one section, one shown at a time, each
+   travelling like the concern cards. The second panel is hidden only under
+   .has-js, so with no script both lists are simply on the page.
+   ========================================================================== */
+.sw__tabs { display: flex; flex-wrap: wrap; gap: clamp(20px, 3vw, 56px); align-items: flex-start; margin-bottom: var(--sp-6); }
+.sw__tab { padding: 0; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; color: var(--muted); transition: color .2s var(--ease); }
+.sw__tab .h2 { color: inherit; }
+.sw__tab[aria-pressed="true"] { color: var(--ink); }
+/* the underline draws in rather than appearing, and is full width without JS */
+.sw__tab::after { content: ""; display: block; height: 3px; margin-top: var(--sp-3); border-radius: var(--r-pill); background: var(--green-cta); transform-origin: 0 50%; }
+.has-js .sw__tab::after { transform: scaleX(0); transition: transform .28s var(--ease); }
+.has-js .sw__tab[aria-pressed="true"]::after { transform: scaleX(1); }
+.has-js .sw__panel--off { display: none; }
+.sw__panel + .sw__panel { margin-top: var(--sp-7); }
+.has-js .sw__panel + .sw__panel { margin-top: 0; }
+/* a travelling card carrying a label and nothing else */
+/* .mcard p sends a paragraph to a second row under a rule, which is right for
+   a concern card and wrong for a label; this puts it back beside the glyph */
+.mcard--sign .mcard__lbl { grid-column: 2; margin: 0; padding: 0; border-top: none; font-family: var(--head); font-weight: var(--fw-med); font-size: 17px; line-height: 1.3; color: var(--ink); }
+.mcard--sign { flex-basis: clamp(260px, 22vw, 330px); }
+@media (prefers-reduced-motion: reduce) { .has-js .sw__tab::after { transition: none; } }
 .mcard p {
   grid-column: 1 / -1; margin: var(--sp-4) 0 0;
   padding-top: var(--sp-4); border-top: 1px solid var(--rule);
@@ -1757,61 +1779,90 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
         </div>
       </section>
 
-      <!-- ===== COMMON SIGNS OF ANXIETY ===== -->
+      <!-- ===== COMMON SIGNS — one section, switched ===== -->
       <section class="sec g" aria-labelledby="anx-t">
-        <div class="c-7 shead" data-reveal>
-          <h2 class="h2" id="anx-t">Common Signs of Anxiety</h2>
-          <p class="lead">Anxiety can affect both thoughts and physical well-being, and it does not look the same in every person.</p>
-        </div>
-        <div class="c-5 why__aside" data-reveal style="--d:.12s">
-          <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>These signs do not confirm an anxiety disorder on their own. Duration, severity, and functional impact matter.</span></p>
-        </div>
+        <div class="c-12" data-switch>
+          <div class="sw__tabs">
+            <h2 class="h2" id="anx-t"><button type="button" class="sw__tab" data-sw-tab aria-controls="p-anx" aria-pressed="true">Common Signs of Anxiety</button></h2>
+            <h2 class="h2" id="dep-t"><button type="button" class="sw__tab" data-sw-tab aria-controls="p-dep" aria-pressed="false">Common Signs of Depression</button></h2>
+          </div>
 
-        <div class="c-12 play__list">
-          <p class="listhead" id="anx-l" data-reveal><span>Possible signs include:</span></p>
-          <ul class="signs__list play__grid" aria-labelledby="anx-l">
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-cloud-rain"/></svg></span><span class="signs__txt">Persistent or excessive worry</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="signs__txt">Feeling tense, restless, or on edge</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-brain"/></svg></span><span class="signs__txt">Difficulty controlling fearful thoughts</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-isolation"/></svg></span><span class="signs__txt">Avoiding people, places, or situations</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-bolt"/></svg></span><span class="signs__txt">Panic-like symptoms</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-gauge"/></svg></span><span class="signs__txt">Trouble concentrating</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-moon"/></svg></span><span class="signs__txt">Difficulty falling or staying asleep</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-scatter"/></svg></span><span class="signs__txt">Physical tension</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-stethoscope"/></svg></span><span class="signs__txt">Headaches or stomach discomfort</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-chat"/></svg></span><span class="signs__txt">Repeated reassurance seeking</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-emotion"/></svg></span><span class="signs__txt">Irritability or frustration</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-school"/></svg></span><span class="signs__txt">Fear that interferes with school, work, or relationships</span></li>
-          </ul>
-        </div>
-      </section>
+          <div class="g" data-reveal style="margin-bottom:var(--sp-6)">
+            <div class="c-7"><p class="lead" id="anx-intro">Anxiety can affect both thoughts and physical well-being, and it does not look the same in every person. Depression is more than having a difficult day or feeling temporarily sad.</p></div>
+            <div class="c-5 why__aside"><p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>These signs do not confirm an anxiety disorder on their own. Duration, severity, and functional impact matter. These signs are educational and are not a substitute for a professional diagnosis.</span></p></div>
+          </div>
 
-      <!-- ===== COMMON SIGNS OF DEPRESSION ===== -->
-      <section class="sec g" aria-labelledby="dep-t">
-        <div class="c-7 shead" data-reveal>
-          <h2 class="h2" id="dep-t">Common Signs of Depression</h2>
-          <p class="lead">Depression is more than having a difficult day or feeling temporarily sad.</p>
+        <div class="sw__panel" id="p-anx" role="group" aria-labelledby="anx-t">
+          <div class="marquee" id="p-anx-strip" style="--dur:72s">
+            <ul class="marquee__track">
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span><p class="mcard__lbl">Persistent or excessive worry</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-pulse"/></svg></span><p class="mcard__lbl">Feeling tense, restless, or on edge</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-brain"/></svg></span><p class="mcard__lbl">Difficulty controlling fearful thoughts</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-isolation"/></svg></span><p class="mcard__lbl">Avoiding people, places, or situations</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-bolt"/></svg></span><p class="mcard__lbl">Panic-like symptoms</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-gauge"/></svg></span><p class="mcard__lbl">Trouble concentrating</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-moon"/></svg></span><p class="mcard__lbl">Difficulty falling or staying asleep</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-scatter"/></svg></span><p class="mcard__lbl">Physical tension</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-stethoscope"/></svg></span><p class="mcard__lbl">Headaches or stomach discomfort</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-chat"/></svg></span><p class="mcard__lbl">Repeated reassurance seeking</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-emotion"/></svg></span><p class="mcard__lbl">Irritability or frustration</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-school"/></svg></span><p class="mcard__lbl">Fear that interferes with school, work, or relationships</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span><p class="mcard__lbl">Persistent or excessive worry</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-pulse"/></svg></span><p class="mcard__lbl">Feeling tense, restless, or on edge</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-brain"/></svg></span><p class="mcard__lbl">Difficulty controlling fearful thoughts</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-isolation"/></svg></span><p class="mcard__lbl">Avoiding people, places, or situations</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-bolt"/></svg></span><p class="mcard__lbl">Panic-like symptoms</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-gauge"/></svg></span><p class="mcard__lbl">Trouble concentrating</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-moon"/></svg></span><p class="mcard__lbl">Difficulty falling or staying asleep</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-scatter"/></svg></span><p class="mcard__lbl">Physical tension</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-stethoscope"/></svg></span><p class="mcard__lbl">Headaches or stomach discomfort</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-chat"/></svg></span><p class="mcard__lbl">Repeated reassurance seeking</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-emotion"/></svg></span><p class="mcard__lbl">Irritability or frustration</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-school"/></svg></span><p class="mcard__lbl">Fear that interferes with school, work, or relationships</p></li>
+            </ul>
+          </div>
+          <div class="marquee__bar" style="margin-top:var(--sp-4)">
+            <button type="button" class="marquee__toggle" data-marquee="p-anx-strip" aria-pressed="false" aria-label="Pause the moving cards">
+              <svg class="ico ico--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+              <svg class="ico ico--play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="c-5 why__aside" data-reveal style="--d:.12s">
-          <p class="note"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-alert-question"/></svg><span>These signs are educational and are not a substitute for a professional diagnosis.</span></p>
-        </div>
-
-        <div class="c-12 play__list">
-          <p class="listhead" id="dep-l" data-reveal><span>Possible signs include:</span></p>
-          <ul class="signs__list play__grid" aria-labelledby="dep-l">
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-cloud-rain"/></svg></span><span class="signs__txt">Persistent sadness, emptiness, or hopelessness</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-heart-crack"/></svg></span><span class="signs__txt">Loss of interest in activities that used to matter</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-gauge"/></svg></span><span class="signs__txt">Low energy or ongoing fatigue</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-brain"/></svg></span><span class="signs__txt">Difficulty concentrating or making decisions</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-moon"/></svg></span><span class="signs__txt">Changes in sleep or appetite</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-isolation"/></svg></span><span class="signs__txt">Withdrawal from friends or family</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-bolt"/></svg></span><span class="signs__txt">Irritability, frustration, or anger</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-emotion"/></svg></span><span class="signs__txt">Feelings of guilt, worthlessness, or helplessness</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-checklist"/></svg></span><span class="signs__txt">Difficulty keeping up with responsibilities</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-route"/></svg></span><span class="signs__txt">Reduced motivation</span></li>
-            <li class="signs__item" data-reveal><span class="signs__mark badge badge--blue" aria-hidden="true"><svg class="ico"><use href="#i-alert-triangle"/></svg></span><span class="signs__txt">Thoughts of death, self-harm, or suicide</span></li>
-          </ul>
+        <div class="sw__panel sw__panel--off" id="p-dep" role="group" aria-labelledby="dep-t">
+          <div class="marquee" id="p-dep-strip" style="--dur:68s">
+            <ul class="marquee__track">
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span><p class="mcard__lbl">Persistent sadness, emptiness, or hopelessness</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-heart-crack"/></svg></span><p class="mcard__lbl">Loss of interest in activities that used to matter</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-gauge"/></svg></span><p class="mcard__lbl">Low energy or ongoing fatigue</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-brain"/></svg></span><p class="mcard__lbl">Difficulty concentrating or making decisions</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-moon"/></svg></span><p class="mcard__lbl">Changes in sleep or appetite</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-isolation"/></svg></span><p class="mcard__lbl">Withdrawal from friends or family</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-bolt"/></svg></span><p class="mcard__lbl">Irritability, frustration, or anger</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-emotion"/></svg></span><p class="mcard__lbl">Feelings of guilt, worthlessness, or helplessness</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-checklist"/></svg></span><p class="mcard__lbl">Difficulty keeping up with responsibilities</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-route"/></svg></span><p class="mcard__lbl">Reduced motivation</p></li>
+              <li class="mcard mcard--sign"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-triangle"/></svg></span><p class="mcard__lbl">Thoughts of death, self-harm, or suicide</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-cloud-rain"/></svg></span><p class="mcard__lbl">Persistent sadness, emptiness, or hopelessness</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-heart-crack"/></svg></span><p class="mcard__lbl">Loss of interest in activities that used to matter</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-gauge"/></svg></span><p class="mcard__lbl">Low energy or ongoing fatigue</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-brain"/></svg></span><p class="mcard__lbl">Difficulty concentrating or making decisions</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-moon"/></svg></span><p class="mcard__lbl">Changes in sleep or appetite</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-isolation"/></svg></span><p class="mcard__lbl">Withdrawal from friends or family</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-bolt"/></svg></span><p class="mcard__lbl">Irritability, frustration, or anger</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-emotion"/></svg></span><p class="mcard__lbl">Feelings of guilt, worthlessness, or helplessness</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-checklist"/></svg></span><p class="mcard__lbl">Difficulty keeping up with responsibilities</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-route"/></svg></span><p class="mcard__lbl">Reduced motivation</p></li>
+              <li class="mcard mcard--sign" aria-hidden="true"><span class="badge badge--blue" aria-hidden="true"><svg class="ico ico--lg"><use href="#i-alert-triangle"/></svg></span><p class="mcard__lbl">Thoughts of death, self-harm, or suicide</p></li>
+            </ul>
+          </div>
+          <div class="marquee__bar" style="margin-top:var(--sp-4)">
+            <button type="button" class="marquee__toggle" data-marquee="p-dep-strip" aria-pressed="false" aria-label="Pause the moving cards">
+              <svg class="ico ico--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+              <svg class="ico ico--play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+          </div>
           <p class="note" data-reveal><svg class="ico ico--sm" aria-hidden="true"><use href="#i-child"/></svg><span>Depression may look different in children and teenagers, who may seem angry, withdrawn, irritable, or less engaged rather than openly sad.</span></p>
+        </div>
         </div>
       </section>
 
@@ -2458,6 +2509,38 @@ try { (function () {
   }
 })(); } catch (e) { console.error(e); }
 
-</script>
+
+/* Sign switch — two panels, one shown at a time. Arrow keys move between the
+   tabs as the tab pattern expects; with no script both panels stay on. */
+try { (function () {
+  var lists = document.querySelectorAll('[data-switch]');
+  if (!lists.length) return;
+  lists.forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[data-sw-tab]'));
+    if (tabs.length < 2) return;
+    function show(i) {
+      tabs.forEach(function (t, n) {
+        var on = n === i;
+        t.setAttribute('aria-pressed', String(on));
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.classList.toggle('sw__panel--off', !on);
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = null;
+        if (k === 'ArrowRight' || k === 'ArrowDown') n = (i + 1) % tabs.length;
+        if (k === 'ArrowLeft' || k === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
+        if (k === 'Home') n = 0;
+        if (k === 'End') n = tabs.length - 1;
+        if (n === null) return;
+        e.preventDefault(); show(n); tabs[n].focus();
+      });
+    });
+    show(0);
+  });
+})(); } catch (e) { console.error(e); }</script>
 </body>
 </html>
