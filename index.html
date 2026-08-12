@@ -850,6 +850,10 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
    two lines. The buttons wrap under it. Balance evens the two lines, and the
    count holds down to about 760 because the h2 clamp scales with the row. */
 .signs__close { flex: 1 1 100%; margin: 0; text-wrap: balance; }
+/* On the anger page this closing line runs about twice the length of the
+   same line on the other three, so at h2 scale it reads as a wall rather
+   than a closing thought. It steps down between h2 and h3 there only. */
+.signs__close--sm { font-size: clamp(21px, 1.7vw + 8px, 28px); line-height: 1.32; letter-spacing: -0.012em; }
 .signs__end .actions { margin: 0; }
 
 @media (max-width: 920px) {
