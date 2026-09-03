@@ -672,12 +672,13 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
   .marquee__track { width: auto; }
   .has-js [data-reveal] { opacity: 1; transform: none; animation: none; }
 }
-@media (max-width: 920px) {
-  .marquee__bar { justify-content: flex-start; margin-top: var(--sp-4); }
 /* The caveat keeps its own line under the control bar — beside the button it
-   was too tight — but the gap either side of that bar is halved. */
+   was too tight — but the gap either side of that bar is halved. This sits
+   outside the 920px block: it is not a mobile adjustment. */
 .marquee__note { margin-top: var(--sp-3); }
 .marquee__note .note { margin-top: 0; }
+@media (max-width: 920px) {
+  .marquee__bar { justify-content: flex-start; margin-top: var(--sp-4); }
 }
 
 /* ==========================================================================
@@ -2078,7 +2079,6 @@ strong { font-weight: var(--fw-bold); color: var(--navy); }
       </section>
 
     </main>
-
 
 
 
