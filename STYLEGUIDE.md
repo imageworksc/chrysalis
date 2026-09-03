@@ -111,6 +111,40 @@ contrast. The same split applies to blue: `--blue` for large shapes,
 
 ---
 
+### Starting from nothing
+
+The tokens above are self-contained, but two things live outside them and a new
+page will look wrong without both.
+
+**Fonts.** Lato and Montserrat, from Google Fonts. In `<head>`, before the
+stylesheet:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+```
+
+The token fallbacks (`Arial, sans-serif`) mean the page still works if the
+request fails, at a different rhythm.
+
+**Icons.** 64 symbols in an inline sprite, copied whole from `index.html` — the
+block runs from `<svg width="0" height="0" …>` to its `</svg>`, about 11 KB, and
+sits just before the scripts at the end of `<body>`:
+
+```html
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24">…</symbol>
+  …
+</svg>
+```
+
+Every symbol draws with `currentColor`, so an icon takes the colour of whatever
+contains it. Reference one with `<svg class="ico" aria-hidden="true"><use href="#i-name"/></svg>`.
+Names are listed by `grep -o 'id="i-[a-z-]*"' index.html`.
+
+---
+
 ## 3. Page skeleton
 
 ```html

@@ -1,0 +1,4 @@
+# Normalise line endings so a rebuild on Windows does not report every page as
+# modified. Without this, git checks out CRLF, the build writes LF, and all four
+# sub-pages show up in `git status` with no real change in them.
+* text=auto eol=lf
