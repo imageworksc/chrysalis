@@ -1,0 +1,41 @@
+{
+  "title": "Family Counseling and Therapy | Chrysalis Health",
+  "description": "Family counseling for children, teens, adults, parents, and caregivers. Improve communication, work through recurring conflict, and respond to challenges together. Call (888) 587-0335.",
+  "url": "https://imageworksc.github.io/chrysalis/family-counseling/",
+  "crumb": "Family Counseling and Therapy",
+  "image": "https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630",
+  "preload": [
+    "https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w, https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w, https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1500 1200w",
+    "https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=413 600w, https://images.pexels.com/photos/5336939/pexels-photo-5336939.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=550 800w"
+  ],
+  "faq": [
+    {
+      "q": "What is family counseling and how does it work?",
+      "a": "Family counseling is therapy focused on relationships, communication, and patterns affecting the household. A therapist assesses the concerns, helps establish treatment goals, and works with selected family members to improve understanding, interaction, and problem-solving."
+    },
+    {
+      "q": "What problems can family therapy help with?",
+      "a": "Family therapy may help with communication problems, recurring conflict, parenting concerns, child or teen behavior issues, grief, major life changes, caregiver stress, and the effects of anxiety, depression, trauma, or other mental health concerns on the household."
+    },
+    {
+      "q": "Does the whole family have to attend?",
+      "a": "No. Participation depends on the concern and treatment plan. Sessions may involve the whole family, selected relatives, parents without the child, or one person individually at different stages of treatment."
+    },
+    {
+      "q": "Can family counseling help with a child's behavior?",
+      "a": "It may. Family counseling can help parents and caregivers better understand the child's behavior, identify patterns affecting the household, and respond with more consistency and clarity at home."
+    },
+    {
+      "q": "What is the difference between family therapy and individual therapy?",
+      "a": "Individual therapy focuses on one person's thoughts, emotions, behavior, and goals. Family therapy focuses on relationships, communication, and patterns involving multiple people. Some clients may benefit from both."
+    },
+    {
+      "q": "Is family counseling the same as couples counseling?",
+      "a": "No. Couples counseling primarily focuses on the relationship between romantic partners. Family counseling may include parents, children, siblings, caregivers, or other relatives and addresses concerns affecting the broader family system."
+    },
+    {
+      "q": "Can family therapy take place at home or through telehealth?",
+      "a": "It may be available in the home, at school, in the community, at an office, or through telehealth, depending on the client's location, program availability, eligibility, and treatment needs."
+    }
+  ]
+}

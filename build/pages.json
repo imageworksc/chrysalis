@@ -1,0 +1,9 @@
+{
+  "shell": "index.html",
+  "pages": [
+    { "slug": "trauma-therapy",     "crumb": "Trauma Therapy" },
+    { "slug": "family-counseling",  "crumb": "Family Counseling and Therapy" },
+    { "slug": "anxiety-depression", "crumb": "Anxiety and Depression Therapy" },
+    { "slug": "anger-management",   "crumb": "Anger Management Therapy" }
+  ]
+}

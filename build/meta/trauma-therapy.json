@@ -1,0 +1,41 @@
+{
+  "title": "Trauma Therapy for Children, Teens, Adults, and Families | Chrysalis Health",
+  "description": "Individualized trauma therapy for children, teens, adults, and families. Assessment, individual and family therapy, psychiatric services, telehealth and community-based care. Call (888) 587-0335.",
+  "url": "https://imageworksc.github.io/chrysalis/trauma-therapy/",
+  "crumb": "Trauma Therapy",
+  "image": "https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630",
+  "preload": [
+    "https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w, https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w, https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1500 1200w",
+    "https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=413 600w, https://images.pexels.com/photos/14126667/pexels-photo-14126667.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=550 800w"
+  ],
+  "faq": [
+    {
+      "q": "What is trauma therapy?",
+      "a": "Trauma therapy is mental health treatment that helps people manage the emotional, behavioral, physical, and relationship effects of traumatic experiences."
+    },
+    {
+      "q": "What is trauma-informed therapy?",
+      "a": "Trauma-informed therapy considers how past experiences may affect a person's emotions, behavior, communication, sense of safety, and response to treatment."
+    },
+    {
+      "q": "How do I know if I need trauma therapy?",
+      "a": "Consider requesting services when symptoms continue, worsen, or interfere with sleep, work, school, relationships, or daily responsibilities."
+    },
+    {
+      "q": "Do I need a PTSD diagnosis to receive trauma therapy?",
+      "a": "No. You can request services without an existing PTSD diagnosis. A clinician can assess your symptoms and recommend an appropriate next step."
+    },
+    {
+      "q": "Why can trauma therapy feel difficult?",
+      "a": "Trauma therapy may involve painful emotions, memories, or triggers. Treatment should move at an appropriate pace and should not force someone to discuss experiences before they are ready."
+    },
+    {
+      "q": "How do I start trauma therapy with Chrysalis Health?",
+      "a": "Request services online or call (888) 587-0335. A specialist will review your needs and help schedule an assessment."
+    },
+    {
+      "q": "What should I do in an immediate mental health crisis?",
+      "a": "Call 911 or go to the nearest emergency department if someone is in immediate danger. In the United States, call or text 988 for immediate crisis support involving suicidal thoughts, self-harm risk, or another urgent mental health concern."
+    }
+  ]
+}

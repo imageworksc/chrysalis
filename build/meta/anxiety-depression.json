@@ -1,0 +1,41 @@
+{
+  "title": "Anxiety and Depression Therapy | Chrysalis Health",
+  "description": "Individualized anxiety and depression therapy for children, teens, and adults. Assessment, counseling, psychiatric evaluation where appropriate, telehealth and community-based care. Call (888) 587-0335.",
+  "url": "https://imageworksc.github.io/chrysalis/anxiety-depression/",
+  "crumb": "Anxiety and Depression Therapy",
+  "image": "https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630",
+  "preload": [
+    "https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w, https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w, https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1500 1200w",
+    "https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=413 600w, https://images.pexels.com/photos/8560206/pexels-photo-8560206.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=550 800w"
+  ],
+  "faq": [
+    {
+      "q": "Can therapy help with anxiety and depression at the same time?",
+      "a": "Yes. Therapy can address overlapping anxiety and depression symptoms within one individualized treatment plan. A therapist can evaluate how worry, low mood, withdrawal, avoidance, stress, and related concerns interact."
+    },
+    {
+      "q": "What is the difference between anxiety and depression?",
+      "a": "Anxiety commonly involves persistent worry, fear, tension, or avoidance. Depression commonly involves low mood, reduced interest, hopelessness, or low energy. Symptoms can overlap, and a person may experience both at the same time."
+    },
+    {
+      "q": "What type of therapy is used for anxiety and depression?",
+      "a": "Treatment may involve cognitive, behavioral, interpersonal, supportive, or other therapeutic approaches. The specific method depends on the client's needs, age, diagnosis, goals, and the qualifications of the assigned therapist."
+    },
+    {
+      "q": "Is medication always needed for anxiety or depression?",
+      "a": "No. Some people receive therapy without medication. Others may benefit from medication or combined treatment. Treatment recommendations should be based on an individual evaluation."
+    },
+    {
+      "q": "When should someone see a therapist for anxiety or depression?",
+      "a": "Consider seeking professional support when worry, fear, sadness, irritability, withdrawal, or related concerns persist, become difficult to manage, or interfere with school, work, relationships, sleep, responsibilities, or daily life."
+    },
+    {
+      "q": "Can children and teens receive anxiety and depression therapy?",
+      "a": "Yes. Treatment can be adjusted for the young person's age, development, symptoms, needs, and environment. Parent or caregiver involvement may be included when appropriate."
+    },
+    {
+      "q": "Is telehealth available for anxiety and depression therapy?",
+      "a": "Telehealth mental health services may be available depending on the client's location, needs, eligibility, and current program availability. Service options should be confirmed when requesting care."
+    }
+  ]
+}

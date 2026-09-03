@@ -1,0 +1,37 @@
+{
+  "title": "Anger Management Therapy and Counseling | Chrysalis Health",
+  "description": "Individualized anger management therapy for children, teens, adults, and families. Identify triggers, recognize escalation earlier, and build healthier ways to respond. Telehealth available. Call (888) 587-0335.",
+  "url": "https://imageworksc.github.io/chrysalis/anger-management/",
+  "crumb": "Anger Management Therapy",
+  "image": "https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630",
+  "preload": [
+    "https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w, https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w, https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1500 1200w",
+    "https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=413 600w, https://images.pexels.com/photos/6957240/pexels-photo-6957240.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=550 800w"
+  ],
+  "faq": [
+    {
+      "q": "What happens in anger management therapy?",
+      "a": "A therapist helps identify triggers, warning signs, thought patterns, and behaviors connected to anger. Sessions may address emotional regulation, coping, communication, problem-solving, and conflict-management skills based on the client's needs."
+    },
+    {
+      "q": "How do I know when anger has become a problem?",
+      "a": "Anger may require professional support when it is frequent, intense, difficult to control, or causing problems with relationships, safety, school, work, or daily functioning."
+    },
+    {
+      "q": "Can therapy help with anger outbursts?",
+      "a": "Therapy may help a person recognize escalation earlier, understand what contributes to outbursts, and practice safer ways to pause, communicate, and respond. Treatment needs and results vary by person."
+    },
+    {
+      "q": "Is anger management therapy different from an anger management class?",
+      "a": "Yes. Therapy is individualized mental health treatment based on an assessment and treatment goals. Classes usually follow a standard curriculum and may be required for legal, school, or employment reasons."
+    },
+    {
+      "q": "Can children and teenagers receive anger management counseling?",
+      "a": "Yes. Counseling can help children and teens recognize emotions, manage reactions, develop coping skills, and communicate more effectively. Parent, caregiver, or family involvement may be included when appropriate."
+    },
+    {
+      "q": "Is online anger management therapy available?",
+      "a": "Telehealth mental health services may be available depending on the client's location, needs, eligibility, and current program availability. Service options should be confirmed when requesting care."
+    }
+  ]
+}
