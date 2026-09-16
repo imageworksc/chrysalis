@@ -19,14 +19,15 @@
 
 <main id="main">
 
-  <!-- ================= HERO: deep gradient, drifting light, layered photographs ================= -->
+  <!-- ================= HERO: deep gradient, drifting light, a photograph in an arch of light ================= -->
   <section class="hero" id="top">
     <span class="orb orb--green" aria-hidden="true"></span>
     <span class="orb orb--blue" aria-hidden="true"></span>
+    <span class="hero__dots" aria-hidden="true"></span>
     <div class="page hero__grid">
       <div class="hero__copy">
         <p class="kicker kicker--light" data-reveal>Mental Health Care for Children, Teens, Adults &amp; Families</p>
-        <h1 class="h1 d-08" data-reveal>Mental Health Care That <span class="hl">Starts With&nbsp;You.</span></h1>
+        <h1 class="h1 hero__title d-08" data-reveal>Mental Health Care That <span class="grad">Starts With&nbsp;You.</span></h1>
         <p class="lead hero__lead d-16" data-reveal>You don't need to know exactly what kind of care you need before reaching out. Chrysalis Health can help you understand your options and take the next&nbsp;step.</p>
         <div class="actions d-24" data-reveal>
           <a class="btn btn--primary" href="/request-services">
@@ -35,23 +36,24 @@
           <a class="btn btn--glass" href="/about/locations">Find a Location</a>
         </div>
       </div>
-      <div class="stack d-12" data-reveal>
-        <figure class="stack__main">
-          <img src="https://images.pexels.com/photos/6232009/pexels-photo-6232009.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250"
-               srcset="https://images.pexels.com/photos/6232009/pexels-photo-6232009.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w,
-                       https://images.pexels.com/photos/6232009/pexels-photo-6232009.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w,
-                       https://images.pexels.com/photos/6232009/pexels-photo-6232009.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1750 1400w"
-               sizes="(max-width: 920px) 100vw, 40vw" width="1400" height="1750"
-               alt="Two young women laughing together on a bench outdoors" fetchpriority="high" decoding="async">
+      <div class="portal d-12" data-reveal>
+        <span class="portal__glow" aria-hidden="true"></span>
+        <span class="portal__ring portal__ring--2" aria-hidden="true"></span>
+        <span class="portal__ring" aria-hidden="true"></span>
+        <figure class="arch">
+          <img src="https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250"
+               srcset="https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w,
+                       https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w,
+                       https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1750 1400w"
+               sizes="(max-width: 920px) 90vw, 36vw" width="1400" height="1750"
+               alt="A family of three generations holding each other in a close embrace" fetchpriority="high" decoding="async">
         </figure>
-        <figure class="stack__second">
-          <img src="https://images.pexels.com/photos/4098274/pexels-photo-4098274.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=600"
-               srcset="https://images.pexels.com/photos/4098274/pexels-photo-4098274.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=400&amp;h=400 400w,
-                       https://images.pexels.com/photos/4098274/pexels-photo-4098274.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=600&amp;h=600 600w"
-               sizes="(max-width: 920px) 40vw, 16vw" width="600" height="600"
-               alt="An older woman laughing warmly" loading="lazy" decoding="async">
-        </figure>
-        <p class="stack__tag"><strong>Since 1995</strong> Serving individuals and families</p>
+        <!-- the audiences the kicker names, floating around the photograph; decorative, so hidden from readers -->
+        <ul class="floats" aria-hidden="true">
+          <li class="float float--1"><svg class="ico"><use href="#i-child"/></svg>Children &amp; Teens</li>
+          <li class="float float--2"><svg class="ico"><use href="#i-heart"/></svg>Adults</li>
+          <li class="float float--3"><svg class="ico"><use href="#i-users"/></svg>Families</li>
+        </ul>
       </div>
     </div>
     <span class="hero__curve" aria-hidden="true"></span>
@@ -153,13 +155,18 @@
     </div>
   </section>
 
-  <!-- ================= THE ANSWER: a statement on green light ================= -->
+  <!-- ================= THE ANSWER: a plate of colour, the question beside the answer, each service a link ================= -->
   <section class="band answer" id="answer">
-    <span class="answer__mark" aria-hidden="true">?</span>
-    <div class="page answer__in">
-      <h2 class="h2" data-reveal>What mental health services does Chrysalis Health provide?</h2>
-      <div class="glass glass--light answer__card d-12" data-reveal>
-        <p>Chrysalis Health provides individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, anger management, psychiatric services and medication management, case management, and telehealth. Services are individualized based on each person's needs and availability in their&nbsp;area.</p>
+    <div class="page">
+      <div class="plate" data-reveal>
+        <span class="plate__sheen" aria-hidden="true"></span>
+        <span class="plate__mark" aria-hidden="true">?</span>
+        <div class="plate__grid">
+          <h2 class="h2 plate__q">What mental health services does Chrysalis Health provide?</h2>
+          <div class="answer__card d-12" data-reveal>
+            <p>Chrysalis Health provides <a class="svc-link" href="/mental-health/counseling">individual therapy</a>, <a class="svc-link" href="../">child and teen therapy</a>, <a class="svc-link" href="../family-counseling/">family therapy</a>, <a class="svc-link" href="../anxiety-depression/">anxiety and depression therapy</a>, <a class="svc-link" href="../trauma-therapy/">trauma therapy</a>, <a class="svc-link" href="../anger-management/">anger management</a>, <a class="svc-link" href="/mental-health/psychiatric-services">psychiatric services and medication management</a>, <a class="svc-link" href="/mental-health/case-management">case management</a>, and <a class="svc-link" href="/telehealth">telehealth</a>. Services are individualized based on each person's needs and availability in their&nbsp;area.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -515,22 +522,32 @@
     </div>
   </section>
 
-  <!-- ================= FINAL: deep gradient, light drifting, one statement ================= -->
-  <section class="band band--deep final">
+  <!-- ================= FINAL: a photograph under the deep gradient, the statement beside a card that calls ================= -->
+  <section class="band band--deep final" id="final">
+    <figure class="final__bg" aria-hidden="true">
+      <img src="https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1800&amp;h=900"
+           srcset="https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=500 1000w,
+                   https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1800&amp;h=900 1800w,
+                   https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=2600&amp;h=1300 2600w"
+           sizes="100vw" width="2600" height="1300" alt="" loading="lazy" decoding="async">
+    </figure>
     <span class="orb orb--green" aria-hidden="true"></span>
-    <span class="orb orb--blue orb--low" aria-hidden="true"></span>
-    <div class="page final__in" data-reveal>
-      <h2 class="statement">Ready to Take the Next Step?</h2>
-      <p class="lead mt-6 measure-54 on-dark">You do not have to know exactly what kind of care you need. Start by telling us what is going on, and we'll help you understand your&nbsp;options.</p>
-      <div class="actions actions--center">
-        <a class="btn btn--primary" href="/request-services">
-          Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+    <div class="page">
+      <div class="final__copy" data-reveal>
+        <h2 class="statement">Ready to Take the <span class="grad">Next Step?</span></h2>
+        <p class="lead mt-6 measure-54 on-dark">You do not have to know exactly what kind of care you need. Start by telling us what is going on, and we'll help you understand your&nbsp;options.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/request-services">
+            Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--glass" href="/about/locations">Find a Location</a>
+        </div>
+        <a class="glass callcard" href="tel:18885870335">
+          <span class="callcard__ico"><svg class="ico ico--lg" aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <span class="callcard__lbl">Call Us</span>
+          <span class="callcard__num">(888) 587-0335</span>
         </a>
-        <a class="btn btn--glass" href="/about/locations">Find a Location</a>
       </div>
-      <a class="final__phone" href="tel:18885870335">
-        <svg class="ico ico--lg" aria-hidden="true"><use href="#i-phone"/></svg> (888) 587-0335
-      </a>
     </div>
   </section>
 
