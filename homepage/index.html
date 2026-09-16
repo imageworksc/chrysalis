@@ -286,30 +286,60 @@ a{color:var(--blue-deep)}
 @media(max-width:900px){.aud-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------------- steps ---------------- */
-/* starting care: a tighter, ruled sequence */
-.steps__body{position:relative;margin-top:clamp(2.25rem,3.6vw,3.5rem);
+/* Starting care: four steps across. The rail runs through the centre of the
+   number discs, from the first to the last, and fills left to right as the
+   row passes the reading line; each disc lights as the fill reaches it.
+
+   The rail sits against the card, not the list, because a <div> cannot live
+   inside an <ol>. So its ends are computed from the card: in from the left
+   padding by half a disc, and from the right by the padding plus the last
+   column — with four equal columns and a gap g the last column is
+   (content - 3g) / 4 wide — minus half a disc. No magic number. */
+.steps__body{--pad:clamp(1.25rem,3vw,4rem);--pt:clamp(1.5rem,3vw,3.5rem);
+  --sg:clamp(1.5rem,2.6vw,3rem);--disc:3.25rem;
+  position:relative;margin-top:clamp(2.25rem,3.6vw,3.5rem);
   background:#fff;border:1px solid var(--rule);border-radius:var(--r);
-  padding:clamp(1.5rem,3vw,3.5rem) clamp(1.25rem,3vw,4rem)}
-.steps__rail{position:absolute;left:calc(clamp(1.25rem,3vw,4rem) + 1.5625rem);top:clamp(2.75rem,4.4vw,5rem);
-  bottom:clamp(6rem,9vw,9.375rem);width:2px;background:var(--rule)}
-.steps__fill{position:absolute;left:0;top:0;width:100%;height:0;background:var(--green);transition:height .25s linear}
-.steps{list-style:none;margin:0;padding:0;position:relative}
-.steps li{display:grid;grid-template-columns:3.25rem minmax(0,1fr);gap:var(--sp-5);
-  padding-block:clamp(1.125rem,2vw,1.75rem);align-items:start;border-top:1px solid var(--rule)}
-.steps li:first-child{border-top:0;padding-top:0}
-.steps__num{width:3.25rem;height:3.25rem;border-radius:50%;display:grid;place-items:center;background:#fff;
-  border:1.5px solid var(--rule-dk);color:var(--muted);font-family:var(--head);font-size:1.1875rem;
-  font-weight:var(--fw-med);transition:all .25s var(--ease)}
-.steps li.is-live .steps__num{background:var(--green);border-color:var(--green);color:var(--ink)}
-.steps h3{font-family:var(--head);font-size:clamp(1.1875rem,1.45vw,1.375rem);font-weight:var(--fw-med);
-  letter-spacing:-.018em;color:var(--ink);line-height:1.25}
-.steps p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt);max-width:56ch}
-.steps__body .actions{margin-top:clamp(1.5rem,2.6vw,2.5rem);padding-top:clamp(1.25rem,2.2vw,2rem);
+  padding:var(--pt) var(--pad)}
+.steps__rail{position:absolute;z-index:0;
+  top:calc(var(--pt) + var(--disc) / 2 - 1px);height:2px;
+  left:calc(var(--pad) + var(--disc) / 2);
+  right:calc(var(--pad) + (100% - 2 * var(--pad) - 3 * var(--sg)) / 4 - var(--disc) / 2);
+  background:var(--rule);border-radius:1px;overflow:hidden}
+.steps__fill{position:absolute;left:0;top:0;height:100%;width:calc(var(--p,0) * 100%);
+  background:var(--green);transition:width .3s var(--ease)}
+.steps{list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sg)}
+.steps li{position:relative;z-index:1;min-width:0}
+.steps__num{width:var(--disc);height:var(--disc);border-radius:50%;display:grid;place-items:center;
+  background:#fff;border:1.5px solid var(--rule-dk);color:var(--muted);
+  font-family:var(--head);font-size:1.1875rem;font-weight:var(--fw-med);
+  transition:background .25s var(--ease),border-color .25s var(--ease),color .25s var(--ease),transform .25s var(--ease)}
+.steps li.is-live .steps__num{background:var(--green);border-color:var(--green);color:var(--ink);transform:scale(1.08)}
+.steps h3{margin-top:var(--sp-5);font-family:var(--head);font-size:clamp(1.125rem,1.3vw,1.3125rem);font-weight:var(--fw-med);
+  letter-spacing:-.018em;color:var(--ink);line-height:1.25;text-wrap:balance}
+.steps p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt);line-height:1.55}
+.steps__body .actions{margin-top:clamp(1.75rem,3vw,3rem);padding-top:clamp(1.25rem,2.2vw,2rem);
   border-top:1px solid var(--rule)}
+
+/* Stacked: the shared rail goes, and every step but the last draws its own
+   connector from the bottom of its disc to the top of the next — exact,
+   because the next disc begins right after the gap. A connector turns green
+   with its step, so progress reads the same way, in steps. */
+@media(max-width:820px){
+  .steps{grid-template-columns:minmax(0,1fr);gap:var(--sp-6)}
+  .steps__rail{display:none}
+  .steps li{display:grid;grid-template-columns:var(--disc) minmax(0,1fr);column-gap:var(--sp-5);align-items:start}
+  .steps li > div{grid-column:2}
+  .steps li:not(:last-child)::after{content:"";position:absolute;z-index:0;
+    left:calc(var(--disc) / 2 - 1px);top:var(--disc);bottom:calc(-1 * var(--sp-6));width:2px;
+    background:var(--rule);transition:background .3s var(--ease)}
+  .steps li.is-live:not(:last-child)::after{background:var(--green)}
+  .steps h3{margin-top:0.6rem}
+}
 @media(max-width:600px){
-  .steps li{grid-template-columns:2.75rem minmax(0,1fr);gap:var(--sp-4)}
-  .steps__num{width:2.75rem;height:2.75rem;font-size:1.0625rem}
-  .steps__rail{left:calc(clamp(1.25rem,3vw,4rem) + 1.3125rem)}
+  .steps__body{--disc:2.75rem}
+  .steps__num{font-size:1.0625rem}
+  .steps li{column-gap:var(--sp-4)}
 }
 
 /* ---------------- split / why / referral ---------------- */
@@ -1005,14 +1035,25 @@ a{color:var(--blue-deep)}
 
   var list=d.getElementById('steps-list'), fill=d.getElementById('steps-fill');
   if(list&&fill){
-    var items=Array.prototype.slice.call(list.children), queued=false;
+    var items=Array.prototype.slice.call(list.children), queued=false, n=items.length;
     function tick(){
       var line=window.innerHeight*.55, box=list.getBoundingClientRect();
-      var pct=Math.max(0,Math.min(1,(line-box.top)/box.height));
-      fill.style.height=(pct*100)+'%';
-      var live=-1;
-      items.forEach(function(li,i){ if(li.getBoundingClientRect().top<=line) live=i; });
-      items.forEach(function(li,i){ li.classList.toggle('is-live',i<=live); });
+      // across: the four sit on one row, so progress is how far the row has
+      // risen past the reading line, spread over one and a half row heights
+      // so the sweep is not over in a flick. stacked: each step lights as its
+      // own top crosses the line, as before.
+      var across=n>1 && Math.abs(items[1].getBoundingClientRect().top-items[0].getBoundingClientRect().top)<2;
+      var pct;
+      if(across){
+        pct=Math.max(0,Math.min(1,(line-box.top)/(box.height*1.5)));
+        items.forEach(function(li,i){ li.classList.toggle('is-live',pct>=(i+0.5)/n); });
+      } else {
+        var live=-1;
+        items.forEach(function(li,i){ if(li.getBoundingClientRect().top<=line) live=i; });
+        pct=(live+1)/n;
+        items.forEach(function(li,i){ li.classList.toggle('is-live',i<=live); });
+      }
+      fill.parentNode.style.setProperty('--p',pct);
     }
     window.addEventListener('scroll',function(){
       if(queued)return; queued=true;
