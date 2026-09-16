@@ -22,3 +22,6 @@ run('check.js');
 
 console.log('\nlinks');
 run('check-links.js');
+
+console.log('\nconcept pages');
+run('check-concepts.js');

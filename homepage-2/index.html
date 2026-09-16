@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Services for Children, Teens, Adults &amp; Families | Chrysalis Health</title>
+<meta name="description" content="Chrysalis Health provides therapy, psychiatric services, case management and telehealth for children, teens, adults and families. You don't need a diagnosis to start.">
+<link rel="canonical" href="https://imageworksc.github.io/chrysalis/homepage-2/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script src="head.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<main id="main">
+
+  <!-- ================= HERO: a split, copy beside a framed photograph ================= -->
+  <section class="hero" id="top">
+    <div class="page hero__grid">
+      <div class="hero__copy">
+        <p class="kicker" data-reveal>Mental Health Care for Children, Teens, Adults &amp; Families</p>
+        <h1 class="h1 d-08" data-reveal>Mental Health Care That Starts With&nbsp;You.</h1>
+        <p class="lead hero__lead d-16" data-reveal>You don't need to know exactly what kind of care you need before reaching out. Chrysalis Health can help you understand your options and take the next&nbsp;step.</p>
+        <div class="actions d-24" data-reveal>
+          <a class="btn btn--primary" href="/request-services">
+            Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="/about/locations">Find a Location</a>
+        </div>
+        <ul class="proof d-30" data-reveal>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Serving individuals and families since 1995</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> Telehealth available</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> Insurance and Medicaid options</li>
+        </ul>
+      </div>
+      <div class="hero__media d-12" data-reveal>
+        <span class="hero__plate" aria-hidden="true"></span>
+        <img src="https://images.pexels.com/photos/3958411/pexels-photo-3958411.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250"
+             srcset="https://images.pexels.com/photos/3958411/pexels-photo-3958411.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w,
+                     https://images.pexels.com/photos/3958411/pexels-photo-3958411.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w,
+                     https://images.pexels.com/photos/3958411/pexels-photo-3958411.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1750 1400w"
+             sizes="(max-width: 920px) 100vw, 44vw" width="1400" height="1750"
+             alt="A teenager relaxed on a couch, talking with a therapist in a bright room" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTAKE: a strip, not a card ================= -->
+  <section class="intake" aria-labelledby="intake-t">
+    <div class="page">
+      <div class="intake__bar" data-reveal>
+        <div class="intake__lead">
+          <h2 class="h3" id="intake-t">Not Sure Where to Start?</h2>
+          <p>You may know exactly what you need. Or you may only know that you, your child, or someone you care about is struggling.</p>
+        </div>
+        <div class="seg" role="group" aria-label="Who are you looking for help for?">
+          <button type="button" class="opt" data-path="adult" aria-pressed="false">Myself</button>
+          <button type="button" class="opt" data-path="child" aria-pressed="false">My child or teen</button>
+          <button type="button" class="opt" data-path="other" aria-pressed="false">Someone else I support</button>
+        </div>
+      </div>
+      <div class="intake__out" id="intake-out" hidden aria-live="polite">
+        <p>You do not need a diagnosis or an understanding of different therapy options before contacting Chrysalis Health. Tell us what is happening, and we can help you determine the appropriate next&nbsp;step.</p>
+        <a class="btn btn--primary" id="intake-cta" href="/request-services">
+          Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONCERNS: six tiles ================= -->
+  <section class="band band--paper" id="concerns">
+    <div class="page">
+      <div class="shead shead--center" data-reveal>
+        <p class="chip" id="chip" hidden>
+          <span id="chip-text">Showing care for</span>
+          <button type="button" id="chip-clear">Show everything</button>
+        </p>
+        <h2 class="h2">What Can We Help With?</h2>
+        <p class="lead measure-58">Mental health concerns can look different from person to person. Chrysalis Health provides individualized care for a wide range of emotional, behavioral, and family&nbsp;challenges.</p>
+      </div>
+
+      <ul class="tiles" id="concern-list">
+        <li class="tile" data-aud="adult child" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span>
+          <h3>Anxiety &amp; Excessive Worry</h3>
+          <p>Support for persistent worry, fear, panic, avoidance, and anxiety that begins interfering with everyday life.</p>
+        </li>
+        <li class="tile d-06" data-aud="adult child" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-cloud"/></svg></span>
+          <h3>Depression &amp; Withdrawal</h3>
+          <p>Help with sadness, irritability, low motivation, isolation, hopelessness, and loss of interest in everyday activities.</p>
+        </li>
+        <li class="tile d-12" data-aud="adult child other" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-heart"/></svg></span>
+          <h3>Trauma &amp; Difficult Experiences</h3>
+          <p>Trauma-informed care to help people process difficult experiences, understand their reactions, and develop healthier ways to cope.</p>
+        </li>
+        <li class="tile d-18" data-aud="adult child" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-spark"/></svg></span>
+          <h3>Anger &amp; Behavioral Concerns</h3>
+          <p>Support for emotional outbursts, aggression, difficulty managing strong emotions, and behavioral challenges.</p>
+        </li>
+        <li class="tile d-24" data-aud="child other" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-child"/></svg></span>
+          <h3>Child &amp; Teen Concerns</h3>
+          <p>Mental health support for children and adolescents experiencing emotional, behavioral, school, social, or family difficulties.</p>
+        </li>
+        <li class="tile d-30" data-aud="child other adult" data-reveal>
+          <span class="tile__badge" aria-hidden="true"><svg class="ico"><use href="#i-users"/></svg></span>
+          <h3>Family Challenges</h3>
+          <p>Help navigating conflict, communication problems, separation, divorce, major life changes, and other challenges affecting the family.</p>
+        </li>
+      </ul>
+
+      <div class="actions actions--center" data-reveal>
+        <a class="btn btn--ghost" href="/mental-health">
+          Explore Mental Health Services <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE ANSWER: question beside answer ================= -->
+  <section class="band answer" id="answer">
+    <div class="page answer__grid">
+      <div class="answer__q" data-reveal>
+        <h2 class="h2">What mental health services does Chrysalis Health provide?</h2>
+      </div>
+      <div class="answer__a d-12" data-reveal>
+        <p>Chrysalis Health provides individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, anger management, psychiatric services and medication management, case management, and telehealth. Services are individualized based on each person's needs and availability in their&nbsp;area.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACCESS: photograph beside three numbered ways ================= -->
+  <section class="band band--blue access" id="locations">
+    <div class="page access__grid">
+      <figure class="frame frame--blue" data-reveal>
+        <img src="https://images.pexels.com/photos/3958380/pexels-photo-3958380.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=750"
+             srcset="https://images.pexels.com/photos/3958380/pexels-photo-3958380.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=525 700w,
+                     https://images.pexels.com/photos/3958380/pexels-photo-3958380.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=750 1000w,
+                     https://images.pexels.com/photos/3958380/pexels-photo-3958380.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1050 1400w"
+             sizes="(max-width: 920px) 100vw, 44vw" width="1400" height="1050"
+             alt="A young couple smiling with a counselor in a bright, sunlit room" loading="lazy" decoding="async">
+      </figure>
+      <div class="access__copy">
+        <p class="kicker" data-reveal>Find Care Near You</p>
+        <h2 class="h2 d-08" data-reveal>Mental Health Care Should Be Easier to&nbsp;Access.</h2>
+        <p class="lead d-16" data-reveal>Chrysalis Health provides services through community-based programs, select office locations, and telehealth options where appropriate.</p>
+        <ol class="ways">
+          <li class="d-12" data-reveal>
+            <span class="ways__n" aria-hidden="true">01</span>
+            <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+            <h3>Community-based programs</h3>
+          </li>
+          <li class="d-18" data-reveal>
+            <span class="ways__n" aria-hidden="true">02</span>
+            <svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>
+            <h3>Select office locations</h3>
+          </li>
+          <li class="d-24" data-reveal>
+            <span class="ways__n" aria-hidden="true">03</span>
+            <svg class="ico" aria-hidden="true"><use href="#i-video"/></svg>
+            <h3>Telehealth where appropriate</h3>
+          </li>
+        </ol>
+        <p class="measure-58 d-30" data-reveal>Find a nearby Chrysalis Health location, learn which services are available in your area, or start with telehealth when remote care is a better&nbsp;fit.</p>
+        <div class="actions d-30" data-reveal>
+          <a class="btn btn--primary" href="/about/locations">
+            Find a Location <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="/telehealth">Explore Telehealth</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES: four cards on the dark band ================= -->
+  <section class="band band--dark" id="services">
+    <div class="page">
+      <div class="shead" data-reveal>
+        <h2 class="h2">How We Can Help</h2>
+        <p class="lead measure-58 on-dark">Different people need different kinds of support. Care begins by understanding what you are experiencing and identifying the services that may best fit your&nbsp;needs.</p>
+      </div>
+
+      <ul class="svc">
+        <li data-reveal>
+          <a class="svc__card" href="/mental-health">
+            <svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg>
+            <h3>Therapy</h3>
+            <p>Individual, child and teen, family, anxiety and depression, trauma, and anger-management therapy.</p>
+            <span class="svc__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li class="d-06" data-reveal>
+          <a class="svc__card" href="/mental-health/psychiatric-services">
+            <svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg>
+            <h3>Psychiatric Services &amp; Medication Management</h3>
+            <p>Psychiatric evaluation and ongoing medication management when clinically appropriate.</p>
+            <span class="svc__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li class="d-12" data-reveal>
+          <a class="svc__card" href="/mental-health/case-management">
+            <svg class="ico" aria-hidden="true"><use href="#i-users"/></svg>
+            <h3>Case Management</h3>
+            <p>Support coordinating care, services, resources, and other needs that may affect treatment and overall wellbeing.</p>
+            <span class="svc__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li class="d-18" data-reveal>
+          <a class="svc__card" href="/telehealth">
+            <svg class="ico" aria-hidden="true"><use href="#i-video"/></svg>
+            <h3>Telehealth</h3>
+            <p>Secure remote mental health services that can make care easier to access when travel, distance, schedules, or mobility create barriers.</p>
+            <span class="svc__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="actions" data-reveal>
+        <a class="btn btn--dark" href="/mental-health">
+          Explore All Services <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATEMENT + AUDIENCES: three photograph cards ================= -->
+  <section class="band" id="who">
+    <div class="page">
+      <div class="shead shead--center" data-reveal>
+        <p class="kicker">Care for Children, Adults &amp; Families</p>
+        <h2 class="statement">There is no one face of mental health, and there is no one treatment plan that works for&nbsp;everyone.</h2>
+      </div>
+      <ul class="aud-grid" id="aud-list">
+        <li class="aud" data-aud="child" data-reveal>
+          <figure class="aud__media">
+            <img src="https://images.pexels.com/photos/3958461/pexels-photo-3958461.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600"
+                 srcset="https://images.pexels.com/photos/3958461/pexels-photo-3958461.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=500&amp;h=375 500w,
+                         https://images.pexels.com/photos/3958461/pexels-photo-3958461.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600 800w"
+                 sizes="(max-width: 900px) 100vw, 30vw" width="800" height="600"
+                 alt="A teenager laughing while talking with a therapist" loading="lazy" decoding="async">
+          </figure>
+          <div class="aud__body">
+            <h3>Children &amp; Teens</h3>
+            <p>Age-appropriate therapy and mental health support built around a child's development, symptoms, strengths, family, school, and environment.</p>
+          </div>
+        </li>
+        <li class="aud d-08" data-aud="adult" data-reveal>
+          <figure class="aud__media">
+            <img src="https://images.pexels.com/photos/3228887/pexels-photo-3228887.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600"
+                 srcset="https://images.pexels.com/photos/3228887/pexels-photo-3228887.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=500&amp;h=375 500w,
+                         https://images.pexels.com/photos/3228887/pexels-photo-3228887.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600 800w"
+                 sizes="(max-width: 900px) 100vw, 30vw" width="800" height="600"
+                 alt="A smiling man in glasses" loading="lazy" decoding="async">
+          </figure>
+          <div class="aud__body">
+            <h3>Adults</h3>
+            <p>Individualized mental health care for emotional, behavioral, relationship, and life challenges that may be affecting everyday wellbeing.</p>
+          </div>
+        </li>
+        <li class="aud d-16" data-aud="child adult other" data-reveal>
+          <figure class="aud__media">
+            <img src="https://images.pexels.com/photos/3820674/pexels-photo-3820674.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600"
+                 srcset="https://images.pexels.com/photos/3820674/pexels-photo-3820674.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=500&amp;h=375 500w,
+                         https://images.pexels.com/photos/3820674/pexels-photo-3820674.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=600 800w"
+                 sizes="(max-width: 900px) 100vw, 30vw" width="800" height="600"
+                 alt="Two parents playing with their toddler on the floor at home" loading="lazy" decoding="async">
+          </figure>
+          <div class="aud__body">
+            <h3>Families</h3>
+            <p>Support that helps families better understand one another, improve communication, work through conflict, and navigate difficult changes together.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="actions actions--center" data-reveal>
+        <a class="btn btn--primary" href="/mental-health">
+          Find the Right Service <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEPS: a spine down the middle, steps either side ================= -->
+  <section class="band band--paper" id="starting-care">
+    <div class="page">
+      <div class="shead shead--center" data-reveal>
+        <p class="kicker">Starting Care</p>
+        <h2 class="h2">You Don't Have to Figure It Out&nbsp;Alone.</h2>
+        <p class="lead measure-58">Starting mental health care can feel complicated. We try to make the next step clearer.</p>
+      </div>
+      <div class="timeline" data-step="0">
+        <ol class="timeline__list" id="steps-list">
+          <li class="tstep" data-reveal>
+            <span class="tstep__n" aria-hidden="true">1</span>
+            <div class="tstep__card">
+              <h3>Request Services</h3>
+              <p>Complete the online request or call <a href="tel:18885870335">(888)&nbsp;587-0335</a>.</p>
+            </div>
+          </li>
+          <li class="tstep d-08" data-reveal>
+            <span class="tstep__n" aria-hidden="true">2</span>
+            <div class="tstep__card">
+              <h3>Tell Us What's Going On</h3>
+              <p>A Chrysalis Health specialist reviews your needs, location, insurance information, and available services.</p>
+            </div>
+          </li>
+          <li class="tstep d-16" data-reveal>
+            <span class="tstep__n" aria-hidden="true">3</span>
+            <div class="tstep__card">
+              <h3>Complete an Assessment</h3>
+              <p>A clinician learns more about your concerns, symptoms, circumstances, strengths, and goals.</p>
+            </div>
+          </li>
+          <li class="tstep d-24" data-reveal>
+            <span class="tstep__n" aria-hidden="true">4</span>
+            <div class="tstep__card">
+              <h3>Begin the Right Care</h3>
+              <p>Your assessment helps determine the services and treatment approach that may best fit your needs.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="actions actions--center" data-reveal>
+        <a class="btn btn--primary" href="/request-services">
+          Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INSURANCE: copy beside a framed photograph ================= -->
+  <section class="band insurance" id="insurance">
+    <div class="page ins__grid">
+      <div class="ins__copy">
+        <p class="kicker" data-reveal>Insurance &amp; Medicaid</p>
+        <h2 class="h2 d-08" data-reveal>Understanding Your Coverage Shouldn't Be Another&nbsp;Barrier.</h2>
+        <p class="lead measure-58 ink d-16" data-reveal>Chrysalis Health works with insurance and Medicaid options, with coverage varying by plan, location, service, and provider availability.</p>
+        <p class="measure-58 d-24" data-reveal>Review insurance information or contact Chrysalis Health if you need help understanding your options before beginning&nbsp;care.</p>
+        <div class="actions d-30" data-reveal>
+          <a class="btn btn--primary" href="/behavioral-health">
+            Insurance &amp; Medicaid Information <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+      <figure class="frame frame--green d-12" data-reveal>
+        <img src="https://images.pexels.com/photos/3768590/pexels-photo-3768590.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=750"
+             srcset="https://images.pexels.com/photos/3768590/pexels-photo-3768590.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=525 700w,
+                     https://images.pexels.com/photos/3768590/pexels-photo-3768590.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=750 1000w,
+                     https://images.pexels.com/photos/3768590/pexels-photo-3768590.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1050 1400w"
+             sizes="(max-width: 920px) 100vw, 44vw" width="1400" height="1050"
+             alt="A woman smiling on a phone call at home, a laptop open beside her" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= WHY ================= -->
+  <section class="band band--green" id="why">
+    <div class="page why__grid">
+      <div class="why__copy" data-reveal>
+        <p class="kicker">Why Chrysalis Health</p>
+        <h2 class="h2">People Come First.</h2>
+        <p class="lead mt-6 measure-52">Chrysalis Health has served children, adolescents, adults, and families since 1995 with an approach built around individualized care rather than one-size-fits-all&nbsp;treatment.</p>
+        <p class="mt-4 measure-54">Its care teams may include therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other mental health professionals depending on the services and&nbsp;location.</p>
+        <div class="actions">
+          <a class="btn btn--ghost" href="/about-us">
+            Discover Chrysalis Health <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+      <ul class="why__pts">
+        <li class="d-08" data-reveal>
+          <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+          <div><h3 class="h3">Individualized Care</h3><p>Treatment recommendations are based on the person, their circumstances, and their needs.</p></div>
+        </li>
+        <li class="d-16" data-reveal>
+          <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+          <div><h3 class="h3">Multiple Ways to Receive Care</h3><p>Services may be available through telehealth and, depending on location and program, in office, home, school, or community settings.</p></div>
+        </li>
+        <li class="d-24" data-reveal>
+          <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+          <div><h3 class="h3">Experience You Can Build On</h3><p>Chrysalis Health has been serving individuals and families for more than 30 years.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= REFERRAL: a deep green strip ================= -->
+  <section class="referral" id="referral">
+    <div class="page referral__grid" data-reveal>
+      <div>
+        <h2 class="h2 h2--sm">Helping Someone Else Find Care?</h2>
+        <p class="mt-4 measure-58">You may be looking for help for a family member, friend, client, patient, or someone else you support.</p>
+        <p class="mt-3 measure-58">Chrysalis Health provides a dedicated referral pathway to help connect people with available mental health&nbsp;services.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn--light" href="/make-referral">
+          Make a Referral <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ: numbered, on white ================= -->
+  <section class="band" id="faq-sec">
+    <div class="page faq__grid">
+      <div class="faq__head" data-reveal>
+        <p class="kicker">Questions</p>
+        <h2 class="h2">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq" id="faq">
+        <div class="faq__item is-open" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="true" aria-controls="a1" id="q1">
+            <span class="faq__n" aria-hidden="true">01</span>
+            <span class="faq__t">How do I start mental health services with Chrysalis Health?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a1" role="region" aria-labelledby="q1"><div class="faq__inner">
+            <p>Start by submitting a request for services or calling (888) 587-0335. You do not need to know your diagnosis or exactly which service you need before contacting Chrysalis Health.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a2" id="q2">
+            <span class="faq__n" aria-hidden="true">02</span>
+            <span class="faq__t">What types of therapy does Chrysalis Health provide?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a2" role="region" aria-labelledby="q2"><div class="faq__inner">
+            <p>Services include individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, and anger management.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a3" id="q3">
+            <span class="faq__n" aria-hidden="true">03</span>
+            <span class="faq__t">Does Chrysalis Health provide psychiatric services?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a3" role="region" aria-labelledby="q3"><div class="faq__inner">
+            <p>Yes. Chrysalis Health offers psychiatric services and medication management as part of its mental health services.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a4" id="q4">
+            <span class="faq__n" aria-hidden="true">04</span>
+            <span class="faq__t">Does Chrysalis Health offer telehealth?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a4" role="region" aria-labelledby="q4"><div class="faq__inner">
+            <p>Yes. Telehealth is available as a care option, although availability and suitability may depend on the service, location, individual needs, insurance, and clinical recommendations.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a5" id="q5">
+            <span class="faq__n" aria-hidden="true">05</span>
+            <span class="faq__t">Does Chrysalis Health accept Medicaid?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a5" role="region" aria-labelledby="q5"><div class="faq__inner">
+            <p>Chrysalis Health provides insurance and Medicaid options. Coverage and participation should be confirmed based on your plan, service, and location.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a6" id="q6">
+            <span class="faq__n" aria-hidden="true">06</span>
+            <span class="faq__t">How do I find a Chrysalis Health location?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a6" role="region" aria-labelledby="q6"><div class="faq__inner">
+            <p>Use the location finder to see Chrysalis Health locations and learn which services may be available near you.</p>
+          </div></div>
+        </div>
+        <div class="faq__item" data-reveal>
+          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a7" id="q7">
+            <span class="faq__n" aria-hidden="true">07</span>
+            <span class="faq__t">Can I refer someone to Chrysalis Health?</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq__panel" id="a7" role="region" aria-labelledby="q7"><div class="faq__inner">
+            <p>Yes. Chrysalis Health provides a dedicated referral process for people helping someone connect with mental health care.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL: the one dark close ================= -->
+  <section class="band band--dark final">
+    <div class="page final__in" data-reveal>
+      <h2 class="statement">Ready to Take the Next Step?</h2>
+      <p class="lead mt-6 measure-54 on-dark">You do not have to know exactly what kind of care you need. Start by telling us what is going on, and we'll help you understand your&nbsp;options.</p>
+      <div class="actions actions--center">
+        <a class="btn btn--primary" href="/request-services">
+          Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+        <a class="btn btn--dark" href="/about/locations">Find a Location</a>
+      </div>
+      <a class="final__phone" href="tel:18885870335">
+        <svg class="ico ico--lg" aria-hidden="true"><use href="#i-phone"/></svg> (888) 587-0335
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="page">
+    <div class="ft__cols">
+      <div class="ft__col">
+        <h3>Mental Health Services</h3>
+        <ul>
+          <li><a href="/mental-health/counseling">Individual Therapy</a></li>
+          <li><a href="../">Child &amp; Teen Therapy</a></li>
+          <li><a href="../family-counseling/">Family Therapy</a></li>
+          <li><a href="../anxiety-depression/">Anxiety &amp; Depression Therapy</a></li>
+          <li><a href="../trauma-therapy/">Trauma Therapy</a></li>
+          <li><a href="../anger-management/">Anger Management</a></li>
+          <li><a href="/mental-health/psychiatric-services">Psychiatric Services &amp; Medication Management</a></li>
+          <li><a href="/mental-health/case-management">Case Management</a></li>
+          <li><a href="/telehealth">Telehealth</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>Clients &amp; Families</h3>
+        <ul>
+          <li><a href="/behavioral-health">Insurance &amp; Medicaid</a></li>
+          <li><a href="/psychiatry-follow-appointment">Psychiatry Follow-Up</a></li>
+          <li><a href="http://www.securebillpay.net/ChrysalisHealth">Pay a Bill</a></li>
+          <li><a href="/request-medical-records">Request Medical Records</a></li>
+          <li><a href="/make-referral">Make a Referral</a></li>
+          <li><a href="/consent-forms">Consent Forms</a></li>
+          <li><a href="/required-notices">Required Notices</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>About Chrysalis Health</h3>
+        <ul>
+          <li><a href="/about/our-mission-vision-values">Mission, Vision &amp; Core Values</a></li>
+          <li><a href="/about/company-history">Company History</a></li>
+          <li><a href="/about/community-involvement-affiliations">Community Involvement &amp; Affiliations</a></li>
+          <li><a href="/about/meet-executive-staff">Executive Team</a></li>
+          <li><a href="/about/locations">Locations</a></li>
+          <li><a href="/about/join-our-team">Join Our Team</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="/contact-us">Ask a Question</a></li>
+          <li><a href="/about/locations">Find a Location</a></li>
+          <li><a class="ft__phone" href="tel:18885870335">(888) 587-0335</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft__base">
+      <span>Copyright &copy; 2026 Chrysalis Health. All Rights Reserved.</span>
+      <span><a href="/terms-and-conditions">Terms &amp; Conditions</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a href="/sitemap">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn--primary" href="/request-services">Start Care Today</a>
+  <a class="btn btn--ghost" href="tel:18885870335">Call Us</a>
+</div>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.6 2.8a2 2 0 01-.4 2.1L8.1 9.8a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.8.6a2 2 0 011.8 2.1z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h3.5l2.4-6.5L12 19l2.6-7H18"/><path d="M19.5 10.5a2 2 0 110 3 2 2 0 010-3z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 15a3.8 3.8 0 00-1-7.5A5.8 5.8 0 106 14.6"/><path d="M8 18.5v2M12 17.5v3.5M16 18.5v2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.4 5.1a5.2 5.2 0 00-7.4 0L12 6.2l-1-1.1a5.2 5.2 0 10-7.4 7.4L12 20.9l8.4-8.4a5.2 5.2 0 000-7.4z"/><path d="M7.5 11h2l1.5-2.5L13 13.5 14.5 11h2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M13 2.5L5 13.5h5.5L9.5 21.5 18 10.5h-5.5z"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M8.5 21v-4.5L6.5 15l2-4.5h7l2 4.5-2 1.5V21"/><path d="M10.5 5.6h.01M13.5 5.6h.01"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20.5a6.5 6.5 0 0113 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M15 20.5a5.2 5.2 0 016.5-5"/></symbol>
+</svg>
+
+<script src="main.js" defer></script>
+</body>
+</html>
