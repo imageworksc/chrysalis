@@ -58,7 +58,11 @@ a{color:var(--blue-deep)}
 @media(max-width:920px){.c-4,.c-5,.c-6,.c-7,.c-8,.c-9{grid-column:span 12}}
 
 .band{padding-block:var(--band)}
-.band--deep{background:var(--blue-deep);color:rgba(255,255,255,.86)}
+.band--deep{background:var(--blue-deep);color:rgba(255,255,255,.86);position:relative;overflow:hidden}
+/* a light in the corner, green over the blue, so the band has depth */
+.band--deep::before{content:"";position:absolute;right:-12%;bottom:-40%;width:min(60vw,56rem);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(var(--rgb-green),.22),rgba(var(--rgb-green),0) 72%);pointer-events:none}
+.band--deep > .page{position:relative}
 .band--lt{background:var(--blue-lt)}
 .band--tint{background:var(--tint)}
 .band--white{background:#fff}
@@ -191,29 +195,55 @@ a{color:var(--blue-deep)}
 .concerns{list-style:none;margin:clamp(2.5rem,4.4vw,4.5rem) 0 0;padding:0;
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(2rem,5vw,5.5rem)}
 .concerns li{display:grid;grid-template-columns:3.625rem minmax(0,1fr);gap:var(--sp-5);
-  padding:var(--sp-6) 0;border-top:1px solid rgba(255,255,255,.22)}
+  padding:var(--sp-6) 0;border-top:1px solid rgba(255,255,255,.22);
+  position:relative;transition:transform .3s var(--ease)}
+/* the tint box: drawn behind the row, a little wider than it, so the text
+   does not move when it appears */
+.concerns li::before{content:"";position:absolute;inset:0.5rem -1rem;z-index:-1;border-radius:var(--r);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  opacity:0;transform:scale(.97);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.concerns li:hover{transform:translateY(-0.25rem)}
+.concerns li:hover::before{opacity:1;transform:scale(1)}
 .cbadge{width:3.625rem;height:3.625rem;border-radius:1.25rem 1.25rem 1.25rem 0.375rem;display:grid;place-items:center;
   background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.26);color:var(--green);
-  transition:background .2s var(--ease),border-color .2s var(--ease)}
+  transition:background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease),transform .35s var(--ease)}
 .cbadge .ico{width:1.625rem;height:1.625rem;stroke-width:1.6}
 .concerns li:nth-child(even) .cbadge{border-radius:1.25rem 1.25rem 0.375rem 1.25rem;color:var(--blue)}
-.concerns li:hover .cbadge{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45)}
+/* on hover the badge fills with its own accent and the glyph goes to ink:
+   --ink on --green is 6.2:1, on --blue 4.9:1 */
+.concerns li:hover .cbadge{background:var(--green);border-color:var(--green);color:var(--ink);transform:scale(1.1) rotate(-6deg)}
+.concerns li:nth-child(even):hover .cbadge{background:var(--blue);border-color:var(--blue);transform:scale(1.1) rotate(6deg)}
+.concerns li:hover h3{transform:translateX(0.25rem)}
+.concerns li:hover p{color:rgba(255,255,255,.94)}
 @media(max-width:600px){.concerns li{grid-template-columns:2.875rem minmax(0,1fr);gap:var(--sp-4)}
   .cbadge{width:2.875rem;height:2.875rem;border-radius:1rem 1rem 1rem 0.3125rem}.cbadge .ico{width:1.375rem;height:1.375rem}}
 .concerns li:nth-child(1),.concerns li:nth-child(2){border-top:0;padding-top:0}
 .concerns h3{font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);color:#fff;
-  line-height:1.25;letter-spacing:-.015em}
-.concerns p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:rgba(255,255,255,.76);line-height:1.55}
+  line-height:1.25;letter-spacing:-.015em;transition:transform .3s var(--ease)}
+.concerns p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:rgba(255,255,255,.76);line-height:1.55;transition:color .3s var(--ease)}
 @media(max-width:900px){
   .concerns{grid-template-columns:minmax(0,1fr)}
   .concerns li:nth-child(2){border-top:1px solid rgba(255,255,255,.22);padding-top:var(--sp-6)}
 }
 /* the answer band: stacked, set as a considered statement */
-.band--answer{background:var(--green-lt)}
+.band--answer{background:var(--green-lt);position:relative;overflow:hidden}
+.band--answer::before{content:"";position:absolute;left:-10%;top:-30%;width:min(50vw,44rem);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(var(--rgb-green),.28),rgba(var(--rgb-green),0) 72%);pointer-events:none}
+.band--answer > .page{position:relative}
 .answer{background:#fff;border-radius:var(--r);box-shadow:var(--e-2);
   padding:clamp(2rem,4.4vw,5rem) clamp(1.5rem,4vw,5.5rem);
-  max-width:min(61.25rem,100%);margin-inline:auto}
-.answer__rule{display:block;width:3.25rem;height:0.1875rem;border-radius:2px;background:var(--green-cta)}
+  max-width:min(61.25rem,100%);margin-inline:auto;
+  position:relative;overflow:hidden;border-top:0.375rem solid var(--green);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.answer > *{position:relative}
+/* the light in the corner: there at rest as a hint, full on hover */
+.answer::before{content:"";position:absolute;right:-8rem;top:-8rem;width:22rem;height:22rem;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(var(--rgb-green),.22),rgba(var(--rgb-green),0) 70%);
+  opacity:.45;transform:scale(.7);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
+.answer:hover{transform:translateY(-0.375rem);box-shadow:var(--e-3)}
+.answer:hover::before{opacity:1;transform:scale(1)}
+.answer:hover .answer__rule{width:7.5rem}
+.answer__rule{display:block;width:3.25rem;height:0.1875rem;border-radius:2px;background:var(--green-cta);transition:width .5s var(--ease)}
 .answer h2{margin-top:var(--sp-6);font-family:var(--head);
   font-size:clamp(1.5rem,2.3vw,2.125rem);font-weight:var(--fw-med);
   line-height:1.18;letter-spacing:-.025em;color:var(--ink);max-width:20em;text-wrap:balance}
@@ -427,13 +457,17 @@ a{color:var(--blue-deep)}
 }
 
 
-@keyframes rise-failsafe{to{opacity:1;transform:none}}
-.has-js [data-reveal]{opacity:0;transform:translateY(1.375rem);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s);
+@keyframes rise-failsafe{to{opacity:1;translate:0}}
+/* the entrance uses the translate property, not transform, so a block that
+   also moves on hover — the answer card, the concern rows — keeps its hover
+   transform after it has arrived. is-in used to pin transform:none. */
+.has-js [data-reveal]{opacity:0;translate:0 1.375rem;
+  transition:opacity .7s var(--ease),translate .7s var(--ease);transition-delay:var(--d,0s);
   animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
-.has-js [data-reveal].is-in{opacity:1;transform:none;animation:none}
+.has-js [data-reveal].is-in{opacity:1;translate:0;animation:none}
 @media(prefers-reduced-motion:reduce){
   .btn:hover,.btn:hover .ico{transform:none}
+  .concerns li:hover,.concerns li:hover .cbadge,.concerns li:hover h3,.answer:hover,.answer:hover::before{transform:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
