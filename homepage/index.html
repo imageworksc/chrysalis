@@ -80,7 +80,7 @@ a{color:var(--blue-deep)}
 .kicker--dark{color:var(--green)}
 
 .btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
-  min-height:3.375rem;padding:var(--sp-3) clamp(1.5rem,2.2vw,2.25rem);border:1px solid transparent;border-radius:0;
+  min-height:3.375rem;padding:var(--sp-3) clamp(1.5rem,2.2vw,2.25rem);border:1px solid transparent;border-radius:var(--r-btn);
   font-family:var(--font);font-weight:var(--fw-bold);font-size:var(--fs-sm);text-decoration:none;
   cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease)}
 /* on hover the button lifts and casts, and the arrow leads the way; on press
@@ -166,7 +166,7 @@ a{color:var(--blue-deep)}
   padding:var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-5);border-radius:var(--r-pill);
   background:rgba(255,255,255,.15);color:#fff;font-family:var(--head);font-size:var(--fs-sm);
   font-weight:var(--fw-med);margin-bottom:var(--sp-6)}
-.chip button{background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:0;
+.chip button{background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:var(--r-sm);
   min-height:2.25rem;padding:0 var(--sp-4);font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-mid);
   color:#fff;cursor:pointer}
 .chip button:hover{border-color:#fff;background:rgba(255,255,255,.12)}
@@ -306,10 +306,10 @@ a{color:var(--blue-deep)}
   right:calc(var(--pad) + (100% - 2 * var(--pad) - 3 * var(--sg)) / 4 - var(--disc) / 2);
   background:var(--rule);border-radius:1px;overflow:hidden}
 .steps__fill{position:absolute;left:0;top:0;height:100%;width:calc(var(--p,0) * 100%);
-  background:var(--green);transition:width .3s var(--ease)}
+  background:var(--green);transition:width .45s var(--ease)}
 .steps{list-style:none;margin:0;padding:0;
   display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sg)}
-.steps li{position:relative;z-index:1;min-width:0}
+.steps li{position:relative;z-index:1;min-width:0;cursor:default}
 .steps__num{width:var(--disc);height:var(--disc);border-radius:50%;display:grid;place-items:center;
   background:#fff;border:1.5px solid var(--rule-dk);color:var(--muted);
   font-family:var(--head);font-size:1.1875rem;font-weight:var(--fw-med);
@@ -1036,30 +1036,34 @@ a{color:var(--blue-deep)}
   var list=d.getElementById('steps-list'), fill=d.getElementById('steps-fill');
   if(list&&fill){
     var items=Array.prototype.slice.call(list.children), queued=false, n=items.length;
-    function tick(){
-      var line=window.innerHeight*.55, box=list.getBoundingClientRect();
-      // across: the four sit on one row, so progress is how far the row has
-      // risen past the reading line, spread over one and a half row heights
-      // so the sweep is not over in a flick. stacked: each step lights as its
-      // own top crosses the line, as before.
-      var across=n>1 && Math.abs(items[1].getBoundingClientRect().top-items[0].getBoundingClientRect().top)<2;
-      var pct;
-      if(across){
-        pct=Math.max(0,Math.min(1,(line-box.top)/(box.height*1.5)));
-        items.forEach(function(li,i){ li.classList.toggle('is-live',pct>=(i+0.5)/n); });
-      } else {
-        var live=-1;
-        items.forEach(function(li,i){ if(li.getBoundingClientRect().top<=line) live=i; });
-        pct=(live+1)/n;
-        items.forEach(function(li,i){ li.classList.toggle('is-live',i<=live); });
-      }
+    function across(){ return n>1 && Math.abs(items[1].getBoundingClientRect().top-items[0].getBoundingClientRect().top)<2; }
+    function set(live,pct){
+      items.forEach(function(li,i){ li.classList.toggle('is-live',i<=live); });
       fill.parentNode.style.setProperty('--p',pct);
+    }
+    // across, the pointer drives the sequence: resting on a step fills the
+    // rail to its disc and lights every step up to it; leaving the row goes
+    // back to the first. the rail runs disc-centre to disc-centre, so step i
+    // is i/(n-1) of the way along it.
+    items.forEach(function(li,i){
+      li.addEventListener('mouseenter',function(){ if(across()) set(i,i/(n-1)); });
+      li.addEventListener('focusin',function(){ if(across()) set(i,i/(n-1)); });
+    });
+    list.addEventListener('mouseleave',function(){ if(across()) set(0,0); });
+    // stacked, there is no pointer to speak of, so each step lights as it
+    // reaches the reading line, and its connector with it.
+    function tick(){
+      if(across()) return;
+      var line=window.innerHeight*.55, live=-1;
+      items.forEach(function(li,i){ if(li.getBoundingClientRect().top<=line) live=i; });
+      set(live,(live+1)/n);
     }
     window.addEventListener('scroll',function(){
       if(queued)return; queued=true;
       requestAnimationFrame(function(){tick();queued=false;});
     },{passive:true});
-    tick();
+    window.addEventListener('resize',function(){ if(across()) set(0,0); else tick(); });
+    if(across()) set(0,0); else tick();
   }
 })();
 </script>
