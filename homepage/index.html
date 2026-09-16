@@ -8,6 +8,7 @@
 <link rel="canonical" href="https://imageworksc.github.io/chrysalis/homepage/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -216,7 +217,7 @@ a{color:var(--blue-deep)}
 .access{position:relative;background:var(--ink-2);overflow:hidden;
   padding-block:clamp(64px,7vw,120px) 0}
 .access__bg{position:absolute;inset:0 0 auto;height:62%;z-index:0}
-.access__bg .ph{height:100%}
+.access__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .access__bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(15,37,48,.72) 0%,rgba(15,37,48,.9) 58%,var(--ink-2) 100%)}
 .access__in{position:relative;z-index:2;max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter)}
@@ -375,8 +376,6 @@ a{color:var(--blue-deep)}
   body{padding-bottom:80px}
 }
 
-.ph{display:grid;place-items:center;text-align:center;background:var(--blue-deep);color:rgba(255,255,255,.75);
-  font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-mid);padding:var(--sp-5);line-height:1.5;width:100%}
 
 @keyframes rise-failsafe{to{opacity:1;transform:none}}
 .has-js [data-reveal]{opacity:0;transform:translateY(22px);
@@ -400,8 +399,12 @@ a{color:var(--blue-deep)}
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero__bg" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1758273241086-f3585ef8c2f8?fm=jpg&q=70&w=2400&auto=format&fit=crop"
-           alt="" loading="eager" fetchpriority="high">
+      <img src="https://images.pexels.com/photos/7447263/pexels-photo-7447263.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+           srcset="https://images.pexels.com/photos/7447263/pexels-photo-7447263.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900 900w,
+                   https://images.pexels.com/photos/7447263/pexels-photo-7447263.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600 1600w,
+                   https://images.pexels.com/photos/7447263/pexels-photo-7447263.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=2400 2400w"
+           sizes="100vw" width="2400" height="1600"
+           alt="" loading="eager" fetchpriority="high" decoding="async">
     </div>
     <div class="hero__in">
       <div class="hero__copy">
@@ -544,7 +547,13 @@ a{color:var(--blue-deep)}
 
   <!-- ================= ACCESS ================= -->
   <section class="access" id="locations">
-    <div class="access__bg" aria-hidden="true"><div class="ph">Photograph &mdash; replace<br>wide, environmental, people in context</div></div>
+    <div class="access__bg" aria-hidden="true">
+      <img src="https://images.pexels.com/photos/8550724/pexels-photo-8550724.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600"
+           srcset="https://images.pexels.com/photos/8550724/pexels-photo-8550724.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900 900w,
+                   https://images.pexels.com/photos/8550724/pexels-photo-8550724.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600 1600w"
+           sizes="100vw" width="1600" height="1200"
+           alt="" loading="lazy" decoding="async">
+    </div>
     <div class="access__in">
       <div class="access__head" data-reveal>
         <p class="kicker kicker--dark">Find Care Near You</p>
