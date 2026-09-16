@@ -319,6 +319,9 @@ a{color:var(--blue-deep)}
 @media(max-width:600px){.svc{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------------- audiences: tall photograph cards ---------------- */
+/* the statement over the cards: smaller, and wide enough to sit on two lines */
+.who .shead{max-width:60rem}
+.who .statement{font-size:clamp(1.5rem,2.2vw,2rem)}
 .aud-grid{list-style:none;margin:clamp(3rem,5vw,5rem) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
 .aud{position:relative;aspect-ratio:7/9;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e-2);
   transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
