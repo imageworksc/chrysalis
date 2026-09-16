@@ -13,6 +13,7 @@ build tool required to view them.
 | Family Counseling and Therapy | `family-counseling/` |
 | Anxiety and Depression Therapy | `anxiety-depression/` |
 | Anger Management Therapy and Counseling | `anger-management/` |
+| Homepage concept (v12) — standalone, not built from the shell | `homepage/` |
 
 Copy on the four service pages is taken from the client's source document and is
 checked against it line by line; the pages carry no invented prose.

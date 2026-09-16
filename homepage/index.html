@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mental Health Services for Children, Teens, Adults &amp; Families | Chrysalis Health</title>
+<meta name="description" content="Chrysalis Health provides therapy, psychiatric services, case management and telehealth for children, teens, adults and families. You don't need a diagnosis to start.">
+<link rel="canonical" href="https://imageworksc.github.io/chrysalis/homepage/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#87bf57;--green-dk:#6aaa35;--green-cta:#4f8226;--green-lt:#eef5e6;
+  --blue:#52a5cf;--blue-dk:#3d8fb8;--blue-deep:#23617f;--blue-lt:#e8f4fb;
+  --ink:#16323f;--ink-2:#0f2530;
+  --paper:#f7f9fa;--paper-2:#eef2f5;--tint:#f5f9fc;--white:#fff;
+  --rule:#e2e9ed;--rule-dk:#cfdae0;
+  --body:#4c5a62;--card-txt:#5e6c75;--muted:#5f7480;
+  --rgb-green:135,191,87;--rgb-blue:82,165,207;--rgb-ink:22,50,63;
+
+  --font:'Lato',Arial,sans-serif;
+  --head:'Montserrat','Lato',Arial,sans-serif;
+  --fs-display:clamp(36px,4.4vw,56px);
+  --fs-state:clamp(27px,3vw,44px);
+  --fs-h2:clamp(27px,2.9vw,38px);
+  --fs-h3:clamp(17px,1.3vw,20px);
+  --fs-lead:clamp(16px,1.05vw,17px);
+  --fs-base:16px;--fs-sm:15px;--fs-xs:13px;--fs-nav:15px;--fs-cta:14px;
+  --fw-reg:400;--fw-mid:500;--fw-med:600;--fw-bold:700;
+
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;
+  --sp-6:32px;--sp-7:40px;--sp-8:56px;--sp-9:72px;--sp-10:96px;--sp-11:128px;
+
+  --gap:clamp(16px,1.7vw,24px);
+  --band:clamp(64px,7vw,120px);
+  --w-page:1300px;--gutter:clamp(16px,2.6vw,40px);
+  --r:clamp(10px,0.9vw,14px);--r-sm:8px;--r-btn:10px;--r-pill:999px;
+  --e-2:0 8px 24px rgba(var(--rgb-ink),.07);
+  --e-3:0 18px 44px rgba(var(--rgb-ink),.12);
+  --e-4:0 24px 60px rgba(var(--rgb-ink),.16);
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--body);font-family:var(--font);font-size:var(--fs-base);
+  line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+a{color:var(--blue-deep)}
+
+.page{max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter)}
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap)}
+.g > *{min-width:0}
+.c-4{grid-column:span 4}.c-5{grid-column:span 5}.c-6{grid-column:span 6}
+.c-7{grid-column:span 7}.c-8{grid-column:span 8}.c-9{grid-column:span 9}.c-12{grid-column:span 12}
+@media(max-width:920px){.c-4,.c-5,.c-6,.c-7,.c-8,.c-9{grid-column:span 12}}
+
+.band{padding-block:var(--band)}
+.band--deep{background:var(--blue-deep);color:rgba(255,255,255,.86)}
+.band--lt{background:var(--blue-lt)}
+.band--tint{background:var(--tint)}
+.band--white{background:#fff}
+.band--green{background:var(--green-lt)}
+.band--deep .h2,.band--deep .h3{color:#fff}
+
+.h1{font-family:var(--head);font-size:var(--fs-display);font-weight:var(--fw-mid);
+  line-height:1.1;letter-spacing:-.025em;color:var(--ink);text-wrap:balance}
+.h2{font-family:var(--head);font-size:var(--fs-h2);font-weight:var(--fw-mid);
+  line-height:1.14;letter-spacing:-.022em;color:var(--ink);text-wrap:balance}
+.h3{font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);
+  line-height:1.3;letter-spacing:-.012em;color:var(--ink)}
+.statement{font-family:var(--head);font-size:var(--fs-state);font-weight:var(--fw-mid);
+  line-height:1.14;letter-spacing:-.028em;text-wrap:balance}
+.lead{font-size:var(--fs-lead);line-height:1.58}
+.measure{max-width:56ch}
+.kicker{font-family:var(--head);font-weight:var(--fw-med);font-size:var(--fs-sm);
+  color:var(--green-cta);margin-bottom:var(--sp-4)}
+.kicker--dark{color:var(--green)}
+
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  min-height:54px;padding:var(--sp-3) clamp(24px,2.2vw,36px);border:1px solid transparent;border-radius:var(--r-pill);
+  font-family:var(--font);font-weight:var(--fw-bold);font-size:var(--fs-sm);text-decoration:none;
+  cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .12s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.btn--primary:hover{background:var(--ink);border-color:var(--ink)}
+.btn--green{background:var(--green);border-color:var(--green);color:var(--ink)}
+.btn--green:hover{background:var(--green-dk);border-color:var(--green-dk);color:var(--ink)}
+.btn--ghost{background:#fff;border-color:var(--rule-dk);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink)}
+.btn--dark{background:transparent;border-color:rgba(255,255,255,.45);color:#fff}
+.btn--dark:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3);margin-top:var(--sp-7)}
+@media(max-width:600px){.actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%}}
+
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+:where(a,button,input,select):focus-visible{outline:3px solid var(--blue-deep);outline-offset:3px;border-radius:4px}
+.band--deep :focus-visible,.access :focus-visible,.ft :focus-visible{outline-color:var(--green)}
+.skip{position:absolute;left:var(--sp-4);top:-70px;z-index:200;background:#fff;color:var(--ink);
+  padding:var(--sp-3) var(--sp-5);border-radius:var(--r-btn);font-weight:700;text-decoration:none;transition:top .2s}
+.skip:focus{top:var(--sp-4)}
+
+/* ---------------- hero: full bleed, type over image ---------------- */
+.hero{position:relative;background:var(--ink-2);overflow:hidden;
+  padding-top:clamp(56px,7vw,110px);padding-bottom:clamp(128px,12vw,200px)}
+.hero__bg{position:absolute;inset:0;z-index:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:68% 42%}
+.hero__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(15,37,48,.95) 0%,rgba(15,37,48,.86) 42%,rgba(15,37,48,.42) 74%,rgba(15,37,48,.2) 100%)}
+.hero__in{position:relative;z-index:2;max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter)}
+.hero__copy{max-width:min(1060px,100%)}
+.hero .h1{color:#fff;max-width:13em;font-weight:var(--fw-mid);
+  line-height:1.1;letter-spacing:-.025em}
+.hero__eyebrow{display:flex;align-items:center;gap:var(--sp-3);font-family:var(--font);
+  font-size:var(--fs-xs);font-weight:var(--fw-reg);letter-spacing:.02em;
+  color:rgba(255,255,255,.78);margin-bottom:var(--sp-6)}
+.hero__eyebrow::before{content:"";width:44px;height:2px;background:var(--green);flex-shrink:0}
+@media(max-width:600px){.hero__eyebrow::before{width:28px}}
+.hero__lead{font-size:clamp(17px,1.2vw,19px);line-height:1.55;color:rgba(255,255,255,.85);
+  margin-top:var(--sp-6);max-width:44ch}
+.hero .actions{margin-top:var(--sp-8)}
+
+@media(max-width:1000px){.hero__copy{max-width:none}}
+
+.hero-foot{background:#fff;padding-bottom:clamp(8px,1.4vw,24px)}
+/* the intake bar, breaking the hero's bottom edge */
+.intake{position:relative;z-index:5;margin-top:calc(-1 * clamp(80px,8vw,132px))}
+.intake__card{background:#fff;border-radius:var(--r);box-shadow:var(--e-4);
+  padding:clamp(24px,2.8vw,40px);display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);
+  gap:var(--sp-6) clamp(24px,3.4vw,56px);align-items:center}
+.intake__h{font-family:var(--head);font-size:clamp(21px,1.6vw,25px);font-weight:var(--fw-med);
+  line-height:1.15;letter-spacing:-.024em;color:var(--ink)}
+.intake__p{margin-top:var(--sp-3);font-size:var(--fs-sm);color:var(--card-txt);line-height:1.5}
+.intake__opts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-3)}
+@media(max-width:920px){.intake__card{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.intake__opts{grid-template-columns:minmax(0,1fr)}}
+.opt{display:flex;align-items:center;gap:var(--sp-3);width:100%;min-height:64px;padding:var(--sp-4);
+  background:var(--paper);border:2px solid var(--rule);border-radius:var(--r-sm);cursor:pointer;text-align:left;
+  font-family:var(--head);font-size:16px;font-weight:var(--fw-mid);color:var(--ink);line-height:1.25;
+  transition:border-color .18s var(--ease),background .18s var(--ease)}
+.opt:hover{border-color:var(--green);background:var(--green-lt)}
+.opt[aria-pressed="true"]{border-color:var(--green-cta);background:var(--green-lt)}
+.opt__dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--rule-dk);display:grid;place-items:center;
+  flex-shrink:0;background:#fff}
+.opt[aria-pressed="true"] .opt__dot{border-color:var(--green-cta);background:var(--green-cta);color:#fff}
+.opt__dot .ico{width:13px;height:13px;stroke-width:3;opacity:0}
+.opt[aria-pressed="true"] .opt__dot .ico{opacity:1}
+.intake__out{grid-column:1/-1;margin-top:var(--sp-2);padding-top:var(--sp-5);border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--sp-5);align-items:center}
+.has-js .intake__out[hidden]{display:none}
+.intake__out p{font-size:var(--fs-sm);color:var(--ink);line-height:1.5;max-width:64ch}
+.intake__out .actions{margin-top:0}
+@media(max-width:768px){.intake__out{grid-template-columns:minmax(0,1fr)}.intake__out .actions{margin-top:var(--sp-2)}}
+
+/* the chip that follows the choice */
+.chip{display:inline-flex;align-items:center;gap:var(--sp-3);min-height:44px;
+  padding:var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-5);border-radius:var(--r-pill);
+  background:rgba(255,255,255,.15);color:#fff;font-family:var(--head);font-size:var(--fs-sm);
+  font-weight:var(--fw-med);margin-bottom:var(--sp-6)}
+.chip button{background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:var(--r-pill);
+  min-height:36px;padding:0 var(--sp-4);font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-mid);
+  color:#fff;cursor:pointer}
+.chip button:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.has-js .chip[hidden]{display:none}
+.has-js .is-filtered [data-aud]{display:none}
+.has-js .is-filtered [data-aud].is-match{display:block}
+
+/* ---------------- one line of proof, set large ---------------- */
+.proof{background:#fff;padding-block:clamp(40px,4.4vw,72px)}
+.proof__in{max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter);
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-4) clamp(24px,3.4vw,56px);
+  justify-content:space-between;
+  font-family:var(--head);font-weight:var(--fw-mid);font-size:clamp(14px,1.18vw,17px);
+  line-height:1.3;letter-spacing:-.008em;color:var(--ink)}
+.proof span{display:flex;align-items:center;gap:var(--sp-3);white-space:nowrap}
+.proof .ico{width:20px;height:20px;color:var(--green-cta)}
+.proof i{display:block;width:1px;height:24px;background:var(--rule-dk)}
+@media(max-width:920px){.proof i{display:none}.proof__in{flex-direction:column;align-items:flex-start;gap:var(--sp-4)}
+  .proof span{white-space:normal}}
+
+/* ---------------- concerns ---------------- */
+.concerns{list-style:none;margin:clamp(40px,4.4vw,72px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(32px,5vw,88px)}
+.concerns li{display:grid;grid-template-columns:58px minmax(0,1fr);gap:var(--sp-5);
+  padding:var(--sp-6) 0;border-top:1px solid rgba(255,255,255,.22)}
+.cbadge{width:58px;height:58px;border-radius:20px 20px 20px 6px;display:grid;place-items:center;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.26);color:var(--green);
+  transition:background .2s var(--ease),border-color .2s var(--ease)}
+.cbadge .ico{width:26px;height:26px;stroke-width:1.6}
+.concerns li:nth-child(even) .cbadge{border-radius:20px 20px 6px 20px;color:var(--blue)}
+.concerns li:hover .cbadge{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45)}
+@media(max-width:600px){.concerns li{grid-template-columns:46px minmax(0,1fr);gap:var(--sp-4)}
+  .cbadge{width:46px;height:46px;border-radius:16px 16px 16px 5px}.cbadge .ico{width:22px;height:22px}}
+.concerns li:nth-child(1),.concerns li:nth-child(2){border-top:0;padding-top:0}
+.concerns h3{font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);color:#fff;
+  line-height:1.25;letter-spacing:-.015em}
+.concerns p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:rgba(255,255,255,.76);line-height:1.55}
+@media(max-width:900px){
+  .concerns{grid-template-columns:minmax(0,1fr)}
+  .concerns li:nth-child(2){border-top:1px solid rgba(255,255,255,.22);padding-top:var(--sp-6)}
+}
+/* the answer band: stacked, set as a considered statement */
+.band--answer{background:var(--green-lt)}
+.answer{background:#fff;border-radius:var(--r);box-shadow:var(--e-2);
+  padding:clamp(32px,4.4vw,80px) clamp(24px,4vw,88px);
+  max-width:min(980px,100%);margin-inline:auto}
+.answer__rule{display:block;width:52px;height:3px;border-radius:2px;background:var(--green-cta)}
+.answer h2{margin-top:var(--sp-6);font-family:var(--head);
+  font-size:clamp(24px,2.3vw,34px);font-weight:var(--fw-med);
+  line-height:1.18;letter-spacing:-.025em;color:var(--ink);max-width:20em;text-wrap:balance}
+.answer__a{margin-top:var(--sp-6);padding-top:var(--sp-6);border-top:1px solid var(--rule);
+  font-size:clamp(17px,1.15vw,20px);line-height:1.7;color:var(--body);max-width:68ch}
+
+/* ---------------- access: three ways care reaches you ---------------- */
+.access{position:relative;background:var(--ink-2);overflow:hidden;
+  padding-block:clamp(64px,7vw,120px) 0}
+.access__bg{position:absolute;inset:0 0 auto;height:62%;z-index:0}
+.access__bg .ph{height:100%}
+.access__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,37,48,.72) 0%,rgba(15,37,48,.9) 58%,var(--ink-2) 100%)}
+.access__in{position:relative;z-index:2;max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter)}
+.access__head{max-width:min(900px,100%)}
+.access .h2{max-width:13em}
+.access .h2{color:#fff}
+.access__lead{margin-top:var(--sp-6);max-width:56ch;color:rgba(255,255,255,.85)}
+
+/* the three modes, as full-height panels that meet the band's bottom edge */
+.ways{list-style:none;margin:clamp(48px,5.4vw,88px) 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.18)}
+.ways > li{background:var(--ink-2);padding:clamp(28px,3vw,44px) clamp(20px,2.2vw,36px) clamp(36px,4vw,64px);
+  display:flex;flex-direction:column;gap:var(--sp-4);min-width:0;
+  transition:background .22s var(--ease)}
+.ways > li:hover{background:var(--ink)}
+.ways .ico{width:30px;height:30px;color:var(--green);stroke-width:1.6}
+.ways h3{font-family:var(--head);font-size:clamp(19px,1.7vw,24px);font-weight:var(--fw-med);
+  line-height:1.18;letter-spacing:-.02em;color:#fff;text-wrap:balance}
+.ways__n{font-family:var(--head);font-size:var(--fs-xs);color:rgba(255,255,255,.5);letter-spacing:.04em}
+.access__foot{padding-block:clamp(36px,4vw,64px)}
+@media(max-width:820px){.ways{grid-template-columns:minmax(0,1fr)}.access__head{max-width:none}}
+
+/* ---------------- services: a directory, not a list beside a headline ---------------- */
+.dir{list-style:none;margin:clamp(40px,4.4vw,72px) 0 0;padding:0;border-top:2px solid var(--ink)}
+.dir > li{border-bottom:1px solid var(--rule-dk)}
+.dir__row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr) 48px;
+  gap:var(--sp-4) clamp(24px,3.2vw,64px);align-items:center;
+  padding-block:clamp(26px,2.9vw,46px);text-decoration:none;
+  transition:padding-left .25s var(--ease)}
+.dir__row > *{min-width:0}
+.dir h3{font-family:var(--head);font-size:clamp(21px,2.5vw,36px);font-weight:var(--fw-med);
+  line-height:1.14;letter-spacing:-.028em;color:var(--ink);text-wrap:balance;
+  transition:color .2s var(--ease)}
+.dir p{font-size:var(--fs-sm);line-height:1.55;color:var(--card-txt)}
+.dir__go{width:48px;height:48px;border-radius:50%;border:1px solid var(--rule-dk);
+  display:grid;place-items:center;color:var(--ink);justify-self:end;
+  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease)}
+.dir__row:hover{padding-left:clamp(8px,1vw,20px)}
+.dir__row:hover h3{color:var(--green-cta)}
+.dir__row:hover .dir__go{background:var(--green);border-color:var(--green);color:var(--ink)}
+@media(max-width:820px){
+  .dir__row{grid-template-columns:minmax(0,1fr) 44px;align-items:start;gap:var(--sp-3) var(--sp-4)}
+  .dir h3{grid-column:1}
+  .dir p{grid-column:1 / -1}
+  .dir__go{grid-column:2;grid-row:1;width:44px;height:44px}
+}
+
+/* ---------------- audiences ---------------- */
+.aud-grid{list-style:none;margin:clamp(48px,5vw,80px) 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+.aud{background:#fff;border-radius:var(--r);padding:clamp(24px,2.6vw,40px);border-top:5px solid var(--green);
+  align-self:start}
+.aud:nth-child(2){border-top-color:var(--blue);margin-top:clamp(24px,3.4vw,56px)}
+.aud:nth-child(3){border-top-color:var(--green-cta);margin-top:clamp(48px,6.8vw,112px)}
+@media(max-width:900px){.aud:nth-child(2),.aud:nth-child(3){margin-top:0}}
+.aud h3{font-family:var(--head);font-size:clamp(20px,1.7vw,25px);font-weight:var(--fw-med);
+  letter-spacing:-.02em;color:var(--ink)}
+.aud p{margin-top:var(--sp-4);font-size:var(--fs-sm);color:var(--card-txt)}
+@media(max-width:900px){.aud-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------------- steps ---------------- */
+/* starting care: a tighter, ruled sequence */
+.steps__body{position:relative;margin-top:clamp(36px,3.6vw,56px);
+  background:#fff;border:1px solid var(--rule);border-radius:var(--r);
+  padding:clamp(24px,3vw,56px) clamp(20px,3vw,64px)}
+.steps__rail{position:absolute;left:calc(clamp(20px,3vw,64px) + 25px);top:clamp(44px,4.4vw,80px);
+  bottom:clamp(96px,9vw,150px);width:2px;background:var(--rule)}
+.steps__fill{position:absolute;left:0;top:0;width:100%;height:0;background:var(--green);transition:height .25s linear}
+.steps{list-style:none;margin:0;padding:0;position:relative}
+.steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:var(--sp-5);
+  padding-block:clamp(18px,2vw,28px);align-items:start;border-top:1px solid var(--rule)}
+.steps li:first-child{border-top:0;padding-top:0}
+.steps__num{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;
+  border:1.5px solid var(--rule-dk);color:var(--muted);font-family:var(--head);font-size:19px;
+  font-weight:var(--fw-med);transition:all .25s var(--ease)}
+.steps li.is-live .steps__num{background:var(--green);border-color:var(--green);color:var(--ink)}
+.steps h3{font-family:var(--head);font-size:clamp(19px,1.45vw,22px);font-weight:var(--fw-med);
+  letter-spacing:-.018em;color:var(--ink);line-height:1.25}
+.steps p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt);max-width:56ch}
+.steps__body .actions{margin-top:clamp(24px,2.6vw,40px);padding-top:clamp(20px,2.2vw,32px);
+  border-top:1px solid var(--rule)}
+@media(max-width:600px){
+  .steps li{grid-template-columns:44px minmax(0,1fr);gap:var(--sp-4)}
+  .steps__num{width:44px;height:44px;font-size:17px}
+  .steps__rail{left:calc(clamp(20px,3vw,64px) + 21px)}
+}
+
+/* ---------------- split / why / referral ---------------- */
+.split{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap) clamp(24px,4vw,64px);align-items:center}
+.split__a{grid-column:span 7}
+.split__b{grid-column:9 / span 4}
+@media(max-width:920px){.split__a,.split__b{grid-column:1 / -1}}
+.split .actions{margin-top:0}
+@media(max-width:920px){.split .actions{margin-top:var(--sp-5)}}
+.why__col{grid-column:8 / span 5}
+@media(max-width:920px){.why__col{grid-column:1 / -1;margin-top:var(--sp-7)}}
+.why__pts{list-style:none;margin:0;padding:0}
+.why__pts li{padding:var(--sp-6) 0;border-bottom:1px solid var(--rule)}
+.why__pts li:first-child{padding-top:0}
+.why__pts li:last-child{border-bottom:0;padding-bottom:0}
+.why__pts p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt)}
+.ref{border:2px solid var(--rule-dk);border-radius:var(--r);padding:clamp(28px,3.4vw,52px)}
+
+/* ---------------- faq ---------------- */
+.faq-head{grid-column:span 4}
+.faq{grid-column:6 / span 7}
+@media(max-width:920px){.faq-head,.faq{grid-column:1 / -1}.faq{margin-top:var(--sp-6)}}
+.band--faq{background:var(--ink-2)}
+.band--faq .h2{color:#fff}
+.faq__item{border-bottom:1px solid rgba(255,255,255,.18)}
+.faq__item:first-child{border-top:1px solid rgba(255,255,255,.18)}
+.faq__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-5);background:none;
+  border:0;cursor:pointer;text-align:left;padding:var(--sp-5) 0;min-height:64px;font-family:var(--head);
+  font-size:19px;font-weight:var(--fw-mid);line-height:1.3;letter-spacing:-.015em;color:#fff}
+.faq__q:hover{color:var(--green)}
+.band--faq .faq__inner{color:rgba(255,255,255,.8)}
+.band--faq :focus-visible{outline-color:var(--green)}
+.faq__icon{position:relative;width:24px;height:24px;flex-shrink:0}
+.faq__icon::before,.faq__icon::after{content:"";position:absolute;left:50%;top:50%;background:var(--green);
+  transform:translate(-50%,-50%);transition:transform .25s var(--ease)}
+.faq__icon::before{width:18px;height:2px}
+.faq__icon::after{width:2px;height:18px}
+.faq__item.is-open .faq__icon::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq__panel{overflow:hidden}
+.has-js .faq__panel{height:0;transition:height .3s var(--ease)}
+.faq__inner{padding-bottom:var(--sp-6);font-size:var(--fs-sm);line-height:1.68;max-width:66ch}
+
+/* ---------------- final ---------------- */
+.final{position:relative;overflow:hidden}
+.final .statement{color:var(--green-cta)}
+.final__phone{display:inline-flex;align-items:center;gap:var(--sp-2);margin-top:var(--sp-6);
+  font-family:var(--head);font-size:24px;font-weight:var(--fw-med);color:var(--ink);text-decoration:none}
+.final__phone:hover{text-decoration:underline}
+
+/* ---------------- footer ---------------- */
+.ft{background:var(--ink-2);color:rgba(255,255,255,.7);padding-block:var(--sp-11) var(--sp-6);font-size:var(--fs-sm)}
+.ft__in{max-width:var(--w-page);margin:0 auto;padding-inline:var(--gutter)}
+.ft__cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--sp-8) clamp(24px,3vw,48px)}
+.ft__col{grid-column:span 3}
+.ft h3{font-family:var(--head);font-size:var(--fs-sm);font-weight:var(--fw-med);color:#fff;margin-bottom:var(--sp-4)}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft a{color:rgba(255,255,255,.7);text-decoration:none;display:inline-block;padding-block:var(--sp-2);line-height:1.4}
+.ft a:hover{color:#fff;text-decoration:underline}
+.ft__phone{color:#fff;font-family:var(--head);font-size:19px;font-weight:var(--fw-med)}
+.ft__base{margin-top:var(--sp-10);padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,.16);
+  display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-5);justify-content:space-between;font-size:var(--fs-xs)}
+@media(max-width:1100px){.ft__col{grid-column:span 6}}
+@media(max-width:600px){.ft__col{grid-column:span 12}}
+
+.mbar{display:none}
+@media(max-width:920px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2);position:fixed;left:0;right:0;bottom:0;z-index:90;
+    padding:var(--sp-2) var(--sp-4) calc(var(--sp-2) + env(safe-area-inset-bottom));background:#fff;
+    border-top:1px solid var(--rule);box-shadow:0 -6px 20px rgba(var(--rgb-ink),.1)}
+  .mbar .btn{min-height:50px;padding-inline:var(--sp-3);width:auto}
+  body{padding-bottom:80px}
+}
+
+.ph{display:grid;place-items:center;text-align:center;background:var(--blue-deep);color:rgba(255,255,255,.75);
+  font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-mid);padding:var(--sp-5);line-height:1.5;width:100%}
+
+@keyframes rise-failsafe{to{opacity:1;transform:none}}
+.has-js [data-reveal]{opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s);
+  animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
+.has-js [data-reveal].is-in{opacity:1;transform:none;animation:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className += " has-js";</script>
+<a class="skip" href="#main">Skip to main content</a>
+
+
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1758273241086-f3585ef8c2f8?fm=jpg&q=70&w=2400&auto=format&fit=crop"
+           alt="" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero__in">
+      <div class="hero__copy">
+        <p class="hero__eyebrow" data-reveal>Mental Health Care for Children, Teens, Adults &amp; Families</p>
+        <h1 class="h1" data-reveal style="--d:.08s">Mental Health Care That Starts With&nbsp;You.</h1>
+        <p class="hero__lead" data-reveal style="--d:.16s">You don't need to know exactly what kind of care you need before reaching out. Chrysalis Health can help you understand your options and take the next&nbsp;step.</p>
+        <div class="actions" data-reveal style="--d:.24s">
+          <a class="btn btn--green" href="/request-services">
+            Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--dark" href="/about/locations">Find a Location</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero-foot">
+    <div class="page">
+      <!-- intake bar breaks the hero's bottom edge -->
+      <div class="intake" data-reveal style="--d:.4s">
+        <div class="intake__card">
+          <div>
+            <h2 class="intake__h">Not Sure Where to Start?</h2>
+            <p class="intake__p">You may know exactly what you need. Or you may only know that you, your child, or someone you care about is struggling.</p>
+          </div>
+          <ul class="intake__opts" role="group" aria-label="Who are you looking for help for?">
+            <li><button type="button" class="opt" data-path="adult" aria-pressed="false">
+              <span class="opt__dot" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span> Myself
+            </button></li>
+            <li><button type="button" class="opt" data-path="child" aria-pressed="false">
+              <span class="opt__dot" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span> My child or teen
+            </button></li>
+            <li><button type="button" class="opt" data-path="other" aria-pressed="false">
+              <span class="opt__dot" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span> Someone else I support
+            </button></li>
+          </ul>
+          <div class="intake__out" id="intake-out" hidden aria-live="polite">
+            <p>You do not need a diagnosis or an understanding of different therapy options before contacting Chrysalis Health. Tell us what is happening, and we can help you determine the appropriate next&nbsp;step.</p>
+            <div class="actions">
+              <a class="btn btn--green" id="intake-cta" href="/request-services">
+                Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROOF, AS ONE LINE ================= -->
+  <section class="proof">
+    <div class="proof__in" data-reveal>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Serving individuals and families since 1995</span>
+      <i aria-hidden="true"></i>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> Telehealth available</span>
+      <i aria-hidden="true"></i>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg> Insurance and Medicaid options</span>
+    </div>
+  </section>
+
+  <!-- ================= CONCERNS ================= -->
+  <section class="band band--deep" id="concerns">
+    <div class="page">
+      <div class="g">
+        <div class="c-9" data-reveal>
+          <p class="chip" id="chip" hidden>
+            <span id="chip-text">Showing care for</span>
+            <button type="button" id="chip-clear">Show everything</button>
+          </p>
+          <h2 class="h2">What Can We Help With?</h2>
+          <p class="lead measure" style="margin-top:var(--sp-5);color:rgba(255,255,255,.82)">Mental health concerns can look different from person to person. Chrysalis Health provides individualized care for a wide range of emotional, behavioral, and family&nbsp;challenges.</p>
+        </div>
+      </div>
+
+      <ul class="concerns" id="concern-list">
+        <li data-aud="adult child" data-reveal>
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-pulse"/></svg></span>
+          <div>
+          <h3>Anxiety &amp; Excessive Worry</h3>
+          <p>Support for persistent worry, fear, panic, avoidance, and anxiety that begins interfering with everyday life.</p>
+          </div>
+        </li>
+        <li data-aud="adult child" data-reveal style="--d:.06s">
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-cloud"/></svg></span>
+          <div>
+          <h3>Depression &amp; Withdrawal</h3>
+          <p>Help with sadness, irritability, low motivation, isolation, hopelessness, and loss of interest in everyday activities.</p>
+          </div>
+        </li>
+        <li data-aud="adult child other" data-reveal style="--d:.12s">
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-heart"/></svg></span>
+          <div>
+          <h3>Trauma &amp; Difficult Experiences</h3>
+          <p>Trauma-informed care to help people process difficult experiences, understand their reactions, and develop healthier ways to cope.</p>
+          </div>
+        </li>
+        <li data-aud="adult child" data-reveal style="--d:.18s">
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-spark"/></svg></span>
+          <div>
+          <h3>Anger &amp; Behavioral Concerns</h3>
+          <p>Support for emotional outbursts, aggression, difficulty managing strong emotions, and behavioral challenges.</p>
+          </div>
+        </li>
+        <li data-aud="child other" data-reveal style="--d:.24s">
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-child"/></svg></span>
+          <div>
+          <h3>Child &amp; Teen Concerns</h3>
+          <p>Mental health support for children and adolescents experiencing emotional, behavioral, school, social, or family difficulties.</p>
+          </div>
+        </li>
+        <li data-aud="child other adult" data-reveal style="--d:.3s">
+          <span class="cbadge" aria-hidden="true"><svg class="ico"><use href="#i-users"/></svg></span>
+          <div>
+          <h3>Family Challenges</h3>
+          <p>Help navigating conflict, communication problems, separation, divorce, major life changes, and other challenges affecting the family.</p>
+          </div>
+        </li>
+      </ul>
+
+
+
+      <div class="actions">
+        <a class="btn btn--dark" href="/mental-health">
+          Explore Mental Health Services <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE ANSWER ================= -->
+  <section class="band band--answer" id="answer">
+    <div class="page">
+      <div class="answer" data-reveal>
+        <span class="answer__rule" aria-hidden="true"></span>
+        <h2>What mental health services does Chrysalis Health provide?</h2>
+        <p class="answer__a">Chrysalis Health provides individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, anger management, psychiatric services and medication management, case management, and telehealth. Services are individualized based on each person's needs and availability in their&nbsp;area.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACCESS ================= -->
+  <section class="access" id="locations">
+    <div class="access__bg" aria-hidden="true"><div class="ph">Photograph &mdash; replace<br>wide, environmental, people in context</div></div>
+    <div class="access__in">
+      <div class="access__head" data-reveal>
+        <p class="kicker kicker--dark">Find Care Near You</p>
+        <h2 class="h2">Mental Health Care Should Be Easier to&nbsp;Access.</h2>
+      </div>
+      <p class="lead access__lead" data-reveal style="--d:.08s">Chrysalis Health provides services through community-based programs, select office locations, and telehealth options where appropriate.</p>
+
+      <ul class="ways">
+        <li data-reveal>
+          <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+          <span class="ways__n">One</span>
+          <h3>Community-based programs</h3>
+        </li>
+        <li data-reveal style="--d:.08s">
+          <svg class="ico" aria-hidden="true"><use href="#i-home"/></svg>
+          <span class="ways__n">Two</span>
+          <h3>Select office locations</h3>
+        </li>
+        <li data-reveal style="--d:.16s">
+          <svg class="ico" aria-hidden="true"><use href="#i-video"/></svg>
+          <span class="ways__n">Three</span>
+          <h3>Telehealth where appropriate</h3>
+        </li>
+      </ul>
+
+      <div class="access__foot" data-reveal>
+        <p style="max-width:58ch;color:rgba(255,255,255,.82)">Find a nearby Chrysalis Health location, learn which services are available in your area, or start with telehealth when remote care is a better&nbsp;fit.</p>
+        <div class="actions">
+          <a class="btn btn--green" href="/about/locations">
+            Find a Location <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--dark" href="/telehealth">Explore Telehealth</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section class="band band--white" id="services">
+    <div class="page">
+      <div class="g">
+        <div class="c-8" data-reveal>
+          <h2 class="h2">How We Can Help</h2>
+          <p class="lead measure" style="margin-top:var(--sp-5)">Different people need different kinds of support. Care begins by understanding what you are experiencing and identifying the services that may best fit your&nbsp;needs.</p>
+        </div>
+      </div>
+
+      <ul class="dir">
+        <li data-reveal>
+          <a class="dir__row" href="/mental-health">
+            <h3>Therapy</h3>
+            <p>Individual, child and teen, family, anxiety and depression, trauma, and anger-management therapy.</p>
+            <span class="dir__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li data-reveal style="--d:.06s">
+          <a class="dir__row" href="/mental-health/psychiatric-services">
+            <h3>Psychiatric Services &amp; Medication Management</h3>
+            <p>Psychiatric evaluation and ongoing medication management when clinically appropriate.</p>
+            <span class="dir__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li data-reveal style="--d:.12s">
+          <a class="dir__row" href="/mental-health/case-management">
+            <h3>Case Management</h3>
+            <p>Support coordinating care, services, resources, and other needs that may affect treatment and overall wellbeing.</p>
+            <span class="dir__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+        <li data-reveal style="--d:.18s">
+          <a class="dir__row" href="/telehealth">
+            <h3>Telehealth</h3>
+            <p>Secure remote mental health services that can make care easier to access when travel, distance, schedules, or mobility create barriers.</p>
+            <span class="dir__go" aria-hidden="true"><svg class="ico"><use href="#i-arrow-right"/></svg></span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <a class="btn btn--ghost" href="/mental-health">
+          Explore All Services <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATEMENT + AUDIENCES ================= -->
+  <section class="band band--tint" id="who">
+    <div class="page">
+      <div class="g">
+        <div class="c-9" data-reveal>
+          <p class="kicker">Care for Children, Adults &amp; Families</p>
+          <h2 class="statement" style="color:var(--ink)">There is no one face of mental health, and there is no one treatment plan that works for&nbsp;everyone.</h2>
+        </div>
+      </div>
+      <ul class="aud-grid" id="aud-list">
+        <li class="aud" data-aud="child" data-reveal>
+          <h3>Children &amp; Teens</h3>
+          <p>Age-appropriate therapy and mental health support built around a child's development, symptoms, strengths, family, school, and environment.</p>
+        </li>
+        <li class="aud" data-aud="adult" data-reveal style="--d:.08s">
+          <h3>Adults</h3>
+          <p>Individualized mental health care for emotional, behavioral, relationship, and life challenges that may be affecting everyday wellbeing.</p>
+        </li>
+        <li class="aud" data-aud="child adult other" data-reveal style="--d:.16s">
+          <h3>Families</h3>
+          <p>Support that helps families better understand one another, improve communication, work through conflict, and navigate difficult changes together.</p>
+        </li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn--primary" href="/mental-health">
+          Find the Right Service <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEPS ================= -->
+  <section class="band band--white" id="starting-care">
+    <div class="page">
+      <div class="g">
+        <div class="c-8" data-reveal>
+          <p class="kicker">Starting Care</p>
+          <h2 class="h2">You Don't Have to Figure It Out&nbsp;Alone.</h2>
+          <p class="lead measure" style="margin-top:var(--sp-5)">Starting mental health care can feel complicated. We try to make the next step clearer.</p>
+        </div>
+      </div>
+      <div class="steps__body">
+        <div class="steps__rail" aria-hidden="true"><div class="steps__fill" id="steps-fill"></div></div>
+        <ol class="steps" id="steps-list">
+          <li><span class="steps__num">1</span><div><h3>Request Services</h3>
+            <p>Complete the online request or call <a href="tel:18885870335">(888)&nbsp;587-0335</a>.</p></div></li>
+          <li><span class="steps__num">2</span><div><h3>Tell Us What's Going On</h3>
+            <p>A Chrysalis Health specialist reviews your needs, location, insurance information, and available services.</p></div></li>
+          <li><span class="steps__num">3</span><div><h3>Complete an Assessment</h3>
+            <p>A clinician learns more about your concerns, symptoms, circumstances, strengths, and goals.</p></div></li>
+          <li><span class="steps__num">4</span><div><h3>Begin the Right Care</h3>
+            <p>Your assessment helps determine the services and treatment approach that may best fit your needs.</p></div></li>
+        </ol>
+        <div class="actions">
+          <a class="btn btn--green" href="/request-services">
+            Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INSURANCE ================= -->
+  <section class="band band--lt" id="insurance">
+    <div class="page">
+      <div class="g">
+        <div class="c-8" data-reveal>
+          <p class="kicker">Insurance &amp; Medicaid</p>
+          <h2 class="h2">Understanding Your Coverage Shouldn't Be Another&nbsp;Barrier.</h2>
+          <p style="margin-top:var(--sp-5);color:var(--ink);max-width:58ch">Chrysalis Health works with insurance and Medicaid options, with coverage varying by plan, location, service, and provider availability.</p>
+          <p style="margin-top:var(--sp-4);max-width:58ch">Review insurance information or contact Chrysalis Health if you need help understanding your options before beginning&nbsp;care.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="/behavioral-health">
+              Insurance &amp; Medicaid Information <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY ================= -->
+  <section class="band band--white" id="why">
+    <div class="page g">
+      <div class="c-6" data-reveal>
+        <p class="kicker">Why Chrysalis Health</p>
+        <h2 class="h2">People Come First.</h2>
+        <p class="lead" style="margin-top:var(--sp-6);max-width:52ch">Chrysalis Health has served children, adolescents, adults, and families since 1995 with an approach built around individualized care rather than one-size-fits-all&nbsp;treatment.</p>
+        <p style="margin-top:var(--sp-4);max-width:54ch">Its care teams may include therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other mental health professionals depending on the services and&nbsp;location.</p>
+        <div class="actions">
+          <a class="btn btn--ghost" href="/about-us">
+            Discover Chrysalis Health <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="why__col" data-reveal style="--d:.1s">
+        <ul class="why__pts">
+          <li><h3 class="h3">Individualized Care</h3>
+            <p>Treatment recommendations are based on the person, their circumstances, and their needs.</p></li>
+          <li><h3 class="h3">Multiple Ways to Receive Care</h3>
+            <p>Services may be available through telehealth and, depending on location and program, in office, home, school, or community settings.</p></li>
+          <li><h3 class="h3">Experience You Can Build On</h3>
+            <p>Chrysalis Health has been serving individuals and families for more than 30 years.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REFERRAL ================= -->
+  <section class="band band--white" id="referral" style="padding-top:0">
+    <div class="page">
+      <div class="ref split" data-reveal>
+        <div class="split__a">
+          <h2 class="h2" style="font-size:clamp(24px,2.3vw,34px)">Helping Someone Else Find Care?</h2>
+          <p style="margin-top:var(--sp-4);max-width:58ch">You may be looking for help for a family member, friend, client, patient, or someone else you support.</p>
+          <p style="margin-top:var(--sp-3);max-width:58ch">Chrysalis Health provides a dedicated referral pathway to help connect people with available mental health&nbsp;services.</p>
+        </div>
+        <div class="split__b">
+          <div class="actions">
+            <a class="btn btn--ghost" href="/make-referral">
+              Make a Referral <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="band band--faq" id="faq-sec">
+    <div class="page">
+      <div class="g">
+        <div class="faq-head" data-reveal><h2 class="h2">Frequently Asked Questions</h2></div>
+        <div class="faq" id="faq">
+          <div class="faq__item is-open" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="true" aria-controls="a1" id="q1">
+              How do I start mental health services with Chrysalis Health? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a1" role="region" aria-labelledby="q1"><div class="faq__inner">
+              <p>Start by submitting a request for services or calling (888) 587-0335. You do not need to know your diagnosis or exactly which service you need before contacting Chrysalis Health.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a2" id="q2">
+              What types of therapy does Chrysalis Health provide? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a2" role="region" aria-labelledby="q2"><div class="faq__inner">
+              <p>Services include individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, and anger management.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a3" id="q3">
+              Does Chrysalis Health provide psychiatric services? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a3" role="region" aria-labelledby="q3"><div class="faq__inner">
+              <p>Yes. Chrysalis Health offers psychiatric services and medication management as part of its mental health services.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a4" id="q4">
+              Does Chrysalis Health offer telehealth? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a4" role="region" aria-labelledby="q4"><div class="faq__inner">
+              <p>Yes. Telehealth is available as a care option, although availability and suitability may depend on the service, location, individual needs, insurance, and clinical recommendations.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a5" id="q5">
+              Does Chrysalis Health accept Medicaid? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a5" role="region" aria-labelledby="q5"><div class="faq__inner">
+              <p>Chrysalis Health provides insurance and Medicaid options. Coverage and participation should be confirmed based on your plan, service, and location.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a6" id="q6">
+              How do I find a Chrysalis Health location? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a6" role="region" aria-labelledby="q6"><div class="faq__inner">
+              <p>Use the location finder to see Chrysalis Health locations and learn which services may be available near you.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a7" id="q7">
+              Can I refer someone to Chrysalis Health? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a7" role="region" aria-labelledby="q7"><div class="faq__inner">
+              <p>Yes. Chrysalis Health provides a dedicated referral process for people helping someone connect with mental health care.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL ================= -->
+  <section class="band band--green final">
+    <div class="page g">
+      <div class="c-8" data-reveal>
+        <h2 class="statement">Ready to Take the Next Step?</h2>
+        <p class="lead" style="margin-top:var(--sp-6);max-width:54ch;color:var(--ink)">You do not have to know exactly what kind of care you need. Start by telling us what is going on, and we'll help you understand your&nbsp;options.</p>
+        <div class="actions">
+          <a class="btn btn--green" href="/request-services">
+            Start Care Today <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="/about/locations">Find a Location</a>
+        </div>
+        <a class="final__phone" href="tel:18885870335">
+          <svg class="ico" aria-hidden="true" style="width:26px;height:26px"><use href="#i-phone"/></svg> (888) 587-0335
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="ft__in">
+    <div class="ft__cols">
+      <div class="ft__col">
+        <h3>Mental Health Services</h3>
+        <ul>
+          <li><a href="/mental-health/counseling">Individual Therapy</a></li>
+          <li><a href="../">Child &amp; Teen Therapy</a></li>
+          <li><a href="../family-counseling/">Family Therapy</a></li>
+          <li><a href="../anxiety-depression/">Anxiety &amp; Depression Therapy</a></li>
+          <li><a href="../trauma-therapy/">Trauma Therapy</a></li>
+          <li><a href="../anger-management/">Anger Management</a></li>
+          <li><a href="/mental-health/psychiatric-services">Psychiatric Services &amp; Medication Management</a></li>
+          <li><a href="/mental-health/case-management">Case Management</a></li>
+          <li><a href="/telehealth">Telehealth</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>Clients &amp; Families</h3>
+        <ul>
+          <li><a href="/behavioral-health">Insurance &amp; Medicaid</a></li>
+          <li><a href="/psychiatry-follow-appointment">Psychiatry Follow-Up</a></li>
+          <li><a href="http://www.securebillpay.net/ChrysalisHealth">Pay a Bill</a></li>
+          <li><a href="/request-medical-records">Request Medical Records</a></li>
+          <li><a href="/make-referral">Make a Referral</a></li>
+          <li><a href="/consent-forms">Consent Forms</a></li>
+          <li><a href="/required-notices">Required Notices</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>About Chrysalis Health</h3>
+        <ul>
+          <li><a href="/about/our-mission-vision-values">Mission, Vision &amp; Core Values</a></li>
+          <li><a href="/about/company-history">Company History</a></li>
+          <li><a href="/about/community-involvement-affiliations">Community Involvement &amp; Affiliations</a></li>
+          <li><a href="/about/meet-executive-staff">Executive Team</a></li>
+          <li><a href="/about/locations">Locations</a></li>
+          <li><a href="/about/join-our-team">Join Our Team</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="/contact-us">Ask a Question</a></li>
+          <li><a href="/about/locations">Find a Location</a></li>
+          <li><a class="ft__phone" href="tel:18885870335">(888) 587-0335</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft__base">
+      <span>Copyright &copy; 2026 Chrysalis Health. All Rights Reserved.</span>
+      <span><a href="/terms-and-conditions">Terms &amp; Conditions</a> &nbsp;|&nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a href="/sitemap">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn--green" href="/request-services">Start Care Today</a>
+  <a class="btn btn--ghost" href="tel:18885870335">Call Us</a>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.6 2.8a2 2 0 01-.4 2.1L8.1 9.8a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.9.3 1.8.5 2.8.6a2 2 0 011.8 2.1z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h3.5l2.4-6.5L12 19l2.6-7H18"/><path d="M19.5 10.5a2 2 0 110 3 2 2 0 010-3z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 15a3.8 3.8 0 00-1-7.5A5.8 5.8 0 106 14.6"/><path d="M8 18.5v2M12 17.5v3.5M16 18.5v2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.4 5.1a5.2 5.2 0 00-7.4 0L12 6.2l-1-1.1a5.2 5.2 0 10-7.4 7.4L12 20.9l8.4-8.4a5.2 5.2 0 000-7.4z"/><path d="M7.5 11h2l1.5-2.5L13 13.5 14.5 11h2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M13 2.5L5 13.5h5.5L9.5 21.5 18 10.5h-5.5z"/></symbol>
+  <symbol id="i-child" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M8.5 21v-4.5L6.5 15l2-4.5h7l2 4.5-2 1.5V21"/><path d="M10.5 5.6h.01M13.5 5.6h.01"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20.5a6.5 6.5 0 0113 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M15 20.5a5.2 5.2 0 016.5-5"/></symbol>
+</svg>
+
+<script>
+(function(){
+  var d=document;
+  var rev=d.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);} });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    rev.forEach(function(el){io.observe(el);});
+  } else { rev.forEach(function(el){el.classList.add('is-in');}); }
+
+  var LABEL={adult:'Showing care for adults',child:'Showing care for children &amp; teens',other:'Showing care for someone you support'};
+  var CTA={adult:{t:'Start Care Today',h:'/request-services'},
+           child:{t:'Start Care Today',h:'/request-services'},
+           other:{t:'Make a Referral',h:'/make-referral'}};
+  var out=d.getElementById('intake-out'), cta=d.getElementById('intake-cta'),
+      chip=d.getElementById('chip'), chipText=d.getElementById('chip-text'),
+      lists=[d.getElementById('concern-list'),d.getElementById('aud-list')];
+
+  function apply(path){
+    d.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed',String(b.dataset.path===path)); });
+    lists.forEach(function(l){
+      if(!l)return;
+      l.classList.toggle('is-filtered',!!path);
+      Array.prototype.forEach.call(l.children,function(li){
+        var auds=(li.getAttribute('data-aud')||'').split(' ');
+        li.classList.toggle('is-match',!path||auds.indexOf(path)>-1);
+      });
+    });
+    if(path){
+      out.hidden=false;
+      cta.innerHTML=CTA[path].t+' <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>';
+      cta.setAttribute('href',CTA[path].h);
+      chip.hidden=false; chipText.innerHTML=LABEL[path];
+    } else { out.hidden=true; chip.hidden=true; }
+  }
+  d.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click',function(){ apply(b.getAttribute('aria-pressed')==='true'?null:b.dataset.path); });
+  });
+  d.getElementById('chip-clear').addEventListener('click',function(){apply(null);});
+
+  d.querySelectorAll('.faq__item').forEach(function(item){
+    var b=item.querySelector('.faq__q'), p=item.querySelector('.faq__panel');
+    function set(o){ item.classList.toggle('is-open',o); b.setAttribute('aria-expanded',String(o));
+      p.style.height=o?p.scrollHeight+'px':'0px'; }
+    set(item.classList.contains('is-open'));
+    b.addEventListener('click',function(){ set(!item.classList.contains('is-open')); });
+    window.addEventListener('resize',function(){ if(item.classList.contains('is-open'))p.style.height='auto'; });
+  });
+
+  var list=d.getElementById('steps-list'), fill=d.getElementById('steps-fill');
+  if(list&&fill){
+    var items=Array.prototype.slice.call(list.children), queued=false;
+    function tick(){
+      var line=window.innerHeight*.55, box=list.getBoundingClientRect();
+      var pct=Math.max(0,Math.min(1,(line-box.top)/box.height));
+      fill.style.height=(pct*100)+'%';
+      var live=-1;
+      items.forEach(function(li,i){ if(li.getBoundingClientRect().top<=line) live=i; });
+      items.forEach(function(li,i){ li.classList.toggle('is-live',i<=live); });
+    }
+    window.addEventListener('scroll',function(){
+      if(queued)return; queued=true;
+      requestAnimationFrame(function(){tick();queued=false;});
+    },{passive:true});
+    tick();
+  }
+})();
+</script>
+</body>
+</html>
