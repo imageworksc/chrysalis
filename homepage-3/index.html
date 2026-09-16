@@ -19,7 +19,7 @@
 
 <main id="main">
 
-  <!-- ================= HERO: deep gradient, drifting light, a photograph in an arch of light ================= -->
+  <!-- ================= HERO: deep gradient, drifting light, the photograph bleeding to the edge on a slant ================= -->
   <section class="hero" id="top">
     <span class="orb orb--green" aria-hidden="true"></span>
     <span class="orb orb--blue" aria-hidden="true"></span>
@@ -36,19 +36,17 @@
           <a class="btn btn--glass" href="/about/locations">Find a Location</a>
         </div>
       </div>
-      <div class="portal d-12" data-reveal>
-        <span class="portal__glow" aria-hidden="true"></span>
-        <span class="portal__ring portal__ring--2" aria-hidden="true"></span>
-        <span class="portal__ring" aria-hidden="true"></span>
-        <figure class="arch">
-          <img src="https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250"
-               srcset="https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=875 700w,
-                       https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1250 1000w,
-                       https://images.pexels.com/photos/4262424/pexels-photo-4262424.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1750 1400w"
-               sizes="(max-width: 920px) 90vw, 36vw" width="1400" height="1750"
-               alt="A family of three generations holding each other in a close embrace" fetchpriority="high" decoding="async">
+      <div class="hero__visual d-12" data-reveal>
+        <figure class="hero__photo">
+          <img src="https://images.pexels.com/photos/4262414/pexels-photo-4262414.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1200"
+               srcset="https://images.pexels.com/photos/4262414/pexels-photo-4262414.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=800&amp;h=800 800w,
+                       https://images.pexels.com/photos/4262414/pexels-photo-4262414.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1200&amp;h=1200 1200w,
+                       https://images.pexels.com/photos/4262414/pexels-photo-4262414.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1800&amp;h=1800 1800w,
+                       https://images.pexels.com/photos/4262414/pexels-photo-4262414.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=2400&amp;h=2400 2400w"
+               sizes="(max-width: 920px) 100vw, 54vw" width="2400" height="2400"
+               alt="A family of three generations gathered close together, smiling" fetchpriority="high" decoding="async">
         </figure>
-        <!-- the audiences the kicker names, floating around the photograph; decorative, so hidden from readers -->
+        <!-- the audiences the kicker names, floating over the photograph; decorative, so hidden from readers -->
         <ul class="floats" aria-hidden="true">
           <li class="float float--1"><svg class="ico"><use href="#i-child"/></svg>Children &amp; Teens</li>
           <li class="float float--2"><svg class="ico"><use href="#i-heart"/></svg>Adults</li>
@@ -391,38 +389,46 @@
     </div>
   </section>
 
-  <!-- ================= WHY: three glass cards on the deep band ================= -->
-  <section class="band band--deep why" id="why">
-    <span class="orb orb--blue orb--high" aria-hidden="true"></span>
-    <div class="page">
-      <div class="why__head" data-reveal>
-        <p class="kicker kicker--light">Why Chrysalis Health</p>
-        <h2 class="h2">People Come First.</h2>
-        <p class="lead on-dark measure-52">Chrysalis Health has served children, adolescents, adults, and families since 1995 with an approach built around individualized care rather than one-size-fits-all&nbsp;treatment.</p>
-        <p class="on-dark measure-54">Its care teams may include therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other mental health professionals depending on the services and&nbsp;location.</p>
+  <!-- ================= WHY: the copy beside a dark panel of three numbered points ================= -->
+  <section class="band band--paper why" id="why">
+    <div class="page why__grid">
+      <div class="why__copy" data-reveal>
+        <p class="kicker">Why Chrysalis Health</p>
+        <h2 class="h2">People Come <span class="grad grad--deep">First.</span></h2>
+        <p class="lead mt-5 measure-52">Chrysalis Health has served children, adolescents, adults, and families since 1995 with an approach built around individualized care rather than one-size-fits-all&nbsp;treatment.</p>
+        <p class="measure-54 mt-4">Its care teams may include therapists, counselors, case managers, psychologists, psychiatrists, psychiatric nurse practitioners, and other mental health professionals depending on the services and&nbsp;location.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="/about-us">
+            Discover Chrysalis Health <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
       </div>
-      <ul class="why__pts">
-        <li class="glass d-08" data-reveal>
+      <ol class="why__panel d-12" data-reveal>
+        <li class="why__row">
+          <span class="why__n" aria-hidden="true">01</span>
           <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
-          <h3 class="h3">Individualized Care</h3>
-          <p>Treatment recommendations are based on the person, their circumstances, and their needs.</p>
+          <div class="why__txt">
+            <h3 class="h3">Individualized Care</h3>
+            <p>Treatment recommendations are based on the person, their circumstances, and their needs.</p>
+          </div>
         </li>
-        <li class="glass d-16" data-reveal>
+        <li class="why__row">
+          <span class="why__n" aria-hidden="true">02</span>
           <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
-          <h3 class="h3">Multiple Ways to Receive Care</h3>
-          <p>Services may be available through telehealth and, depending on location and program, in office, home, school, or community settings.</p>
+          <div class="why__txt">
+            <h3 class="h3">Multiple Ways to Receive Care</h3>
+            <p>Services may be available through telehealth and, depending on location and program, in office, home, school, or community settings.</p>
+          </div>
         </li>
-        <li class="glass d-24" data-reveal>
+        <li class="why__row">
+          <span class="why__n" aria-hidden="true">03</span>
           <span class="why__mark" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
-          <h3 class="h3">Experience You Can Build On</h3>
-          <p>Chrysalis Health has been serving individuals and families for more than 30 years.</p>
+          <div class="why__txt">
+            <h3 class="h3">Experience You Can Build On</h3>
+            <p>Chrysalis Health has been serving individuals and families for more than 30 years.</p>
+          </div>
         </li>
-      </ul>
-      <div class="actions" data-reveal>
-        <a class="btn btn--glass" href="/about-us">
-          Discover Chrysalis Health <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
-      </div>
+      </ol>
     </div>
   </section>
 
