@@ -2,9 +2,10 @@
 
 Live: <https://imageworksc.github.io/chrysalis/>
 
-Five static pages. Each is one self-contained HTML file with an inline `<style>`,
+Five static pages, each one self-contained HTML file with an inline `<style>`,
 an inline `<script>` and an inline SVG sprite — no framework, no dependencies, no
-build tool required to view them.
+build tool required to view them — plus three standalone homepage concepts that
+keep their stylesheet and scripts in their own files.
 
 | Page | Path |
 | --- | --- |
@@ -15,6 +16,7 @@ build tool required to view them.
 | Anger Management Therapy and Counseling | `anger-management/` |
 | Homepage concept, option 1 — dark, cinematic; standalone | `homepage/` |
 | Homepage concept, option 2 — light, editorial; standalone | `homepage-2/` |
+| Homepage concept, option 3 — depth, glass and light; standalone | `homepage-3/` |
 
 Copy on the four service pages is taken from the client's source document and is
 checked against it line by line; the pages carry no invented prose.
@@ -52,14 +54,14 @@ node build/rebuild-sources.js       # split the shell, extract each <main>
 node build/build-page.js <slug>     # assemble one page
 node build/check.js                 # structure, classes, icons, ids, scripts
 node build/check-links.js           # every internal link resolves on disk
-node build/check-concepts.js        # the two homepage concepts: no inline code, no var, palette
+node build/check-concepts.js        # the homepage concepts: no inline code, no var, palette
 ```
 
 `build/meta/<slug>.json` holds each page's title, description, canonical URL,
 social image, hero preloads and FAQ. Edit those by hand; `rebuild-sources.js`
 will not overwrite a file that already exists.
 
-The two homepage concepts are not assembled from the shell. Each is an
+The three homepage concepts are not assembled from the shell. Each is an
 `index.html` with its own `styles.css`, `head.js` and `main.js`, and they are
 held to three rules that `build/check-concepts.js` enforces: no inline
 styles or scripts of any kind, no `var` (only `let` and `const`), and the

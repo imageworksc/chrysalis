@@ -1,4 +1,4 @@
-// Checks the standalone concept pages (homepage/, homepage-2/): the rules they
+// Checks the standalone concept pages (homepage/, homepage-2/, homepage-3/): the rules they
 // are held to, and the structure. Each page is an index.html with its own
 // styles.css, head.js and main.js.
 //
@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['homepage', 'homepage-2'];
+const PAGES = ['homepage', 'homepage-2', 'homepage-3'];
 
 const OFFICIAL = new Set(['#87bf57', '#6aaa35', '#4f8226', '#eef5e6', '#52a5cf', '#3d8fb8', '#23617f', '#e8f4fb',
   '#2e2e2e', '#16323f', '#0f2530', '#f7f9fa', '#eef2f5', '#f5f9fc', '#ffffff', '#fff', '#e2e9ed', '#cfdae0',
@@ -100,5 +100,5 @@ PAGES.forEach((slug) => {
 });
 
 console.log();
-console.log('  ' + (problems ? problems + ' PROBLEM(S)' : 'both concept pages pass: nothing inline, no var, palette and type held, structure sound'));
+console.log('  ' + (problems ? problems + ' PROBLEM(S)' : 'the concept pages pass: nothing inline, no var, palette and type held, structure sound'));
 process.exit(problems ? 1 : 0);
