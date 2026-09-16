@@ -80,16 +80,22 @@ a{color:var(--blue-deep)}
 .kicker--dark{color:var(--green)}
 
 .btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
-  min-height:3.375rem;padding:var(--sp-3) clamp(1.5rem,2.2vw,2.25rem);border:1px solid transparent;border-radius:var(--r-pill);
+  min-height:3.375rem;padding:var(--sp-3) clamp(1.5rem,2.2vw,2.25rem);border:1px solid transparent;border-radius:0;
   font-family:var(--font);font-weight:var(--fw-bold);font-size:var(--fs-sm);text-decoration:none;
-  cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .12s var(--ease)}
-.btn:active{transform:translateY(1px)}
+  cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease)}
+/* on hover the button lifts and casts, and the arrow leads the way; on press
+   it settles back down. filled buttons cast in ink, outlined ones stay flat. */
+.btn:hover{transform:translateY(-0.1875rem)}
+.btn:active{transform:translateY(0)}
+.btn--green:hover,.btn--primary:hover{box-shadow:0 0.75rem 1.5rem rgba(var(--rgb-ink),.18)}
+.btn .ico{transition:transform .22s var(--ease)}
+.btn:hover .ico{transform:translateX(0.3rem)}
 .btn--primary{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
 .btn--primary:hover{background:var(--ink);border-color:var(--ink)}
 .btn--green{background:var(--green);border-color:var(--green);color:var(--ink)}
 .btn--green:hover{background:var(--green-dk);border-color:var(--green-dk);color:var(--ink)}
 .btn--ghost{background:#fff;border-color:var(--rule-dk);color:var(--ink)}
-.btn--ghost:hover{border-color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink);box-shadow:0 0.5rem 1rem rgba(var(--rgb-ink),.1)}
 .btn--dark{background:transparent;border-color:rgba(255,255,255,.45);color:#fff}
 .btn--dark:hover{border-color:#fff;background:rgba(255,255,255,.12)}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3);margin-top:var(--sp-7)}
@@ -160,7 +166,7 @@ a{color:var(--blue-deep)}
   padding:var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-5);border-radius:var(--r-pill);
   background:rgba(255,255,255,.15);color:#fff;font-family:var(--head);font-size:var(--fs-sm);
   font-weight:var(--fw-med);margin-bottom:var(--sp-6)}
-.chip button{background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:var(--r-pill);
+.chip button{background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:0;
   min-height:2.25rem;padding:0 var(--sp-4);font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-mid);
   color:#fff;cursor:pointer}
 .chip button:hover{border-color:#fff;background:rgba(255,255,255,.12)}
@@ -384,6 +390,7 @@ a{color:var(--blue-deep)}
   animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
 .has-js [data-reveal].is-in{opacity:1;transform:none;animation:none}
 @media(prefers-reduced-motion:reduce){
+  .btn:hover,.btn:hover .ico{transform:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
