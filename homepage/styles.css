@@ -10,9 +10,9 @@
 
   --font:'Lato',Arial,sans-serif;
   --head:'Montserrat','Lato',Arial,sans-serif;
-  --fs-display:clamp(2.25rem,4.4vw,3.5rem);
-  --fs-state:clamp(1.6875rem,3vw,2.75rem);
-  --fs-h2:clamp(1.6875rem,2.9vw,2.375rem);
+  --fs-display:clamp(2.125rem,4vw,3.25rem);
+  --fs-state:clamp(1.5625rem,2.7vw,2.5rem);
+  --fs-h2:clamp(1.5625rem,2.6vw,2.125rem);
   --fs-h3:clamp(1.0625rem,1.3vw,1.25rem);
   --fs-lead:clamp(1rem,1.05vw,1.0625rem);
   --fs-base:1rem;--fs-sm:0.9375rem;--fs-xs:0.8125rem;--fs-nav:0.9375rem;--fs-cta:0.875rem;
@@ -233,7 +233,7 @@ a{color:var(--blue-deep)}
 .answer:hover .answer__rule{width:7.5rem}
 .answer__rule{display:block;width:3.25rem;height:0.1875rem;border-radius:2px;background:var(--green-cta);transition:width .5s var(--ease)}
 .answer h2{margin-top:var(--sp-6);font-family:var(--head);
-  font-size:clamp(1.5rem,2.3vw,2.125rem);font-weight:var(--fw-med);
+  font-size:clamp(1.375rem,2.1vw,1.9375rem);font-weight:var(--fw-med);
   line-height:1.18;letter-spacing:-.025em;color:var(--ink);max-width:20em;text-wrap:balance}
 .answer__a{margin-top:var(--sp-6);padding-top:var(--sp-6);border-top:1px solid var(--rule);
   font-size:clamp(1.0625rem,1.15vw,1.25rem);line-height:1.7;color:var(--body);max-width:68ch}
@@ -285,7 +285,7 @@ a{color:var(--blue-deep)}
 .dir__row:hover::before{opacity:1;transform:scale(1)}
 .dir__row > *{position:relative}
 .dir__row > *{min-width:0}
-.dir h3{font-family:var(--head);font-size:clamp(1.3125rem,2.5vw,2.25rem);font-weight:var(--fw-med);
+.dir h3{font-family:var(--head);font-size:clamp(1.25rem,2.2vw,2rem);font-weight:var(--fw-med);
   line-height:1.14;letter-spacing:-.028em;color:var(--ink);text-wrap:balance;
   transition:color .2s var(--ease)}
 .dir p{font-size:var(--fs-sm);line-height:1.55;color:var(--card-txt);transition:color .3s var(--ease)}
