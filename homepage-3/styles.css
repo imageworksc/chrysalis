@@ -128,11 +128,6 @@ a{color:var(--blue-deep)}
 /* ---------------- hero ---------------- */
 .hero{position:relative;overflow:hidden;background:var(--deep);color:rgba(255,255,255,.86);
   padding-block:clamp(4rem,7vw,7.5rem) clamp(10rem,15vw,15rem)}
-/* a faint dot grid gives the gradient a surface; the mask keeps it to the middle */
-.hero__dots{position:absolute;inset:0;z-index:0;pointer-events:none;
-  background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1.5px);background-size:1.75rem 1.75rem;
-  -webkit-mask-image:radial-gradient(60% 80% at 40% 45%,#000 20%,transparent 100%);mask-image:radial-gradient(60% 80% at 40% 45%,#000 20%,transparent 100%)}
-/* static, so the photograph positions against the band, not the page */
 .hero__grid{position:static;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,6rem);align-items:center}
 .hero__copy{position:relative;z-index:1;min-width:0}
 .hero__title{font-size:clamp(2.625rem,5.4vw,4.25rem);max-width:11em}
@@ -148,27 +143,15 @@ a{color:var(--blue-deep)}
 .hero__photo::after{content:"";position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(22,50,63,.7) 0%,rgba(22,50,63,0) 42%),linear-gradient(180deg,rgba(22,50,63,0) 72%,rgba(22,50,63,.4) 100%)}
 .hero__visual:hover .hero__photo img{transform:scale(1.04)}
-.floats{list-style:none;margin:0;padding:0}
-.float{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-pill);
-  background:rgba(255,255,255,.94);color:var(--ink);font-family:var(--head);font-weight:var(--fw-med);font-size:var(--fs-xs);letter-spacing:.02em;white-space:nowrap;
-  box-shadow:var(--e-3);animation:bob 6s ease-in-out infinite alternate}
-.float .ico{width:1.125rem;height:1.125rem;color:var(--green-cta)}
-.float--1{left:9%;top:14%}
-.float--2{right:5%;top:50%;animation-delay:-2.4s}
-.float--3{left:12%;top:64%;animation-delay:-4.2s}
-@keyframes bob{from{translate:0 0}to{translate:0 -0.75rem}}
 @media(max-width:920px){
   .hero{padding-bottom:clamp(9rem,22vw,12rem)}
   .hero__grid{grid-template-columns:minmax(0,1fr)}
   .hero__title{max-width:none}
-  /* the photograph becomes a block under the copy, edge to edge, cut on a slant along its
-     top; the chips sit in a row over its bottom edge rather than over the faces */
+  /* the photograph becomes a block under the copy, edge to edge, cut on a slant along its top */
   .hero__visual{position:relative;width:auto;margin:3rem calc(-1 * var(--gutter)) 0}
   .hero__photo{position:relative;aspect-ratio:5/4;clip-path:polygon(0 12%,100% 0,100% 100%,0 100%)}
   .hero__photo img{object-position:50% 22%}
   .hero__photo::after{background:linear-gradient(180deg,rgba(22,50,63,.2) 0%,rgba(22,50,63,0) 30%)}
-  .floats{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--sp-2);margin-top:-1.25rem;padding-inline:var(--gutter)}
-  .float{position:static;animation:none}
 }
 
 /* ---------------- intake: glass across the edge ---------------- */
@@ -508,7 +491,7 @@ a{color:var(--blue-deep)}
 /* ---------------- reduced motion ---------------- */
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .orb,.float{animation:none}
+  .orb{animation:none}
   .btn:hover,.btn:hover .ico,.hero__visual:hover .hero__photo img,
   .callcard:hover,.callcard:hover .callcard__ico,.opt:hover,.mark:hover,
   .cell:hover,.cell:hover .cell__badge,.plate:hover,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
