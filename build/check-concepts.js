@@ -32,9 +32,10 @@ PAGES.forEach((slug) => {
   ['styles.css', 'head.js', 'main.js'].forEach((f) => {
     if (!fs.existsSync(path.join(dir, f))) fail(f + ' missing');
   });
-  if (!/<link rel="stylesheet" href="styles\.css">/.test(html)) fail('styles.css not linked');
-  if (!/<script src="head\.js"><\/script>/.test(html)) fail('head.js not loaded synchronously in <head>');
-  if (!/<script src="main\.js" defer><\/script>/.test(html)) fail('main.js not loaded with defer');
+  // the ?v= stamp is what stamp-concepts.js adds, so a cached copy is never served after a change
+  if (!/<link rel="stylesheet" href="styles\.css(\?v=[0-9a-f]{8})?">/.test(html)) fail('styles.css not linked');
+  if (!/<script src="head\.js(\?v=[0-9a-f]{8})?"><\/script>/.test(html)) fail('head.js not loaded synchronously in <head>');
+  if (!/<script src="main\.js(\?v=[0-9a-f]{8})?" defer><\/script>/.test(html)) fail('main.js not loaded with defer');
 
   ['head.js', 'main.js'].forEach((f) => {
     const p = path.join(dir, f);

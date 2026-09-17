@@ -24,4 +24,5 @@ console.log('\nlinks');
 run('check-links.js');
 
 console.log('\nconcept pages');
+run('stamp-concepts.js');
 run('check-concepts.js');

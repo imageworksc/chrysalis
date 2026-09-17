@@ -54,6 +54,7 @@ node build/rebuild-sources.js       # split the shell, extract each <main>
 node build/build-page.js <slug>     # assemble one page
 node build/check.js                 # structure, classes, icons, ids, scripts
 node build/check-links.js           # every internal link resolves on disk
+node build/stamp-concepts.js        # stamp the concepts' stylesheet and script links with a content hash
 node build/check-concepts.js        # the homepage concepts: no inline code, no var, palette
 ```
 
@@ -65,7 +66,10 @@ The three homepage concepts are not assembled from the shell. Each is an
 `index.html` with its own `styles.css`, `head.js` and `main.js`, and they are
 held to three rules that `build/check-concepts.js` enforces: no inline
 styles or scripts of any kind, no `var` (only `let` and `const`), and the
-official palette and type only.
+official palette and type only. Their `styles.css`, `head.js` and `main.js`
+links carry a `?v=` content hash that `stamp-concepts.js` refreshes, so a
+browser never keeps serving a cached copy after a change (GitHub Pages caches
+every file for ten minutes).
 
 `build/.work/` holds the split shell and the extracted `<main>` of each page. It
 is generated and not versioned — `rebuild-sources.js` recreates it from the
