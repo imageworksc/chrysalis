@@ -385,11 +385,12 @@ a{color:var(--blue-deep)}
 /* the entrance uses the translate property, not transform, so a block that
    also moves on hover keeps its hover transform after it has arrived. the
    failsafe animation ends the entrance on its own if the script never runs. */
+/* the entrance is an animation rather than a transition, so it never overrides the
+   transition a block declares for its own hover */
+@keyframes rise{from{opacity:0;translate:0 1.375rem}to{opacity:1;translate:0}}
 @keyframes rise-failsafe{to{opacity:1;translate:0}}
-.has-js [data-reveal]{opacity:0;translate:0 1.375rem;
-  transition:opacity .7s var(--ease),translate .7s var(--ease);transition-delay:var(--d,0s);
-  animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
-.has-js [data-reveal].is-in{opacity:1;translate:0;animation:none}
+.has-js [data-reveal]{opacity:0;translate:0 1.375rem;animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
+.has-js [data-reveal].is-in{animation:rise .7s var(--ease) both;animation-delay:var(--d,0s)}
 
 /* ---------------- large screens ---------------- */
 /* the root steps up and, everything being rem, the whole design scales:

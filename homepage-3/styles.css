@@ -35,6 +35,7 @@
   --e-3:0 1.125rem 2.75rem rgba(var(--rgb-ink),.14);
   --e-4:0 1.75rem 4rem rgba(var(--rgb-ink),.22);
   --ease:cubic-bezier(.4,0,.2,1);
+  --fluid:.55s cubic-bezier(.22,1,.36,1);
 
   /* the two gradients the page is built on */
   --deep:linear-gradient(135deg,var(--blue-deep) 0%,var(--ink) 55%,var(--ink-2) 100%);
@@ -161,19 +162,22 @@ a{color:var(--blue-deep)}
 /* ---------------- intake: glass across the edge ---------------- */
 .intake{background:#fff;padding-bottom:var(--sp-6)}
 .intake .page{position:relative;z-index:2}
-.intake__card{margin-top:calc(-1 * clamp(7rem,10vw,10rem));padding:clamp(1.5rem,2.8vw,2.5rem);
+.intake__card{position:relative;margin-top:calc(-1 * clamp(7rem,10vw,10rem));padding:clamp(1.5rem,2.8vw,2.5rem);
   display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-5) clamp(1.5rem,3.4vw,3.5rem);align-items:center;
-  background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.9);color:var(--body);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.intake__card:hover{transform:translateY(-0.25rem);box-shadow:0 2.25rem 5rem rgba(var(--rgb-ink),.26)}
+  background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.9);color:var(--body);overflow:hidden;transition:transform var(--fluid),box-shadow var(--fluid)}
+.intake__card::before{content:"";position:absolute;left:0;right:0;top:0;height:0.3rem;background:var(--lift);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--fluid)}
+.intake__card:hover{transform:translateY(-0.5rem);box-shadow:0 2.25rem 5rem rgba(var(--rgb-ink),.26)}
+.intake__card:hover::before{transform:scaleX(1)}
 .intake__lead p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt);max-width:44ch}
 .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-3)}
 .opt{display:flex;align-items:center;gap:var(--sp-3);min-height:3.75rem;padding:var(--sp-3) var(--sp-4);
   background:var(--paper);border:2px solid var(--rule);border-radius:var(--r);cursor:pointer;text-align:left;
   font-family:var(--head);font-size:var(--fs-sm);font-weight:var(--fw-mid);color:var(--ink);line-height:1.25;
-  transition:border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease)}
+  transition:border-color var(--fluid),background var(--fluid),transform var(--fluid),box-shadow var(--fluid)}
 .opt .ico{width:1.5rem;height:1.5rem;padding:0.25rem;border-radius:50%;border:2px solid var(--rule-dk);color:transparent;stroke-width:3;
-  transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease)}
-.opt:hover{border-color:var(--green);background:var(--green-lt);transform:translateY(-2px);box-shadow:var(--e-2)}
+  transition:background var(--fluid),border-color var(--fluid),color var(--fluid),transform var(--fluid)}
+.opt:hover{border-color:var(--green);background:var(--green-lt);transform:translateY(-0.25rem);box-shadow:var(--e-2)}
+.opt:hover .ico{border-color:var(--green-cta);transform:scale(1.12)}
 .opt[aria-pressed="true"]{border-color:var(--green-cta);background:var(--green-lt)}
 .opt[aria-pressed="true"] .ico{background:var(--green-cta);border-color:var(--green-cta);color:#fff}
 .intake__out{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--sp-5);align-items:center;
@@ -211,23 +215,28 @@ a{color:var(--blue-deep)}
 .bento{list-style:none;margin:clamp(2.5rem,4.4vw,4.5rem) 0 0;padding:0;display:grid;gap:var(--gap);
   grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"a b c" "a d d" "e f f"}
 .cell{position:relative;overflow:hidden;background:#fff;border:1px solid var(--rule);border-radius:var(--r-lg);padding:clamp(1.5rem,2.4vw,2.25rem);
-  display:flex;flex-direction:column;justify-content:flex-start;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+  display:flex;flex-direction:column;justify-content:flex-start;transition:transform var(--fluid),box-shadow var(--fluid),border-color var(--fluid)}
+/* the gradient along the top edge, drawn from the left as the pointer arrives */
+.cell::after{content:"";position:absolute;left:0;right:0;top:0;height:0.3rem;background:var(--lift);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--fluid)}
 .cell:nth-child(1){grid-area:a}.cell:nth-child(2){grid-area:b}.cell:nth-child(3){grid-area:c}
 .cell:nth-child(4){grid-area:d}.cell:nth-child(5){grid-area:e}.cell:nth-child(6){grid-area:f}
 /* the feature cell is the deep gradient, the wide ones a soft lift */
 .cell--feature{background:var(--deep);border-color:transparent;color:rgba(255,255,255,.8);justify-content:flex-end}
 .cell--feature::before{content:"";position:absolute;right:-30%;top:-30%;width:70%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(var(--rgb-green),.45),rgba(var(--rgb-green),0) 70%);pointer-events:none}
+  background:radial-gradient(closest-side,rgba(var(--rgb-green),.45),rgba(var(--rgb-green),0) 70%);pointer-events:none;transition:transform var(--fluid)}
 .cell--wide{background:linear-gradient(135deg,#fff 40%,var(--blue-lt) 100%)}
 .cell__badge{width:3.25rem;height:3.25rem;border-radius:0.875rem;display:grid;place-items:center;background:var(--green-lt);color:var(--green-cta);
-  transition:transform .35s var(--ease),background .35s var(--ease),color .35s var(--ease)}
+  transition:transform var(--fluid),background var(--fluid),color var(--fluid)}
 .cell__badge .ico{width:1.5rem;height:1.5rem;stroke-width:1.6}
 .cell--feature .cell__badge{background:rgba(255,255,255,.12);color:var(--green);width:3.75rem;height:3.75rem}
-.cell h3{margin-top:var(--sp-5);font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);color:var(--ink);line-height:1.25;letter-spacing:-.015em}
+.cell h3{margin-top:var(--sp-5);font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);color:var(--ink);line-height:1.25;letter-spacing:-.015em;transition:transform var(--fluid)}
 .cell--feature h3{color:#fff;font-size:clamp(1.375rem,1.9vw,1.75rem);max-width:12em}
 .cell p{margin-top:var(--sp-2);font-size:var(--fs-sm);color:var(--card-txt);line-height:1.55}
 .cell--feature p{color:rgba(255,255,255,.8);max-width:36ch}
-.cell:hover{transform:translateY(-0.375rem);box-shadow:var(--e-3);border-color:transparent}
+.cell:hover{transform:translateY(-0.5rem);box-shadow:var(--e-3);border-color:transparent}
+.cell:hover::after{transform:scaleX(1)}
+.cell:hover h3{transform:translateX(0.25rem)}
+.cell--feature:hover::before{transform:translate(-12%,12%) scale(1.25)}
 .cell:hover .cell__badge{transform:scale(1.1) rotate(-5deg);background:var(--green-cta);color:#fff}
 .cell--feature:hover .cell__badge{background:var(--green);color:var(--ink)}
 @media(max-width:900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"a a" "b c" "d d" "e f"}}
@@ -238,23 +247,26 @@ a{color:var(--blue-deep)}
 /* white to the faint tint, a hairline, a soft blue light in the corner */
 .plate{position:relative;overflow:hidden;border-radius:calc(var(--r-lg) * 1.2);border:1px solid var(--rule);
   background:linear-gradient(160deg,#fff 0%,var(--tint) 100%);box-shadow:var(--e-3);padding:clamp(2rem,4vw,4rem);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  transition:transform var(--fluid),box-shadow var(--fluid)}
+.plate::before{content:"";position:absolute;left:0;right:0;top:0;height:0.3rem;background:var(--lift);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--fluid);z-index:1}
 .plate__glow{position:absolute;z-index:0;right:-8%;top:-50%;width:46%;aspect-ratio:1;border-radius:50%;pointer-events:none;
   background:radial-gradient(closest-side,rgba(var(--rgb-blue),.16),rgba(var(--rgb-blue),0))}
-.plate__glow{transition:transform .6s var(--ease)}
-.plate:hover{transform:translateY(-0.25rem);box-shadow:var(--e-4)}
+.plate__glow{transition:transform var(--fluid)}
+.plate:hover{transform:translateY(-0.5rem);box-shadow:var(--e-4)}
+.plate:hover::before{transform:scaleX(1)}
 .plate:hover .plate__glow{transform:scale(1.25)}
 .plate:hover .plate__badge{transform:rotate(-8deg) scale(1.06)}
 .plate__grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-6) clamp(2rem,4vw,4.5rem);align-items:center}
 .plate__lead{min-width:0}
-.plate__badge{width:3.25rem;height:3.25rem;border-radius:var(--r);display:grid;place-items:center;margin-bottom:var(--sp-5);transition:transform .35s var(--ease);
+.plate__badge{width:3.25rem;height:3.25rem;border-radius:var(--r);display:grid;place-items:center;margin-bottom:var(--sp-5);transition:transform var(--fluid);
   background:var(--lift);color:var(--ink);box-shadow:0 0.5rem 1.25rem rgba(var(--rgb-green),.28)}
 .plate__q{color:var(--ink);font-size:clamp(1.5rem,2.5vw,2.125rem)}
 /* the answer, set beside a hairline; every service it names is a link to its page */
 .plate__body{min-width:0;border-left:1px solid var(--rule);padding-left:clamp(1.5rem,3vw,3rem)}
 .plate__body p{font-size:clamp(1.0625rem,1.15vw,1.1875rem);line-height:1.78;color:var(--ink)}
 .svc-link{color:var(--blue-deep);font-weight:var(--fw-bold);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.22em;
-  text-decoration-color:rgba(var(--rgb-green),.7);transition:color .2s var(--ease),text-decoration-color .2s var(--ease)}
+  text-decoration-color:rgba(var(--rgb-green),.7);transition:color .3s var(--ease),text-decoration-color .3s var(--ease),text-underline-offset .3s var(--ease)}
+.svc-link:hover{text-underline-offset:.32em}
 .svc-link:hover{color:var(--green-cta);text-decoration-color:var(--green-cta)}
 @media(max-width:900px){
   .plate__grid{grid-template-columns:minmax(0,1fr)}
@@ -265,8 +277,8 @@ a{color:var(--blue-deep)}
 .access__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-7) clamp(2rem,5vw,6rem);align-items:center}
 /* a photograph set at a slight angle; it straightens under the pointer */
 .tilt{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e-4);transform:rotate(-3deg);aspect-ratio:5/4;
-  border:0.375rem solid rgba(255,255,255,.12);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.tilt img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  border:0.375rem solid rgba(255,255,255,.12);transition:transform .7s cubic-bezier(.22,1,.36,1),box-shadow .7s cubic-bezier(.22,1,.36,1)}
+.tilt img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,1,.36,1)}
 .tilt:hover img{transform:scale(1.05)}
 .tilt:hover{transform:rotate(0) scale(1.02)}
 .access__copy{min-width:0}
@@ -274,13 +286,14 @@ a{color:var(--blue-deep)}
 .ways{list-style:none;margin:var(--sp-6) 0 0;padding:0;display:grid;gap:var(--sp-3)}
 .ways li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--sp-4);
   padding:var(--sp-4) var(--sp-5);border-radius:var(--r-pill);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-  transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
-.ways__n{font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.06em;color:var(--green)}
+  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid),box-shadow var(--fluid)}
+.ways__n{font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.06em;color:var(--green);transition:transform var(--fluid)}
 .ways h3{font-family:var(--head);font-size:clamp(1.0625rem,1.3vw,1.25rem);font-weight:var(--fw-med);color:#fff;letter-spacing:-.015em}
-.ways .ico{width:1.5rem;height:1.5rem;color:rgba(255,255,255,.6);transition:color .3s var(--ease),transform .3s var(--ease)}
-.ways li:hover{background:rgba(255,255,255,.12);border-color:rgba(var(--rgb-green),.6);transform:translateX(0.375rem);
+.ways .ico{width:1.5rem;height:1.5rem;color:rgba(255,255,255,.6);transition:color var(--fluid),transform var(--fluid)}
+.ways li:hover{background:rgba(255,255,255,.12);border-color:rgba(var(--rgb-green),.6);transform:translateX(0.625rem);
   box-shadow:0 0 0 0.25rem rgba(var(--rgb-green),.15)}
-.ways li:hover .ico{color:var(--green);transform:scale(1.15)}
+.ways li:hover .ico{color:var(--green);transform:scale(1.15) translateX(0.25rem)}
+.ways li:hover .ways__n{transform:translateX(-0.25rem)}
 .ways + p{margin-top:var(--sp-6)}
 @media(max-width:920px){.access__grid{grid-template-columns:minmax(0,1fr)}.tilt{max-width:32rem}}
 
@@ -494,11 +507,12 @@ a{color:var(--blue-deep)}
 }
 
 /* ---------------- entrance ---------------- */
+/* the entrance is an animation rather than a transition, so it never overrides the
+   transition a block declares for its own hover */
+@keyframes rise{from{opacity:0;translate:0 1.375rem}to{opacity:1;translate:0}}
 @keyframes rise-failsafe{to{opacity:1;translate:0}}
-.has-js [data-reveal]{opacity:0;translate:0 1.375rem;
-  transition:opacity .7s var(--ease),translate .7s var(--ease);transition-delay:var(--d,0s);
-  animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
-.has-js [data-reveal].is-in{opacity:1;translate:0;animation:none}
+.has-js [data-reveal]{opacity:0;translate:0 1.375rem;animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
+.has-js [data-reveal].is-in{animation:rise .7s var(--ease) both;animation-delay:var(--d,0s)}
 
 /* ---------------- large screens ---------------- */
 @media(min-width:2200px){html{font-size:112.5%}}
@@ -512,12 +526,12 @@ a{color:var(--blue-deep)}
   .orb{animation:none}
   .btn:hover,.btn:hover .ico,.hero__visual:hover .hero__photo img,
   .callcard:hover,.callcard:hover .callcard__ico,.opt:hover,.mark:hover,
-  .cell:hover,.cell:hover .cell__badge,.plate:hover,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
+  .cell:hover,.cell:hover .cell__badge,.cell:hover h3,.cell--feature:hover::before,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
   .svc__card:hover,.svc__card:hover::before,.svc__card:hover .svc__badge,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
   .why__row:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover,.intake__card:hover,.mark:hover .mark__big,
   .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.why__panel:hover::before,.referral:hover::before,
   .final:hover .final__bg img,.ft a:hover{transform:none}
-  .svc__card:hover::after,.pstep.is-passed::after{transform:scaleX(1)}
+  .svc__card:hover::after,.cell:hover::after,.plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
