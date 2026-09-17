@@ -59,8 +59,10 @@ PAGES.forEach((slug) => {
 
   /* --- type: the site's --- */
   if (!/--font:\s*'Lato'/.test(css) || !/--head:\s*'Montserrat'/.test(css)) fail('type is not Lato / Montserrat');
-  if (!/\.h1\{[^}]*font-weight:var\(--fw-mid\)/.test(css)) fail('.h1 is not weight 500');
-  if (!/\.h2\{[^}]*font-weight:var\(--fw-mid\)/.test(css)) fail('.h2 is not weight 500');
+  // headings: Montserrat 500 on the first two concepts; the third sets its titles bold by request
+  const hw = slug === 'homepage-3' ? 'bold' : 'mid';
+  if (!new RegExp('\\.h1\\{[^}]*font-weight:var\\(--fw-' + hw + '\\)').test(css)) fail('.h1 is not weight ' + hw);
+  if (!new RegExp('\\.h2\\{[^}]*font-weight:var\\(--fw-' + hw + '\\)').test(css)) fail('.h2 is not weight ' + hw);
 
   /* --- structure --- */
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
