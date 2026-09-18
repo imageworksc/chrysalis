@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://images.pexels.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <script src="head.js?v=fe74e210"></script>
-<link rel="stylesheet" href="styles.css?v=4dbc3149">
+<link rel="stylesheet" href="styles.css?v=1122f538">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -417,23 +417,36 @@
     </div>
   </section>
 
-  <!-- ================= REFERRAL: green light ================= -->
-  <section class="referral" id="referral">
-    <div class="page referral__grid" data-reveal>
-      <div>
-        <h2 class="h2 h2--sm">Helping Someone Else Find Care?</h2>
-        <p class="mt-4 measure-58">You may be looking for help for a family member, friend, client, patient, or someone else you support.</p>
-        <p class="mt-3 measure-58">Chrysalis Health provides a dedicated referral pathway to help connect people with available mental health&nbsp;services.</p>
-      </div>
-      <div class="actions">
-        <a class="btn btn--light" href="/make-referral">
-          Make a Referral <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
+  <!-- ================= REFERRAL: a split panel, the photograph beside the copy on the deep gradient ================= -->
+  <section class="band referral" id="referral">
+    <div class="page">
+      <div class="ref" data-reveal>
+        <figure class="ref__photo">
+          <img src="https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1000"
+               srcset="https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=700&amp;h=700 700w,
+                       https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1000&amp;h=1000 1000w,
+                       https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=1400&amp;h=1400 1400w"
+               sizes="(max-width: 920px) 100vw, 38vw" width="1400" height="1400"
+               alt="A younger woman and an older woman laughing together outdoors" loading="lazy" decoding="async">
+        </figure>
+        <div class="ref__body">
+          <h2 class="h2 h2--sm">Helping Someone Else Find Care?</h2>
+          <p class="mt-4 measure-54">You may be looking for help for a family member, friend, client, patient, or someone else you support.</p>
+          <!-- the people the sentence names, as a row of tags; decorative, so hidden from readers -->
+          <ul class="ref__who" aria-hidden="true">
+            <li>Family member</li><li>Friend</li><li>Client</li><li>Patient</li><li>Someone you support</li>
+          </ul>
+          <p class="measure-54">Chrysalis Health provides a dedicated referral pathway to help connect people with available mental health&nbsp;services.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="/make-referral">
+              Make a Referral <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= FAQ: cards, gradient numbers ================= -->
   <section class="band band--faq" id="faq-sec">
     <div class="page">
       <div class="g">
