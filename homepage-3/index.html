@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://images.pexels.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <script src="head.js?v=fe74e210"></script>
-<link rel="stylesheet" href="styles.css?v=46f51943">
+<link rel="stylesheet" href="styles.css?v=c1c6dee9">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -434,82 +434,67 @@
   </section>
 
   <!-- ================= FAQ: cards, gradient numbers ================= -->
-  <section class="band" id="faq-sec">
-    <div class="page faq__grid">
-      <div class="faq__head" data-reveal>
-        <p class="kicker"><svg class="ico" aria-hidden="true"><use href="#i-help"/></svg>Questions</p>
-        <h2 class="h2">Frequently Asked Questions</h2>
-      </div>
-      <div class="faq" id="faq">
-        <div class="faq__item is-open" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="true" aria-controls="a1" id="q1">
-            <span class="faq__n" aria-hidden="true">01</span>
-            <span class="faq__t">How do I start mental health services with Chrysalis Health?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a1" role="region" aria-labelledby="q1"><div class="faq__inner">
-            <p>Start by submitting a request for services or calling (888) 587-0335. You do not need to know your diagnosis or exactly which service you need before contacting Chrysalis Health.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a2" id="q2">
-            <span class="faq__n" aria-hidden="true">02</span>
-            <span class="faq__t">What types of therapy does Chrysalis Health provide?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a2" role="region" aria-labelledby="q2"><div class="faq__inner">
-            <p>Services include individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, and anger management.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a3" id="q3">
-            <span class="faq__n" aria-hidden="true">03</span>
-            <span class="faq__t">Does Chrysalis Health provide psychiatric services?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a3" role="region" aria-labelledby="q3"><div class="faq__inner">
-            <p>Yes. Chrysalis Health offers psychiatric services and medication management as part of its mental health services.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a4" id="q4">
-            <span class="faq__n" aria-hidden="true">04</span>
-            <span class="faq__t">Does Chrysalis Health offer telehealth?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a4" role="region" aria-labelledby="q4"><div class="faq__inner">
-            <p>Yes. Telehealth is available as a care option, although availability and suitability may depend on the service, location, individual needs, insurance, and clinical recommendations.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a5" id="q5">
-            <span class="faq__n" aria-hidden="true">05</span>
-            <span class="faq__t">Does Chrysalis Health accept Medicaid?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a5" role="region" aria-labelledby="q5"><div class="faq__inner">
-            <p>Chrysalis Health provides insurance and Medicaid options. Coverage and participation should be confirmed based on your plan, service, and location.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a6" id="q6">
-            <span class="faq__n" aria-hidden="true">06</span>
-            <span class="faq__t">How do I find a Chrysalis Health location?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a6" role="region" aria-labelledby="q6"><div class="faq__inner">
-            <p>Use the location finder to see Chrysalis Health locations and learn which services may be available near you.</p>
-          </div></div>
-        </div>
-        <div class="faq__item" data-reveal>
-          <button type="button" class="faq__q" aria-expanded="false" aria-controls="a7" id="q7">
-            <span class="faq__n" aria-hidden="true">07</span>
-            <span class="faq__t">Can I refer someone to Chrysalis Health?</span>
-            <span class="faq__icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq__panel" id="a7" role="region" aria-labelledby="q7"><div class="faq__inner">
-            <p>Yes. Chrysalis Health provides a dedicated referral process for people helping someone connect with mental health care.</p>
-          </div></div>
+  <section class="band band--faq" id="faq-sec">
+    <div class="page">
+      <div class="g">
+        <div class="faq-head" data-reveal><h2 class="h2">Frequently Asked Questions</h2></div>
+        <div class="faq" id="faq">
+          <div class="faq__item is-open" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="true" aria-controls="a1" id="q1">
+              How do I start mental health services with Chrysalis Health? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a1" role="region" aria-labelledby="q1"><div class="faq__inner">
+              <p>Start by submitting a request for services or calling (888) 587-0335. You do not need to know your diagnosis or exactly which service you need before contacting Chrysalis Health.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a2" id="q2">
+              What types of therapy does Chrysalis Health provide? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a2" role="region" aria-labelledby="q2"><div class="faq__inner">
+              <p>Services include individual therapy, child and teen therapy, family therapy, anxiety and depression therapy, trauma therapy, and anger management.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a3" id="q3">
+              Does Chrysalis Health provide psychiatric services? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a3" role="region" aria-labelledby="q3"><div class="faq__inner">
+              <p>Yes. Chrysalis Health offers psychiatric services and medication management as part of its mental health services.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a4" id="q4">
+              Does Chrysalis Health offer telehealth? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a4" role="region" aria-labelledby="q4"><div class="faq__inner">
+              <p>Yes. Telehealth is available as a care option, although availability and suitability may depend on the service, location, individual needs, insurance, and clinical recommendations.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a5" id="q5">
+              Does Chrysalis Health accept Medicaid? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a5" role="region" aria-labelledby="q5"><div class="faq__inner">
+              <p>Chrysalis Health provides insurance and Medicaid options. Coverage and participation should be confirmed based on your plan, service, and location.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a6" id="q6">
+              How do I find a Chrysalis Health location? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a6" role="region" aria-labelledby="q6"><div class="faq__inner">
+              <p>Use the location finder to see Chrysalis Health locations and learn which services may be available near you.</p>
+            </div></div>
+          </div>
+          <div class="faq__item" data-reveal>
+            <button type="button" class="faq__q" aria-expanded="false" aria-controls="a7" id="q7">
+              Can I refer someone to Chrysalis Health? <span class="faq__icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq__panel" id="a7" role="region" aria-labelledby="q7"><div class="faq__inner">
+              <p>Yes. Chrysalis Health provides a dedicated referral process for people helping someone connect with mental health care.</p>
+            </div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -624,7 +609,6 @@
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20.5a6.5 6.5 0 0113 0"/><circle cx="17.5" cy="9.5" r="2.6"/><path d="M15 20.5a5.2 5.2 0 016.5-5"/></symbol>
   <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.3 5-5 2.3 2.3-5z"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.3 5.9.9-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.9z"/></symbol>
-  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.6a2.6 2.6 0 015.2 0c0 1.8-2.6 2.1-2.6 3.9"/><path d="M12 16.8v.4"/></symbol>
 </svg>
 
 <script src="main.js?v=76830d87" defer></script>

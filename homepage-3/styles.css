@@ -427,32 +427,37 @@ a{color:var(--blue-deep)}
 .referral .actions{margin-top:0;justify-content:flex-end}
 @media(max-width:920px){.referral__grid{grid-template-columns:minmax(0,1fr)}.referral .actions{justify-content:flex-start}}
 
-/* ---------------- faq: cards ---------------- */
-.faq__grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--sp-6) clamp(2rem,5vw,6rem);align-items:start}
-.faq__head{position:sticky;top:var(--sp-8)}
-.faq{display:grid;gap:var(--sp-3)}
-.faq__item{background:#fff;border:1px solid var(--rule);border-radius:var(--r);transition:box-shadow .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
-.faq__item:hover{box-shadow:var(--e-2);transform:translateY(-2px);border-color:var(--green)}
-.faq__item:hover .faq__n{background:var(--green-lt);color:var(--green-cta)}
-.faq__item:hover .faq__icon{transform:scale(1.2)}
-.faq__item.is-open{border-color:transparent;box-shadow:var(--e-3)}
-.faq__q{width:100%;display:grid;grid-template-columns:2.5rem minmax(0,1fr) 1.5rem;align-items:center;gap:var(--sp-4);background:none;border:0;cursor:pointer;
-  text-align:left;padding:var(--sp-5);font-family:var(--head);font-size:1.0625rem;font-weight:var(--fw-mid);line-height:1.3;letter-spacing:-.015em;color:var(--ink);border-radius:var(--r)}
-.faq__n{width:2.5rem;height:2.5rem;border-radius:50%;display:grid;place-items:center;font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.04em;
-  background:var(--blue-lt);color:var(--blue-deep);transition:background .3s var(--ease),color .3s var(--ease)}
-.faq__item.is-open .faq__n{background:var(--lift);color:var(--ink)}
-.faq__t{min-width:0}
-.faq__icon{position:relative;width:1.5rem;height:1.5rem;transition:transform .3s var(--ease)}
-.faq__icon::before,.faq__icon::after{content:"";position:absolute;left:50%;top:50%;background:var(--green-cta);transform:translate(-50%,-50%);transition:transform .25s var(--ease)}
+/* ---------------- faq: on the ink, as on the first concept ---------------- */
+.g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap)}
+.faq-head{grid-column:span 4}
+.faq{grid-column:6 / span 7}
+@media(max-width:920px){.faq-head,.faq{grid-column:1 / -1}.faq{margin-top:var(--sp-6)}}
+.band--faq{background:var(--ink-2)}
+.band--faq .h2{color:#fff}
+.faq__item{border-bottom:1px solid rgba(255,255,255,.18)}
+.faq__item:first-child{border-top:1px solid rgba(255,255,255,.18)}
+.faq__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-5);background:none;
+  border:0;cursor:pointer;text-align:left;padding:var(--sp-5) 0;min-height:4rem;font-family:var(--head);
+  font-size:1.1875rem;font-weight:var(--fw-mid);line-height:1.3;letter-spacing:-.015em;color:#fff;transition:color .25s var(--ease)}
+.faq__q:hover{color:var(--green)}
+.band--faq .faq__inner{color:rgba(255,255,255,.8)}
+.band--faq :focus-visible{outline-color:var(--green)}
+.faq__icon{position:relative;width:1.5rem;height:1.5rem;flex-shrink:0}
+.faq__icon::before,.faq__icon::after{content:"";position:absolute;left:50%;top:50%;background:var(--green);
+  transform:translate(-50%,-50%);transition:transform .25s var(--ease)}
 .faq__icon::before{width:1.125rem;height:2px}
 .faq__icon::after{width:2px;height:1.125rem}
 .faq__item.is-open .faq__icon::after{transform:translate(-50%,-50%) scaleY(0)}
+/* the panel opens by animating its grid row from 0fr to 1fr; the script only
+   toggles is-open, it never writes a height */
 .faq__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
 .faq__item.is-open .faq__panel{grid-template-rows:1fr}
 .faq__panel > .faq__inner{min-height:0;overflow:hidden}
-.faq__inner{font-size:var(--fs-sm);line-height:1.68;max-width:66ch;padding-inline:calc(var(--sp-5) + 2.5rem + var(--sp-4)) var(--sp-5)}
-.faq__inner > :last-child{margin-bottom:var(--sp-5)}
-@media(max-width:920px){.faq__grid{grid-template-columns:minmax(0,1fr)}.faq__head{position:static}.faq__inner{padding-inline:var(--sp-5)}}
+/* the space under an answer is a margin on its last child, not padding on
+   the wrapper: padding would survive the 0fr row and leave a closed item
+   32px tall */
+.faq__inner{font-size:var(--fs-sm);line-height:1.68;max-width:66ch}
+.faq__inner > :last-child{margin-bottom:var(--sp-6)}
 
 /* ---------------- final ---------------- */
 .final{padding-block:clamp(5rem,9vw,9rem)}
@@ -522,7 +527,7 @@ a{color:var(--blue-deep)}
   .tile:hover,.tile:hover .tile__badge,.tile:hover::after,.tile:hover h3,.tile:hover p,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
   .svc__card:hover,.svc__card:hover > .ico,.svc__card:hover h3,.svc__card:hover p,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
-  .why__pts li:hover,.why__pts li:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
+  .why__pts li:hover,.why__pts li:hover .why__mark,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
   .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.referral:hover::before,
   .final:hover .final__bg img,.ft a:hover{transform:none}
   .plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
