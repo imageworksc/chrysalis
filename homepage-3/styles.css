@@ -74,6 +74,7 @@ a{color:var(--blue-deep)}
 .grad{background:var(--lift);background-size:200% 100%;background-position:0 50%;-webkit-background-clip:text;background-clip:text;color:transparent;
   transition:background-position .8s var(--ease)}
 .shead{max-width:46rem}
+.shead--wide{max-width:64rem}
 .shead .lead{margin-top:var(--sp-5)}
 .shead--center{margin-inline:auto;text-align:center}
 .shead--center .lead{margin-inline:auto}
@@ -82,7 +83,7 @@ a{color:var(--blue-deep)}
 /* utilities, in place of style attributes */
 .d-06{--d:.06s}.d-08{--d:.08s}.d-12{--d:.12s}.d-16{--d:.16s}.d-18{--d:.18s}.d-24{--d:.24s}.d-30{--d:.3s}
 .mt-3{margin-top:var(--sp-3)}.mt-4{margin-top:var(--sp-4)}.mt-5{margin-top:var(--sp-5)}.mt-6{margin-top:var(--sp-6)}
-.measure-52{max-width:52ch}.measure-54{max-width:54ch}.measure-58{max-width:58ch}
+.measure-52{max-width:52ch}.measure-54{max-width:54ch}.measure-58{max-width:58ch}.measure-92{max-width:92ch}
 .ink{color:var(--ink)}
 .on-dark{color:rgba(255,255,255,.82)}
 .h2--sm{font-size:clamp(1.5rem,2.3vw,2.125rem)}
@@ -302,17 +303,27 @@ a{color:var(--blue-deep)}
 .svc{list-style:none;margin:clamp(2.5rem,4.4vw,4.5rem) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
 .svc__card{position:relative;display:flex;flex-direction:column;gap:var(--sp-3);height:100%;padding:clamp(1.5rem,2.4vw,2.25rem);
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);text-decoration:none;color:inherit;overflow:hidden;
-  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid)}
-.svc__card > .ico{width:1.75rem;height:1.75rem;color:var(--green);stroke-width:1.6;transition:transform var(--fluid)}
-.svc__card h3{font-family:var(--head);font-size:clamp(1.0625rem,1.35vw,1.3125rem);font-weight:var(--fw-med);color:#fff;line-height:1.2;letter-spacing:-.018em;text-wrap:balance}
-.svc__card p{font-size:var(--fs-sm);line-height:1.55;color:rgba(255,255,255,.72);transition:color var(--fluid)}
-.svc__go{margin-top:auto;align-self:flex-end;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#fff;
-  transition:background var(--fluid),border-color var(--fluid),color var(--fluid),transform var(--fluid)}
+  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid),box-shadow var(--fluid)}
+/* the same hover as the concern tiles, on the dark: a green wash fades in from the
+   icon's corner, a disc blooms out of the opposite corner with a little overshoot,
+   the icon springs, and the title and copy rise one after the other */
+.svc__card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(var(--rgb-green),.22) 0%,transparent 60%);opacity:0;pointer-events:none;transition:opacity var(--fluid)}
+.svc__card::after{content:"";position:absolute;right:-3.5rem;bottom:-3.5rem;width:10rem;height:10rem;border-radius:50%;background:rgba(var(--rgb-green),.16);
+  transform:scale(0);pointer-events:none;transition:transform .65s cubic-bezier(.34,1.56,.64,1)}
+.svc__card > .ico{position:relative;z-index:1;width:1.75rem;height:1.75rem;color:var(--green);stroke-width:1.6;transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
+.svc__card h3{position:relative;z-index:1;font-family:var(--head);font-size:clamp(1.0625rem,1.35vw,1.3125rem);font-weight:var(--fw-med);color:#fff;line-height:1.2;letter-spacing:-.018em;text-wrap:balance;
+  transition:transform var(--fluid),color var(--fluid)}
+.svc__card p{position:relative;z-index:1;font-size:var(--fs-sm);line-height:1.55;color:rgba(255,255,255,.72);transition:color var(--fluid),transform var(--fluid);transition-delay:.06s}
+.svc__go{position:relative;z-index:1;margin-top:auto;align-self:flex-end;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#fff;
+  transition:background var(--fluid),border-color var(--fluid),color var(--fluid),transform .55s cubic-bezier(.34,1.56,.64,1)}
 .svc__go .ico{transition:transform var(--fluid)}
-.svc__card:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3);transform:translateY(-0.375rem)}
-.svc__card:hover > .ico{transform:translateY(-0.2rem) scale(1.12)}
-.svc__card:hover p{color:rgba(255,255,255,.92)}
-.svc__card:hover .svc__go{background:var(--green);border-color:var(--green);color:var(--ink);transform:scale(1.1)}
+.svc__card:hover{background:rgba(255,255,255,.09);border-color:rgba(var(--rgb-green),.5);transform:translateY(-0.5rem);box-shadow:0 1.5rem 3rem rgba(0,0,0,.28)}
+.svc__card:hover::before{opacity:1}
+.svc__card:hover::after{transform:scale(1)}
+.svc__card:hover > .ico{transform:translateY(-0.25rem) scale(1.2) rotate(-8deg)}
+.svc__card:hover h3{transform:translateY(-0.125rem);color:var(--green)}
+.svc__card:hover p{color:rgba(255,255,255,.92);transform:translateY(-0.125rem)}
+.svc__card:hover .svc__go{background:var(--green);border-color:var(--green);color:var(--ink);transform:scale(1.12)}
 .svc__card:hover .svc__go .ico{transform:translateX(0.2rem)}
 @media(max-width:1100px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.svc{grid-template-columns:minmax(0,1fr)}}
@@ -519,7 +530,7 @@ a{color:var(--blue-deep)}
   .btn:hover,.btn:hover .ico,.hero__visual:hover .hero__photo img,
   .callcard:hover,.callcard:hover .callcard__ico,.opt:hover,.mark:hover,
   .tile:hover,.tile:hover .tile__badge,.tile:hover::after,.tile:hover h3,.tile:hover p,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
-  .svc__card:hover,.svc__card:hover > .ico,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
+  .svc__card:hover,.svc__card:hover::after,.svc__card:hover > .ico,.svc__card:hover h3,.svc__card:hover p,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
   .why__row:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
   .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.why__panel:hover::before,.referral:hover::before,
