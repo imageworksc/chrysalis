@@ -421,19 +421,26 @@ a{color:var(--blue-deep)}
 .referral{background:#fff}
 .ref{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);overflow:hidden;border-radius:calc(var(--r-lg) * 1.2);
   background:var(--deep);color:rgba(255,255,255,.86);box-shadow:var(--e-4);transition:transform var(--fluid),box-shadow var(--fluid)}
+/* the photograph rests a little muted and comes to full colour under the pointer */
 .ref__photo{margin:0;min-height:100%;overflow:hidden}
-.ref__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
-.ref__body{padding:clamp(2rem,4vw,4rem)}
+.ref__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(.8);
+  transition:transform 1.2s cubic-bezier(.22,1,.36,1),filter .8s var(--ease)}
+.ref__body{position:relative;overflow:hidden;padding:clamp(2rem,4vw,4rem)}
+/* a band of green light that sweeps across the copy once, as the pointer arrives */
+.ref__body::before{content:"";position:absolute;top:-20%;bottom:-20%;left:-45%;width:35%;pointer-events:none;
+  background:linear-gradient(100deg,transparent 0%,rgba(var(--rgb-green),.18) 50%,transparent 100%);transform:skewX(-14deg)}
+.ref__body > *{position:relative}
 .ref__body .h2{color:#fff}
 .ref__body .actions{margin-top:var(--sp-6)}
-/* the tags: outlined pills that fill green one after the other as the panel is hovered */
+/* the tags: outlined pills; their outline turns green one after the other */
 .ref__who{list-style:none;margin:var(--sp-5) 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--sp-2)}
 .ref__who li{padding:var(--sp-2) var(--sp-4);border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.28);font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.02em;color:#fff;
-  transition:background var(--fluid),border-color var(--fluid),color var(--fluid),transform var(--fluid)}
-.ref__who li:nth-child(2){transition-delay:.05s}.ref__who li:nth-child(3){transition-delay:.1s}.ref__who li:nth-child(4){transition-delay:.15s}.ref__who li:nth-child(5){transition-delay:.2s}
+  transition:border-color .5s var(--ease),color .5s var(--ease)}
+.ref__who li:nth-child(2){transition-delay:.07s}.ref__who li:nth-child(3){transition-delay:.14s}.ref__who li:nth-child(4){transition-delay:.21s}.ref__who li:nth-child(5){transition-delay:.28s}
 .ref:hover{transform:translateY(-0.375rem);box-shadow:0 2.25rem 5rem rgba(var(--rgb-ink),.3)}
-.ref:hover .ref__photo img{transform:scale(1.05)}
-.ref:hover .ref__who li{background:var(--green);border-color:var(--green);color:var(--ink);transform:translateY(-2px)}
+.ref:hover .ref__photo img{transform:scale(1.03);filter:saturate(1)}
+.ref:hover .ref__body::before{transition:transform 1.1s var(--ease);transform:skewX(-14deg) translateX(430%)}
+.ref:hover .ref__who li{border-color:var(--green);color:var(--green)}
 @media(max-width:920px){
   .ref{grid-template-columns:minmax(0,1fr)}
   .ref__photo{aspect-ratio:16/10;min-height:0}
@@ -534,13 +541,14 @@ a{color:var(--blue-deep)}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .orb{animation:none}
+  .ref__body::before{display:none}
   .btn:hover,.btn:hover .ico,.hero__visual:hover .hero__photo img,
   .callcard:hover,.callcard:hover .callcard__ico,.opt:hover,.mark:hover,
   .tile:hover,.tile:hover .tile__badge,.tile:hover::after,.tile:hover h3,.tile:hover p,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
   .svc__card:hover,.svc__card:hover > .ico,.svc__card:hover h3,.svc__card:hover p,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
   .why__pts li:hover,.why__pts li:hover .why__mark,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
-  .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.ref:hover,.ref:hover .ref__photo img,.ref:hover .ref__who li,
+  .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.ref:hover,.ref:hover .ref__photo img,
   .final:hover .final__bg img,.ft a:hover{transform:none}
   .plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
