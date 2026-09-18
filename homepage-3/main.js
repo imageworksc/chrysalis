@@ -6,6 +6,7 @@
   const d = document;
 
   /* ---- entrance: a block fades up the first time it comes into view ---- */
+  d.documentElement.classList.add('reveal-ready');
   const revealed = d.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {

@@ -479,13 +479,15 @@ a{color:var(--blue-deep)}
 }
 
 
-/* the entrance is one animation per block, so it can only ever play once. It is
-   scheduled for 1.8s after load as a failsafe; is-in, added as the block scrolls
-   into view, only shortens that delay. A block the failsafe has already shown
-   keeps its end state when is-in arrives, instead of rising a second time. */
+/* a block waits, unseen, until it scrolls into view, then rises once: is-in is
+   added by the script as it arrives, and never removed. There is no timed
+   reveal, so a block far down the page still fades in when the reader reaches
+   it. reveal-off is the failsafe: head.js adds it if main.js never ran, so
+   nothing can stay hidden. */
 @keyframes rise{from{opacity:0;translate:0 1.375rem}to{opacity:1;translate:0}}
-.has-js [data-reveal]{opacity:0;translate:0 1.375rem;animation:rise .7s var(--ease) both;animation-delay:calc(1.8s + var(--d,0s))}
-.has-js [data-reveal].is-in{animation-delay:var(--d,0s)}
+.has-js [data-reveal]{opacity:0;translate:0 1.375rem}
+.has-js [data-reveal].is-in{animation:rise .7s var(--ease) both;animation-delay:var(--d,0s)}
+.has-js.reveal-off [data-reveal]{opacity:1;translate:0}
 @media(prefers-reduced-motion:reduce){
   .btn:hover,.btn:hover .ico{transform:none}
   .concerns li:hover,.concerns li:hover .cbadge,.concerns li:hover h3,.answer:hover,.answer:hover::before,
