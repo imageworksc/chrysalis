@@ -298,29 +298,20 @@ a{color:var(--blue-deep)}
 .ways + p{margin-top:var(--sp-6)}
 @media(max-width:920px){.access__grid{grid-template-columns:minmax(0,1fr)}.tilt{max-width:32rem}}
 
-/* ---------------- services: numbered cards ---------------- */
-.services{background:#fff}
+/* ---------------- services: four cards on the dark band ---------------- */
 .svc{list-style:none;margin:clamp(2.5rem,4.4vw,4.5rem) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
 .svc__card{position:relative;display:flex;flex-direction:column;gap:var(--sp-3);height:100%;padding:clamp(1.5rem,2.4vw,2.25rem);
-  background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-lg);text-decoration:none;color:inherit;overflow:hidden;
-  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
-/* the card's number, very large and faint, behind its content */
-.svc__card::before{content:attr(data-n);position:absolute;right:-0.1em;top:-0.25em;font-family:var(--head);font-weight:var(--fw-bold);
-  font-size:8rem;line-height:1;color:rgba(var(--rgb-blue),.1);pointer-events:none;transition:color .35s var(--ease),transform .35s var(--ease)}
-/* and the gradient along the top edge */
-.svc__card::after{content:"";position:absolute;left:0;right:0;top:0;height:0.3rem;background:var(--lift);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease)}
-.svc__badge{position:relative;width:3.25rem;height:3.25rem;border-radius:0.875rem;display:grid;place-items:center;background:var(--blue-lt);color:var(--blue-deep);
-  transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease)}
-.svc__badge .ico{width:1.5rem;height:1.5rem;stroke-width:1.6}
-.svc__card h3{position:relative;font-family:var(--head);font-size:clamp(1.0625rem,1.35vw,1.3125rem);font-weight:var(--fw-med);color:var(--ink);line-height:1.2;letter-spacing:-.018em;text-wrap:balance}
-.svc__card p{position:relative;font-size:var(--fs-sm);line-height:1.55;color:var(--card-txt)}
-.svc__go{position:relative;margin-top:auto;align-self:flex-end;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--rule-dk);display:grid;place-items:center;color:var(--ink);background:#fff;
-  transition:background .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
-.svc__go .ico{transition:transform .3s var(--ease)}
-.svc__card:hover{transform:translateY(-0.5rem);box-shadow:var(--e-3);border-color:transparent;background:#fff}
-.svc__card:hover::before{color:rgba(var(--rgb-green),.16);transform:translate(-0.25rem,0.25rem)}
-.svc__card:hover::after{transform:scaleX(1)}
-.svc__card:hover .svc__badge{background:var(--blue-deep);color:#fff;transform:scale(1.08) rotate(-4deg)}
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);text-decoration:none;color:inherit;overflow:hidden;
+  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid)}
+.svc__card > .ico{width:1.75rem;height:1.75rem;color:var(--green);stroke-width:1.6;transition:transform var(--fluid)}
+.svc__card h3{font-family:var(--head);font-size:clamp(1.0625rem,1.35vw,1.3125rem);font-weight:var(--fw-med);color:#fff;line-height:1.2;letter-spacing:-.018em;text-wrap:balance}
+.svc__card p{font-size:var(--fs-sm);line-height:1.55;color:rgba(255,255,255,.72);transition:color var(--fluid)}
+.svc__go{margin-top:auto;align-self:flex-end;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#fff;
+  transition:background var(--fluid),border-color var(--fluid),color var(--fluid),transform var(--fluid)}
+.svc__go .ico{transition:transform var(--fluid)}
+.svc__card:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.3);transform:translateY(-0.375rem)}
+.svc__card:hover > .ico{transform:translateY(-0.2rem) scale(1.12)}
+.svc__card:hover p{color:rgba(255,255,255,.92)}
 .svc__card:hover .svc__go{background:var(--green);border-color:var(--green);color:var(--ink);transform:scale(1.1)}
 .svc__card:hover .svc__go .ico{transform:translateX(0.2rem)}
 @media(max-width:1100px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -528,11 +519,11 @@ a{color:var(--blue-deep)}
   .btn:hover,.btn:hover .ico,.hero__visual:hover .hero__photo img,
   .callcard:hover,.callcard:hover .callcard__ico,.opt:hover,.mark:hover,
   .tile:hover,.tile:hover .tile__badge,.tile:hover::after,.tile:hover h3,.tile:hover p,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
-  .svc__card:hover,.svc__card:hover::before,.svc__card:hover .svc__badge,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
+  .svc__card:hover,.svc__card:hover > .ico,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
   .why__row:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
   .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.why__panel:hover::before,.referral:hover::before,
   .final:hover .final__bg img,.ft a:hover{transform:none}
-  .svc__card:hover::after,.plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
+  .plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
