@@ -64,11 +64,12 @@ a{color:var(--blue-deep)}
 .h3{font-family:var(--head);font-size:var(--fs-h3);font-weight:var(--fw-med);line-height:1.3;letter-spacing:-.012em;color:var(--ink)}
 .statement{font-family:var(--head);font-size:var(--fs-state);font-weight:var(--fw-bold);line-height:1.14;letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
 .lead{font-size:var(--fs-lead);line-height:1.62}
-.kicker{display:inline-flex;align-items:center;gap:var(--sp-3);font-family:var(--head);font-weight:var(--fw-med);font-size:var(--fs-xs);letter-spacing:.06em;text-transform:uppercase;
-  color:var(--green-cta);margin-bottom:var(--sp-4);padding:var(--sp-2) var(--sp-4);border-radius:var(--r-pill);background:var(--green-lt)}
-.kicker{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.kicker:hover{transform:translateY(-2px);box-shadow:var(--e-2)}
-.kicker--light{color:var(--green);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.kicker{display:inline-flex;align-items:center;gap:var(--sp-2);font-family:var(--head);font-weight:var(--fw-med);font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--green-cta);margin-bottom:var(--sp-4)}
+/* an outline icon before the words, a little larger than the type; it turns as the kicker is hovered */
+.kicker .ico{width:1.25rem;height:1.25rem;stroke-width:1.7;transition:transform var(--fluid)}
+.kicker:hover .ico{transform:rotate(-12deg) scale(1.15)}
+.kicker--light{color:var(--green)}
 /* a phrase of a heading set in the lift gradient: green on the ink is 7.2:1, blue 4.9:1 */
 .grad{background:var(--lift);background-size:200% 100%;background-position:0 50%;-webkit-background-clip:text;background-clip:text;color:transparent;
   transition:background-position .8s var(--ease)}
@@ -529,7 +530,7 @@ a{color:var(--blue-deep)}
   .tile:hover,.tile:hover .tile__badge,.tile:hover::after,.tile:hover h3,.tile:hover p,.plate:hover,.intake__card:hover::before,.opt:hover .ico,.ways li:hover .ways__n,.tilt,.tilt:hover,.ways li:hover,.ways li:hover .ico,
   .svc__card:hover,.svc__card:hover::before,.svc__card:hover .svc__badge,.svc__card:hover .svc__go,.svc__card:hover .svc__go .ico,
   .aud:hover,.aud:hover img,.pstep:hover .pstep__card,.pstep.is-live .pstep__n,.lit img,.lit:hover img,.lit:hover::before,
-  .why__row:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover,.intake__card:hover,.mark:hover .mark__big,
+  .why__row:hover .why__mark,.faq__item:hover,.faq__item:hover .faq__icon,.kicker:hover .ico,.intake__card:hover,.mark:hover .mark__big,
   .plate:hover .plate__glow,.plate:hover .plate__badge,.tilt:hover img,.pstep:hover .pstep__n,.why__panel:hover::before,.referral:hover::before,
   .final:hover .final__bg img,.ft a:hover{transform:none}
   .svc__card:hover::after,.plate:hover::before,.pstep.is-passed::after{transform:scaleX(1)}
