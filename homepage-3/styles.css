@@ -82,7 +82,7 @@ a{color:var(--blue-deep)}
 
 /* utilities, in place of style attributes */
 .d-06{--d:.06s}.d-08{--d:.08s}.d-12{--d:.12s}.d-16{--d:.16s}.d-18{--d:.18s}.d-24{--d:.24s}.d-30{--d:.3s}
-.mt-3{margin-top:var(--sp-3)}.mt-4{margin-top:var(--sp-4)}.mt-5{margin-top:var(--sp-5)}.mt-6{margin-top:var(--sp-6)}
+.mt-4{margin-top:var(--sp-4)}.mt-5{margin-top:var(--sp-5)}.mt-6{margin-top:var(--sp-6)}
 .measure-52{max-width:52ch}.measure-54{max-width:54ch}.measure-58{max-width:58ch}.measure-92{max-width:92ch}
 .balance{text-wrap:balance}
 .ink{color:var(--ink)}
@@ -108,7 +108,6 @@ a{color:var(--blue-deep)}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-4rem,2.5rem) scale(1.12)}}
 .glass{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);
   backdrop-filter:blur(1rem);-webkit-backdrop-filter:blur(1rem);box-shadow:var(--e-4)}
-.glass--light{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.9);box-shadow:var(--e-3)}
 
 /* ---------------- buttons ---------------- */
 .btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
@@ -126,8 +125,6 @@ a{color:var(--blue-deep)}
 .btn--ghost:hover{border-color:var(--ink);box-shadow:0 0.5rem 1rem rgba(var(--rgb-ink),.1)}
 .btn--glass{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff;backdrop-filter:blur(.5rem);-webkit-backdrop-filter:blur(.5rem)}
 .btn--glass:hover{border-color:#fff;background:rgba(255,255,255,.2)}
-.btn--light{background:#fff;border-color:#fff;color:var(--green-cta)}
-.btn--light:hover{background:var(--green-lt);border-color:var(--green-lt);box-shadow:0 0.75rem 1.5rem rgba(0,0,0,.18)}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3);margin-top:var(--sp-7)}
 .actions--center{justify-content:center}
 @media(max-width:600px){.actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%}}
@@ -245,6 +242,30 @@ a{color:var(--blue-deep)}
 @media(max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.tiles{grid-template-columns:minmax(0,1fr)}}
 
+/* ---------------- access ---------------- */
+.access__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-7) clamp(2rem,5vw,6rem);align-items:center}
+/* a photograph set at a slight angle; it straightens under the pointer */
+.tilt{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e-4);transform:rotate(-3deg);aspect-ratio:5/4;
+  border:0.375rem solid rgba(255,255,255,.12);transition:transform .7s cubic-bezier(.22,1,.36,1),box-shadow .7s cubic-bezier(.22,1,.36,1)}
+.tilt img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.tilt:hover img{transform:scale(1.05)}
+.tilt:hover{transform:rotate(0) scale(1.02)}
+.access__copy{min-width:0}
+.access__copy .lead{margin-top:var(--sp-5);color:rgba(255,255,255,.84)}
+.ways{list-style:none;margin:var(--sp-6) 0 0;padding:0;display:grid;gap:var(--sp-3)}
+.ways li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--sp-4);
+  padding:var(--sp-4) var(--sp-5);border-radius:var(--r-pill);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid),box-shadow var(--fluid)}
+.ways__n{font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.06em;color:var(--green);transition:transform var(--fluid)}
+.ways h3{font-family:var(--head);font-size:clamp(1.0625rem,1.3vw,1.25rem);font-weight:var(--fw-med);color:#fff;letter-spacing:-.015em}
+.ways .ico{width:1.5rem;height:1.5rem;color:rgba(255,255,255,.6);transition:color var(--fluid),transform var(--fluid)}
+.ways li:hover{background:rgba(255,255,255,.12);border-color:rgba(var(--rgb-green),.6);transform:translateX(0.625rem);
+  box-shadow:0 0 0 0.25rem rgba(var(--rgb-green),.15)}
+.ways li:hover .ico{color:var(--green);transform:scale(1.15) translateX(0.25rem)}
+.ways li:hover .ways__n{transform:translateX(-0.25rem)}
+.ways + p{margin-top:var(--sp-6)}
+@media(max-width:920px){.access__grid{grid-template-columns:minmax(0,1fr)}.tilt{max-width:32rem}}
+
 /* ---------------- the answer: a quiet plate ---------------- */
 .answer{background:#fff}
 /* white to the faint tint, a hairline, a soft blue light in the corner */
@@ -276,30 +297,6 @@ a{color:var(--blue-deep)}
   .plate__grid{grid-template-columns:minmax(0,1fr)}
   .plate__body{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:var(--sp-5)}
 }
-
-/* ---------------- access ---------------- */
-.access__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--sp-7) clamp(2rem,5vw,6rem);align-items:center}
-/* a photograph set at a slight angle; it straightens under the pointer */
-.tilt{margin:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e-4);transform:rotate(-3deg);aspect-ratio:5/4;
-  border:0.375rem solid rgba(255,255,255,.12);transition:transform .7s cubic-bezier(.22,1,.36,1),box-shadow .7s cubic-bezier(.22,1,.36,1)}
-.tilt img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,1,.36,1)}
-.tilt:hover img{transform:scale(1.05)}
-.tilt:hover{transform:rotate(0) scale(1.02)}
-.access__copy{min-width:0}
-.access__copy .lead{margin-top:var(--sp-5);color:rgba(255,255,255,.84)}
-.ways{list-style:none;margin:var(--sp-6) 0 0;padding:0;display:grid;gap:var(--sp-3)}
-.ways li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--sp-4);
-  padding:var(--sp-4) var(--sp-5);border-radius:var(--r-pill);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-  transition:background var(--fluid),border-color var(--fluid),transform var(--fluid),box-shadow var(--fluid)}
-.ways__n{font-family:var(--head);font-size:var(--fs-xs);font-weight:var(--fw-med);letter-spacing:.06em;color:var(--green);transition:transform var(--fluid)}
-.ways h3{font-family:var(--head);font-size:clamp(1.0625rem,1.3vw,1.25rem);font-weight:var(--fw-med);color:#fff;letter-spacing:-.015em}
-.ways .ico{width:1.5rem;height:1.5rem;color:rgba(255,255,255,.6);transition:color var(--fluid),transform var(--fluid)}
-.ways li:hover{background:rgba(255,255,255,.12);border-color:rgba(var(--rgb-green),.6);transform:translateX(0.625rem);
-  box-shadow:0 0 0 0.25rem rgba(var(--rgb-green),.15)}
-.ways li:hover .ico{color:var(--green);transform:scale(1.15) translateX(0.25rem)}
-.ways li:hover .ways__n{transform:translateX(-0.25rem)}
-.ways + p{margin-top:var(--sp-6)}
-@media(max-width:920px){.access__grid{grid-template-columns:minmax(0,1fr)}.tilt{max-width:32rem}}
 
 /* ---------------- services: four cards on the dark band ---------------- */
 .svc{list-style:none;margin:clamp(2.5rem,4.4vw,4.5rem) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}
@@ -523,12 +520,13 @@ a{color:var(--blue-deep)}
 }
 
 /* ---------------- entrance ---------------- */
-/* the entrance is an animation rather than a transition, so it never overrides the
-   transition a block declares for its own hover */
+/* the entrance is one animation per block, so it can only ever play once. It is
+   scheduled for 1.8s after load as a failsafe; is-in, added as the block scrolls
+   into view, only shortens that delay. A block the failsafe has already shown
+   keeps its end state when is-in arrives, instead of rising a second time. */
 @keyframes rise{from{opacity:0;translate:0 1.375rem}to{opacity:1;translate:0}}
-@keyframes rise-failsafe{to{opacity:1;translate:0}}
-.has-js [data-reveal]{opacity:0;translate:0 1.375rem;animation:rise-failsafe .4s var(--ease) forwards;animation-delay:calc(1.8s + var(--d,0s))}
-.has-js [data-reveal].is-in{animation:rise .7s var(--ease) both;animation-delay:var(--d,0s)}
+.has-js [data-reveal]{opacity:0;translate:0 1.375rem;animation:rise .7s var(--ease) both;animation-delay:calc(1.8s + var(--d,0s))}
+.has-js [data-reveal].is-in{animation-delay:var(--d,0s)}
 
 /* ---------------- large screens ---------------- */
 @media(min-width:2200px){html{font-size:112.5%}}
