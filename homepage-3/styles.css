@@ -267,6 +267,7 @@ a{color:var(--blue-deep)}
 /* the answer, set beside a hairline; every service it names is a link to its page */
 .plate__body{min-width:0;border-left:1px solid var(--rule);padding-left:clamp(1.5rem,3vw,3rem)}
 .plate__body p{font-size:clamp(1.0625rem,1.15vw,1.1875rem);line-height:1.78;color:var(--ink)}
+.plate__actions{margin-top:var(--sp-5)}
 .svc-link{color:var(--blue-deep);font-weight:var(--fw-bold);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.22em;
   text-decoration-color:rgba(var(--rgb-green),.7);transition:color .3s var(--ease),text-decoration-color .3s var(--ease),text-underline-offset .3s var(--ease)}
 .svc-link:hover{text-underline-offset:.32em}
